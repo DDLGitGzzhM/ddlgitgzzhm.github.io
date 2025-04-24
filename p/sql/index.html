@@ -344,6 +344,31 @@
 </div>
 </div><p><a class="link" href="https://www.nowcoder.com/practice/f9f82607cac44099a77154a80266234a?tpId=199&amp;tqId=1971219&amp;sourceUrl=%2Fexam%2Foj%3FquestionJobId%3D10%26subTabName%3Donline_coding_page"  target="_blank" rel="noopener"
     >牛客网题目链接</a></p>
+<h1 id="2-查询结果去重">2. 查询结果去重
+</h1><ol>
+<li>select distinct  只用于列的去重</li>
+<li>select group by 可以用于一些聚合操作 如 count , avg</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="k">distinct</span><span class="w"> </span><span class="n">university</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="n">unviersity</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w">  </span><span class="n">unviersity</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>从性能上看</p>
+<ol>
+<li>distinct 和 group by 没什么区别, 在只需要去重的场景 distinct 性能可能略好于 group by, 效率取决于 <code>DISTINCT</code></li>
+</ol>
+<p>从业务上看</p>
+<ol>
+<li>如果我们想要使用聚合函数, 如计算分组内的平均数 和 总数 那么必须使用 distinct</li>
+</ol>
+<p><a class="link" href="https://www.nowcoder.com/practice/82ebd89f12cf48efba0fecb392e193dd?tpId=199&amp;tqId=1971234&amp;sourceUrl=%2Fexam%2Foj%3FquestionJobId%3D10%26subTabName%3Donline_coding_page"  target="_blank" rel="noopener"
+    >牛客网题目链接</a></p>
 
 </section>
 
