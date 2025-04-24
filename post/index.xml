@@ -13,7 +13,7 @@
         <pubDate>Thu, 24 Apr 2025 00:00:00 +0000</pubDate>
         
         <guid>https://ddlgitgzzhm.github.io/p/srp/</guid>
-        <description>&lt;img src="https://ddlgitgzzhm.github.io/p/srp/luca-bravo-alS7ewQ41M8-unsplash.jpg" alt="Featured image of post [设计模式] SRP 单一职责原则" /&gt;&lt;h2 id=&#34;简要&#34;&gt;简要
+        <description>&lt;img src="https://ddlgitgzzhm.github.io/p/srp/srp.png" alt="Featured image of post [设计模式] SRP 单一职责原则" /&gt;&lt;h2 id=&#34;简要&#34;&gt;简要
 &lt;/h2&gt;&lt;p&gt;对于一个温度显示系统，如果我们要显示不同的温度, 简单做法是直接写在一个 class 里面&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
