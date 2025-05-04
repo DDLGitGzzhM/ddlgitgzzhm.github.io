@@ -95,7 +95,21 @@
 &lt;ol&gt;
 &lt;li&gt;&lt;code&gt;lcm(A,B) = A * B / gcd(A,B)&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;优化一下 &lt;code&gt;= A / gcd(A,B) * B&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;问题引导为 &lt;code&gt;如何求最大公约数&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;问题引导为 &lt;code&gt;如何求最大公约数&lt;/code&gt;
+&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/hdu-0x01-math/img.png&#34;
+	width=&#34;650&#34;
+	height=&#34;322&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/hdu-0x01-math/img_hu_2f731d8bd02168b6.png 480w, https://ddlgitgzzhm.github.io/p/hdu-0x01-math/img_hu_f8d2f8702386fcba.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;201&#34;
+		data-flex-basis=&#34;484px&#34;
+	
+&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.acwing.com/file_system/file/content/whole/index/content/4337/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Acwing-最小公倍数&lt;/a&gt;&lt;/p&gt;
@@ -162,7 +176,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
@@ -220,21 +235,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/hdu-0x01-math/img.png&#34;
-	width=&#34;650&#34;
-	height=&#34;322&#34;
-	srcset=&#34;https://ddlgitgzzhm.github.io/p/hdu-0x01-math/img_hu_2f731d8bd02168b6.png 480w, https://ddlgitgzzhm.github.io/p/hdu-0x01-math/img_hu_f8d2f8702386fcba.png 1024w&#34;
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;img.png&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;201&#34;
-		data-flex-basis=&#34;484px&#34;
-	
-&gt;&lt;/p&gt;
-</description>
+&lt;/div&gt;</description>
         </item>
         
     </channel>
