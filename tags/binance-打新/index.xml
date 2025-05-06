@@ -7,7 +7,108 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>GzzhM</copyright>
-        <lastBuildDate>Sun, 04 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/tags/binance-%E6%89%93%E6%96%B0/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 06 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/tags/binance-%E6%89%93%E6%96%B0/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>[Binance] 送钱活动 3</title>
+        <link>https://ddlgitgzzhm.github.io/p/binance-staking-activity-2/</link>
+        <pubDate>Tue, 06 May 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/p/binance-staking-activity-2/</guid>
+        <description>&lt;img src="https://ddlgitgzzhm.github.io/p/binance-staking-activity-2/img.png" alt="Featured image of post [Binance] 送钱活动 3" /&gt;&lt;h1 id=&#34;新一期的-tge&#34;&gt;新一期的 TGE
+&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;目前分数 115&lt;/li&gt;
+&lt;li&gt;从 4.29 日的 &lt;code&gt;75&lt;/code&gt; 分，经过 &lt;code&gt;8 &lt;/code&gt;天，就飞升到了 &lt;code&gt;142&lt;/code&gt; 分，总共差额 &lt;code&gt;67&lt;/code&gt; ,平均 &lt;code&gt;9.5(除去当天)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;简单可以计算出，top 层级的玩家基本上一天会刷个 &lt;code&gt;10&lt;/code&gt; 分，资产人均 &lt;code&gt;2分&lt;/code&gt; 加上 &lt;code&gt;8&lt;/code&gt;分交易量 ，大概是 &lt;code&gt;256u&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;115 + 11 * x  =  142 + 10 * x  &lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;x = 142 - 115 = 27&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;按照这个趋势，我需要吃满 27 天， 不过 &lt;code&gt;x&lt;/code&gt; 可以翻倍，从而缩短我的进程
+&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/binance-staking-activity-2/img_1.png&#34;
+	width=&#34;793&#34;
+	height=&#34;253&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/binance-staking-activity-2/img_1_hu_7c13d05e92586071.png 480w, https://ddlgitgzzhm.github.io/p/binance-staking-activity-2/img_1_hu_c6e27e2e8e6326bf.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img_1.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;313&#34;
+		data-flex-basis=&#34;752px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h1 id=&#34;策略更改&#34;&gt;策略更改
+&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;目前更改了一下策略，从钱包 飞到了 交易所&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;从原先的 BASE 链 回到了 solana 和 bnb chain  . Base链的滑点太高了，导致我每次都被吃了很多的费用&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;我们可以看见
+4. 我做了一笔 solana 的 popcat  , &lt;code&gt;512u&lt;/code&gt; 实际到手 &lt;code&gt;511.6u&lt;/code&gt; , 加上 &lt;code&gt;0.02 + 0.01&lt;/code&gt; 的 gas , 总共一次 就 &lt;code&gt;0.43u&lt;/code&gt;
+5. 我同样做了一笔 bnb chain 的 b2 , &lt;code&gt;513u&lt;/code&gt; 实际到手 &lt;code&gt;511.79u&lt;/code&gt;, 加上 &lt;code&gt;0.43 + 0.43&lt;/code&gt; 的 gas , 总共一次 就 &lt;code&gt;2.71u&lt;/code&gt;
+6. 同样都设置的 滑点 &lt;code&gt;0.5%&lt;/code&gt; , 很显然 bnb chain 那个滑点爆炸了 。 不过他的gas费也不低，虽然一次是 &lt;code&gt;double 积分&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;综上，目前策略预计改成 &lt;code&gt;solana chain&lt;/code&gt; , per &lt;code&gt;512/trade&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;积分是递增的即 &lt;code&gt;512&lt;/code&gt;, &lt;code&gt;1024&lt;/code&gt;,&lt;code&gt;2048&lt;/code&gt;, &lt;code&gt;4096&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;按照一次 &lt;code&gt;0.43u&lt;/code&gt; 的磨损来看，我&lt;code&gt;2u&lt;/code&gt;可以亏损 5 次，即&lt;code&gt;512 * 4&lt;/code&gt; = &lt;code&gt;2560&lt;/code&gt; ，这样子会把 &lt;code&gt;x&lt;/code&gt; 大成为 3，即我9天内就可以赶上&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果采用限价单双倍的策略,我很容易吃到 &lt;code&gt;4096&lt;/code&gt; 那么我 &lt;code&gt;6.75&lt;/code&gt; 天就可以吃满&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/binance-staking-activity-2/IMG_1731.PNG&#34;
+	width=&#34;1170&#34;
+	height=&#34;2532&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/binance-staking-activity-2/IMG_1731_hu_21a116408780efde.PNG 480w, https://ddlgitgzzhm.github.io/p/binance-staking-activity-2/IMG_1731_hu_bf8e569a6020f0aa.PNG 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img_1731.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;46&#34;
+		data-flex-basis=&#34;110px&#34;
+	
+&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/binance-staking-activity-2/IMG_1731.PNG&#34;
+	width=&#34;1170&#34;
+	height=&#34;2532&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/binance-staking-activity-2/IMG_1731_hu_21a116408780efde.PNG 480w, https://ddlgitgzzhm.github.io/p/binance-staking-activity-2/IMG_1731_hu_bf8e569a6020f0aa.PNG 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img_1732.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;46&#34;
+		data-flex-basis=&#34;110px&#34;
+	
+&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/binance-staking-activity-2/IMG_1731.PNG&#34;
+	width=&#34;1170&#34;
+	height=&#34;2532&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/binance-staking-activity-2/IMG_1731_hu_21a116408780efde.PNG 480w, https://ddlgitgzzhm.github.io/p/binance-staking-activity-2/IMG_1731_hu_bf8e569a6020f0aa.PNG 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img_1733.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;46&#34;
+		data-flex-basis=&#34;110px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h1 id=&#34;other&#34;&gt;Other
+&lt;/h1&gt;&lt;p&gt;行情 ： &lt;a class=&#34;link&#34; href=&#34;https://www.geckoterminal.com/zh/bsc/pools/0xc1a780989734a0e5df875cebe410748562e1c5e6&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.geckoterminal.com/zh/bsc/pools/0xc1a780989734a0e5df875cebe410748562e1c5e6&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>[Binance] 送钱活动 2</title>
         <link>https://ddlgitgzzhm.github.io/p/binance-staking-activity-1/</link>
         <pubDate>Sun, 04 May 2025 00:00:00 +0000</pubDate>
