@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="牛客网刷 sql day 1">
-<title>[SQL] 基础查询</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="牛客网刷 sql day 3">
+<title>[SQL] 高级操作符</title>
 
-<link rel='canonical' href='https://ddlgitgzzhm.github.io/p/primary-select/'>
+<link rel='canonical' href='https://ddlgitgzzhm.github.io/p/senior-select-1/'>
 
 
-<link rel="stylesheet" href="/css/main.0a8be7391d8087c7d54da73badd1c839ac4573f64374125e9f9b47376c9c037d.css"><meta property='og:title' content="[SQL] 基础查询">
-<meta property='og:description' content="牛客网刷 sql day 1">
-<meta property='og:url' content='https://ddlgitgzzhm.github.io/p/primary-select/'>
+<link rel="stylesheet" href="/css/main.0a8be7391d8087c7d54da73badd1c839ac4573f64374125e9f9b47376c9c037d.css"><meta property='og:title' content="[SQL] 高级操作符">
+<meta property='og:description' content="牛客网刷 sql day 3">
+<meta property='og:url' content='https://ddlgitgzzhm.github.io/p/senior-select-1/'>
 <meta property='og:site_name' content='GzzhM'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-04-24T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-04-24T00:00:00&#43;00:00'/><meta property='og:image' content='https://ddlgitgzzhm.github.io/p/primary-select/sql.png' />
-<meta name="twitter:title" content="[SQL] 基础查询">
-<meta name="twitter:description" content="牛客网刷 sql day 1"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://ddlgitgzzhm.github.io/p/primary-select/sql.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-05-06T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-05-06T00:00:00&#43;00:00'/><meta property='og:image' content='https://ddlgitgzzhm.github.io/p/senior-select-1/sql.png' />
+<meta name="twitter:title" content="[SQL] 高级操作符">
+<meta name="twitter:description" content="牛客网刷 sql day 3"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://ddlgitgzzhm.github.io/p/senior-select-1/sql.png' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -253,13 +253,13 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/primary-select/">
-                <img src="/p/primary-select/sql_hu_697b8ab9103c4c7a.png"
-                        srcset="/p/primary-select/sql_hu_697b8ab9103c4c7a.png 800w, /p/primary-select/sql_hu_e1fc03ccc52a2a80.png 1600w"
+            <a href="/p/senior-select-1/">
+                <img src="/p/senior-select-1/sql_hu_697b8ab9103c4c7a.png"
+                        srcset="/p/senior-select-1/sql_hu_697b8ab9103c4c7a.png 800w, /p/senior-select-1/sql_hu_e1fc03ccc52a2a80.png 1600w"
                         width="800" 
                         height="379" 
                         loading="lazy"
-                        alt="Featured image of post [SQL] 基础查询" />
+                        alt="Featured image of post [SQL] 高级操作符" />
                 
             </a>
         </div>
@@ -278,12 +278,12 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/primary-select/">[SQL] 基础查询</a>
+            <a href="/p/senior-select-1/">[SQL] 高级操作符</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            牛客网刷 sql day 1
+            牛客网刷 sql day 3
         </h3>
         
     </div>
@@ -304,7 +304,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2025-04-24</time>
+                <time class="article-time--published">2025-05-06</time>
             </div>
         
 
@@ -320,56 +320,124 @@
     <section class="article-content">
     
     
-    <h1 id="1-查询所有列">1. 查询所有列
-</h1><p>两种做法,一种是 *, 另外一种是全量的显示所有的列。 本质上这两个没什么区别</p>
-<p>从业务角度来看</p>
+    <h1 id="高级操作符练习-1">高级操作符练习 1
+</h1><blockquote>
+<p>题目：现在运营想要找到male且GPA在3.5以上(不包括3.5)的用户进行调研，请你取出相关数据。</p></blockquote>
 <ol>
-<li>如果当前的 sql 并不打算查新增的列 则可以使用第一种</li>
-<li>如果后续有列被删除了, 第二种也需要同步改动(当然生产环境很少有直接删除的)</li>
+<li>业务场景中, 需要提前加上其他判断 <code>gpa is not null</code></li>
 </ol>
-<p>从索引角度来看</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="n">gender</span><span class="p">,</span><span class="n">age</span><span class="p">,</span><span class="n">university</span><span class="p">,</span><span class="n">gpa</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">gpa</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">3</span><span class="p">.</span><span class="mi">5</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">gender</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;male&#39;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><a class="link" href="https://www.nowcoder.com/practice/2d2e37474197488fbdf8f9206f66651c?tpId=199&amp;tqId=1971781&amp;sourceUrl=%2Fexam%2Foj"  target="_blank" rel="noopener"
+    >牛科练习题目</a></p>
+<h1 id="高级操作符练习-2">高级操作符练习 2
+</h1><blockquote>
+<p>题目：现在运营想要找到学校为北大或GPA在3.7以上(不包括3.7)的用户进行调研，请你取出相关数据（使用OR实现）</p></blockquote>
 <ol>
-<li>如果 剩下的字段建立了二级索引，那么第二种方法可以避免一次回表操作</li>
-<li>如果没有二级索引(二级缩影需要覆盖整个查询的列)这两个其实是一样的</li>
+<li>就简单介绍了一下 or 怎么用</li>
+<li>顾名思义</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="w"> </span><span class="n">gender</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">university</span><span class="p">,</span><span class="w"> </span><span class="n">gpa</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">university</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;北京大学&#39;</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n">gpa</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">3</span><span class="p">.</span><span class="mi">7</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><a class="link" href="https://www.nowcoder.com/practice/25bcf6924eff417d90c8988f55675122?tpId=199&amp;tqId=1971821&amp;sourceUrl=%2Fexam%2Foj"  target="_blank" rel="noopener"
+    >牛科练习题目</a></p>
+<h1 id="where-in-和-not-in">Where in 和 Not in
+</h1><blockquote>
+<p>题目：现在运营想要找到学校为北大、复旦和山大的同学进行调研，请你取出相关数据。</p></blockquote>
+<ol>
+<li>顾名思义</li>
+<li>todo 性能分析 @我</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="w"> </span><span class="n">gender</span><span class="p">,</span><span class="n">age</span><span class="p">,</span><span class="n">university</span><span class="p">,</span><span class="n">gpa</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">university</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;北京大学&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;复旦大学&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;山东大学&#39;</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><a class="link" href="https://www.nowcoder.com/practice/0355033fc2244cdaa09b2bd6e794c762?tpId=199&amp;tqId=1975665&amp;sourceUrl=%2Fexam%2Foj"  target="_blank" rel="noopener"
+    >牛科练习题目</a></p>
+<h1 id="操作符混合运用">操作符混合运用
+</h1><blockquote>
+<p>题目：现在运营想要找到gpa在3.5以上(不包括3.5)的山东大学用户 或 gpa在3.8以上(不包括3.8)的复旦大学同学进行用户调研，请你取出相应数据,取出的数据按照device_id升序排列</p></blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="w"> </span><span class="n">gender</span><span class="p">,</span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">university</span><span class="p">,</span><span class="n">gpa</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">gpa</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">3</span><span class="p">.</span><span class="mi">5</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">university</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;山东大学&#39;</span><span class="w"> </span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="k">or</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">(</span><span class="n">gpa</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">3</span><span class="p">.</span><span class="mi">8</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">university</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;复旦大学&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">device_id</span><span class="w"> </span><span class="k">asc</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>这里可以改为子查询的方式，时间或许会更短</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">user_profile</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="n">device_id</span><span class="p">,</span><span class="n">gender</span><span class="p">,</span><span class="n">age</span><span class="p">,</span><span class="n">university</span><span class="p">,</span><span class="n">province</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">user_profile</span><span class="p">;</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="w"> </span><span class="n">gender</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">university</span><span class="p">,</span><span class="w"> </span><span class="n">gpa</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">device_id</span><span class="w"> </span><span class="k">in</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">gpa</span><span class="o">&gt;</span><span class="mi">3</span><span class="p">.</span><span class="mi">5</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">university</span><span class="o">=</span><span class="s1">&#39;山东大学&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">or</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">device_id</span><span class="w"> </span><span class="k">in</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">gpa</span><span class="o">&gt;</span><span class="mi">3</span><span class="p">.</span><span class="mi">8</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">university</span><span class="o">=</span><span class="s1">&#39;复旦大学&#39;</span><span class="p">)</span><span class="w"> 
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><a class="link" href="https://www.nowcoder.com/practice/f9f82607cac44099a77154a80266234a?tpId=199&amp;tqId=1971219&amp;sourceUrl=%2Fexam%2Foj%3FquestionJobId%3D10%26subTabName%3Donline_coding_page"  target="_blank" rel="noopener"
-    >牛客网题目链接</a></p>
-<h1 id="2-查询结果去重">2. 查询结果去重
-</h1><ol>
-<li>select distinct  只用于列的去重</li>
-<li>select group by 可以用于一些聚合操作 如 count , avg</li>
+</div><p><a class="link" href="https://www.nowcoder.com/practice/d5ac4c878b63477fa5e5dfcb427d9102?tpId=199&amp;tqId=1975666&amp;sourceUrl=%2Fexam%2Foj"  target="_blank" rel="noopener"
+    >牛客网题目</a></p>
+<h1 id="查看学校名称中含北京的用户">查看学校名称中含北京的用户
+</h1><blockquote>
+<p>题目：现在运营想查看所有大学中带有&quot;北京&quot;的用户的信息(device_id,age,university)，请你取出相应数据。</p></blockquote>
+<ol>
+<li>字符匹配</li>
+<li>四种通配符</li>
+<li><code>%</code> 匹配 0 个 或者是 多个字符</li>
+<li><code>_</code> 匹配任意一个字符 <code>_李</code></li>
+<li><code>[]</code>匹配<code>[]</code>中任意一个字符,如果比较的字符串是连续的，可以用<code>-</code>表达</li>
+<li><code>[^]</code>不匹配<code>[]</code>中任意一个字符</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="k">distinct</span><span class="w"> </span><span class="n">university</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="n">unviersity</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w">  </span><span class="n">unviersity</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">university</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">university</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;%北京%&#39;</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p>从性能上看</p>
-<ol>
-<li>distinct 和 group by 没什么区别, 在只需要去重的场景 distinct 性能可能略好于 group by, 效率取决于 <code>DISTINCT</code></li>
-</ol>
-<p>从业务上看</p>
-<ol>
-<li>如果我们想要使用聚合函数, 如计算分组内的平均数 和 总数 那么必须使用 distinct</li>
-</ol>
-<p><a class="link" href="https://www.nowcoder.com/practice/82ebd89f12cf48efba0fecb392e193dd?tpId=199&amp;tqId=1971234&amp;sourceUrl=%2Fexam%2Foj%3FquestionJobId%3D10%26subTabName%3Donline_coding_page"  target="_blank" rel="noopener"
-    >牛客网题目链接</a></p>
-
+</div>
 </section>
 
 
@@ -417,30 +485,6 @@
             
                 
 <article class="has-image">
-    <a href="/p/senior-select-1/">
-        
-        
-            <div class="article-image">
-                <img src="/p/senior-select-1/sql.e2fff72502b590a35386a5ba8c70a36a_hu_f7188397613682ca.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post [SQL] 高级操作符"
-                        data-key="senior-select-1" 
-                        data-hash="md5-4v/3JQK1kKNThqW6jHCjag==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">[SQL] 高级操作符</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
     <a href="/p/limit-select/">
         
         
@@ -458,6 +502,30 @@
 
         <div class="article-details">
             <h2 class="article-title">[SQL] 条件查询</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/primary-select/">
+        
+        
+            <div class="article-image">
+                <img src="/p/primary-select/sql.e2fff72502b590a35386a5ba8c70a36a_hu_f7188397613682ca.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post [SQL] 基础查询"
+                        data-key="primary-select" 
+                        data-hash="md5-4v/3JQK1kKNThqW6jHCjag==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[SQL] 基础查询</h2>
         </div>
     </a>
 </article>
