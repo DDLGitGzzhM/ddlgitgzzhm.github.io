@@ -4,17 +4,17 @@
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="牛客网刷 sql day 3">
 <title>[SQL] 高级操作符</title>
 
-<link rel='canonical' href='https://ddlgitgzzhm.github.io/p/senior-select-1/'>
+<link rel='canonical' href='https://ddlgitgzzhm.github.io/p/senior-select-2/'>
 
 
 <link rel="stylesheet" href="/css/main.0a8be7391d8087c7d54da73badd1c839ac4573f64374125e9f9b47376c9c037d.css"><meta property='og:title' content="[SQL] 高级操作符">
 <meta property='og:description' content="牛客网刷 sql day 3">
-<meta property='og:url' content='https://ddlgitgzzhm.github.io/p/senior-select-1/'>
+<meta property='og:url' content='https://ddlgitgzzhm.github.io/p/senior-select-2/'>
 <meta property='og:site_name' content='GzzhM'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-05-06T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-05-06T00:00:00&#43;00:00'/><meta property='og:image' content='https://ddlgitgzzhm.github.io/p/senior-select-1/sql.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-05-06T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-05-06T00:00:00&#43;00:00'/><meta property='og:image' content='https://ddlgitgzzhm.github.io/p/senior-select-2/sql.png' />
 <meta name="twitter:title" content="[SQL] 高级操作符">
 <meta name="twitter:description" content="牛客网刷 sql day 3"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://ddlgitgzzhm.github.io/p/senior-select-1/sql.png' />
+    <meta name="twitter:image" content='https://ddlgitgzzhm.github.io/p/senior-select-2/sql.png' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -253,9 +253,9 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/senior-select-1/">
-                <img src="/p/senior-select-1/sql_hu_697b8ab9103c4c7a.png"
-                        srcset="/p/senior-select-1/sql_hu_697b8ab9103c4c7a.png 800w, /p/senior-select-1/sql_hu_e1fc03ccc52a2a80.png 1600w"
+            <a href="/p/senior-select-2/">
+                <img src="/p/senior-select-2/sql_hu_697b8ab9103c4c7a.png"
+                        srcset="/p/senior-select-2/sql_hu_697b8ab9103c4c7a.png 800w, /p/senior-select-2/sql_hu_e1fc03ccc52a2a80.png 1600w"
                         width="800" 
                         height="379" 
                         loading="lazy"
@@ -278,7 +278,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/senior-select-1/">[SQL] 高级操作符</a>
+            <a href="/p/senior-select-2/">[SQL] 高级操作符</a>
         </h2>
     
         
@@ -320,59 +320,59 @@
     <section class="article-content">
     
     
-    <h1 id="高级操作符练习-1">高级操作符练习 1
+    <h1 id="查找gpa最高值">查找GPA最高值
 </h1><blockquote>
-<p>题目：现在运营想要找到male且GPA在3.5以上(不包括3.5)的用户进行调研，请你取出相关数据。</p></blockquote>
+<p>题目：运营想要知道复旦大学学生gpa最高值是多少，请你取出相应数据</p></blockquote>
 <ol>
-<li>业务场景中, 需要提前加上其他判断 <code>gpa is not null</code></li>
+<li>关键点 <code>max</code></li>
+<li>四舍五入函数 <code>round(value, pos)</code></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">gpa</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">gpa</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">university</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;复旦大学&#39;</span><span class="w"> </span><span class="k">limit</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="n">round</span><span class="p">(</span><span class="k">max</span><span class="p">(</span><span class="n">gpa</span><span class="p">),</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">university</span><span class="o">=</span><span class="s1">&#39;复旦大学&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">gpa</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">user_profile</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">university</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;复旦大学&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">gpa</span><span class="w"> </span><span class="k">DESC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="计算男生人数以及平均gpa">计算男生人数以及平均GPA
+</h1><blockquote>
+<p>题目：现在运营想要看一下男性用户有多少人以及他们的平均gpa是多少，用以辅助设计相关活动，请你取出相应数据。</p></blockquote>
+<ol>
+<li>这里可以使用 <code>count(*)</code> 代替 <code>count(gender)</code></li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="n">gender</span><span class="p">,</span><span class="n">age</span><span class="p">,</span><span class="n">university</span><span class="p">,</span><span class="n">gpa</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">gpa</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">3</span><span class="p">.</span><span class="mi">5</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">gender</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;male&#39;</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="n">gender</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">male_num</span><span class="w"> </span><span class="p">,</span><span class="k">avg</span><span class="p">(</span><span class="n">gpa</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_gpa</span><span class="w">  </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">gender</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;male&#39;</span><span class="w"> 
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><a class="link" href="https://www.nowcoder.com/practice/2d2e37474197488fbdf8f9206f66651c?tpId=199&amp;tqId=1971781&amp;sourceUrl=%2Fexam%2Foj"  target="_blank" rel="noopener"
-    >牛科练习题目</a></p>
-<h1 id="高级操作符练习-2">高级操作符练习 2
+</div><h1 id="分组计算练习题">分组计算练习题
 </h1><blockquote>
-<p>题目：现在运营想要找到学校为北大或GPA在3.7以上(不包括3.7)的用户进行调研，请你取出相关数据（使用OR实现）</p></blockquote>
+<p>题目：现在运营想要对每个学校不同性别的用户活跃情况和发帖数量进行分析，请分别计算出每个学校每种性别的用户数、30天内平均活跃天数和平均发帖数量。</p>
+<p>用户信息表：user_profile</p>
+<p>30天内活跃天数字段（active_days_within_30）</p>
+<p>发帖数量字段（question_cnt）</p>
+<p>回答数量字段（answer_cnt）</p></blockquote>
 <ol>
-<li>就简单介绍了一下 or 怎么用</li>
-<li>顾名思义</li>
+<li>没什么好说的, <code>group by</code> 多列的时候, 使用 <code>,</code> 进行区分</li>
 </ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="w"> </span><span class="n">gender</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">university</span><span class="p">,</span><span class="w"> </span><span class="n">gpa</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">university</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;北京大学&#39;</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n">gpa</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">3</span><span class="p">.</span><span class="mi">7</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p><a class="link" href="https://www.nowcoder.com/practice/25bcf6924eff417d90c8988f55675122?tpId=199&amp;tqId=1971821&amp;sourceUrl=%2Fexam%2Foj"  target="_blank" rel="noopener"
-    >牛科练习题目</a></p>
-<h1 id="where-in-和-not-in">Where in 和 Not in
-</h1><blockquote>
-<p>题目：现在运营想要找到学校为北大、复旦和山大的同学进行调研，请你取出相关数据。</p></blockquote>
-<ol>
-<li>顾名思义</li>
-<li>todo 性能分析 @我</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="w"> </span><span class="n">gender</span><span class="p">,</span><span class="n">age</span><span class="p">,</span><span class="n">university</span><span class="p">,</span><span class="n">gpa</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">university</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;北京大学&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;复旦大学&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;山东大学&#39;</span><span class="p">)</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p><a class="link" href="https://www.nowcoder.com/practice/0355033fc2244cdaa09b2bd6e794c762?tpId=199&amp;tqId=1975665&amp;sourceUrl=%2Fexam%2Foj"  target="_blank" rel="noopener"
-    >牛科练习题目</a></p>
-<h1 id="操作符混合运用">操作符混合运用
-</h1><blockquote>
-<p>题目：现在运营想要找到gpa在3.5以上(不包括3.5)的山东大学用户 或 gpa在3.8以上(不包括3.8)的复旦大学同学进行用户调研，请你取出相应数据,取出的数据按照device_id升序排列</p></blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -384,17 +384,99 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="w"> </span><span class="n">gender</span><span class="p">,</span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">university</span><span class="p">,</span><span class="n">gpa</span><span class="w"> 
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="n">gender</span><span class="p">,</span><span class="n">university</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="k">count</span><span class="p">(</span><span class="n">university</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">user_num</span><span class="p">,</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="k">avg</span><span class="p">(</span><span class="n">active_days_within_30</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_active_day</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="k">avg</span><span class="p">(</span><span class="n">question_cnt</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_question_cnt</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">gpa</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">3</span><span class="p">.</span><span class="mi">5</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">university</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;山东大学&#39;</span><span class="w"> </span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="k">or</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">(</span><span class="n">gpa</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">3</span><span class="p">.</span><span class="mi">8</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">university</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;复旦大学&#39;</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">device_id</span><span class="w"> </span><span class="k">asc</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">gender</span><span class="p">,</span><span class="w"> </span><span class="n">university</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">gender</span><span class="w"> </span><span class="k">asc</span><span class="p">,</span><span class="w"> </span><span class="n">university</span><span class="w"> </span><span class="k">asc</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><ol>
-<li>这里可以改为子查询的方式，时间或许会更短</li>
+</div><h1 id="分组过滤练习题">分组过滤练习题
+</h1><blockquote>
+<p>题目：现在运营想查看每个学校用户的平均发贴和回帖情况，寻找低活跃度学校进行重点运营，请取出平均发贴数低于5的学校或平均回帖数小于20的学校。</p></blockquote>
+<ol>
+<li>当使用聚合函数 作为塞选条件的时候，需要使用 <code>where</code> 代替 <code>having</code></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">university</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">avg_question_cnt</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">avg_answer_cnt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">university</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">AVG</span><span class="p">(</span><span class="n">question_cnt</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">avg_question_cnt</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">AVG</span><span class="p">(</span><span class="n">answer_cnt</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">avg_answer_cnt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">FROM</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">user_profile</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">university</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">temp</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">avg_question_cnt</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">OR</span><span class="w"> </span><span class="n">avg_answer_cnt</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>正解应该是  :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">university</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">round</span><span class="p">(</span><span class="k">avg</span><span class="p">(</span><span class="n">question_cnt</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">avg_question_cnt</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">round</span><span class="p">(</span><span class="k">AVG</span><span class="p">(</span><span class="n">answer_cnt</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_answer_cnt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">user_profile</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">university</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">HAVING</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">avg_question_cnt</span><span class="o">&lt;</span><span class="mi">5</span><span class="w">  </span><span class="k">or</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">avg_answer_cnt</span><span class="o">&lt;</span><span class="mi">20</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="分组排序练习题">分组排序练习题
+</h1><blockquote>
+<p>现在运营想要查看不同大学的用户平均发帖情况，并期望结果按照平均发帖情况进行升序排列，请你取出相应数据</p></blockquote>
+<ol>
+<li>这里和 <code>where</code>不同，竟然不需要子查询和更换其他 关键字。 聚合函数可以直接进行排序</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -407,34 +489,38 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="w"> </span><span class="n">gender</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">university</span><span class="p">,</span><span class="w"> </span><span class="n">gpa</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">device_id</span><span class="w"> </span><span class="k">in</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">gpa</span><span class="o">&gt;</span><span class="mi">3</span><span class="p">.</span><span class="mi">5</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">university</span><span class="o">=</span><span class="s1">&#39;山东大学&#39;</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">or</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">device_id</span><span class="w"> </span><span class="k">in</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">gpa</span><span class="o">&gt;</span><span class="mi">3</span><span class="p">.</span><span class="mi">8</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">university</span><span class="o">=</span><span class="s1">&#39;复旦大学&#39;</span><span class="p">)</span><span class="w"> 
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">university</span><span class="p">,</span><span class="w"> </span><span class="n">avg_question_cnt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">select</span><span class="w"> </span><span class="n">university</span><span class="p">,</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="n">question_cnt</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_question_cnt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">university</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">temp</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">avg_question_cnt</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><a class="link" href="https://www.nowcoder.com/practice/d5ac4c878b63477fa5e5dfcb427d9102?tpId=199&amp;tqId=1975666&amp;sourceUrl=%2Fexam%2Foj"  target="_blank" rel="noopener"
-    >牛客网题目</a></p>
-<h1 id="查看学校名称中含北京的用户">查看学校名称中含北京的用户
-</h1><blockquote>
-<p>题目：现在运营想查看所有大学中带有&quot;北京&quot;的用户的信息(device_id,age,university)，请你取出相应数据。</p></blockquote>
-<ol>
-<li>字符匹配</li>
-<li>四种通配符</li>
-<li><code>%</code> 匹配 0 个 或者是 多个字符</li>
-<li><code>_</code> 匹配任意一个字符 <code>_李</code></li>
-<li><code>[]</code>匹配<code>[]</code>中任意一个字符,如果比较的字符串是连续的，可以用<code>-</code>表达</li>
-<li><code>[^]</code>不匹配<code>[]</code>中任意一个字符</li>
-</ol>
+</div><p>正解 :</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">university</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">university</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;%北京%&#39;</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">university</span><span class="p">,</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">ROUND</span><span class="p">(</span><span class="k">AVG</span><span class="p">(</span><span class="n">question_cnt</span><span class="p">),</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">avg_question_cnt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">user_profile</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">university</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">avg_question_cnt</span><span class="p">;</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div>
@@ -485,16 +571,16 @@
             
                 
 <article class="has-image">
-    <a href="/p/senior-select-2/">
+    <a href="/p/senior-select-1/">
         
         
             <div class="article-image">
-                <img src="/p/senior-select-2/sql.e2fff72502b590a35386a5ba8c70a36a_hu_f7188397613682ca.png" 
+                <img src="/p/senior-select-1/sql.e2fff72502b590a35386a5ba8c70a36a_hu_f7188397613682ca.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
                         alt="Featured image of post [SQL] 高级操作符"
-                        data-key="senior-select-2" 
+                        data-key="senior-select-1" 
                         data-hash="md5-4v/3JQK1kKNThqW6jHCjag==">
                 
             </div>
