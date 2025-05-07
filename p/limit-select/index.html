@@ -269,16 +269,21 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#1-查询后排序">1. 查询后排序</a></li>
-    <li><a href="#2-查询后多列排序">2. 查询后多列排序</a></li>
-  </ol>
-
-  <ol>
-    <li><a href="#1-查找学校是北大的学生信息">1. 查找学校是北大的学生信息</a></li>
-    <li><a href="#2-查询年龄大于-24岁的用户信息">2. 查询年龄大于 24岁的用户信息</a></li>
-    <li><a href="#3-查询某个年龄段的用户信息">3. 查询某个年龄段的用户信息</a></li>
-    <li><a href="#4-查找除复旦大学的用户信息">4. 查找除复旦大学的用户信息</a></li>
-    <li><a href="#5-用-where-过滤空值">5. 用 where 过滤空值</a></li>
+    <li><a href="#基础排序">基础排序</a>
+      <ol>
+        <li><a href="#查询后排序">查询后排序</a></li>
+        <li><a href="#查询后多列排序">查询后多列排序</a></li>
+      </ol>
+    </li>
+    <li><a href="#基础操作符">基础操作符</a>
+      <ol>
+        <li><a href="#查找学校是北大的学生信息">查找学校是北大的学生信息</a></li>
+        <li><a href="#查询年龄大于-24岁的用户信息">查询年龄大于 24岁的用户信息</a></li>
+        <li><a href="#查询某个年龄段的用户信息">查询某个年龄段的用户信息</a></li>
+        <li><a href="#查找除复旦大学的用户信息">查找除复旦大学的用户信息</a></li>
+        <li><a href="#用-where-过滤空值">用 where 过滤空值</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -360,9 +365,9 @@
     <section class="article-content">
     
     
-    <h1 id="1-基础排序">1. 基础排序
-</h1><h2 id="1-查询后排序">1. 查询后排序
-</h2><ol>
+    <h2 id="基础排序">基础排序
+</h2><h3 id="查询后排序">查询后排序
+</h3><ol>
 <li><code>asc</code> 升序 ascending</li>
 <li><code>desc</code> 降序 descending</li>
 </ol>
@@ -378,8 +383,8 @@
     >牛客网题目链接</a></p>
 <p><a class="link" href="https://www.nowcoder.com/practice/d023ae0191e0414ca1b19451099a39f1?tpId=199&amp;tqId=2002634&amp;sourceUrl=%2Fexam%2Foj%3FquestionJobId%3D10%26subTabName%3Donline_coding_page"  target="_blank" rel="noopener"
     >牛客网题目链接 (降序排列)</a></p>
-<h2 id="2-查询后多列排序">2. 查询后多列排序
-</h2><ol>
+<h3 id="查询后多列排序">查询后多列排序
+</h3><ol>
 <li>多列排序使用<code>,</code> 隔开</li>
 <li>不指定排序顺序，默认是 <code>asc</code></li>
 </ol>
@@ -401,9 +406,9 @@
 </div>
 </div><p><a class="link" href="https://www.nowcoder.com/practice/39f74706f8d94d37865a82ffb7ba67d3?tpId=199&amp;tqId=2002633&amp;sourceUrl=%2Fexam%2Foj%3FquestionJobId%3D10%26subTabName%3Donline_coding_page"  target="_blank" rel="noopener"
     >牛客网题目链接</a></p>
-<h1 id="2-基础操作符">2. 基础操作符
-</h1><h2 id="1-查找学校是北大的学生信息">1. 查找学校是北大的学生信息
-</h2><ol>
+<h2 id="基础操作符">基础操作符
+</h2><h3 id="查找学校是北大的学生信息">查找学校是北大的学生信息
+</h3><ol>
 <li>我们可以通过 <code>where</code> 子句来筛选对应的记录</li>
 </ol>
 <div class="highlight"><div class="chroma">
@@ -444,8 +449,8 @@
 >
 <a class="link" href="https://www.nowcoder.com/practice/7858f3e234bc4d85b81b9a6c3926f49f?tpId=199&amp;tqId=1971248&amp;sourceUrl=%2Fexam%2Foj%3FquestionJobId%3D10%26subTabName%3Donline_coding_page"  target="_blank" rel="noopener"
     >牛客网题目链接</a></p>
-<h2 id="2-查询年龄大于-24岁的用户信息">2. 查询年龄大于 24岁的用户信息
-</h2><ol>
+<h3 id="查询年龄大于-24岁的用户信息">查询年龄大于 24岁的用户信息
+</h3><ol>
 <li>引入逻辑运算符 <code>&gt;</code> 以此类推还有 <code>&lt; , = ,  &gt;= , &lt;= , != , = </code></li>
 </ol>
 <div class="highlight"><div class="chroma">
@@ -457,8 +462,8 @@
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>[牛客网题目链接](select device_id, gender, age,university from user_profile where age &gt; 24)</p>
-<h2 id="3-查询某个年龄段的用户信息">3. 查询某个年龄段的用户信息
-</h2><ol>
+<h3 id="查询某个年龄段的用户信息">查询某个年龄段的用户信息
+</h3><ol>
 <li>使用 <code>between and</code>  和 <code>&gt;= and  &lt;=</code>  没什么本质区别，性能和业务使用上无差别</li>
 <li>不过相较于<code>between and</code> 逻辑表达式更灵活</li>
 </ol>
@@ -480,8 +485,8 @@
 </div>
 </div><p><a class="link" href="https://www.nowcoder.com/practice/be54223075cc43ceb20e4ce8a8e3e340?tpId=199&amp;tqId=1971603&amp;sourceUrl=%2Fexam%2Foj%3FquestionJobId%3D10%26subTabName%3Donline_coding_page"  target="_blank" rel="noopener"
     >牛客网题目链接</a></p>
-<h2 id="4-查找除复旦大学的用户信息">4. 查找除复旦大学的用户信息
-</h2><ol>
+<h3 id="查找除复旦大学的用户信息">查找除复旦大学的用户信息
+</h3><ol>
 <li><code>NOT IN</code> 可以比较多个值, 对于 <code>&lt;&gt; !=</code> 如果需要比较多个值需要引入 <code>and</code></li>
 <li><code>&lt;&gt;</code> 和 <code>!=</code> 没有本质区别，不过一般都是写 <code>&lt;&gt;</code> 除非团队开发有要求，那么使用 <code>!=</code> 尽可能统一组内的代码风格</li>
 </ol>
@@ -499,8 +504,8 @@
 </div>
 </div><p><a class="link" href="https://www.nowcoder.com/practice/c12a056497404d1ea782308a7b821f9c?tpId=199&amp;tqId=1971604&amp;sourceUrl=%2Fexam%2Foj%3FquestionJobId%3D10%26subTabName%3Donline_coding_page"  target="_blank" rel="noopener"
     >牛客网题目链接</a></p>
-<h2 id="5-用-where-过滤空值">5. 用 where 过滤空值
-</h2><ol>
+<h3 id="用-where-过滤空值">用 where 过滤空值
+</h3><ol>
 <li>可以单独是用 <code>is not null</code>  或者是单独使用 <code>&lt;&gt; &quot;&quot;</code></li>
 <li>但是实际业务最好是两个一起使用 ～</li>
 </ol>

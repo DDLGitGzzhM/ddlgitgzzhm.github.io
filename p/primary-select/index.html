@@ -247,7 +247,39 @@
     </ol>
 </aside>
 
-    
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#查询所有列">查询所有列</a></li>
+    <li><a href="#查询结果去重">查询结果去重</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
 
             <main class="main full-width">
     <article class="has-image main-article">
@@ -320,8 +352,8 @@
     <section class="article-content">
     
     
-    <h1 id="1-查询所有列">1. 查询所有列
-</h1><p>两种做法,一种是 *, 另外一种是全量的显示所有的列。 本质上这两个没什么区别</p>
+    <h2 id="查询所有列">查询所有列
+</h2><p>两种做法,一种是 *, 另外一种是全量的显示所有的列。 本质上这两个没什么区别</p>
 <p>从业务角度来看</p>
 <ol>
 <li>如果当前的 sql 并不打算查新增的列 则可以使用第一种</li>
@@ -344,8 +376,8 @@
 </div>
 </div><p><a class="link" href="https://www.nowcoder.com/practice/f9f82607cac44099a77154a80266234a?tpId=199&amp;tqId=1971219&amp;sourceUrl=%2Fexam%2Foj%3FquestionJobId%3D10%26subTabName%3Donline_coding_page"  target="_blank" rel="noopener"
     >牛客网题目链接</a></p>
-<h1 id="2-查询结果去重">2. 查询结果去重
-</h1><ol>
+<h2 id="查询结果去重">查询结果去重
+</h2><ol>
 <li>select distinct  只用于列的去重</li>
 <li>select group by 可以用于一些聚合操作 如 count , avg</li>
 </ol>

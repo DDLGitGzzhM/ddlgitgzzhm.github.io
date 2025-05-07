@@ -269,14 +269,19 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#查找gpa最高值">查找GPA最高值</a></li>
-    <li><a href="#计算男生人数以及平均gpa">计算男生人数以及平均GPA</a></li>
-  </ol>
-
-  <ol>
-    <li><a href="#分组计算练习题">分组计算练习题</a></li>
-    <li><a href="#分组过滤练习题">分组过滤练习题</a></li>
-    <li><a href="#分组排序练习题">分组排序练习题</a></li>
+    <li><a href="#计算函数">计算函数</a>
+      <ol>
+        <li><a href="#查找gpa最高值">查找GPA最高值</a></li>
+        <li><a href="#计算男生人数以及平均gpa">计算男生人数以及平均GPA</a></li>
+      </ol>
+    </li>
+    <li><a href="#分组函数">分组函数</a>
+      <ol>
+        <li><a href="#分组计算练习题">分组计算练习题</a></li>
+        <li><a href="#分组过滤练习题">分组过滤练习题</a></li>
+        <li><a href="#分组排序练习题">分组排序练习题</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -358,9 +363,9 @@
     <section class="article-content">
     
     
-    <h1 id="计算函数">计算函数
-</h1><h2 id="查找gpa最高值">查找GPA最高值
-</h2><blockquote>
+    <h2 id="计算函数">计算函数
+</h2><h3 id="查找gpa最高值">查找GPA最高值
+</h3><blockquote>
 <p>题目：运营想要知道复旦大学学生gpa最高值是多少，请你取出相应数据</p></blockquote>
 <ol>
 <li>关键点 <code>max</code></li>
@@ -388,8 +393,8 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">1</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="计算男生人数以及平均gpa">计算男生人数以及平均GPA
-</h2><blockquote>
+</div><h3 id="计算男生人数以及平均gpa">计算男生人数以及平均GPA
+</h3><blockquote>
 <p>题目：现在运营想要看一下男性用户有多少人以及他们的平均gpa是多少，用以辅助设计相关活动，请你取出相应数据。</p></blockquote>
 <ol>
 <li>这里可以使用 <code>count(*)</code> 代替 <code>count(gender)</code></li>
@@ -402,9 +407,9 @@
 <pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="n">gender</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">male_num</span><span class="w"> </span><span class="p">,</span><span class="k">avg</span><span class="p">(</span><span class="n">gpa</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_gpa</span><span class="w">  </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">gender</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;male&#39;</span><span class="w"> 
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="分组函数">分组函数
-</h1><h2 id="分组计算练习题">分组计算练习题
-</h2><blockquote>
+</div><h2 id="分组函数">分组函数
+</h2><h3 id="分组计算练习题">分组计算练习题
+</h3><blockquote>
 <p>题目：现在运营想要对每个学校不同性别的用户活跃情况和发帖数量进行分析，请分别计算出每个学校每种性别的用户数、30天内平均活跃天数和平均发帖数量。</p>
 <p>用户信息表：user_profile</p>
 <p>30天内活跃天数字段（active_days_within_30）</p>
@@ -433,8 +438,8 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">gender</span><span class="p">,</span><span class="w"> </span><span class="n">university</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">gender</span><span class="w"> </span><span class="k">asc</span><span class="p">,</span><span class="w"> </span><span class="n">university</span><span class="w"> </span><span class="k">asc</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="分组过滤练习题">分组过滤练习题
-</h2><blockquote>
+</div><h3 id="分组过滤练习题">分组过滤练习题
+</h3><blockquote>
 <p>题目：现在运营想查看每个学校用户的平均发贴和回帖情况，寻找低活跃度学校进行重点运营，请取出平均发贴数低于5的学校或平均回帖数小于20的学校。</p></blockquote>
 <ol>
 <li>当使用聚合函数 作为塞选条件的时候，需要使用 <code>where</code> 代替 <code>having</code></li>
@@ -512,8 +517,8 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">avg_answer_cnt</span><span class="o">&lt;</span><span class="mi">20</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="分组排序练习题">分组排序练习题
-</h2><blockquote>
+</div><h3 id="分组排序练习题">分组排序练习题
+</h3><blockquote>
 <p>现在运营想要查看不同大学的用户平均发帖情况，并期望结果按照平均发帖情况进行升序排列，请你取出相应数据</p></blockquote>
 <ol>
 <li>这里和 <code>where</code>不同，竟然不需要子查询和更换其他 关键字。 聚合函数可以直接进行排序</li>

@@ -483,8 +483,8 @@
         <pubDate>Tue, 06 May 2025 00:00:00 +0000</pubDate>
         
         <guid>https://ddlgitgzzhm.github.io/p/binance-staking-activity-2/</guid>
-        <description>&lt;img src="https://ddlgitgzzhm.github.io/p/binance-staking-activity-2/img.png" alt="Featured image of post [Binance] 送钱活动 3" /&gt;&lt;h1 id=&#34;新一期的-tge&#34;&gt;新一期的 TGE
-&lt;/h1&gt;&lt;ol&gt;
+        <description>&lt;img src="https://ddlgitgzzhm.github.io/p/binance-staking-activity-2/img.png" alt="Featured image of post [Binance] 送钱活动 3" /&gt;&lt;h2 id=&#34;新一期的-tge&#34;&gt;新一期的 TGE
+&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;目前分数 115&lt;/li&gt;
 &lt;li&gt;从 4.29 日的 &lt;code&gt;75&lt;/code&gt; 分，经过 &lt;code&gt;8 &lt;/code&gt;天，就飞升到了 &lt;code&gt;142&lt;/code&gt; 分，总共差额 &lt;code&gt;67&lt;/code&gt; ,平均 &lt;code&gt;9.5(除去当天)&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;简单可以计算出，top 层级的玩家基本上一天会刷个 &lt;code&gt;10&lt;/code&gt; 分，资产人均 &lt;code&gt;2分&lt;/code&gt; 加上 &lt;code&gt;8&lt;/code&gt;分交易量 ，大概是 &lt;code&gt;256u&lt;/code&gt;&lt;/li&gt;
@@ -506,8 +506,8 @@
 		data-flex-basis=&#34;752px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h1 id=&#34;策略更改&#34;&gt;策略更改
-&lt;/h1&gt;&lt;ol&gt;
+&lt;h2 id=&#34;策略更改&#34;&gt;策略更改
+&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;目前更改了一下策略，从钱包 飞到了 交易所&lt;/p&gt;
 &lt;/li&gt;
@@ -573,8 +573,8 @@
 		data-flex-basis=&#34;110px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h1 id=&#34;other&#34;&gt;Other
-&lt;/h1&gt;&lt;p&gt;行情 ： &lt;a class=&#34;link&#34; href=&#34;https://www.geckoterminal.com/zh/bsc/pools/0xc1a780989734a0e5df875cebe410748562e1c5e6&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;h2 id=&#34;other&#34;&gt;Other
+&lt;/h2&gt;&lt;p&gt;行情 ： &lt;a class=&#34;link&#34; href=&#34;https://www.geckoterminal.com/zh/bsc/pools/0xc1a780989734a0e5df875cebe410748562e1c5e6&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.geckoterminal.com/zh/bsc/pools/0xc1a780989734a0e5df875cebe410748562e1c5e6&lt;/a&gt;&lt;/p&gt;
 </description>
         </item>
@@ -584,8 +584,8 @@
         <pubDate>Tue, 06 May 2025 00:00:00 +0000</pubDate>
         
         <guid>https://ddlgitgzzhm.github.io/p/senior-select-1/</guid>
-        <description>&lt;img src="https://ddlgitgzzhm.github.io/p/senior-select-1/sql.png" alt="Featured image of post [SQL] 高级操作符" /&gt;&lt;h1 id=&#34;高级操作符练习-1&#34;&gt;高级操作符练习 1
-&lt;/h1&gt;&lt;blockquote&gt;
+        <description>&lt;img src="https://ddlgitgzzhm.github.io/p/senior-select-1/sql.png" alt="Featured image of post [SQL] 高级操作符" /&gt;&lt;h2 id=&#34;高级操作符练习-1&#34;&gt;高级操作符练习 1
+&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;题目：现在运营想要找到male且GPA在3.5以上(不包括3.5)的用户进行调研，请你取出相关数据。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;ol&gt;
 &lt;li&gt;业务场景中, 需要提前加上其他判断 &lt;code&gt;gpa is not null&lt;/code&gt;&lt;/li&gt;
@@ -600,8 +600,8 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.nowcoder.com/practice/2d2e37474197488fbdf8f9206f66651c?tpId=199&amp;amp;tqId=1971781&amp;amp;sourceUrl=%2Fexam%2Foj&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;牛科练习题目&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id=&#34;高级操作符练习-2&#34;&gt;高级操作符练习 2
-&lt;/h1&gt;&lt;blockquote&gt;
+&lt;h2 id=&#34;高级操作符练习-2&#34;&gt;高级操作符练习 2
+&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;题目：现在运营想要找到学校为北大或GPA在3.7以上(不包括3.7)的用户进行调研，请你取出相关数据（使用OR实现）&lt;/p&gt;&lt;/blockquote&gt;
 &lt;ol&gt;
 &lt;li&gt;就简单介绍了一下 or 怎么用&lt;/li&gt;
@@ -617,8 +617,8 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.nowcoder.com/practice/25bcf6924eff417d90c8988f55675122?tpId=199&amp;amp;tqId=1971821&amp;amp;sourceUrl=%2Fexam%2Foj&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;牛科练习题目&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id=&#34;where-in-和-not-in&#34;&gt;Where in 和 Not in
-&lt;/h1&gt;&lt;blockquote&gt;
+&lt;h2 id=&#34;where-in-和-not-in&#34;&gt;Where in 和 Not in
+&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;题目：现在运营想要找到学校为北大、复旦和山大的同学进行调研，请你取出相关数据。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;ol&gt;
 &lt;li&gt;顾名思义&lt;/li&gt;
@@ -634,8 +634,8 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.nowcoder.com/practice/0355033fc2244cdaa09b2bd6e794c762?tpId=199&amp;amp;tqId=1975665&amp;amp;sourceUrl=%2Fexam%2Foj&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;牛科练习题目&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id=&#34;操作符混合运用&#34;&gt;操作符混合运用
-&lt;/h1&gt;&lt;blockquote&gt;
+&lt;h2 id=&#34;操作符混合运用&#34;&gt;操作符混合运用
+&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;题目：现在运营想要找到gpa在3.5以上(不包括3.5)的山东大学用户 或 gpa在3.8以上(不包括3.8)的复旦大学同学进行用户调研，请你取出相应数据,取出的数据按照device_id升序排列&lt;/p&gt;&lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -682,8 +682,8 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.nowcoder.com/practice/d5ac4c878b63477fa5e5dfcb427d9102?tpId=199&amp;amp;tqId=1975666&amp;amp;sourceUrl=%2Fexam%2Foj&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;牛客网题目&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id=&#34;查看学校名称中含北京的用户&#34;&gt;查看学校名称中含北京的用户
-&lt;/h1&gt;&lt;blockquote&gt;
+&lt;h3 id=&#34;查看学校名称中含北京的用户&#34;&gt;查看学校名称中含北京的用户
+&lt;/h3&gt;&lt;blockquote&gt;
 &lt;p&gt;题目：现在运营想查看所有大学中带有&amp;quot;北京&amp;quot;的用户的信息(device_id,age,university)，请你取出相应数据。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;ol&gt;
 &lt;li&gt;字符匹配&lt;/li&gt;
@@ -709,9 +709,9 @@
         <pubDate>Tue, 06 May 2025 00:00:00 +0000</pubDate>
         
         <guid>https://ddlgitgzzhm.github.io/p/senior-select-2/</guid>
-        <description>&lt;img src="https://ddlgitgzzhm.github.io/p/senior-select-2/sql.png" alt="Featured image of post [SQL] 高级查询" /&gt;&lt;h1 id=&#34;计算函数&#34;&gt;计算函数
-&lt;/h1&gt;&lt;h2 id=&#34;查找gpa最高值&#34;&gt;查找GPA最高值
-&lt;/h2&gt;&lt;blockquote&gt;
+        <description>&lt;img src="https://ddlgitgzzhm.github.io/p/senior-select-2/sql.png" alt="Featured image of post [SQL] 高级查询" /&gt;&lt;h2 id=&#34;计算函数&#34;&gt;计算函数
+&lt;/h2&gt;&lt;h3 id=&#34;查找gpa最高值&#34;&gt;查找GPA最高值
+&lt;/h3&gt;&lt;blockquote&gt;
 &lt;p&gt;题目：运营想要知道复旦大学学生gpa最高值是多少，请你取出相应数据&lt;/p&gt;&lt;/blockquote&gt;
 &lt;ol&gt;
 &lt;li&gt;关键点 &lt;code&gt;max&lt;/code&gt;&lt;/li&gt;
@@ -739,8 +739,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;LIMIT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;计算男生人数以及平均gpa&#34;&gt;计算男生人数以及平均GPA
-&lt;/h2&gt;&lt;blockquote&gt;
+&lt;/div&gt;&lt;h3 id=&#34;计算男生人数以及平均gpa&#34;&gt;计算男生人数以及平均GPA
+&lt;/h3&gt;&lt;blockquote&gt;
 &lt;p&gt;题目：现在运营想要看一下男性用户有多少人以及他们的平均gpa是多少，用以辅助设计相关活动，请你取出相应数据。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;ol&gt;
 &lt;li&gt;这里可以使用 &lt;code&gt;count(*)&lt;/code&gt; 代替 &lt;code&gt;count(gender)&lt;/code&gt;&lt;/li&gt;
@@ -753,9 +753,9 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;select&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;count&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;gender&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;as&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;male_num&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;avg&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;gpa&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;as&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;avg_gpa&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;user_profile&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;where&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;gender&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;male&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;分组函数&#34;&gt;分组函数
-&lt;/h1&gt;&lt;h2 id=&#34;分组计算练习题&#34;&gt;分组计算练习题
-&lt;/h2&gt;&lt;blockquote&gt;
+&lt;/div&gt;&lt;h2 id=&#34;分组函数&#34;&gt;分组函数
+&lt;/h2&gt;&lt;h3 id=&#34;分组计算练习题&#34;&gt;分组计算练习题
+&lt;/h3&gt;&lt;blockquote&gt;
 &lt;p&gt;题目：现在运营想要对每个学校不同性别的用户活跃情况和发帖数量进行分析，请分别计算出每个学校每种性别的用户数、30天内平均活跃天数和平均发帖数量。&lt;/p&gt;
 &lt;p&gt;用户信息表：user_profile&lt;/p&gt;
 &lt;p&gt;30天内活跃天数字段（active_days_within_30）&lt;/p&gt;
@@ -784,8 +784,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;group&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;by&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;gender&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;university&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;order&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;by&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;gender&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;asc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;university&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;asc&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;分组过滤练习题&#34;&gt;分组过滤练习题
-&lt;/h2&gt;&lt;blockquote&gt;
+&lt;/div&gt;&lt;h3 id=&#34;分组过滤练习题&#34;&gt;分组过滤练习题
+&lt;/h3&gt;&lt;blockquote&gt;
 &lt;p&gt;题目：现在运营想查看每个学校用户的平均发贴和回帖情况，寻找低活跃度学校进行重点运营，请取出平均发贴数低于5的学校或平均回帖数小于20的学校。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;ol&gt;
 &lt;li&gt;当使用聚合函数 作为塞选条件的时候，需要使用 &lt;code&gt;where&lt;/code&gt; 代替 &lt;code&gt;having&lt;/code&gt;&lt;/li&gt;
@@ -863,8 +863,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;avg_answer_cnt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;分组排序练习题&#34;&gt;分组排序练习题
-&lt;/h2&gt;&lt;blockquote&gt;
+&lt;/div&gt;&lt;h3 id=&#34;分组排序练习题&#34;&gt;分组排序练习题
+&lt;/h3&gt;&lt;blockquote&gt;
 &lt;p&gt;现在运营想要查看不同大学的用户平均发帖情况，并期望结果按照平均发帖情况进行升序排列，请你取出相应数据&lt;/p&gt;&lt;/blockquote&gt;
 &lt;ol&gt;
 &lt;li&gt;这里和 &lt;code&gt;where&lt;/code&gt;不同，竟然不需要子查询和更换其他 关键字。 聚合函数可以直接进行排序&lt;/li&gt;
@@ -922,8 +922,8 @@
         <pubDate>Sun, 04 May 2025 00:00:00 +0000</pubDate>
         
         <guid>https://ddlgitgzzhm.github.io/p/binance-staking-activity-1/</guid>
-        <description>&lt;img src="https://ddlgitgzzhm.github.io/p/binance-staking-activity-1/img.png" alt="Featured image of post [Binance] 送钱活动 2" /&gt;&lt;h1 id=&#34;资产策略现状&#34;&gt;资产策略现状
-&lt;/h1&gt;&lt;ol&gt;
+        <description>&lt;img src="https://ddlgitgzzhm.github.io/p/binance-staking-activity-1/img.png" alt="Featured image of post [Binance] 送钱活动 2" /&gt;&lt;h2 id=&#34;资产策略现状&#34;&gt;资产策略现状
+&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;自从第一篇笔记开始，现在每天都有一个 todo list 需要给 &lt;code&gt;binance&lt;/code&gt; 刷一下交易量，有点ptsd了&lt;/li&gt;
 &lt;/ol&gt;
 &lt;table&gt;
@@ -1024,9 +1024,9 @@
 		data-flex-basis=&#34;110px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h1 id=&#34;binance-活动整理&#34;&gt;binance 活动整理
-&lt;/h1&gt;&lt;h2 id=&#34;双倍积分&#34;&gt;双倍积分
-&lt;/h2&gt;&lt;ol&gt;
+&lt;h2 id=&#34;binance-活动整理&#34;&gt;binance 活动整理
+&lt;/h2&gt;&lt;h3 id=&#34;双倍积分&#34;&gt;双倍积分
+&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;&lt;code&gt;BINANCE&lt;/code&gt; 推出积分双倍计算双倍活动 。 用交易所的限价单 和 BINANCE CHAIN 上刷交易量都是以双倍的形式计算
 2. 即交易量 512 u 的 会以1024U计算，多个1积分&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;binance chain&lt;/code&gt; 暂时不考虑，手续费实在是太贵了&lt;/li&gt;
@@ -1046,8 +1046,8 @@
 	
 &gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;新链&#34;&gt;新链
-&lt;/h2&gt;&lt;p&gt;binance 钱包推出了 &lt;code&gt;Sonic&lt;/code&gt; 链的项目。 对于活跃用户会有空投的奖励&lt;/p&gt;
+&lt;h3 id=&#34;新链&#34;&gt;新链
+&lt;/h3&gt;&lt;p&gt;binance 钱包推出了 &lt;code&gt;Sonic&lt;/code&gt; 链的项目。 对于活跃用户会有空投的奖励&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/binance-staking-activity-1/img_2.png&#34;
 	width=&#34;828&#34;
 	height=&#34;1796&#34;
@@ -1062,8 +1062,8 @@
 		data-flex-basis=&#34;110px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;新币打新-obol&#34;&gt;新币打新 OBOL
-&lt;/h2&gt;&lt;ol&gt;
+&lt;h3 id=&#34;新币打新-obol&#34;&gt;新币打新 OBOL
+&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;活动时间 5.7 号，18:00&lt;/li&gt;
 &lt;li&gt;不确定积分多少，预计要 &lt;code&gt;130&lt;/code&gt; . 大概率达不到 ~
 &lt;img src=&#34;https://ddlgitgzzhm.github.io/p/binance-staking-activity-1/img_3.png&#34;
@@ -1089,9 +1089,9 @@
         <pubDate>Sun, 04 May 2025 00:00:00 +0000</pubDate>
         
         <guid>https://ddlgitgzzhm.github.io/p/hdu-0x01-math/</guid>
-        <description>&lt;img src="https://ddlgitgzzhm.github.io/p/hdu-0x01-math/icpc-title.png" alt="Featured image of post [Hdu] 数学基础" /&gt;&lt;h1 id=&#34;引导问题&#34;&gt;引导问题
-&lt;/h1&gt;&lt;h2 id=&#34;整数求和&#34;&gt;整数求和
-&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+        <description>&lt;img src="https://ddlgitgzzhm.github.io/p/hdu-0x01-math/icpc-title.png" alt="Featured image of post [Hdu] 数学基础" /&gt;&lt;h2 id=&#34;引导问题&#34;&gt;引导问题
+&lt;/h2&gt;&lt;h3 id=&#34;整数求和&#34;&gt;整数求和
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -1124,9 +1124,9 @@
 &lt;p&gt;题目链接如下, 由于不支持 &lt;code&gt;GO&lt;/code&gt; 所以不做&lt;/p&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://vjudge.net/problem/HDU-1001&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://vjudge.net/problem/HDU-1001&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id=&#34;例题&#34;&gt;例题
-&lt;/h1&gt;&lt;h2 id=&#34;最小公倍数&#34;&gt;最小公倍数
-&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;h2 id=&#34;例题&#34;&gt;例题
+&lt;/h2&gt;&lt;h3 id=&#34;最小公倍数&#34;&gt;最小公倍数
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
@@ -1189,8 +1189,8 @@
 &lt;/ol&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.acwing.com/file_system/file/content/whole/index/content/4337/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Acwing-最小公倍数&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;最大公约数&#34;&gt;最大公约数
-&lt;/h2&gt;&lt;ol&gt;
+&lt;h3 id=&#34;最大公约数&#34;&gt;最大公约数
+&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;我们现在要求 10, 14 的最大公约数 。&lt;/li&gt;
 &lt;li&gt;我们假设 &lt;code&gt;X&lt;/code&gt; 为这两个数的最大公约数，可以知道，对于 &lt;code&gt;(14%10)&lt;/code&gt; 的余数，也应该是 &lt;code&gt;X&lt;/code&gt; 的倍数&lt;/li&gt;
 &lt;li&gt;从而我们可以依次类推 &lt;code&gt;(10,14) , (10,4) , (2,4), (2,0)&lt;/code&gt; 则 &lt;code&gt;2&lt;/code&gt; 就是最大公约数&lt;/li&gt;
@@ -1311,8 +1311,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;循环节---n--n-的个位数&#34;&gt;循环节 - N * N 的个位数
-&lt;/h2&gt;&lt;blockquote&gt;
+&lt;/div&gt;&lt;h3 id=&#34;循环节---n--n-的个位数&#34;&gt;循环节 - N * N 的个位数
+&lt;/h3&gt;&lt;blockquote&gt;
 &lt;p&gt;Given a positive integer N, you should output the most right digit of N^N.&lt;/p&gt;
 &lt;p&gt;Input&lt;/p&gt;
 &lt;p&gt;The input contains several test cases. The first line of the input is a single integer T which is the number of test cases.&lt;/p&gt;
@@ -1487,7 +1487,8 @@
         <pubDate>Tue, 29 Apr 2025 00:00:00 +0000</pubDate>
         
         <guid>https://ddlgitgzzhm.github.io/p/leetcode-560/</guid>
-        <description>&lt;img src="https://ddlgitgzzhm.github.io/p/leetcode-560/img.png" alt="Featured image of post [LeetCode][hot100] 560. 和为 K 的子数组" /&gt;&lt;blockquote&gt;
+        <description>&lt;img src="https://ddlgitgzzhm.github.io/p/leetcode-560/img.png" alt="Featured image of post [LeetCode][hot100] 560. 和为 K 的子数组" /&gt;&lt;h2 id=&#34;题目&#34;&gt;题目
+&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;给你一个整数数组 nums 和一个整数 k ，请你统计并返回 该数组中和为 k 的子数组的个数 。
 子数组是数组中元素的连续非空序列。&lt;/p&gt;
 &lt;p&gt;示例 1：&lt;/p&gt;
@@ -1555,9 +1556,9 @@
         <pubDate>Tue, 29 Apr 2025 00:00:00 +0000</pubDate>
         
         <guid>https://ddlgitgzzhm.github.io/p/limit-select/</guid>
-        <description>&lt;img src="https://ddlgitgzzhm.github.io/p/limit-select/sql.png" alt="Featured image of post [SQL] 条件查询" /&gt;&lt;h1 id=&#34;1-基础排序&#34;&gt;1. 基础排序
-&lt;/h1&gt;&lt;h2 id=&#34;1-查询后排序&#34;&gt;1. 查询后排序
-&lt;/h2&gt;&lt;ol&gt;
+        <description>&lt;img src="https://ddlgitgzzhm.github.io/p/limit-select/sql.png" alt="Featured image of post [SQL] 条件查询" /&gt;&lt;h2 id=&#34;基础排序&#34;&gt;基础排序
+&lt;/h2&gt;&lt;h3 id=&#34;查询后排序&#34;&gt;查询后排序
+&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;&lt;code&gt;asc&lt;/code&gt; 升序 ascending&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;desc&lt;/code&gt; 降序 descending&lt;/li&gt;
 &lt;/ol&gt;
@@ -1573,8 +1574,8 @@
     &gt;牛客网题目链接&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.nowcoder.com/practice/d023ae0191e0414ca1b19451099a39f1?tpId=199&amp;amp;tqId=2002634&amp;amp;sourceUrl=%2Fexam%2Foj%3FquestionJobId%3D10%26subTabName%3Donline_coding_page&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;牛客网题目链接 (降序排列)&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;2-查询后多列排序&#34;&gt;2. 查询后多列排序
-&lt;/h2&gt;&lt;ol&gt;
+&lt;h3 id=&#34;查询后多列排序&#34;&gt;查询后多列排序
+&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;多列排序使用&lt;code&gt;,&lt;/code&gt; 隔开&lt;/li&gt;
 &lt;li&gt;不指定排序顺序，默认是 &lt;code&gt;asc&lt;/code&gt;&lt;/li&gt;
 &lt;/ol&gt;
@@ -1596,9 +1597,9 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.nowcoder.com/practice/39f74706f8d94d37865a82ffb7ba67d3?tpId=199&amp;amp;tqId=2002633&amp;amp;sourceUrl=%2Fexam%2Foj%3FquestionJobId%3D10%26subTabName%3Donline_coding_page&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;牛客网题目链接&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id=&#34;2-基础操作符&#34;&gt;2. 基础操作符
-&lt;/h1&gt;&lt;h2 id=&#34;1-查找学校是北大的学生信息&#34;&gt;1. 查找学校是北大的学生信息
-&lt;/h2&gt;&lt;ol&gt;
+&lt;h2 id=&#34;基础操作符&#34;&gt;基础操作符
+&lt;/h2&gt;&lt;h3 id=&#34;查找学校是北大的学生信息&#34;&gt;查找学校是北大的学生信息
+&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;我们可以通过 &lt;code&gt;where&lt;/code&gt; 子句来筛选对应的记录&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -1639,8 +1640,8 @@
 &gt;
 &lt;a class=&#34;link&#34; href=&#34;https://www.nowcoder.com/practice/7858f3e234bc4d85b81b9a6c3926f49f?tpId=199&amp;amp;tqId=1971248&amp;amp;sourceUrl=%2Fexam%2Foj%3FquestionJobId%3D10%26subTabName%3Donline_coding_page&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;牛客网题目链接&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;2-查询年龄大于-24岁的用户信息&#34;&gt;2. 查询年龄大于 24岁的用户信息
-&lt;/h2&gt;&lt;ol&gt;
+&lt;h3 id=&#34;查询年龄大于-24岁的用户信息&#34;&gt;查询年龄大于 24岁的用户信息
+&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;引入逻辑运算符 &lt;code&gt;&amp;gt;&lt;/code&gt; 以此类推还有 &lt;code&gt;&amp;lt; , = ,  &amp;gt;= , &amp;lt;= , != , = &lt;/code&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -1652,8 +1653,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;[牛客网题目链接](select device_id, gender, age,university from user_profile where age &amp;gt; 24)&lt;/p&gt;
-&lt;h2 id=&#34;3-查询某个年龄段的用户信息&#34;&gt;3. 查询某个年龄段的用户信息
-&lt;/h2&gt;&lt;ol&gt;
+&lt;h3 id=&#34;查询某个年龄段的用户信息&#34;&gt;查询某个年龄段的用户信息
+&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;使用 &lt;code&gt;between and&lt;/code&gt;  和 &lt;code&gt;&amp;gt;= and  &amp;lt;=&lt;/code&gt;  没什么本质区别，性能和业务使用上无差别&lt;/li&gt;
 &lt;li&gt;不过相较于&lt;code&gt;between and&lt;/code&gt; 逻辑表达式更灵活&lt;/li&gt;
 &lt;/ol&gt;
@@ -1675,8 +1676,8 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.nowcoder.com/practice/be54223075cc43ceb20e4ce8a8e3e340?tpId=199&amp;amp;tqId=1971603&amp;amp;sourceUrl=%2Fexam%2Foj%3FquestionJobId%3D10%26subTabName%3Donline_coding_page&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;牛客网题目链接&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;4-查找除复旦大学的用户信息&#34;&gt;4. 查找除复旦大学的用户信息
-&lt;/h2&gt;&lt;ol&gt;
+&lt;h3 id=&#34;查找除复旦大学的用户信息&#34;&gt;查找除复旦大学的用户信息
+&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;&lt;code&gt;NOT IN&lt;/code&gt; 可以比较多个值, 对于 &lt;code&gt;&amp;lt;&amp;gt; !=&lt;/code&gt; 如果需要比较多个值需要引入 &lt;code&gt;and&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;&amp;lt;&amp;gt;&lt;/code&gt; 和 &lt;code&gt;!=&lt;/code&gt; 没有本质区别，不过一般都是写 &lt;code&gt;&amp;lt;&amp;gt;&lt;/code&gt; 除非团队开发有要求，那么使用 &lt;code&gt;!=&lt;/code&gt; 尽可能统一组内的代码风格&lt;/li&gt;
 &lt;/ol&gt;
@@ -1694,8 +1695,8 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.nowcoder.com/practice/c12a056497404d1ea782308a7b821f9c?tpId=199&amp;amp;tqId=1971604&amp;amp;sourceUrl=%2Fexam%2Foj%3FquestionJobId%3D10%26subTabName%3Donline_coding_page&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;牛客网题目链接&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;5-用-where-过滤空值&#34;&gt;5. 用 where 过滤空值
-&lt;/h2&gt;&lt;ol&gt;
+&lt;h3 id=&#34;用-where-过滤空值&#34;&gt;用 where 过滤空值
+&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;可以单独是用 &lt;code&gt;is not null&lt;/code&gt;  或者是单独使用 &lt;code&gt;&amp;lt;&amp;gt; &amp;quot;&amp;quot;&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;但是实际业务最好是两个一起使用 ～&lt;/li&gt;
 &lt;/ol&gt;
@@ -1721,8 +1722,8 @@
         <pubDate>Thu, 24 Apr 2025 00:00:00 +0000</pubDate>
         
         <guid>https://ddlgitgzzhm.github.io/p/primary-select/</guid>
-        <description>&lt;img src="https://ddlgitgzzhm.github.io/p/primary-select/sql.png" alt="Featured image of post [SQL] 基础查询" /&gt;&lt;h1 id=&#34;1-查询所有列&#34;&gt;1. 查询所有列
-&lt;/h1&gt;&lt;p&gt;两种做法,一种是 *, 另外一种是全量的显示所有的列。 本质上这两个没什么区别&lt;/p&gt;
+        <description>&lt;img src="https://ddlgitgzzhm.github.io/p/primary-select/sql.png" alt="Featured image of post [SQL] 基础查询" /&gt;&lt;h2 id=&#34;查询所有列&#34;&gt;查询所有列
+&lt;/h2&gt;&lt;p&gt;两种做法,一种是 *, 另外一种是全量的显示所有的列。 本质上这两个没什么区别&lt;/p&gt;
 &lt;p&gt;从业务角度来看&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;如果当前的 sql 并不打算查新增的列 则可以使用第一种&lt;/li&gt;
@@ -1745,8 +1746,8 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.nowcoder.com/practice/f9f82607cac44099a77154a80266234a?tpId=199&amp;amp;tqId=1971219&amp;amp;sourceUrl=%2Fexam%2Foj%3FquestionJobId%3D10%26subTabName%3Donline_coding_page&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;牛客网题目链接&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id=&#34;2-查询结果去重&#34;&gt;2. 查询结果去重
-&lt;/h1&gt;&lt;ol&gt;
+&lt;h2 id=&#34;查询结果去重&#34;&gt;查询结果去重
+&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;select distinct  只用于列的去重&lt;/li&gt;
 &lt;li&gt;select group by 可以用于一些聚合操作 如 count , avg&lt;/li&gt;
 &lt;/ol&gt;
@@ -1890,7 +1891,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;PASS
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;进阶&#34;&gt;进阶
+&lt;/div&gt;&lt;h2 id=&#34;留坑进阶&#34;&gt;[留坑]进阶
 &lt;/h2&gt;&lt;p&gt;todo&lt;/p&gt;
 &lt;h2 id=&#34;参考&#34;&gt;参考
 &lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://juejin.cn/post/6967279849597566984?searchId=2025042323171433459C03C38A4C01D6A7&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
