@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="牛客网刷 sql day 3">
+<title>[SQL] 多表查询</title>
+
+<link rel='canonical' href='https://ddlgitgzzhm.github.io/p/multi-select/'>
+
+
+<link rel="stylesheet" href="/css/main.0a8be7391d8087c7d54da73badd1c839ac4573f64374125e9f9b47376c9c037d.css"><meta property='og:title' content="[SQL] 多表查询">
+<meta property='og:description' content="牛客网刷 sql day 3">
+<meta property='og:url' content='https://ddlgitgzzhm.github.io/p/multi-select/'>
+<meta property='og:site_name' content='GzzhM'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-05-07T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-05-07T00:00:00&#43;00:00'/><meta property='og:image' content='https://ddlgitgzzhm.github.io/p/multi-select/sql.png' />
+<meta name="twitter:title" content="[SQL] 多表查询">
+<meta name="twitter:description" content="牛客网刷 sql day 3"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://ddlgitgzzhm.github.io/p/multi-select/sql.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_982993d460bdf308.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍟</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">GzzhM</a></h1>
+            <h2 class="site-description">应该怎么做？</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/DDLGitGzzhM'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>文章归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>查找</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友情链接</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#子查询">子查询</a>
+      <ol>
+        <li><a href="#浙江大学用户题目回答情况">浙江大学用户题目回答情况</a></li>
+      </ol>
+    </li>
+    <li><a href="#链接查询">链接查询</a>
+      <ol>
+        <li><a href="#统计每个学校的答过题的用户的平均答题数">统计每个学校的答过题的用户的平均答题数</a></li>
+        <li><a href="#统计每个学校各难度的用户平均刷题数">统计每个学校各难度的用户平均刷题数</a></li>
+      </ol>
+    </li>
+    <li><a href="#组合查询">组合查询</a>
+      <ol>
+        <li><a href="#查找山东大学或者性别为男生的信息">查找山东大学或者性别为男生的信息</a></li>
+      </ol>
+    </li>
+    <li><a href="#留坑">留坑</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/multi-select/">
+                <img src="/p/multi-select/sql_hu_697b8ab9103c4c7a.png"
+                        srcset="/p/multi-select/sql_hu_697b8ab9103c4c7a.png 800w, /p/multi-select/sql_hu_e1fc03ccc52a2a80.png 1600w"
+                        width="800" 
+                        height="379" 
+                        loading="lazy"
+                        alt="Featured image of post [SQL] 多表查询" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/sql/" style="background-color: #000000; color: #fff;">
+                SQL
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/multi-select/">[SQL] 多表查询</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            牛客网刷 sql day 3
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2025-05-07</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="子查询">子查询
+</h2><h3 id="浙江大学用户题目回答情况">浙江大学用户题目回答情况
+</h3><blockquote>
+<p>题目：现在运营想要查看所有来自浙江大学的用户题目回答明细情况，请你取出相应数据</p>
+<p>示例：question_practice_detail</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>id</th>
+          <th>device_id</th>
+          <th>question_id</th>
+          <th>result</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>2138</td>
+          <td>111</td>
+          <td>wrong</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>第一行表示：id为1的用户的常用信息为使用的设备id为2138，在question_id为111的题目上，回答错误</p>
+<p>示例：user_profile</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>id</th>
+          <th>device_id</th>
+          <th>gender</th>
+          <th>age</th>
+          <th>university</th>
+          <th>gpa</th>
+          <th>active_days_within_30</th>
+          <th>question_cnt</th>
+          <th>answer_cnt</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>2138</td>
+          <td>male</td>
+          <td>21</td>
+          <td>北京大学</td>
+          <td>3.4</td>
+          <td>7</td>
+          <td>2</td>
+          <td>12</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>第一行表示：id为1的用户的常用信息为使用的设备id为2138，性别为男，年龄21岁，北京大学，gpa为3.4，在过去的30天里面活跃了7天，发帖数量为2，回答数量为12</p>
+<p>根据示例，你的查询应返回以下结果，查询结果根据question_id升序排序：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>device_id</th>
+          <th>question_id</th>
+          <th>result</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>2315</td>
+          <td>115</td>
+          <td>right</td>
+      </tr>
+  </tbody>
+</table></div></blockquote>
+<ol>
+<li>两个表 根据 <code>device_id</code> 关联, 题目需要我们聚合 <code>qpd</code> 表的 <code>question_id</code> 和 <code>result</code> 字段 条件是 <code>up</code> 表的 <code>university</code> 是 <code>浙江大学</code></li>
+<li>第一时间没有想到 <code>子查询</code> , 直接使用 <code>JOIN ON</code>了</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">qpd</span><span class="p">.</span><span class="n">device_id</span><span class="p">,</span><span class="n">qpd</span><span class="p">.</span><span class="n">question_id</span><span class="p">,</span><span class="n">qpd</span><span class="p">.</span><span class="k">result</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">user_profile</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">up</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">join</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">question_practice_detail</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">qpd</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">up</span><span class="p">.</span><span class="n">device_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qpd</span><span class="p">.</span><span class="n">device_id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">up</span><span class="p">.</span><span class="n">university</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;浙江大学&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">qpd</span><span class="p">.</span><span class="n">question_id</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>子查询代码如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="w"> </span><span class="n">question_id</span><span class="p">,</span><span class="w"> </span><span class="k">result</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">question_practice_detail</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">question_practice_detail</span><span class="p">.</span><span class="n">device_id</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">where</span><span class="w"> </span><span class="n">university</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;浙江大学&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><a class="link" href="https://www.nowcoder.com/practice/55f3d94c3f4d47b69833b335867c06c1?tpId=199&amp;tqId=1975673&amp;sourceUrl=%2Fexam%2Foj"  target="_blank" rel="noopener"
+    >牛客题目链接</a></p>
+<h2 id="链接查询">链接查询
+</h2><h3 id="统计每个学校的答过题的用户的平均答题数">统计每个学校的答过题的用户的平均答题数
+</h3><blockquote>
+<p>题目：查找每个学校用户的平均答题数目（某学校用户平均答题数量计算方式为该学校用户答题总次数除以答过题的不同用户个数）</p></blockquote>
+<blockquote>
+<p>表结构说明：</p>
+<p><strong>user_profile</strong> 用户信息表：</p>
+<ul>
+<li>device_id：终端编号（每个用户有唯一的一个终端）</li>
+<li>gender：性别</li>
+<li>age：年龄</li>
+<li>university：用户所在的学校</li>
+<li>gpa：该用户平均学分绩点</li>
+<li>active_days_within_30：30天内的活跃天数</li>
+</ul>
+<p><strong>question_practice_detail</strong> 答题情况明细表：</p>
+<ul>
+<li>question_id：题目编号</li>
+<li>result：答题结果</li>
+</ul>
+<p>示例数据：</p>
+<p>user_profile：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>device_id</th>
+          <th>gender</th>
+          <th>age</th>
+          <th>university</th>
+          <th>gpa</th>
+          <th>active_days_within_30</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>2138</td>
+          <td>male</td>
+          <td>21</td>
+          <td>北京大学</td>
+          <td>3.4</td>
+          <td>7</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>question_practice_detail：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>device_id</th>
+          <th>question_id</th>
+          <th>result</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>2138</td>
+          <td>111</td>
+          <td>wrong</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>要求：计算每个学校用户的平均答题数目（答题总次数/答过题的不同用户数），结果保留4位小数，按university升序排序</p>
+<p>预期输出示例：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>university</th>
+          <th>avg_answer_cnt</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>北京大学</td>
+          <td>1.0000</td>
+      </tr>
+  </tbody>
+</table></div></blockquote>
+<p>题目要求</p>
+<ol>
+<li>根据 <code>up</code> 表的 <code>university</code> 聚合出 <code>qpd</code> 表中 每所大学的 平均答题数, 即 <code>university</code> 对应有的 <code>device_id</code> 总共有多少个记录在 <code>qpd</code> 表中</li>
+<li>这里有一个逻辑坑点 , <code>distinct up.device_id</code> 一开始认为 <code>device_id</code> 必然是唯一的 。但是我们 <code>join on</code> 之后，由于 <code>qpd</code>表的 <code>device_id</code> 是有多个的，所以我们最后用于计算的分母需要<code>DISTINCT</code></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">up</span><span class="p">.</span><span class="n">university</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">round</span><span class="p">(</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="n">qd</span><span class="p">.</span><span class="n">question_id</span><span class="p">)</span><span class="o">/</span><span class="k">count</span><span class="p">(</span><span class="k">distinct</span><span class="w"> </span><span class="n">up</span><span class="p">.</span><span class="n">device_id</span><span class="p">),</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_answer_cnt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">user_profile</span><span class="w">  </span><span class="k">as</span><span class="w"> </span><span class="n">up</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">JOIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">question_practice_detail</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">qd</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">up</span><span class="p">.</span><span class="n">device_id</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">qd</span><span class="p">.</span><span class="n">device_id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">up</span><span class="p">.</span><span class="n">university</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">up</span><span class="p">.</span><span class="n">university</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><a class="link" href="https://www.nowcoder.com/practice/88aa923a9a674253b861a8fa56bac8e5?tpId=199&amp;tqId=1975674&amp;sourceUrl=%2Fexam%2Foj"  target="_blank" rel="noopener"
+    >牛客题目链接</a></p>
+<h3 id="统计每个学校各难度的用户平均刷题数">统计每个学校各难度的用户平均刷题数
+</h3><p>以下是修复后的Markdown内容，保持引用格式，优化了表格展示和换行：</p>
+<blockquote>
+<p>题目：运营想要计算一些参加了答题的不同学校、不同难度的用户平均答题量，请你写SQL取出相应数据</p>
+<p>用户信息表：user_profile</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>id</th>
+          <th>device_id</th>
+          <th>gender</th>
+          <th>age</th>
+          <th>university</th>
+          <th>gpa</th>
+          <th>active_days_within_30</th>
+          <th>question_cnt</th>
+          <th>answer_cnt</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>2138</td>
+          <td>male</td>
+          <td>21</td>
+          <td>北京大学</td>
+          <td>3.4</td>
+          <td>7</td>
+          <td>2</td>
+          <td>12</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>题库练习明细表：question_practice_detail</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>id</th>
+          <th>device_id</th>
+          <th>question_id</th>
+          <th>result</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>2138</td>
+          <td>111</td>
+          <td>wrong</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>表：question_detail</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>id</th>
+          <th>question_id</th>
+          <th>difficult_level</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>111</td>
+          <td>hard</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>请你写一个SQL查询，计算不同学校、不同难度的用户平均答题量，根据示例，你的查询应返回以下结果(结果在小数点位数保留4位，4位之后四舍五入)：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>university</th>
+          <th>difficult_level</th>
+          <th>avg_answer_cnt</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>北京大学</td>
+          <td>hard</td>
+          <td>1.0000</td>
+      </tr>
+  </tbody>
+</table></div></blockquote>
+<p>题目要求 :</p>
+<ol>
+<li>首先需要 <code>up</code> 表的 <code>university</code></li>
+<li>另外需要 <code>qd</code> 表的 <code>diffcult</code></li>
+<li>其次需要计算 <code>count(same-diffcult-question) / count(same-university-device-id)</code></li>
+</ol>
+<p>思路 :</p>
+<ol>
+<li>对于三张表的查询 , 我们先优化到 两张表的查询，<code>拆子问题</code> , 我们可以先聚合 <code>qd</code> 和<code>qpd</code> 这两张表 , 知道每个 <code>题目的难度</code></li>
+<li>相当于我们聚合了一张 <code>带有难度信息的 qpd</code></li>
+<li>然后我们使用 这个<code>new qpd</code> 再去和 <code>UP</code> 聚合计算一下 对应的 <code>question_id/device_id group by (university, diffcult)</code> 即可</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">up</span><span class="p">.</span><span class="n">university</span><span class="p">,</span><span class="w"> </span><span class="n">temp</span><span class="p">.</span><span class="n">difficult_level</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="n">temp</span><span class="p">.</span><span class="n">question_id</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="k">distinct</span><span class="w"> </span><span class="n">up</span><span class="p">.</span><span class="n">device_id</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_answer_cnt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">up</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">join</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="n">qpd</span><span class="p">.</span><span class="n">device_id</span><span class="p">,</span><span class="n">qpd</span><span class="p">.</span><span class="n">question_id</span><span class="p">,</span><span class="w"> </span><span class="n">qd</span><span class="p">.</span><span class="n">difficult_level</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">question_practice_detail</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">qpd</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">join</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">question_detail</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">qd</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">on</span><span class="w"> </span><span class="n">qpd</span><span class="p">.</span><span class="n">question_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qd</span><span class="p">.</span><span class="n">question_id</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w">  </span><span class="k">as</span><span class="w"> </span><span class="n">temp</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">on</span><span class="w"> </span><span class="n">up</span><span class="p">.</span><span class="n">device_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp</span><span class="p">.</span><span class="n">device_id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">up</span><span class="p">.</span><span class="n">university</span><span class="p">,</span><span class="w"> </span><span class="n">temp</span><span class="p">.</span><span class="n">difficult_level</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">up</span><span class="p">.</span><span class="n">university</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><a class="link" href="https://www.nowcoder.com/practice/5400df085a034f88b2e17941ab338ee8?tpId=199&amp;tqId=1975675&amp;sourceUrl=%2Fexam%2Foj"  target="_blank" rel="noopener"
+    >牛客题目链接</a></p>
+<p><a class="link" href="https://www.nowcoder.com/practice/f4714f7529404679b7f8909c96299ac4?tpId=199&amp;tqId=1975676&amp;sourceUrl=%2Fexam%2Foj"  target="_blank" rel="noopener"
+    >牛客经验+1</a></p>
+<h2 id="组合查询">组合查询
+</h2><h3 id="查找山东大学或者性别为男生的信息">查找山东大学或者性别为男生的信息
+</h3><p>以下是修复后的Markdown内容，保持引用格式并优化表格展示：</p>
+<blockquote>
+<p>题目：现在运营想要分别查看学校为山东大学或者性别为男性的用户的device_id、gender、age和gpa数据，请取出相应结果，结果不去重。</p>
+<p>示例：user_profile</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>id</th>
+          <th>device_id</th>
+          <th>gender</th>
+          <th>age</th>
+          <th>university</th>
+          <th>gpa</th>
+          <th>active_days_within_30</th>
+          <th>question_cnt</th>
+          <th>answer_cnt</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>2138</td>
+          <td>male</td>
+          <td>21</td>
+          <td>北京大学</td>
+          <td>3.4</td>
+          <td>7</td>
+          <td>2</td>
+          <td>12</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>根据示例，你的查询应返回以下结果（注意输出的顺序，先输出学校为山东大学再输出性别为男生的信息）：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>device_id</th>
+          <th>gender</th>
+          <th>age</th>
+          <th>gpa</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>5432</td>
+          <td>male</td>
+          <td>25</td>
+          <td>3.8</td>
+      </tr>
+  </tbody>
+</table></div></blockquote>
+<p>题目要求 :</p>
+<ol>
+<li>连续查两遍这个表, 第一遍是 <code>山东大学</code>, 第二遍是<code>男性</code> 然后组合输出</li>
+</ol>
+<p>思路 :</p>
+<ol>
+<li>
+<p>一开始以为是 <code>SELECT WHERE OR</code> 的形式,但是发现
+2. 第一, 不能查重复数据 ,即<code>山东大学</code> 和 <code>male</code> 如果是一条数据,应该查出两条
+3. 第二不好排序,因为<code>UNIVERSITY</code></p>
+</li>
+<li>
+<p>这题纯属新知识点 <code>UNION ALL</code> 不去除重复数据 ,<code>UNOIN</code> 去除重复数据</p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="w"> </span><span class="n">gender</span><span class="p">,</span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">gpa</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">university</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;山东大学&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">union</span><span class="w"> </span><span class="k">all</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="w"> </span><span class="n">gender</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">gpa</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">gender</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;male&#39;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><a class="link" href="https://www.nowcoder.com/practice/979b1a5a16d44afaba5191b22152f64a?tpId=199&amp;tqId=1975677&amp;sourceUrl=%2Fexam%2Foj"  target="_blank" rel="noopener"
+    >牛客题目链接</a></p>
+<h2 id="留坑">留坑
+</h2><ol>
+<li><code>JOIN</code> ,<code>LEFT JOIN</code>, <code>RIGHT JOIN</code></li>
+<li>子查询 ,<code>视图</code>的概念</li>
+<li><code>UNION ALL</code>的性能 ,业务上的使用</li>
+</ol>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/senior-select-1/">
+        
+        
+            <div class="article-image">
+                <img src="/p/senior-select-1/sql.e2fff72502b590a35386a5ba8c70a36a_hu_f7188397613682ca.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post [SQL] 高级操作符"
+                        data-key="senior-select-1" 
+                        data-hash="md5-4v/3JQK1kKNThqW6jHCjag==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[SQL] 高级操作符</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/senior-select-2/">
+        
+        
+            <div class="article-image">
+                <img src="/p/senior-select-2/sql.e2fff72502b590a35386a5ba8c70a36a_hu_f7188397613682ca.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post [SQL] 高级查询"
+                        data-key="senior-select-2" 
+                        data-hash="md5-4v/3JQK1kKNThqW6jHCjag==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[SQL] 高级查询</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/limit-select/">
+        
+        
+            <div class="article-image">
+                <img src="/p/limit-select/sql.e2fff72502b590a35386a5ba8c70a36a_hu_f7188397613682ca.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post [SQL] 条件查询"
+                        data-key="limit-select" 
+                        data-hash="md5-4v/3JQK1kKNThqW6jHCjag==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[SQL] 条件查询</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/primary-select/">
+        
+        
+            <div class="article-image">
+                <img src="/p/primary-select/sql.e2fff72502b590a35386a5ba8c70a36a_hu_f7188397613682ca.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post [SQL] 基础查询"
+                        data-key="primary-select" 
+                        data-hash="md5-4v/3JQK1kKNThqW6jHCjag==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[SQL] 基础查询</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="DDLGitGzzhM/ddlgitgzzhm.github.io"
+        issue-term="pathname"
+        
+        label="comments"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2025 GzzhM
+    </section>
+    
+    <section class="powerby">
+        使用 Golang 构建 <br />
+        
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
