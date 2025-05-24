@@ -11,10 +11,10 @@
 <meta property='og:description' content="牛客网刷 sql day 5">
 <meta property='og:url' content='https://ddlgitgzzhm.github.io/p/necessary-select-2/'>
 <meta property='og:site_name' content='GzzhM'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-05-23T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-05-23T00:00:00&#43;00:00'/><meta property='og:image' content='https://ddlgitgzzhm.github.io/p/necessary-select-2/sql.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-05-23T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-05-23T00:00:00&#43;00:00'/><meta property='og:image' content='https://ddlgitgzzhm.github.io/p/necessary-select-2/title.png' />
 <meta name="twitter:title" content="[SQL] 必要函数 2">
 <meta name="twitter:description" content="牛客网刷 sql day 5"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://ddlgitgzzhm.github.io/p/necessary-select-2/sql.png' />
+    <meta name="twitter:image" content='https://ddlgitgzzhm.github.io/p/necessary-select-2/title.png' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -274,7 +274,7 @@
         <li><a href="#统计每种性别的人数">统计每种性别的人数</a></li>
       </ol>
     </li>
-    <li><a href="#todo-待完善">Todo 待完善</a></li>
+    <li><a href="#截取年龄">截取年龄</a></li>
   </ol>
 </nav>
         </div>
@@ -290,10 +290,10 @@
     <header class="article-header">
         <div class="article-image">
             <a href="/p/necessary-select-2/">
-                <img src="/p/necessary-select-2/sql_hu_697b8ab9103c4c7a.png"
-                        srcset="/p/necessary-select-2/sql_hu_697b8ab9103c4c7a.png 800w, /p/necessary-select-2/sql_hu_e1fc03ccc52a2a80.png 1600w"
+                <img src="/p/necessary-select-2/title_hu_3516b2fbbea6c568.png"
+                        srcset="/p/necessary-select-2/title_hu_3516b2fbbea6c568.png 800w, /p/necessary-select-2/title_hu_79b135380f056c1e.png 1600w"
                         width="800" 
-                        height="379" 
+                        height="429" 
                         loading="lazy"
                         alt="Featured image of post [SQL] 必要函数 2" />
                 
@@ -475,8 +475,87 @@
 </div>
 </div><p><a class="link" href="https://www.nowcoder.com/practice/f04189f92f8d4f6fa0f383d413af7cb8?tpId=199&amp;tqId=1975682&amp;sourceUrl=%2Fexam%2Foj"  target="_blank" rel="noopener"
     >题目链接</a></p>
-<h2 id="todo-待完善">Todo 待完善
-</h2>
+<p><a class="link" href="https://www.nowcoder.com/practice/26c8715f32e24d918f15db69518f3ad8?tpId=199&amp;tqId=1975683&amp;sourceUrl=%2Fexam%2Foj"  target="_blank" rel="noopener"
+    >送分题</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">device_id</span><span class="p">,</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">SUBSTRING_INDEX</span><span class="p">(</span><span class="n">blog_url</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">user_name</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">user_submit</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="截取年龄">截取年龄
+</h2><blockquote>
+<p>题目：现在运营举办了一场比赛，收到了一些参赛申请，表数据记录形式如下所示，现在运营想要统计每个年龄的用户分别有多少参赛者，请取出相应结果</p>
+<p>示例：user_submit</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>device_id</th>
+          <th>profile</th>
+          <th>blog_url</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>2138</td>
+          <td>180cm,75kg,27,male</td>
+          <td>http:/ur/bigboy777</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>根据示例，你的查询应返回以下结果：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>age</th>
+          <th>number</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>27</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>25</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+      </tr>
+  </tbody>
+</table></div></blockquote>
+<ol>
+<li>两段 substring_index</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">SUBSTRING_INDEX</span><span class="p">(</span><span class="w"> </span><span class="n">SUBSTRING_INDEX</span><span class="p">(</span><span class="n">profile</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">2</span><span class="p">),</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">number</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">user_submit</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">age</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
 </section>
 
 
