@@ -272,9 +272,20 @@
     <li><a href="#文本函数">文本函数</a>
       <ol>
         <li><a href="#统计每种性别的人数">统计每种性别的人数</a></li>
+        <li><a href="#截取年龄">截取年龄</a></li>
       </ol>
     </li>
-    <li><a href="#截取年龄">截取年龄</a></li>
+    <li><a href="#窗口函数">窗口函数</a>
+      <ol>
+        <li><a href="#找出每个学校gpa最低的同学">找出每个学校GPA最低的同学</a></li>
+        <li><a href="#计算每日累计利润">计算每日累计利润</a></li>
+      </ol>
+    </li>
+    <li><a href="#基础数学函数">基础数学函数</a>
+      <ol>
+        <li><a href="#基本数学函数">基本数学函数</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -493,8 +504,8 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">user_submit</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="截取年龄">截取年龄
-</h2><blockquote>
+</div><h3 id="截取年龄">截取年龄
+</h3><blockquote>
 <p>题目：现在运营举办了一场比赛，收到了一些参赛申请，表数据记录形式如下所示，现在运营想要统计每个年龄的用户分别有多少参赛者，请取出相应结果</p>
 <p>示例：user_submit</p>
 <div class="table-wrapper"><table>
@@ -555,7 +566,328 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">age</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
+</div><h2 id="窗口函数">窗口函数
+</h2><h3 id="找出每个学校gpa最低的同学">找出每个学校GPA最低的同学
+</h3><blockquote>
+<p>题目：现在运营想要找到每个学校gpa最低的同学来做调研，请你取出每个学校的最低gpa。</p>
+<p>示例：user_profile</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>id</th>
+          <th>device_id</th>
+          <th>gender</th>
+          <th>age</th>
+          <th>university</th>
+          <th>gpa</th>
+          <th>active_days_within_30</th>
+          <th>question_cnt</th>
+          <th>answer_cnt</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>2138</td>
+          <td>male</td>
+          <td>21</td>
+          <td>北京大学</td>
+          <td>3.4</td>
+          <td>7</td>
+          <td>2</td>
+          <td>12</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>3214</td>
+          <td>male</td>
+          <td>NULL</td>
+          <td>复旦大学</td>
+          <td>4.0</td>
+          <td>15</td>
+          <td>5</td>
+          <td>25</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>根据示例，你的查询结果应参考以下格式，输出结果按university升序排序：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>device_id</th>
+          <th>university</th>
+          <th>gpa</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>6543</td>
+          <td>北京大学</td>
+          <td>3.2</td>
+      </tr>
+      <tr>
+          <td>[id]</td>
+          <td>[学校名]</td>
+          <td>[最低gpa]</td>
+      </tr>
+  </tbody>
+</table></div></blockquote>
+<blockquote>
+<p>Q : 题目要求求出一个 TopN 的问题</p></blockquote>
+<p>A : 新知识点</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">窗口函数</span><span class="o">&gt;</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="p">(</span><span class="n">partition</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="o">&lt;</span><span class="err">用于分组的列名</span><span class="o">&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="o">&lt;</span><span class="err">用于排序的列名</span><span class="o">&gt;</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
+</div><p>窗口函数 <code>rank()</code>, <code>dense_rank</code>, <code>row_number</code></p>
+<p><code>rank()</code> : 如果存在多个并列名次会占用, 即 <code>1,1,1,4</code></p>
+<p><code>dense_rank()</code> : 如果存在多个并列名次不会占用, 即 <code>1,1,1,2</code></p>
+<p><code>row_number()</code> : 不占用,不并列. 即 <code>1,2,3,4</code></p>
+<p>具体说明 :</p>
+<p><a class="link" href="https://zhuanlan.zhihu.com/p/92654574"  target="_blank" rel="noopener"
+    >窗口函数知乎链接</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="w"> </span><span class="n">university</span><span class="p">,</span><span class="w"> </span><span class="n">gpa</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="w"> </span><span class="n">university</span><span class="p">,</span><span class="w"> </span><span class="n">gpa</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">RANK</span><span class="p">()</span><span class="w">  </span><span class="n">over</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">university</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">gpa</span><span class="p">)</span><span class="w"> </span><span class="n">rk</span><span class="w">  </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w"> </span><span class="n">a</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">rk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>另外由于这个只是一个 max-min 的问题, 我们同样可以是用 <code>JOIN</code> or <code>子表查询</code> 的方法做</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">u</span><span class="p">.</span><span class="n">device_id</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">university</span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">gpa</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">user_profile</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">u</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">inner</span><span class="w"> </span><span class="k">join</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">select</span><span class="w"> </span><span class="k">min</span><span class="p">(</span><span class="n">gpa</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">gpa</span><span class="p">,</span><span class="w"> </span><span class="n">university</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">university</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">temp</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">on</span><span class="w"> </span><span class="n">temp</span><span class="p">.</span><span class="n">university</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">university</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">gpa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp</span><span class="p">.</span><span class="n">gpa</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">university</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="w"> </span><span class="n">university</span><span class="p">,</span><span class="w"> </span><span class="n">gpa</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="n">u1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">gpa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">MIN</span><span class="p">(</span><span class="n">gpa</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="n">u2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">u2</span><span class="p">.</span><span class="n">university</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">u1</span><span class="p">.</span><span class="n">university</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><a class="link" href="https://www.nowcoder.com/practice/90778f5ab7d64d35a40dc1095ff79065?tpId=199&amp;tqId=1980672&amp;sourceUrl=%2Fexam%2Foj"  target="_blank" rel="noopener"
+    >牛客题目链接</a></p>
+<h3 id="计算每日累计利润">计算每日累计利润
+</h3><blockquote>
+<p>题目：在一张<code>daily_profits</code>表中，存储了公司每天的利润记录。请计算每一种产品每一天的累计利润，并按<code>profit_date</code>升序输出所有字段。</p>
+<p><strong>具体要求</strong>：</p>
+<ol>
+<li>计算每一天的累计利润</li>
+<li>输出结果按<code>profit_date</code>升序排列</li>
+</ol>
+<p><strong>表结构</strong>：<code>daily_profits</code></p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>profit_id</th>
+          <th>profit_date</th>
+          <th>profit</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>2024-01-01</td>
+          <td>100.00</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>2024-01-02</td>
+          <td>150.00</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>2024-01-03</td>
+          <td>200.00</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>输出示例</strong>：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>profit_id</th>
+          <th>profit_date</th>
+          <th>profit</th>
+          <th>cumulative_profit</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>2024-01-01</td>
+          <td>100.00</td>
+          <td>100.00</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>2024-01-02</td>
+          <td>150.00</td>
+          <td>250.00</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>2024-01-03</td>
+          <td>200.00</td>
+          <td>450.00</td>
+      </tr>
+  </tbody>
+</table></div></blockquote>
+<blockquote>
+<p>Q : 我们需要逐天的累加每个分组的结果</p></blockquote>
+<p>A : 我们可以把整个结果集，看成一个分组。想要实现逐行累加，那么就需要使用 <code>窗口函数</code> , 但是我们不需要 <code>PARTITION BY</code> 进行分组</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">profit</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="p">(</span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">profit_date</span><span class="p">)</span><span class="w"> </span><span class="n">cumulative_profit</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">daily_profits</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><a class="link" href="https://www.nowcoder.com/practice/c9b7a2f73eb54a3da4a81f15fd8a3665?tpId=199&amp;tqId=11212642&amp;sourceUrl=%2Fexam%2Foj"  target="_blank" rel="noopener"
+    >牛客题目链接</a></p>
+<h2 id="基础数学函数">基础数学函数
+</h2><h3 id="基本数学函数">基本数学函数
+</h3><blockquote>
+<p>题目：在一张 <code>numbers</code> 表中，存储了一些数值。请使用 SQL 的基本数学函数，计算每个数值的绝对值、向上取整、向下取整、四舍五入到一位小数，并输出这些计算结果。</p>
+<p><strong>具体要求</strong>：</p>
+<ol>
+<li>计算每个数值的绝对值</li>
+<li>计算每个数值的向上取整值</li>
+<li>计算每个数值的向下取整值</li>
+<li>计算每个数值四舍五入到一位小数</li>
+<li>输出结果按 <code>id</code> 升序排列</li>
+</ol>
+<p><strong>表结构</strong>：<code>numbers</code></p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>id</th>
+          <th>value</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>3.14</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>-2.71</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>输出示例</strong>：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>id</th>
+          <th>value</th>
+          <th>absolute_value</th>
+          <th>ceiling_value</th>
+          <th>floor_value</th>
+          <th>rounded_value</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>3.14</td>
+          <td>3.14</td>
+          <td>4</td>
+          <td>3</td>
+          <td>3.1</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>-2.71</td>
+          <td>2.71</td>
+          <td>-2</td>
+          <td>-3</td>
+          <td>-2.7</td>
+      </tr>
+  </tbody>
+</table></div></blockquote>
+<p><strong>新知识点 :</strong></p>
+<ol>
+<li><code>ABS()</code>, <code>ceil()</code>, <code>floor()</code>, <code>round()</code></li>
+<li>绝对值，向上取整，向下取整，精度</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">abs</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">absolute_value</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">ceil</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">ceiling_value</span><span class="p">,</span><span class="w"> </span><span class="o">#</span><span class="err">向上取整</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">floor</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">floor_value</span><span class="p">,</span><span class="w"> </span><span class="o">#</span><span class="err">向下取整</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">round</span><span class="p">(</span><span class="n">value</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">rounded_value</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">numbers</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">ASC</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><a class="link" href="https://www.nowcoder.com/practice/b139029a438b42488f784cf5cef98e2d?tpId=199&amp;tqId=11212714&amp;sourceUrl=%2Fexam%2Foj"  target="_blank" rel="noopener"
+    >牛客网题目链接</a></p>
+
 </section>
 
 
