@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="给你一个整数数组 nums 和一个整数 k ，请你统计并返回 该数组中和为 k 的子数组的个数">
-<title>[LeetCode][hot100] 560. 和为 K 的子数组</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="数学基础 0x02">
+<title>[Hdu] 数学基础 day2</title>
 
-<link rel='canonical' href='https://ddlgitgzzhm.github.io/p/leetcode-560/'>
+<link rel='canonical' href='https://ddlgitgzzhm.github.io/p/hdu-0x01-math-02/'>
 
 
-<link rel="stylesheet" href="/css/main.0a8be7391d8087c7d54da73badd1c839ac4573f64374125e9f9b47376c9c037d.css"><meta property='og:title' content="[LeetCode][hot100] 560. 和为 K 的子数组">
-<meta property='og:description' content="给你一个整数数组 nums 和一个整数 k ，请你统计并返回 该数组中和为 k 的子数组的个数">
-<meta property='og:url' content='https://ddlgitgzzhm.github.io/p/leetcode-560/'>
+<link rel="stylesheet" href="/css/main.0a8be7391d8087c7d54da73badd1c839ac4573f64374125e9f9b47376c9c037d.css"><meta property='og:title' content="[Hdu] 数学基础 day2">
+<meta property='og:description' content="数学基础 0x02">
+<meta property='og:url' content='https://ddlgitgzzhm.github.io/p/hdu-0x01-math-02/'>
 <meta property='og:site_name' content='GzzhM'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='leetcode-hot100' /><meta property='article:published_time' content='2025-04-29T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-04-29T00:00:00&#43;00:00'/><meta property='og:image' content='https://ddlgitgzzhm.github.io/p/leetcode-560/img.png' />
-<meta name="twitter:title" content="[LeetCode][hot100] 560. 和为 K 的子数组">
-<meta name="twitter:description" content="给你一个整数数组 nums 和一个整数 k ，请你统计并返回 该数组中和为 k 的子数组的个数"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://ddlgitgzzhm.github.io/p/leetcode-560/img.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='hdu-icpc' /><meta property='article:published_time' content='2025-05-25T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-05-25T00:00:00&#43;00:00'/><meta property='og:image' content='https://ddlgitgzzhm.github.io/p/hdu-0x01-math-02/icpc-title.png' />
+<meta name="twitter:title" content="[Hdu] 数学基础 day2">
+<meta name="twitter:description" content="数学基础 0x02"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://ddlgitgzzhm.github.io/p/hdu-0x01-math-02/icpc-title.png' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -269,8 +269,18 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#题目">题目</a></li>
-    <li><a href="#思路">思路</a></li>
+    <li><a href="#快速幂">快速幂</a>
+      <ol>
+        <li><a href="#求-ab-的最后三位数表示的整数">求 A^B 的最后三位数表示的整数</a>
+          <ol>
+            <li><a href="#输入格式">输入格式</a></li>
+            <li><a href="#输出格式">输出格式</a></li>
+            <li><a href="#输入输出示例">输入输出示例</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#todo">todo</a></li>
   </ol>
 </nav>
         </div>
@@ -285,13 +295,13 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/leetcode-560/">
-                <img src="/p/leetcode-560/img_hu_ef2bb431159425b.png"
-                        srcset="/p/leetcode-560/img_hu_ef2bb431159425b.png 800w, /p/leetcode-560/img_hu_bd40752b79c0c72.png 1600w"
+            <a href="/p/hdu-0x01-math-02/">
+                <img src="/p/hdu-0x01-math-02/icpc-title_hu_af9303238c26870c.png"
+                        srcset="/p/hdu-0x01-math-02/icpc-title_hu_af9303238c26870c.png 800w, /p/hdu-0x01-math-02/icpc-title_hu_d45ccfd71b49c881.png 1600w"
                         width="800" 
-                        height="360" 
+                        height="257" 
                         loading="lazy"
-                        alt="Featured image of post [LeetCode][hot100] 560. 和为 K 的子数组" />
+                        alt="Featured image of post [Hdu] 数学基础 day2" />
                 
             </a>
         </div>
@@ -310,12 +320,12 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/leetcode-560/">[LeetCode][hot100] 560. 和为 K 的子数组</a>
+            <a href="/p/hdu-0x01-math-02/">[Hdu] 数学基础 day2</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            给你一个整数数组 nums 和一个整数 k ，请你统计并返回 该数组中和为 k 的子数组的个数
+            数学基础 0x02
         </h3>
         
     </div>
@@ -336,7 +346,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2025-04-29</time>
+                <time class="article-time--published">2025-05-25</time>
             </div>
         
 
@@ -352,37 +362,53 @@
     <section class="article-content">
     
     
-    <h2 id="题目">题目
-</h2><blockquote>
-<p>给你一个整数数组 nums 和一个整数 k ，请你统计并返回 该数组中和为 k 的子数组的个数 。
-子数组是数组中元素的连续非空序列。</p>
-<p>示例 1：</p>
-<p>输入：nums = [1,1,1], k = 2</p>
-<p>输出：2</p>
-<p>示例 2：</p>
-<p>输入：nums = [1,2,3], k = 3</p>
-<p>输出：2</p>
-<p>提示：</p>
-<p>1 &lt;= nums.length &lt;= 2 * 104</p>
-<p>-1000 &lt;= nums[i] &lt;= 1000</p>
-<p>-107 &lt;= k &lt;= 107</p></blockquote>
-<h2 id="思路">思路
-</h2><ol>
-<li>
-<p>对于 需要找到 <code>X + Y  = K</code> 的模型，我们统一想到使用 <code>map[X-K] = Y</code> 的优化，可以将 <code>n^2 -&gt; O(n)</code></p>
-</li>
-<li>
-<p>对于这题我们需要把子数组和看为<code>X</code>, 我们计算前缀和 <code>SUM[i]</code> 表示，以 <code>i</code> 结尾前面所有数值的和. 因为我们知道 <code>K</code> 所以我们并不需要去找到我们的 <code>Y</code>, 我们只需要保证，我们能全量的枚举出<code>X</code> 即 <code>SUM[i]</code></p>
-</li>
-<li>
-<p>因此我们只需要<code>ans = ans + map[sum[i] - K]</code> 即可</p>
-</li>
-</ol>
-<p>tips :</p>
+    <h2 id="快速幂">快速幂
+</h2><h3 id="求-ab-的最后三位数表示的整数">求 A^B 的最后三位数表示的整数
+</h3><h4 id="输入格式">输入格式
+</h4><ul>
+<li>输入数据包含多个测试实例</li>
+<li>每个实例占一行，由两个正整数A和B组成（1 ≤ A,B ≤ 10000）</li>
+<li>如果A=0且B=0，则表示输入结束，不做处理</li>
+</ul>
+<h4 id="输出格式">输出格式
+</h4><ul>
+<li>对于每个测试实例，输出A^B的最后三位表示的整数</li>
+<li>每个输出占一行</li>
+</ul>
+<h4 id="输入输出示例">输入输出示例
+</h4><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>输入样例</th>
+          <th>输出样例</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>2 3</td>
+          <td>8</td>
+      </tr>
+      <tr>
+          <td>12 6</td>
+          <td>984</td>
+      </tr>
+      <tr>
+          <td>6789 10000</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>0 0</td>
+          <td>(无输出)</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>算法讲解 :</strong></p>
 <ol>
-<li>当我们 <code>sum[1] - K == 2</code> 并且在 <code>sum[3] - K == 2</code> , 那么我们是否重复计算了 <code>[0~3]</code> 的某些子数组呢 ?</li>
+<li>对于 <code>123^(234)</code>. 我们可以优化成 <code>(123^2)^117</code>, 再进一步优化成 <code>((123^2) * 123 )^116</code></li>
+<li>同理往下, 我们可以发现, 我们的<code>计算量由次幂来控制</code>, 同时我们可以根据就性质来操作次幂的优化
+3. 对于奇数 我们只需要拆成 <code>ans = ans * a</code> 的形式
+4. 对于偶数 我们只需要拆成 <code>a = a * a</code> 的形式</li>
 </ol>
-<p>结论是 : 我们 <code>sum[3]-K == 2</code> 的成立是由于引入了<code>A[2]</code> , 因此不存在重复计算</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -397,23 +423,46 @@
 </span><span class="lnt">10
 </span><span class="lnt">11
 </span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">subarraySum</span><span class="p">(</span><span class="nx">nums</span> <span class="p">[]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">k</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">count</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">count</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">=</span> <span class="mi">1</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">preSum</span> <span class="o">:=</span> <span class="mi">0</span> 
-</span></span><span class="line"><span class="cl">    <span class="nx">ans</span> <span class="o">:=</span> <span class="mi">0</span> 
-</span></span><span class="line"><span class="cl">    <span class="k">for</span>  <span class="nx">_</span> <span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">nums</span>  <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">preSum</span> <span class="o">+=</span> <span class="nx">v</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">ans</span> <span class="o">+=</span> <span class="nx">count</span><span class="p">[</span><span class="nx">preSum</span> <span class="o">-</span> <span class="nx">k</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">count</span><span class="p">[</span><span class="nx">preSum</span><span class="p">]</span> <span class="o">++</span> 
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;bits/stdc++.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">qmi</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">b</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">b</span><span class="o">&amp;</span><span class="mi">1</span><span class="p">)</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">ans</span> <span class="o">*</span> <span class="n">a</span> <span class="o">%</span> <span class="mi">1000</span> <span class="p">;</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">a</span> <span class="o">=</span> <span class="n">a</span>  <span class="o">*</span> <span class="n">a</span> <span class="o">%</span> <span class="mi">1000</span> <span class="p">;</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">b</span> <span class="o">=</span> <span class="n">b</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">;</span> 
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">ans</span> 
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">ans</span> <span class="o">%</span> <span class="mi">1000</span> <span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">a</span><span class="o">&gt;&gt;</span><span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">a</span>  <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span> <span class="p">;</span> 
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">qmi</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div>
+</div><p><a class="link" href="https://vjudge.net/problem/HDU-2035"  target="_blank" rel="noopener"
+    >vj题目链接</a></p>
+<h2 id="todo">todo
+</h2>
 </section>
 
 
@@ -421,7 +470,7 @@
     
     <section class="article-tags">
         
-            <a href="/tags/leetcode-hot100/">Leetcode-Hot100</a>
+            <a href="/tags/hdu-icpc/">Hdu-Icpc</a>
         
     </section>
 
@@ -467,30 +516,6 @@
             
                 
 <article class="has-image">
-    <a href="/p/hdu-0x01-math-02/">
-        
-        
-            <div class="article-image">
-                <img src="/p/hdu-0x01-math-02/icpc-title.c2b768b30d2b9dcb0601401c14053c8e_hu_45dea114d7a2c4ec.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post [Hdu] 数学基础 day2"
-                        data-key="hdu-0x01-math-02" 
-                        data-hash="md5-wrdosw0rncsGAUAcFAU8jg==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">[Hdu] 数学基础 day2</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
     <a href="/p/hdu-0x01-math/">
         
         
@@ -508,6 +533,30 @@
 
         <div class="article-details">
             <h2 class="article-title">[Hdu] 数学基础</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/leetcode-560/">
+        
+        
+            <div class="article-image">
+                <img src="/p/leetcode-560/img.6989f1f83b97cf8319719542d5c6b2e8_hu_95d6e72c5c536625.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post [LeetCode][hot100] 560. 和为 K 的子数组"
+                        data-key="leetcode-560" 
+                        data-hash="md5-aYnx&#43;DuXz4MZcZVC1cay6A==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[LeetCode][hot100] 560. 和为 K 的子数组</h2>
         </div>
     </a>
 </article>
