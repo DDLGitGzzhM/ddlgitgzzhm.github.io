@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="牛客网刷 sql day 2">
-<title>[SQL] 条件查询</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="某音短视频专场">
+<title>[SQL] 综合练习 2</title>
 
-<link rel='canonical' href='https://ddlgitgzzhm.github.io/p/limit-select/'>
+<link rel='canonical' href='https://ddlgitgzzhm.github.io/p/com-practise-2/'>
 
 
-<link rel="stylesheet" href="/css/main.0a8be7391d8087c7d54da73badd1c839ac4573f64374125e9f9b47376c9c037d.css"><meta property='og:title' content="[SQL] 条件查询">
-<meta property='og:description' content="牛客网刷 sql day 2">
-<meta property='og:url' content='https://ddlgitgzzhm.github.io/p/limit-select/'>
+<link rel="stylesheet" href="/css/main.0a8be7391d8087c7d54da73badd1c839ac4573f64374125e9f9b47376c9c037d.css"><meta property='og:title' content="[SQL] 综合练习 2">
+<meta property='og:description' content="某音短视频专场">
+<meta property='og:url' content='https://ddlgitgzzhm.github.io/p/com-practise-2/'>
 <meta property='og:site_name' content='GzzhM'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-04-29T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-04-29T00:00:00&#43;00:00'/><meta property='og:image' content='https://ddlgitgzzhm.github.io/p/limit-select/sql.png' />
-<meta name="twitter:title" content="[SQL] 条件查询">
-<meta name="twitter:description" content="牛客网刷 sql day 2"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://ddlgitgzzhm.github.io/p/limit-select/sql.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-05-26T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-05-26T00:00:00&#43;00:00'/><meta property='og:image' content='https://ddlgitgzzhm.github.io/p/com-practise-2/byte_dance.png' />
+<meta name="twitter:title" content="[SQL] 综合练习 2">
+<meta name="twitter:description" content="某音短视频专场"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://ddlgitgzzhm.github.io/p/com-practise-2/byte_dance.png' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -269,19 +269,11 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#基础排序">基础排序</a>
+    <li><a href="#某音短视频">某音短视频</a>
       <ol>
-        <li><a href="#查询后排序">查询后排序</a></li>
-        <li><a href="#查询后多列排序">查询后多列排序</a></li>
-      </ol>
-    </li>
-    <li><a href="#基础操作符">基础操作符</a>
-      <ol>
-        <li><a href="#查找学校是北大的学生信息">查找学校是北大的学生信息</a></li>
-        <li><a href="#查询年龄大于-24岁的用户信息">查询年龄大于 24岁的用户信息</a></li>
-        <li><a href="#查询某个年龄段的用户信息">查询某个年龄段的用户信息</a></li>
-        <li><a href="#查找除复旦大学的用户信息">查找除复旦大学的用户信息</a></li>
-        <li><a href="#用-where-过滤空值">用 where 过滤空值</a></li>
+        <li><a href="#各个视频的平均完播率">各个视频的平均完播率</a></li>
+        <li><a href="#平均播放进度大于60的视频类别">平均播放进度大于60%的视频类别</a></li>
+        <li><a href="#todo">TODO</a></li>
       </ol>
     </li>
   </ol>
@@ -298,13 +290,13 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/limit-select/">
-                <img src="/p/limit-select/sql_hu_697b8ab9103c4c7a.png"
-                        srcset="/p/limit-select/sql_hu_697b8ab9103c4c7a.png 800w, /p/limit-select/sql_hu_e1fc03ccc52a2a80.png 1600w"
+            <a href="/p/com-practise-2/">
+                <img src="/p/com-practise-2/byte_dance_hu_4040ead49b2585f7.png"
+                        srcset="/p/com-practise-2/byte_dance_hu_4040ead49b2585f7.png 800w, /p/com-practise-2/byte_dance_hu_cc4cb3002f1ea6ad.png 1600w"
                         width="800" 
-                        height="379" 
+                        height="344" 
                         loading="lazy"
-                        alt="Featured image of post [SQL] 条件查询" />
+                        alt="Featured image of post [SQL] 综合练习 2" />
                 
             </a>
         </div>
@@ -323,12 +315,12 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/limit-select/">[SQL] 条件查询</a>
+            <a href="/p/com-practise-2/">[SQL] 综合练习 2</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            牛客网刷 sql day 2
+            某音短视频专场
         </h3>
         
     </div>
@@ -349,7 +341,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2025-04-29</time>
+                <time class="article-time--published">2025-05-26</time>
             </div>
         
 
@@ -365,165 +357,143 @@
     <section class="article-content">
     
     
-    <h2 id="基础排序">基础排序
-</h2><h3 id="查询后排序">查询后排序
-</h3><ol>
-<li><code>asc</code> 升序 ascending</li>
-<li><code>desc</code> 降序 descending</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="k">asc</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p><a class="link" href="https://www.nowcoder.com/practice/cd4c5f3a64b4411eb4810e28afed6f54?tpId=199&amp;tqId=2002632&amp;sourceUrl=%2Fexam%2Foj%3FquestionJobId%3D10%26subTabName%3Donline_coding_page"  target="_blank" rel="noopener"
-    >牛客网题目链接</a></p>
-<p><a class="link" href="https://www.nowcoder.com/practice/d023ae0191e0414ca1b19451099a39f1?tpId=199&amp;tqId=2002634&amp;sourceUrl=%2Fexam%2Foj%3FquestionJobId%3D10%26subTabName%3Donline_coding_page"  target="_blank" rel="noopener"
-    >牛客网题目链接 (降序排列)</a></p>
-<h3 id="查询后多列排序">查询后多列排序
-</h3><ol>
-<li>多列排序使用<code>,</code> 隔开</li>
-<li>不指定排序顺序，默认是 <code>asc</code></li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="n">gpa</span><span class="p">,</span><span class="n">age</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">gpa</span><span class="w"> </span><span class="k">asc</span><span class="p">,</span><span class="w">  </span><span class="n">age</span><span class="w"> </span><span class="k">asc</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="n">gpa</span><span class="p">,</span><span class="n">age</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">gpa</span><span class="p">,</span><span class="n">age</span><span class="p">;</span><span class="err">默认以升序排列</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="n">gpa</span><span class="p">,</span><span class="n">age</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">gpa</span><span class="p">,</span><span class="n">age</span><span class="w"> </span><span class="k">asc</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="n">gpa</span><span class="p">,</span><span class="n">age</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">gpa</span><span class="w"> </span><span class="k">asc</span><span class="p">,</span><span class="n">age</span><span class="w"> </span><span class="k">asc</span><span class="p">;</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p><a class="link" href="https://www.nowcoder.com/practice/39f74706f8d94d37865a82ffb7ba67d3?tpId=199&amp;tqId=2002633&amp;sourceUrl=%2Fexam%2Foj%3FquestionJobId%3D10%26subTabName%3Donline_coding_page"  target="_blank" rel="noopener"
-    >牛客网题目链接</a></p>
-<h2 id="基础操作符">基础操作符
-</h2><h3 id="查找学校是北大的学生信息">查找学校是北大的学生信息
-</h3><ol>
-<li>我们可以通过 <code>where</code> 子句来筛选对应的记录</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="w"> </span><span class="n">university</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">university</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;北京大学&#39;</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><ol start="2">
-<li>
-<p>该题背景 : device_id 和 university 为联合索引</p>
-<p>在这个背景下面，我们可以在查询的时候使用联合索引，少去一层回表查询的操作  <strong>todo</strong> , DBM 不会自己合上id吗</p>
-</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">Select</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="n">university</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">university</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&#34;北京大学&#34;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">device_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">user_profile</span><span class="p">.</span><span class="n">device_id</span><span class="p">;</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="/p/limit-select/img.png"
-	width="856"
-	height="242"
-	srcset="/p/limit-select/img_hu_f8add998b1ee2028.png 480w, /p/limit-select/img_hu_859612c5b369f6da.png 1024w"
+    <h2 id="某音短视频">某音短视频
+</h2><h3 id="各个视频的平均完播率">各个视频的平均完播率
+</h3><p><strong>题目 :</strong></p>
+<p><img src="/p/com-practise-2/sql_156.png"
+	width="1025"
+	height="664"
+	srcset="/p/com-practise-2/sql_156_hu_9001cf6a8034dd62.png 480w, /p/com-practise-2/sql_156_hu_9d0768f6b9121d7d.png 1024w"
 	loading="lazy"
 	
-		alt="img.png"
+		alt="sql_156.png"
 	
 	
 		class="gallery-image" 
-		data-flex-grow="353"
-		data-flex-basis="848px"
+		data-flex-grow="154"
+		data-flex-basis="370px"
 	
->
-<a class="link" href="https://www.nowcoder.com/practice/7858f3e234bc4d85b81b9a6c3926f49f?tpId=199&amp;tqId=1971248&amp;sourceUrl=%2Fexam%2Foj%3FquestionJobId%3D10%26subTabName%3Donline_coding_page"  target="_blank" rel="noopener"
-    >牛客网题目链接</a></p>
-<h3 id="查询年龄大于-24岁的用户信息">查询年龄大于 24岁的用户信息
-</h3><ol>
-<li>引入逻辑运算符 <code>&gt;</code> 以此类推还有 <code>&lt; , = ,  &gt;= , &lt;= , != , = </code></li>
+></p>
+<blockquote>
+<p>Q : 如何计算两个列的差值</p></blockquote>
+<p>A : 使用 <code>TIMESTAMPDIFF(unit, start_time, end_tiem)</code> 或者是 使用 <code>DATEDIFF(end_date, start_time)</code></p>
+<ol>
+<li>如果使用 <code>DATEDIFF</code> 返回的是 相差的天数</li>
+<li>对于使用 <code>TIMESTAMPDIFF</code> 可以使用下列枚举值 <code>SECOND</code>, <code>MINUTE</code> , <code>HOUR</code>, <code>DAY</code>, <code>WEEK</code>, <code>MONTH</code>, <code>YEAR</code></li>
+</ol>
+<p><strong>思路 :</strong></p>
+<ol>
+<li>我们需要计算出单条的完播率 <code>TIMESTAMPDIFF() / duration</code></li>
+<li>然后需要统计出一个视频的完播率 <code>SUM ( TIMESTAMPDIFF() / duration  ) /  count(tb_user_video_log)</code></li>
+<li>由于我们需要计算的 <code>duration</code> 在另外一张表, 所以我们可以考虑将 <code>video_info</code> 表的信息 <code>left join</code> 到我们的 <code>video_log</code> 表中</li>
+<li>另外我们需要注意的是 这个题目只需要处理 <code>2021</code> 的数据, 也就是我们只需要 <code>join</code> 到 <code>where year  = 2021</code> 的数据</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="w"> </span><span class="n">gender</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="n">university</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">24</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">tbl</span><span class="p">.</span><span class="n">video_id</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">ROUND</span><span class="p">(</span><span class="k">SUM</span><span class="p">(</span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">TIMESTAMPDIFF</span><span class="p">(</span><span class="k">second</span><span class="p">,</span><span class="w"> </span><span class="n">tbl</span><span class="p">.</span><span class="n">start_time</span><span class="p">,</span><span class="w"> </span><span class="n">tbl</span><span class="p">.</span><span class="n">end_time</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">tbv</span><span class="p">.</span><span class="n">duration</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_comp_play_rate</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">tb_user_video_log</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">tbl</span><span class="w"> </span><span class="k">left</span><span class="w"> </span><span class="k">join</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">tb_video_info</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">tbv</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">on</span><span class="w"> </span><span class="n">tbl</span><span class="p">.</span><span class="n">video_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tbv</span><span class="p">.</span><span class="n">video_id</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">where</span><span class="w"> </span><span class="k">year</span><span class="p">(</span><span class="n">tbl</span><span class="p">.</span><span class="n">end_time</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2021</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">tbl</span><span class="p">.</span><span class="n">video_id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">avg_comp_play_rate</span><span class="w"> </span><span class="k">desc</span><span class="w"> 
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p>[牛客网题目链接](select device_id, gender, age,university from user_profile where age &gt; 24)</p>
-<h3 id="查询某个年龄段的用户信息">查询某个年龄段的用户信息
-</h3><ol>
-<li>使用 <code>between and</code>  和 <code>&gt;= and  &lt;=</code>  没什么本质区别，性能和业务使用上无差别</li>
-<li>不过相较于<code>between and</code> 逻辑表达式更灵活</li>
+</div><h3 id="平均播放进度大于60的视频类别">平均播放进度大于60%的视频类别
+</h3><p><strong>题目 :</strong></p>
+<p><img src="/p/com-practise-2/sql_157.png"
+	width="1052"
+	height="730"
+	srcset="/p/com-practise-2/sql_157_hu_b2a041b830c0cd60.png 480w, /p/com-practise-2/sql_157_hu_9eb6f40f36886714.png 1024w"
+	loading="lazy"
+	
+		alt="sql_157.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="144"
+		data-flex-basis="345px"
+	
+></p>
+<blockquote>
+<p>Q : 如何展示百分比</p></blockquote>
+<p>A : 我们可以使用 <code>CONTRACT(value , _suffix)</code> 的形式加上 <code>%</code></p>
+<blockquote>
+<p>坑点 : 可能用户会超播, 导致计算的数超过 100%</p></blockquote>
+<p>A : 我们这里需要使用 <code>LEAST(value , limit_value)</code> 而不是 <code>MIN(A,B)</code> , <code>MIN</code> 函数在 SQL 中是一个聚合函数, 我们应该使用 <code>LEAST</code></p>
+<p><strong>思路 :</strong></p>
+<ol>
+<li>同样我们需要计算单个条的播放率 <code>LEAST( TIMESTAMPDIFF , DURATION ) , DURATION</code></li>
+<li>然后我们需要计算单个视频的播放率 <code>LEAST( ... ) / DURATION</code></li>
+<li>由于这里输出的结果是 <code>TAG</code> 那么我们考虑先根据 <code>vedio_id</code> 分组, 分组后 再聚合 <code>video_info</code> 的信息 重新查一遍</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="w"> </span><span class="n">gender</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">23</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="w"> </span><span class="n">gender</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">user_profile</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">23</span><span class="p">;</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">tbv</span><span class="p">.</span><span class="n">tag</span><span class="p">,</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">temp</span><span class="p">.</span><span class="n">avg_play_progress</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">tbv</span><span class="p">.</span><span class="n">video_id</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">CONCAT</span><span class="p">(</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">ROUND</span><span class="p">(</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="k">SUM</span><span class="p">(</span><span class="n">LEAST</span><span class="p">(</span><span class="w"> </span><span class="n">TIMESTAMPDIFF</span><span class="p">(</span><span class="k">SECOND</span><span class="p">,</span><span class="w"> </span><span class="n">tbl</span><span class="p">.</span><span class="n">start_time</span><span class="p">,</span><span class="w"> </span><span class="n">tbl</span><span class="p">.</span><span class="n">end_time</span><span class="p">)</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">tbv</span><span class="p">.</span><span class="n">duration</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">tbv</span><span class="p">.</span><span class="n">duration</span><span class="p">)</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="o">/</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">             </span><span class="mi">2</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="s1">&#39;%&#39;</span><span class="p">)</span><span class="w">  </span><span class="k">as</span><span class="w"> </span><span class="n">avg_play_progress</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">tb_user_video_log</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">tbl</span><span class="w"> </span><span class="k">left</span><span class="w"> </span><span class="k">join</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">tb_video_info</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">tbv</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">on</span><span class="w"> </span><span class="n">tbl</span><span class="p">.</span><span class="n">video_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tbv</span><span class="p">.</span><span class="n">video_id</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">tbv</span><span class="p">.</span><span class="n">video_id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">having</span><span class="w"> </span><span class="n">avg_play_progress</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">60</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">avg_play_progress</span><span class="w"> </span><span class="k">desc</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">temp</span><span class="w">  </span><span class="k">left</span><span class="w"> </span><span class="k">join</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">tb_video_info</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">tbv</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">on</span><span class="w"> </span><span class="n">temp</span><span class="p">.</span><span class="n">video_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tbv</span><span class="p">.</span><span class="n">video_id</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><a class="link" href="https://www.nowcoder.com/practice/be54223075cc43ceb20e4ce8a8e3e340?tpId=199&amp;tqId=1971603&amp;sourceUrl=%2Fexam%2Foj%3FquestionJobId%3D10%26subTabName%3Donline_coding_page"  target="_blank" rel="noopener"
-    >牛客网题目链接</a></p>
-<h3 id="查找除复旦大学的用户信息">查找除复旦大学的用户信息
-</h3><ol>
-<li><code>NOT IN</code> 可以比较多个值, 对于 <code>&lt;&gt; !=</code> 如果需要比较多个值需要引入 <code>and</code></li>
-<li><code>&lt;&gt;</code> 和 <code>!=</code> 没有本质区别，不过一般都是写 <code>&lt;&gt;</code> 除非团队开发有要求，那么使用 <code>!=</code> 尽可能统一组内的代码风格</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="n">gender</span><span class="p">,</span><span class="n">age</span><span class="p">,</span><span class="n">university</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">university</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s1">&#39;复旦大学&#39;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="n">gender</span><span class="p">,</span><span class="n">age</span><span class="p">,</span><span class="n">university</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">university</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s1">&#39;复旦大学&#39;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="n">gender</span><span class="p">,</span><span class="n">age</span><span class="p">,</span><span class="n">university</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">university</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s2">&#34;复旦大学&#34;</span><span class="p">)</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p><a class="link" href="https://www.nowcoder.com/practice/c12a056497404d1ea782308a7b821f9c?tpId=199&amp;tqId=1971604&amp;sourceUrl=%2Fexam%2Foj%3FquestionJobId%3D10%26subTabName%3Donline_coding_page"  target="_blank" rel="noopener"
-    >牛客网题目链接</a></p>
-<h3 id="用-where-过滤空值">用 where 过滤空值
-</h3><ol>
-<li>可以单独是用 <code>is not null</code>  或者是单独使用 <code>&lt;&gt; &quot;&quot;</code></li>
-<li>但是实际业务最好是两个一起使用 ～</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="n">gender</span><span class="p">,</span><span class="n">age</span><span class="p">,</span><span class="n">university</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p><a class="link" href="https://www.nowcoder.com/practice/08c9846a423540319eea4be44e339e35?tpId=199&amp;tqId=1971605&amp;sourceUrl=%2Fexam%2Foj%3FquestionJobId%3D10%26subTabName%3Donline_coding_page"  target="_blank" rel="noopener"
-    >牛客网题目链接</a></p>
-
+</div><h3 id="todo">TODO
+</h3>
 </section>
 
 
@@ -568,30 +538,6 @@
     <h2 class="section-title">相关文章</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
-            
-                
-<article class="has-image">
-    <a href="/p/com-practise-2/">
-        
-        
-            <div class="article-image">
-                <img src="/p/com-practise-2/byte_dance.e8a209397c1fe8803cd652e9ed51f704_hu_5bd0c7a052dc0b9a.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post [SQL] 综合练习 2"
-                        data-key="com-practise-2" 
-                        data-hash="md5-6KIJOXwf6IA81lLp7VH3BA==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">[SQL] 综合练习 2</h2>
-        </div>
-    </a>
-</article>
-
             
                 
 <article class="has-image">
@@ -684,6 +630,30 @@
 
         <div class="article-details">
             <h2 class="article-title">[SQL] 多表查询</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/senior-select-1/">
+        
+        
+            <div class="article-image">
+                <img src="/p/senior-select-1/sql.e2fff72502b590a35386a5ba8c70a36a_hu_f7188397613682ca.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post [SQL] 高级操作符"
+                        data-key="senior-select-1" 
+                        data-hash="md5-4v/3JQK1kKNThqW6jHCjag==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[SQL] 高级操作符</h2>
         </div>
     </a>
 </article>
