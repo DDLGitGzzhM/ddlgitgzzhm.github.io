@@ -7,7 +7,255 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>GzzhM</copyright>
-        <lastBuildDate>Mon, 28 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/tags/binance-%E5%90%88%E7%BA%A6-%E4%BA%A4%E6%98%93%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 08 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/tags/binance-%E5%90%88%E7%BA%A6-%E4%BA%A4%E6%98%93%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>[交易系统] 交易系统初版整理</title>
+        <link>https://ddlgitgzzhm.github.io/p/system-summary-1/</link>
+        <pubDate>Fri, 08 Aug 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/p/system-summary-1/</guid>
+        <description>&lt;img src="https://ddlgitgzzhm.github.io/p/system-summary-1/img.png" alt="Featured image of post [交易系统] 交易系统初版整理" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言
+&lt;/h2&gt;&lt;p&gt;简单总结一下 目前的一个 &lt;code&gt;交易系统&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;可以作用于 &lt;code&gt;山寨币&lt;/code&gt; 或者是容易出现 &lt;code&gt;趋势行情&lt;/code&gt; 的标的中 .  不适用于大盘,因为大盘最近处于 &lt;code&gt;大级别的震荡行情&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;山寨季的定义 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;当大盘在盘整区间,资金流出,流入到各个小的标的. 那么会导致 这种标的有大额涨幅&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;过程&#34;&gt;过程
+&lt;/h2&gt;&lt;h3 id=&#34;1-选标的&#34;&gt;1. 选标的
+&lt;/h3&gt;&lt;p&gt;如何一个可能突破的标的 ？&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;各种群聊群友喊单&lt;/li&gt;
+&lt;li&gt;广场 Kol 喊单 @投研看剑 @crypto 七安  or 其他&lt;/li&gt;
+&lt;li&gt;飞机群喊单 (没加过感觉听神秘的)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;由他们根据市场信息，热度，板块，解锁时间，链上信息，或者是形态等多方面分析之后，可以过滤出很多标的&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;涨幅榜前 30 ，不用做任何调研，我们只需要根据 &lt;code&gt;市场热度&lt;/code&gt; , 市场有热度就会有资金流入&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;2-如何判断突破&#34;&gt;2. 如何判断突破
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;我们需要先确定 &lt;code&gt;有效压力位&lt;/code&gt;, 我们可以去 &lt;code&gt;4小时&lt;/code&gt; , &lt;code&gt;天&lt;/code&gt; , &lt;code&gt;1小时&lt;/code&gt; 找到仍然在盘整区间&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;我们看下面这个k线图，4小时级别一直都在一个箱体里面震荡，且出现一个很明显的上顶和下底&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;那么我们可以认为 这个&lt;code&gt;上顶&lt;/code&gt; 就是一个大区间的压力位&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;我们画一条k线，如果他突破了压力位那么就会 &lt;code&gt;大概率&lt;/code&gt;会直接起飞. 这是因为市场会产生&lt;code&gt;合力&lt;/code&gt; .简单来说就是  ( 老韭菜们都知道这里要突破了所以都会大资金进来这就是合力 )&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/system-summary-1/boom.png&#34;
+	width=&#34;1086&#34;
+	height=&#34;492&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/system-summary-1/boom_hu_a9de837b0e5f499d.png 480w, https://ddlgitgzzhm.github.io/p/system-summary-1/boom_hu_24a8e93ca161e705.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;boom.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;220&#34;
+		data-flex-basis=&#34;529px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;3-如何确定入场点&#34;&gt;3. 如何确定入场点
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;我们从大级别 切换到小级别 &lt;code&gt;30min&lt;/code&gt;, &lt;code&gt;15min&lt;/code&gt;,&lt;code&gt;5min&lt;/code&gt;,&lt;code&gt;1min&lt;/code&gt; 画一条 &lt;code&gt;上升趋势线&lt;/code&gt; 当多次回踩趋势线的时候我们就可以入场 。 常见情况是第三次回踩趋势线的时候&lt;/li&gt;
+&lt;li&gt;并且这里出现了7小连阳，市场信息倍增&lt;/li&gt;
+&lt;li&gt;所以我们可以在第三次回踩趋势线的时候入场，或者是等他 &lt;code&gt;突破的时候入场&lt;/code&gt; 即带量突破上方压力位。或者是&lt;code&gt;突破压力位回踩&lt;/code&gt;的时候进场
+&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/system-summary-1/input.png&#34;
+	width=&#34;1086&#34;
+	height=&#34;493&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/system-summary-1/input_hu_9244430993bfbde.png 480w, https://ddlgitgzzhm.github.io/p/system-summary-1/input_hu_565db11084308808.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;input.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;220&#34;
+		data-flex-basis=&#34;528px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;4-如何有效的止损&#34;&gt;4. 如何有效的止损
+&lt;/h2&gt;&lt;p&gt;两个逻辑&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;我们可以设置&lt;code&gt;大级别震荡区间的最低点&lt;/code&gt; 进行止损，因为如果突破失败 他还是会回震荡区间进行下一次突破. 为了避免频繁止损 保守点可以设置在这&lt;/li&gt;
+&lt;li&gt;当然激进一点我们可以设置在 &lt;code&gt;趋势线前一个回踩点&lt;/code&gt;, 因为如果趋势线跌破 市场会没有信息，当然也可能是来&lt;code&gt;扫损的&lt;/code&gt; 所以这个止损有点激进&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;5-如何有效的止盈&#34;&gt;5. 如何有效的止盈
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;如果我们在趋势线进场, 那么止盈就是突破压力位的时候，需要&lt;code&gt;止盈50%&lt;/code&gt; ，因为避免假突破&lt;/li&gt;
+&lt;li&gt;其他的话我们可以 在左侧压力位分批止盈，即&lt;code&gt;左侧每一个阴线的收盘价止盈&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;6-其他&#34;&gt;6. 其他
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;这次写的比较匆忙很多细节未补充，可能周末补充一下～  。但是大致逻辑是这样&lt;/li&gt;
+&lt;li&gt;希望各位看到这条博客有元人发大财 ～&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;另外这只是在 &lt;code&gt;大级别区间震荡&lt;/code&gt; 能用的做法&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;如果出现极致的单边行情 如 &lt;code&gt;yala&lt;/code&gt;, &lt;code&gt;myx&lt;/code&gt;, &lt;code&gt;a2z&lt;/code&gt; 这种在 &lt;code&gt;第三次回踩趋势线的时候可以直接进去&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;止损点设置在第二次回踩的时候,所以就会出现 &lt;code&gt;我插了好几次myx，止损了好几次总算进去了&lt;/code&gt; 这种言论&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;忠告&#34;&gt;忠告
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;开单必设止损&lt;/li&gt;
+&lt;li&gt;交易系统因 个人性格原因 所以同一个交易系统在不同人身上也会有不一样的效果&lt;/li&gt;
+&lt;li&gt;仅个人的玩法，仅供参考，切勿大资金乱玩。&lt;/li&gt;
+&lt;li&gt;交易市场本质就是一个零和博弈，没有常胜将军除非他对冲&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;实战截图&#34;&gt;实战截图
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/system-summary-1/test.png&#34;
+	width=&#34;434&#34;
+	height=&#34;552&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/system-summary-1/test_hu_af4ab9d384e89b8e.png 480w, https://ddlgitgzzhm.github.io/p/system-summary-1/test_hu_6975438db0dae7a.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;test.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;78&#34;
+		data-flex-basis=&#34;188px&#34;
+	
+&gt; &lt;img src=&#34;https://ddlgitgzzhm.github.io/p/system-summary-1/test2.png&#34;
+	width=&#34;342&#34;
+	height=&#34;536&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/system-summary-1/test2_hu_4af32515d225ab51.png 480w, https://ddlgitgzzhm.github.io/p/system-summary-1/test2_hu_74d19393d773e960.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;test2.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;63&#34;
+		data-flex-basis=&#34;153px&#34;
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>[交易认知] 裸K 先导基础</title>
+        <link>https://ddlgitgzzhm.github.io/p/k-price-learning-1/</link>
+        <pubDate>Tue, 29 Jul 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/p/k-price-learning-1/</guid>
+        <description>&lt;img src="https://ddlgitgzzhm.github.io/p/k-price-learning-1/img.png" alt="Featured image of post [交易认知] 裸K 先导基础" /&gt;&lt;h2 id=&#34;概念&#34;&gt;概念
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;价格行为 :&lt;/strong&gt;
+指价格动作的形态，适用各种品种，各种周期，各种图标，走势变化就是价格行为的例子，每一次价格变动都是价格行为。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;市场运动 :&lt;/strong&gt;
+市场只有 &lt;code&gt;趋势运动&lt;/code&gt; 和 &lt;code&gt;非趋势运动&lt;/code&gt; 两种状态&lt;/p&gt;
+&lt;p&gt;黄色箭头都是 &lt;code&gt;非趋势运动&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;对于黄色的&lt;code&gt;1&lt;/code&gt;, 是一个 &lt;code&gt;区间运动&lt;/code&gt; 而不是 &lt;code&gt;趋势运动&lt;/code&gt;。处于一个区间震荡没有趋势
+&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/k-price-learning-1/q1.png&#34;
+	width=&#34;748&#34;
+	height=&#34;359&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/k-price-learning-1/q1_hu_fefda1ab74ae098a.png 480w, https://ddlgitgzzhm.github.io/p/k-price-learning-1/q1_hu_5f5be4daf4ba275e.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;市场运动&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;208&#34;
+		data-flex-basis=&#34;500px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;趋势 K 线&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;实体较长&lt;/li&gt;
+&lt;li&gt;影线很短，实体占主要部分&lt;/li&gt;
+&lt;li&gt;和上一根 /上几根 K 线没有太多重叠&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/k-price-learning-1/q2.png&#34;
+	width=&#34;810&#34;
+	height=&#34;316&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/k-price-learning-1/q2_hu_79bddb36fd875abd.png 480w, https://ddlgitgzzhm.github.io/p/k-price-learning-1/q2_hu_a9c7739f4bdbd99f.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;趋势K线&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;256&#34;
+		data-flex-basis=&#34;615px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;非趋势 K 线&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;实体很小&lt;/li&gt;
+&lt;li&gt;影线很长&lt;/li&gt;
+&lt;li&gt;和上一根 / 上几根 K 线没有太多的重叠&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;类似 &lt;code&gt;十字星&lt;/code&gt; 没有很明显的多空力量&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/k-price-learning-1/fq1.png&#34;
+	width=&#34;755&#34;
+	height=&#34;335&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/k-price-learning-1/fq1_hu_f9e98a0a38a41afa.png 480w, https://ddlgitgzzhm.github.io/p/k-price-learning-1/fq1_hu_e2da1e3482bfe023.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;非趋势K线&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;225&#34;
+		data-flex-basis=&#34;540px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;信号 K 线&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;入场 K线 即是信号K 线&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/k-price-learning-1/xh.png&#34;
+	width=&#34;764&#34;
+	height=&#34;370&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/k-price-learning-1/xh_hu_8d8e98d4353811f0.png 480w, https://ddlgitgzzhm.github.io/p/k-price-learning-1/xh_hu_8725795d941db4b3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;信号k线&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;206&#34;
+		data-flex-basis=&#34;495px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;反转 K 线&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;一根多头的反转 K 线 最低要求是 收盘高于开盘 或者 收盘高于 K线中位&lt;/li&gt;
+&lt;li&gt;下影线达到 K线高度 大约 1/3 ~ 1/2， 没有上影线或很短&lt;/li&gt;
+&lt;li&gt;信号 K 线的后一根 K 线不是十字星内包 K 线， 而是强入场 K 线 （多头趋势K 线，实体较长，影线较短）
+&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/k-price-learning-1/fz1.png&#34;
+	width=&#34;665&#34;
+	height=&#34;355&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/k-price-learning-1/fz1_hu_149624c366313207.png 480w, https://ddlgitgzzhm.github.io/p/k-price-learning-1/fz1_hu_bafaa4a6263cb995.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;反转k线&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;187&#34;
+		data-flex-basis=&#34;449px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        <item>
+        <title>[交易认知] 裸K 先导基础 2</title>
+        <link>https://ddlgitgzzhm.github.io/p/k-price-learning-2/</link>
+        <pubDate>Tue, 29 Jul 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/p/k-price-learning-2/</guid>
+        <description>&lt;img src="https://ddlgitgzzhm.github.io/p/k-price-learning-2/img.png" alt="Featured image of post [交易认知] 裸K 先导基础 2" /&gt;</description>
+        </item>
+        <item>
         <title>[交易认知] MACD 重新认知</title>
         <link>https://ddlgitgzzhm.github.io/p/future-leaning-2/</link>
         <pubDate>Mon, 28 Jul 2025 00:00:00 +0000</pubDate>
