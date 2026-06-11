@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-cn" dir="ltr">
+<html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="srp 单一职责原则 从入门到进阶">
 <title>[设计模式] SRP 单一职责原则</title>
@@ -7,14 +7,14 @@
 <link rel='canonical' href='https://ddlgitgzzhm.github.io/p/srp/'>
 
 
-<link rel="stylesheet" href="/css/main.0a8be7391d8087c7d54da73badd1c839ac4573f64374125e9f9b47376c9c037d.css"><meta property='og:title' content="[设计模式] SRP 单一职责原则">
+<link rel="stylesheet" href="/css/main.8703b40a8a34890fa502ee15b56b59b3005556a0f262fbec575ce043900232c4.css"><meta property='og:title' content="[设计模式] SRP 单一职责原则">
 <meta property='og:description' content="srp 单一职责原则 从入门到进阶">
 <meta property='og:url' content='https://ddlgitgzzhm.github.io/p/srp/'>
 <meta property='og:site_name' content='GzzhM'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-04-24T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-04-24T00:00:00&#43;00:00'/><meta property='og:image' content='https://ddlgitgzzhm.github.io/p/srp/srp.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-04-24T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-04-24T00:00:00&#43;00:00'/><meta property='og:image' content='https://ddlgitgzzhm.github.io/srp.png' />
 <meta name="twitter:title" content="[设计模式] SRP 单一职责原则">
 <meta name="twitter:description" content="srp 单一职责原则 从入门到进阶"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://ddlgitgzzhm.github.io/p/srp/srp.png' />
+    <meta name="twitter:image" content='https://ddlgitgzzhm.github.io/srp.png' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -60,7 +60,7 @@
                     
                     
                         
-                        <img src="/img/avatar_hu_982993d460bdf308.png" width="300"
+                        <img src="/img/avatar_hu_216528b252869864.png" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -218,6 +218,25 @@
             </a>
         </li>
         
+        
+        <li >
+            <a href='/time-line/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                
+                <span>Time Line</span>
+            </a>
+        </li>
+        
         <li class="menu-bottom-section">
             <ol class="menu">
 
@@ -287,12 +306,8 @@
     <header class="article-header">
         <div class="article-image">
             <a href="/p/srp/">
-                <img src="/p/srp/srp_hu_43fb3e47ff177cd8.png"
-                        srcset="/p/srp/srp_hu_43fb3e47ff177cd8.png 800w, /p/srp/srp_hu_52a71dc57ba2c9c4.png 1600w"
-                        width="800" 
-                        height="370" 
-                        loading="lazy"
-                        alt="Featured image of post [设计模式] SRP 单一职责原则" />
+                
+                    <img src="/srp.png" loading="lazy" alt="Featured image of post [设计模式] SRP 单一职责原则" />
                 
             </a>
         </div>
@@ -304,6 +319,10 @@
         
             <a href="/categories/design-pattern/" style="background-color: #ed37cf; color: #fff;">
                 设计模式
+            </a>
+        
+            <a href="/categories/time-line/" style="background-color: #6c5ce7; color: #fff;">
+                Time Line
             </a>
         
     </header>
@@ -374,22 +393,22 @@
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">tempV1</span> <span class="kd">struct</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">temp</span> <span class="kt">float64</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">tempV1</span><span class="p">)</span> <span class="nf">ShowCelsius</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;%.1f°C&#34;</span><span class="p">,</span> <span class="nx">t</span><span class="p">.</span><span class="nx">temp</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">tempV1</span><span class="p">)</span> <span class="nf">ShowFahrenheit</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;%.1f°F&#34;</span><span class="p">,</span> <span class="nx">t</span><span class="p">.</span><span class="nx">temp</span><span class="o">*</span><span class="mi">9</span><span class="o">/</span><span class="mi">5</span><span class="o">+</span><span class="mi">32</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">tempV1</span><span class="p">)</span> <span class="nf">ShowKelvin</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;%.1fK&#34;</span><span class="p">,</span> <span class="nx">t</span><span class="p">.</span><span class="nx">temp</span><span class="o">+</span><span class="mf">273.15</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span><span class="w"> </span><span class="nx">tempV1</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">temp</span><span class="w"> </span><span class="kt">float64</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">t</span><span class="w"> </span><span class="o">*</span><span class="nx">tempV1</span><span class="p">)</span><span class="w"> </span><span class="nf">ShowCelsius</span><span class="p">()</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;%.1f°C&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">t</span><span class="p">.</span><span class="nx">temp</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">t</span><span class="w"> </span><span class="o">*</span><span class="nx">tempV1</span><span class="p">)</span><span class="w"> </span><span class="nf">ShowFahrenheit</span><span class="p">()</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;%.1f°F&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">t</span><span class="p">.</span><span class="nx">temp</span><span class="o">*</span><span class="mi">9</span><span class="o">/</span><span class="mi">5</span><span class="o">+</span><span class="mi">32</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">t</span><span class="w"> </span><span class="o">*</span><span class="nx">tempV1</span><span class="p">)</span><span class="w"> </span><span class="nf">ShowKelvin</span><span class="p">()</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;%.1fK&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">t</span><span class="p">.</span><span class="nx">temp</span><span class="o">+</span><span class="mf">273.15</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><br>
 如果我们使用 SRP 的做法</p>
@@ -415,25 +434,25 @@
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">tempV2</span> <span class="kd">struct</span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">temp</span> <span class="kt">float64</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">tempV2</span><span class="p">)</span> <span class="nf">GetTemp</span><span class="p">()</span> <span class="kt">float64</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">t</span><span class="p">.</span><span class="nx">temp</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">TempDisplayed</span> <span class="kd">struct</span><span class="p">{</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">d</span> <span class="o">*</span><span class="nx">TempDisplayed</span><span class="p">)</span> <span class="nf">Celsius</span><span class="p">(</span><span class="nx">temp</span> <span class="kt">float64</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;%.1f°C&#34;</span><span class="p">,</span> <span class="nx">temp</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">d</span> <span class="o">*</span><span class="nx">TempDisplayed</span><span class="p">)</span> <span class="nf">Fahrenheit</span><span class="p">(</span><span class="nx">temp</span> <span class="kt">float64</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;%.1f°F&#34;</span><span class="p">,</span> <span class="nx">temp</span><span class="o">*</span><span class="mi">9</span><span class="o">/</span><span class="mi">5</span><span class="o">+</span><span class="mi">32</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span><span class="w"> </span><span class="nx">tempV2</span><span class="w"> </span><span class="kd">struct</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">temp</span><span class="w"> </span><span class="kt">float64</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">t</span><span class="w"> </span><span class="o">*</span><span class="nx">tempV2</span><span class="p">)</span><span class="w"> </span><span class="nf">GetTemp</span><span class="p">()</span><span class="w"> </span><span class="kt">float64</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="nx">t</span><span class="p">.</span><span class="nx">temp</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">type</span><span class="w"> </span><span class="nx">TempDisplayed</span><span class="w"> </span><span class="kd">struct</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">d</span><span class="w"> </span><span class="o">*</span><span class="nx">TempDisplayed</span><span class="p">)</span><span class="w"> </span><span class="nf">Celsius</span><span class="p">(</span><span class="nx">temp</span><span class="w"> </span><span class="kt">float64</span><span class="p">)</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;%.1f°C&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">temp</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">d</span><span class="w"> </span><span class="o">*</span><span class="nx">TempDisplayed</span><span class="p">)</span><span class="w"> </span><span class="nf">Fahrenheit</span><span class="p">(</span><span class="nx">temp</span><span class="w"> </span><span class="kt">float64</span><span class="p">)</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;%.1f°F&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">temp</span><span class="o">*</span><span class="mi">9</span><span class="o">/</span><span class="mi">5</span><span class="o">+</span><span class="mi">32</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>从实际业务开发的角度来看</p>
 <ol>
@@ -513,6 +532,135 @@
 
     
 
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/mit-6.824-learning-1/">
+        
+        
+            <div class="article-image">
+                <img src="/p/mit-6.824-learning-1/title.1767a4b0c97ba199dcdae1bf102b8f1c_hu_3f2ba210c09d65a.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post [mit - 6.824] First Step"
+                        data-key="mit-6.824-learning-1" 
+                        data-hash="md5-F2eksMl7oZnc2uG/ECuPHA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[mit - 6.824] First Step</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/bitlanglang-study-1/">
+        
+        
+            <div class="article-image">
+                <img src="/p/bitlanglang-study-1/title.1767a4b0c97ba199dcdae1bf102b8f1c_hu_3f2ba210c09d65a.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post BitLangLang 视频学习1"
+                        data-key="bitlanglang-study-1" 
+                        data-hash="md5-F2eksMl7oZnc2uG/ECuPHA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">BitLangLang 视频学习1</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/system-summary-2/">
+        
+        
+            <div class="article-image">
+                <img src="/p/system-summary-2/title.1767a4b0c97ba199dcdae1bf102b8f1c_hu_3f2ba210c09d65a.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post [登神长阶] 构建完整的交易系统 1 "
+                        data-key="system-summary-2" 
+                        data-hash="md5-F2eksMl7oZnc2uG/ECuPHA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[登神长阶] 构建完整的交易系统 1 </h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/system-summary-1/">
+        
+        
+            <div class="article-image">
+                <img src="/p/system-summary-1/img.43d6dbb38e08d9cc5e7a58d5d0557d67_hu_3c68213df70aa795.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post [交易系统] 交易系统初版整理"
+                        data-key="system-summary-1" 
+                        data-hash="md5-Q9bbs44I2cxeeljV0FV9Zw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[交易系统] 交易系统初版整理</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/k-price-learning-1/">
+        
+        
+            <div class="article-image">
+                <img src="/p/k-price-learning-1/img.43d6dbb38e08d9cc5e7a58d5d0557d67_hu_3c68213df70aa795.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post [交易认知] 裸K 先导基础"
+                        data-key="k-price-learning-1" 
+                        data-hash="md5-Q9bbs44I2cxeeljV0FV9Zw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[交易认知] 裸K 先导基础</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
      
     
         
@@ -570,7 +718,9 @@
     <section class="copyright">
         &copy; 
         
-        2025 GzzhM
+            2025 - 
+        
+        2026 GzzhM
     </section>
     
     <section class="powerby">
@@ -664,7 +814,7 @@
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.js" defer></script><script type="text/javascript" src="/ts/custom.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

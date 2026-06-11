@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-cn" dir="ltr">
+<html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="牛客网刷 sql day 3">
 <title>[SQL] 多表查询</title>
@@ -7,7 +7,7 @@
 <link rel='canonical' href='https://ddlgitgzzhm.github.io/p/multi-select/'>
 
 
-<link rel="stylesheet" href="/css/main.0a8be7391d8087c7d54da73badd1c839ac4573f64374125e9f9b47376c9c037d.css"><meta property='og:title' content="[SQL] 多表查询">
+<link rel="stylesheet" href="/css/main.8703b40a8a34890fa502ee15b56b59b3005556a0f262fbec575ce043900232c4.css"><meta property='og:title' content="[SQL] 多表查询">
 <meta property='og:description' content="牛客网刷 sql day 3">
 <meta property='og:url' content='https://ddlgitgzzhm.github.io/p/multi-select/'>
 <meta property='og:site_name' content='GzzhM'>
@@ -60,7 +60,7 @@
                     
                     
                         
-                        <img src="/img/avatar_hu_982993d460bdf308.png" width="300"
+                        <img src="/img/avatar_hu_216528b252869864.png" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -218,6 +218,25 @@
             </a>
         </li>
         
+        
+        <li >
+            <a href='/time-line/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                
+                <span>Time Line</span>
+            </a>
+        </li>
+        
         <li class="menu-bottom-section">
             <ol class="menu">
 
@@ -301,8 +320,8 @@
     <header class="article-header">
         <div class="article-image">
             <a href="/p/multi-select/">
-                <img src="/p/multi-select/sql_hu_697b8ab9103c4c7a.png"
-                        srcset="/p/multi-select/sql_hu_697b8ab9103c4c7a.png 800w, /p/multi-select/sql_hu_e1fc03ccc52a2a80.png 1600w"
+                <img src="/p/multi-select/sql_hu_b4e0935bb7c197e6.png"
+                        srcset="/p/multi-select/sql_hu_b4e0935bb7c197e6.png 800w, /p/multi-select/sql_hu_2d80e5e39639a773.png 1600w"
                         width="800" 
                         height="379" 
                         loading="lazy"
@@ -318,6 +337,10 @@
         
             <a href="/categories/sql/" style="background-color: #000000; color: #fff;">
                 SQL
+            </a>
+        
+            <a href="/categories/time-line/" style="background-color: #6c5ce7; color: #fff;">
+                Time Line
             </a>
         
     </header>
@@ -373,71 +396,72 @@
 <p>题目：现在运营想要查看所有来自浙江大学的用户题目回答明细情况，请你取出相应数据</p>
 <p>示例：question_practice_detail</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>id</th>
-          <th>device_id</th>
-          <th>question_id</th>
-          <th>result</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>1</td>
-          <td>2138</td>
-          <td>111</td>
-          <td>wrong</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>id</th>
+					<th>device_id</th>
+					<th>question_id</th>
+					<th>result</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>1</td>
+					<td>2138</td>
+					<td>111</td>
+					<td>wrong</td>
+			</tr>
+	</tbody>
 </table></div>
 <p>第一行表示：id为1的用户的常用信息为使用的设备id为2138，在question_id为111的题目上，回答错误</p>
 <p>示例：user_profile</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>id</th>
-          <th>device_id</th>
-          <th>gender</th>
-          <th>age</th>
-          <th>university</th>
-          <th>gpa</th>
-          <th>active_days_within_30</th>
-          <th>question_cnt</th>
-          <th>answer_cnt</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>1</td>
-          <td>2138</td>
-          <td>male</td>
-          <td>21</td>
-          <td>北京大学</td>
-          <td>3.4</td>
-          <td>7</td>
-          <td>2</td>
-          <td>12</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>id</th>
+					<th>device_id</th>
+					<th>gender</th>
+					<th>age</th>
+					<th>university</th>
+					<th>gpa</th>
+					<th>active_days_within_30</th>
+					<th>question_cnt</th>
+					<th>answer_cnt</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>1</td>
+					<td>2138</td>
+					<td>male</td>
+					<td>21</td>
+					<td>北京大学</td>
+					<td>3.4</td>
+					<td>7</td>
+					<td>2</td>
+					<td>12</td>
+			</tr>
+	</tbody>
 </table></div>
 <p>第一行表示：id为1的用户的常用信息为使用的设备id为2138，性别为男，年龄21岁，北京大学，gpa为3.4，在过去的30天里面活跃了7天，发帖数量为2，回答数量为12</p>
 <p>根据示例，你的查询应返回以下结果，查询结果根据question_id升序排序：</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>device_id</th>
-          <th>question_id</th>
-          <th>result</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>2315</td>
-          <td>115</td>
-          <td>right</td>
-      </tr>
-  </tbody>
-</table></div></blockquote>
+	<thead>
+			<tr>
+					<th>device_id</th>
+					<th>question_id</th>
+					<th>result</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>2315</td>
+					<td>115</td>
+					<td>right</td>
+			</tr>
+	</tbody>
+</table></div>
+</blockquote>
 <ol>
 <li>两个表 根据 <code>device_id</code> 关联, 题目需要我们聚合 <code>qpd</code> 表的 <code>question_id</code> 和 <code>result</code> 字段 条件是 <code>up</code> 表的 <code>university</code> 是 <code>浙江大学</code></li>
 <li>第一时间没有想到 <code>子查询</code> , 直接使用 <code>JOIN ON</code>了</li>
@@ -455,13 +479,13 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">qpd</span><span class="p">.</span><span class="n">device_id</span><span class="p">,</span><span class="n">qpd</span><span class="p">.</span><span class="n">question_id</span><span class="p">,</span><span class="n">qpd</span><span class="p">.</span><span class="k">result</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">user_profile</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">up</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">join</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">question_practice_detail</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">qpd</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">up</span><span class="p">.</span><span class="n">device_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qpd</span><span class="p">.</span><span class="n">device_id</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">up</span><span class="p">.</span><span class="n">university</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;浙江大学&#39;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">qpd</span><span class="p">.</span><span class="n">question_id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">qpd</span><span class="p">.</span><span class="n">device_id</span><span class="p">,</span><span class="n">qpd</span><span class="p">.</span><span class="n">question_id</span><span class="p">,</span><span class="n">qpd</span><span class="p">.</span><span class="k">result</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">from</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="n">user_profile</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">up</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">join</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="n">question_practice_detail</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">qpd</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">up</span><span class="p">.</span><span class="n">device_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qpd</span><span class="p">.</span><span class="n">device_id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">where</span><span class="w"> </span><span class="n">up</span><span class="p">.</span><span class="n">university</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;浙江大学&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">qpd</span><span class="p">.</span><span class="n">question_id</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>子查询代码如下</p>
@@ -476,11 +500,11 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="w"> </span><span class="n">question_id</span><span class="p">,</span><span class="w"> </span><span class="k">result</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">question_practice_detail</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">question_practice_detail</span><span class="p">.</span><span class="n">device_id</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">from</span><span class="w"> </span><span class="n">question_practice_detail</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">where</span><span class="w"> </span><span class="n">question_practice_detail</span><span class="p">.</span><span class="n">device_id</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">where</span><span class="w"> </span><span class="n">university</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;浙江大学&#39;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">)</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><a class="link" href="https://www.nowcoder.com/practice/55f3d94c3f4d47b69833b335867c06c1?tpId=199&amp;tqId=1975673&amp;sourceUrl=%2Fexam%2Foj"  target="_blank" rel="noopener"
@@ -488,7 +512,8 @@
 <h2 id="链接查询">链接查询
 </h2><h3 id="统计每个学校的答过题的用户的平均答题数">统计每个学校的答过题的用户的平均答题数
 </h3><blockquote>
-<p>题目：查找每个学校用户的平均答题数目（某学校用户平均答题数量计算方式为该学校用户答题总次数除以答过题的不同用户个数）</p></blockquote>
+<p>题目：查找每个学校用户的平均答题数目（某学校用户平均答题数量计算方式为该学校用户答题总次数除以答过题的不同用户个数）</p>
+</blockquote>
 <blockquote>
 <p>表结构说明：</p>
 <p><strong>user_profile</strong> 用户信息表：</p>
@@ -508,60 +533,61 @@
 <p>示例数据：</p>
 <p>user_profile：</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>device_id</th>
-          <th>gender</th>
-          <th>age</th>
-          <th>university</th>
-          <th>gpa</th>
-          <th>active_days_within_30</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>2138</td>
-          <td>male</td>
-          <td>21</td>
-          <td>北京大学</td>
-          <td>3.4</td>
-          <td>7</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>device_id</th>
+					<th>gender</th>
+					<th>age</th>
+					<th>university</th>
+					<th>gpa</th>
+					<th>active_days_within_30</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>2138</td>
+					<td>male</td>
+					<td>21</td>
+					<td>北京大学</td>
+					<td>3.4</td>
+					<td>7</td>
+			</tr>
+	</tbody>
 </table></div>
 <p>question_practice_detail：</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>device_id</th>
-          <th>question_id</th>
-          <th>result</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>2138</td>
-          <td>111</td>
-          <td>wrong</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>device_id</th>
+					<th>question_id</th>
+					<th>result</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>2138</td>
+					<td>111</td>
+					<td>wrong</td>
+			</tr>
+	</tbody>
 </table></div>
 <p>要求：计算每个学校用户的平均答题数目（答题总次数/答过题的不同用户数），结果保留4位小数，按university升序排序</p>
 <p>预期输出示例：</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>university</th>
-          <th>avg_answer_cnt</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>北京大学</td>
-          <td>1.0000</td>
-      </tr>
-  </tbody>
-</table></div></blockquote>
+	<thead>
+			<tr>
+					<th>university</th>
+					<th>avg_answer_cnt</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>北京大学</td>
+					<td>1.0000</td>
+			</tr>
+	</tbody>
+</table></div>
+</blockquote>
 <p>题目要求</p>
 <ol>
 <li>根据 <code>up</code> 表的 <code>university</code> 聚合出 <code>qpd</code> 表中 每所大学的 平均答题数, 即 <code>university</code> 对应有的 <code>device_id</code> 总共有多少个记录在 <code>qpd</code> 表中</li>
@@ -583,16 +609,16 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">up</span><span class="p">.</span><span class="n">university</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">round</span><span class="p">(</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="n">qd</span><span class="p">.</span><span class="n">question_id</span><span class="p">)</span><span class="o">/</span><span class="k">count</span><span class="p">(</span><span class="k">distinct</span><span class="w"> </span><span class="n">up</span><span class="p">.</span><span class="n">device_id</span><span class="p">),</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_answer_cnt</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">user_profile</span><span class="w">  </span><span class="k">as</span><span class="w"> </span><span class="n">up</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">JOIN</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">question_practice_detail</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">qd</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">up</span><span class="p">.</span><span class="n">device_id</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">qd</span><span class="p">.</span><span class="n">device_id</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">up</span><span class="p">.</span><span class="n">university</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">up</span><span class="p">.</span><span class="n">university</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">up</span><span class="p">.</span><span class="n">university</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">round</span><span class="p">(</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="n">qd</span><span class="p">.</span><span class="n">question_id</span><span class="p">)</span><span class="o">/</span><span class="k">count</span><span class="p">(</span><span class="k">distinct</span><span class="w"> </span><span class="n">up</span><span class="p">.</span><span class="n">device_id</span><span class="p">),</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_answer_cnt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">from</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="n">user_profile</span><span class="w">  </span><span class="k">as</span><span class="w"> </span><span class="n">up</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="k">JOIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">question_practice_detail</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">qd</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">up</span><span class="p">.</span><span class="n">device_id</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">qd</span><span class="p">.</span><span class="n">device_id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="n">up</span><span class="p">.</span><span class="n">university</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="n">up</span><span class="p">.</span><span class="n">university</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><a class="link" href="https://www.nowcoder.com/practice/88aa923a9a674253b861a8fa56bac8e5?tpId=199&amp;tqId=1975674&amp;sourceUrl=%2Fexam%2Foj"  target="_blank" rel="noopener"
@@ -603,86 +629,87 @@
 <p>题目：运营想要计算一些参加了答题的不同学校、不同难度的用户平均答题量，请你写SQL取出相应数据</p>
 <p>用户信息表：user_profile</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>id</th>
-          <th>device_id</th>
-          <th>gender</th>
-          <th>age</th>
-          <th>university</th>
-          <th>gpa</th>
-          <th>active_days_within_30</th>
-          <th>question_cnt</th>
-          <th>answer_cnt</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>1</td>
-          <td>2138</td>
-          <td>male</td>
-          <td>21</td>
-          <td>北京大学</td>
-          <td>3.4</td>
-          <td>7</td>
-          <td>2</td>
-          <td>12</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>id</th>
+					<th>device_id</th>
+					<th>gender</th>
+					<th>age</th>
+					<th>university</th>
+					<th>gpa</th>
+					<th>active_days_within_30</th>
+					<th>question_cnt</th>
+					<th>answer_cnt</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>1</td>
+					<td>2138</td>
+					<td>male</td>
+					<td>21</td>
+					<td>北京大学</td>
+					<td>3.4</td>
+					<td>7</td>
+					<td>2</td>
+					<td>12</td>
+			</tr>
+	</tbody>
 </table></div>
 <p>题库练习明细表：question_practice_detail</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>id</th>
-          <th>device_id</th>
-          <th>question_id</th>
-          <th>result</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>1</td>
-          <td>2138</td>
-          <td>111</td>
-          <td>wrong</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>id</th>
+					<th>device_id</th>
+					<th>question_id</th>
+					<th>result</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>1</td>
+					<td>2138</td>
+					<td>111</td>
+					<td>wrong</td>
+			</tr>
+	</tbody>
 </table></div>
 <p>表：question_detail</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>id</th>
-          <th>question_id</th>
-          <th>difficult_level</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>1</td>
-          <td>111</td>
-          <td>hard</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>id</th>
+					<th>question_id</th>
+					<th>difficult_level</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>1</td>
+					<td>111</td>
+					<td>hard</td>
+			</tr>
+	</tbody>
 </table></div>
 <p>请你写一个SQL查询，计算不同学校、不同难度的用户平均答题量，根据示例，你的查询应返回以下结果(结果在小数点位数保留4位，4位之后四舍五入)：</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>university</th>
-          <th>difficult_level</th>
-          <th>avg_answer_cnt</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>北京大学</td>
-          <td>hard</td>
-          <td>1.0000</td>
-      </tr>
-  </tbody>
-</table></div></blockquote>
+	<thead>
+			<tr>
+					<th>university</th>
+					<th>difficult_level</th>
+					<th>avg_answer_cnt</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>北京大学</td>
+					<td>hard</td>
+					<td>1.0000</td>
+			</tr>
+	</tbody>
+</table></div>
+</blockquote>
 <p>题目要求 :</p>
 <ol>
 <li>首先需要 <code>up</code> 表的 <code>university</code></li>
@@ -714,19 +741,19 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">up</span><span class="p">.</span><span class="n">university</span><span class="p">,</span><span class="w"> </span><span class="n">temp</span><span class="p">.</span><span class="n">difficult_level</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="n">temp</span><span class="p">.</span><span class="n">question_id</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="k">distinct</span><span class="w"> </span><span class="n">up</span><span class="p">.</span><span class="n">device_id</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_answer_cnt</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">up</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">join</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="n">qpd</span><span class="p">.</span><span class="n">device_id</span><span class="p">,</span><span class="n">qpd</span><span class="p">.</span><span class="n">question_id</span><span class="p">,</span><span class="w"> </span><span class="n">qd</span><span class="p">.</span><span class="n">difficult_level</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">question_practice_detail</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">qpd</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">join</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">question_detail</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">qd</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">on</span><span class="w"> </span><span class="n">qpd</span><span class="p">.</span><span class="n">question_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qd</span><span class="p">.</span><span class="n">question_id</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w">  </span><span class="k">as</span><span class="w"> </span><span class="n">temp</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">on</span><span class="w"> </span><span class="n">up</span><span class="p">.</span><span class="n">device_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp</span><span class="p">.</span><span class="n">device_id</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">up</span><span class="p">.</span><span class="n">university</span><span class="p">,</span><span class="w"> </span><span class="n">temp</span><span class="p">.</span><span class="n">difficult_level</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">up</span><span class="p">.</span><span class="n">university</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">up</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">join</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">qpd</span><span class="p">.</span><span class="n">device_id</span><span class="p">,</span><span class="n">qpd</span><span class="p">.</span><span class="n">question_id</span><span class="p">,</span><span class="w"> </span><span class="n">qd</span><span class="p">.</span><span class="n">difficult_level</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">from</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">question_practice_detail</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">qpd</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="k">join</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="n">question_detail</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">qd</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">on</span><span class="w"> </span><span class="n">qpd</span><span class="p">.</span><span class="n">question_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qd</span><span class="p">.</span><span class="n">question_id</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="p">)</span><span class="w">  </span><span class="k">as</span><span class="w"> </span><span class="n">temp</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="k">on</span><span class="w"> </span><span class="n">up</span><span class="p">.</span><span class="n">device_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp</span><span class="p">.</span><span class="n">device_id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">up</span><span class="p">.</span><span class="n">university</span><span class="p">,</span><span class="w"> </span><span class="n">temp</span><span class="p">.</span><span class="n">difficult_level</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">up</span><span class="p">.</span><span class="n">university</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><a class="link" href="https://www.nowcoder.com/practice/5400df085a034f88b2e17941ab338ee8?tpId=199&amp;tqId=1975675&amp;sourceUrl=%2Fexam%2Foj"  target="_blank" rel="noopener"
@@ -740,52 +767,53 @@
 <p>题目：现在运营想要分别查看学校为山东大学或者性别为男性的用户的device_id、gender、age和gpa数据，请取出相应结果，结果不去重。</p>
 <p>示例：user_profile</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>id</th>
-          <th>device_id</th>
-          <th>gender</th>
-          <th>age</th>
-          <th>university</th>
-          <th>gpa</th>
-          <th>active_days_within_30</th>
-          <th>question_cnt</th>
-          <th>answer_cnt</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>1</td>
-          <td>2138</td>
-          <td>male</td>
-          <td>21</td>
-          <td>北京大学</td>
-          <td>3.4</td>
-          <td>7</td>
-          <td>2</td>
-          <td>12</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>id</th>
+					<th>device_id</th>
+					<th>gender</th>
+					<th>age</th>
+					<th>university</th>
+					<th>gpa</th>
+					<th>active_days_within_30</th>
+					<th>question_cnt</th>
+					<th>answer_cnt</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>1</td>
+					<td>2138</td>
+					<td>male</td>
+					<td>21</td>
+					<td>北京大学</td>
+					<td>3.4</td>
+					<td>7</td>
+					<td>2</td>
+					<td>12</td>
+			</tr>
+	</tbody>
 </table></div>
 <p>根据示例，你的查询应返回以下结果（注意输出的顺序，先输出学校为山东大学再输出性别为男生的信息）：</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>device_id</th>
-          <th>gender</th>
-          <th>age</th>
-          <th>gpa</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>5432</td>
-          <td>male</td>
-          <td>25</td>
-          <td>3.8</td>
-      </tr>
-  </tbody>
-</table></div></blockquote>
+	<thead>
+			<tr>
+					<th>device_id</th>
+					<th>gender</th>
+					<th>age</th>
+					<th>gpa</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>5432</td>
+					<td>male</td>
+					<td>25</td>
+					<td>3.8</td>
+			</tr>
+	</tbody>
+</table></div>
+</blockquote>
 <p>题目要求 :</p>
 <ol>
 <li>连续查两遍这个表, 第一遍是 <code>山东大学</code>, 第二遍是<code>男性</code> 然后组合输出</li>
@@ -813,12 +841,12 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="w"> </span><span class="n">gender</span><span class="p">,</span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">gpa</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">university</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;山东大学&#39;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">union</span><span class="w"> </span><span class="k">all</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="w"> </span><span class="n">gender</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">gpa</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">gender</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;male&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">where</span><span class="w"> </span><span class="n">university</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;山东大学&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">union</span><span class="w"> </span><span class="k">all</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="w"> </span><span class="n">gender</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">gpa</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="k">where</span><span class="w"> </span><span class="n">gender</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;male&#39;</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><a class="link" href="https://www.nowcoder.com/practice/979b1a5a16d44afaba5191b22152f64a?tpId=199&amp;tqId=1975677&amp;sourceUrl=%2Fexam%2Foj"  target="_blank" rel="noopener"
@@ -881,7 +909,7 @@
         
         
             <div class="article-image">
-                <img src="/p/com-practise-2/byte_dance.e8a209397c1fe8803cd652e9ed51f704_hu_5bd0c7a052dc0b9a.png" 
+                <img src="/p/com-practise-2/byte_dance.e8a209397c1fe8803cd652e9ed51f704_hu_5f303aa75f1da8d6.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -905,7 +933,7 @@
         
         
             <div class="article-image">
-                <img src="/p/com-practise-1/title.1767a4b0c97ba199dcdae1bf102b8f1c_hu_f545b4d3a613fa96.png" 
+                <img src="/p/com-practise-1/title.1767a4b0c97ba199dcdae1bf102b8f1c_hu_3f2ba210c09d65a.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -929,7 +957,7 @@
         
         
             <div class="article-image">
-                <img src="/p/necessary-select-2/title.1767a4b0c97ba199dcdae1bf102b8f1c_hu_f545b4d3a613fa96.png" 
+                <img src="/p/necessary-select-2/title.1767a4b0c97ba199dcdae1bf102b8f1c_hu_3f2ba210c09d65a.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -953,7 +981,7 @@
         
         
             <div class="article-image">
-                <img src="/p/necessary-select-1/sql.e2fff72502b590a35386a5ba8c70a36a_hu_f7188397613682ca.png" 
+                <img src="/p/necessary-select-1/sql.e2fff72502b590a35386a5ba8c70a36a_hu_a80af483566187ac.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -977,7 +1005,7 @@
         
         
             <div class="article-image">
-                <img src="/p/senior-select-1/sql.e2fff72502b590a35386a5ba8c70a36a_hu_f7188397613682ca.png" 
+                <img src="/p/senior-select-1/sql.e2fff72502b590a35386a5ba8c70a36a_hu_a80af483566187ac.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -1056,7 +1084,9 @@
     <section class="copyright">
         &copy; 
         
-        2025 GzzhM
+            2025 - 
+        
+        2026 GzzhM
     </section>
     
     <section class="powerby">
@@ -1150,7 +1180,7 @@
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.js" defer></script><script type="text/javascript" src="/ts/custom.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

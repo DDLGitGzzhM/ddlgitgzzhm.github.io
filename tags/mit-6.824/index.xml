@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Mit-6.824 on GzzhM</title>
+        <link>https://ddlgitgzzhm.github.io/tags/mit-6.824/</link>
+        <description>Recent content in Mit-6.824 on GzzhM</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <copyright>GzzhM</copyright>
+        <lastBuildDate>Thu, 18 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/tags/mit-6.824/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>[mit - 6.824] First Step</title>
+        <link>https://ddlgitgzzhm.github.io/p/mit-6.824-learning-1/</link>
+        <pubDate>Thu, 18 Dec 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/p/mit-6.824-learning-1/</guid>
+        <description>&lt;img src="https://ddlgitgzzhm.github.io/p/mit-6.824-learning-1/title.png" alt="Featured image of post [mit - 6.824] First Step" /&gt;&lt;h2 id=&#34;分布式系统是什么&#34;&gt;分布式系统是什么
+&lt;/h2&gt;&lt;p&gt;它的核心是通过网络使一群计算机相互通信来完成一些连贯的任务&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;大型网站的存储&lt;/li&gt;
+&lt;li&gt;大数据计算&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;为什么要有分布式系统&#34;&gt;为什么要有分布式系统
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;许多关键基础架构是由分布式系统基础架构构建而成，该架构需要一台以上的计算机才能完成工作或者本质上的物理分散&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;高性能 ：&lt;/strong&gt;  想要通过某种方式来实现某些东西的并行，大量的 CPU、大量的内存、大量的硬盘 可以并行的运行&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

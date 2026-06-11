@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-cn" dir="ltr">
+<html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="牛客网刷 sql day 3">
 <title>[SQL] 高级操作符</title>
@@ -7,7 +7,7 @@
 <link rel='canonical' href='https://ddlgitgzzhm.github.io/p/senior-select-1/'>
 
 
-<link rel="stylesheet" href="/css/main.0a8be7391d8087c7d54da73badd1c839ac4573f64374125e9f9b47376c9c037d.css"><meta property='og:title' content="[SQL] 高级操作符">
+<link rel="stylesheet" href="/css/main.8703b40a8a34890fa502ee15b56b59b3005556a0f262fbec575ce043900232c4.css"><meta property='og:title' content="[SQL] 高级操作符">
 <meta property='og:description' content="牛客网刷 sql day 3">
 <meta property='og:url' content='https://ddlgitgzzhm.github.io/p/senior-select-1/'>
 <meta property='og:site_name' content='GzzhM'>
@@ -60,7 +60,7 @@
                     
                     
                         
-                        <img src="/img/avatar_hu_982993d460bdf308.png" width="300"
+                        <img src="/img/avatar_hu_216528b252869864.png" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -218,6 +218,25 @@
             </a>
         </li>
         
+        
+        <li >
+            <a href='/time-line/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                
+                <span>Time Line</span>
+            </a>
+        </li>
+        
         <li class="menu-bottom-section">
             <ol class="menu">
 
@@ -292,8 +311,8 @@
     <header class="article-header">
         <div class="article-image">
             <a href="/p/senior-select-1/">
-                <img src="/p/senior-select-1/sql_hu_697b8ab9103c4c7a.png"
-                        srcset="/p/senior-select-1/sql_hu_697b8ab9103c4c7a.png 800w, /p/senior-select-1/sql_hu_e1fc03ccc52a2a80.png 1600w"
+                <img src="/p/senior-select-1/sql_hu_b4e0935bb7c197e6.png"
+                        srcset="/p/senior-select-1/sql_hu_b4e0935bb7c197e6.png 800w, /p/senior-select-1/sql_hu_2d80e5e39639a773.png 1600w"
                         width="800" 
                         height="379" 
                         loading="lazy"
@@ -309,6 +328,10 @@
         
             <a href="/categories/sql/" style="background-color: #000000; color: #fff;">
                 SQL
+            </a>
+        
+            <a href="/categories/time-line/" style="background-color: #6c5ce7; color: #fff;">
+                Time Line
             </a>
         
     </header>
@@ -360,7 +383,8 @@
     
     <h2 id="高级操作符练习-1">高级操作符练习 1
 </h2><blockquote>
-<p>题目：现在运营想要找到male且GPA在3.5以上(不包括3.5)的用户进行调研，请你取出相关数据。</p></blockquote>
+<p>题目：现在运营想要找到male且GPA在3.5以上(不包括3.5)的用户进行调研，请你取出相关数据。</p>
+</blockquote>
 <ol>
 <li>业务场景中, 需要提前加上其他判断 <code>gpa is not null</code></li>
 </ol>
@@ -376,7 +400,8 @@
     >牛科练习题目</a></p>
 <h2 id="高级操作符练习-2">高级操作符练习 2
 </h2><blockquote>
-<p>题目：现在运营想要找到学校为北大或GPA在3.7以上(不包括3.7)的用户进行调研，请你取出相关数据（使用OR实现）</p></blockquote>
+<p>题目：现在运营想要找到学校为北大或GPA在3.7以上(不包括3.7)的用户进行调研，请你取出相关数据（使用OR实现）</p>
+</blockquote>
 <ol>
 <li>就简单介绍了一下 or 怎么用</li>
 <li>顾名思义</li>
@@ -393,7 +418,8 @@
     >牛科练习题目</a></p>
 <h2 id="where-in-和-not-in">Where in 和 Not in
 </h2><blockquote>
-<p>题目：现在运营想要找到学校为北大、复旦和山大的同学进行调研，请你取出相关数据。</p></blockquote>
+<p>题目：现在运营想要找到学校为北大、复旦和山大的同学进行调研，请你取出相关数据。</p>
+</blockquote>
 <ol>
 <li>顾名思义</li>
 <li>todo 性能分析 @我</li>
@@ -410,7 +436,8 @@
     >牛科练习题目</a></p>
 <h2 id="操作符混合运用">操作符混合运用
 </h2><blockquote>
-<p>题目：现在运营想要找到gpa在3.5以上(不包括3.5)的山东大学用户 或 gpa在3.8以上(不包括3.8)的复旦大学同学进行用户调研，请你取出相应数据,取出的数据按照device_id升序排列</p></blockquote>
+<p>题目：现在运营想要找到gpa在3.5以上(不包括3.5)的山东大学用户 或 gpa在3.8以上(不包括3.8)的复旦大学同学进行用户调研，请你取出相应数据,取出的数据按照device_id升序排列</p>
+</blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -423,12 +450,12 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="w"> </span><span class="n">gender</span><span class="p">,</span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">university</span><span class="p">,</span><span class="n">gpa</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">where</span><span class="w"> 
 </span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">gpa</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">3</span><span class="p">.</span><span class="mi">5</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">university</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;山东大学&#39;</span><span class="w"> </span><span class="p">)</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="k">or</span><span class="w"> 
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">(</span><span class="n">gpa</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">3</span><span class="p">.</span><span class="mi">8</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">university</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;复旦大学&#39;</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">device_id</span><span class="w"> </span><span class="k">asc</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">device_id</span><span class="w"> </span><span class="k">asc</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><ol>
@@ -446,19 +473,20 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="w"> </span><span class="n">gender</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">university</span><span class="p">,</span><span class="w"> </span><span class="n">gpa</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">device_id</span><span class="w"> </span><span class="k">in</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">gpa</span><span class="o">&gt;</span><span class="mi">3</span><span class="p">.</span><span class="mi">5</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">university</span><span class="o">=</span><span class="s1">&#39;山东大学&#39;</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">or</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">device_id</span><span class="w"> </span><span class="k">in</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">gpa</span><span class="o">&gt;</span><span class="mi">3</span><span class="p">.</span><span class="mi">8</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">university</span><span class="o">=</span><span class="s1">&#39;复旦大学&#39;</span><span class="p">)</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="k">where</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">device_id</span><span class="w"> </span><span class="k">in</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">gpa</span><span class="o">&gt;</span><span class="mi">3</span><span class="p">.</span><span class="mi">5</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">university</span><span class="o">=</span><span class="s1">&#39;山东大学&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">or</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">device_id</span><span class="w"> </span><span class="k">in</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">device_id</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">gpa</span><span class="o">&gt;</span><span class="mi">3</span><span class="p">.</span><span class="mi">8</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">university</span><span class="o">=</span><span class="s1">&#39;复旦大学&#39;</span><span class="p">)</span><span class="w"> 
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><a class="link" href="https://www.nowcoder.com/practice/d5ac4c878b63477fa5e5dfcb427d9102?tpId=199&amp;tqId=1975666&amp;sourceUrl=%2Fexam%2Foj"  target="_blank" rel="noopener"
     >牛客网题目</a></p>
 <h3 id="查看学校名称中含北京的用户">查看学校名称中含北京的用户
 </h3><blockquote>
-<p>题目：现在运营想查看所有大学中带有&quot;北京&quot;的用户的信息(device_id,age,university)，请你取出相应数据。</p></blockquote>
+<p>题目：现在运营想查看所有大学中带有&quot;北京&quot;的用户的信息(device_id,age,university)，请你取出相应数据。</p>
+</blockquote>
 <ol>
 <li>字符匹配</li>
 <li>四种通配符</li>
@@ -527,7 +555,7 @@
         
         
             <div class="article-image">
-                <img src="/p/com-practise-2/byte_dance.e8a209397c1fe8803cd652e9ed51f704_hu_5bd0c7a052dc0b9a.png" 
+                <img src="/p/com-practise-2/byte_dance.e8a209397c1fe8803cd652e9ed51f704_hu_5f303aa75f1da8d6.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -551,7 +579,7 @@
         
         
             <div class="article-image">
-                <img src="/p/com-practise-1/title.1767a4b0c97ba199dcdae1bf102b8f1c_hu_f545b4d3a613fa96.png" 
+                <img src="/p/com-practise-1/title.1767a4b0c97ba199dcdae1bf102b8f1c_hu_3f2ba210c09d65a.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -575,7 +603,7 @@
         
         
             <div class="article-image">
-                <img src="/p/necessary-select-2/title.1767a4b0c97ba199dcdae1bf102b8f1c_hu_f545b4d3a613fa96.png" 
+                <img src="/p/necessary-select-2/title.1767a4b0c97ba199dcdae1bf102b8f1c_hu_3f2ba210c09d65a.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -599,7 +627,7 @@
         
         
             <div class="article-image">
-                <img src="/p/necessary-select-1/sql.e2fff72502b590a35386a5ba8c70a36a_hu_f7188397613682ca.png" 
+                <img src="/p/necessary-select-1/sql.e2fff72502b590a35386a5ba8c70a36a_hu_a80af483566187ac.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -623,7 +651,7 @@
         
         
             <div class="article-image">
-                <img src="/p/multi-select/sql.e2fff72502b590a35386a5ba8c70a36a_hu_f7188397613682ca.png" 
+                <img src="/p/multi-select/sql.e2fff72502b590a35386a5ba8c70a36a_hu_a80af483566187ac.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -702,7 +730,9 @@
     <section class="copyright">
         &copy; 
         
-        2025 GzzhM
+            2025 - 
+        
+        2026 GzzhM
     </section>
     
     <section class="powerby">
@@ -796,7 +826,7 @@
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.js" defer></script><script type="text/javascript" src="/ts/custom.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

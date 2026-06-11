@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-cn" dir="ltr">
+<html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="数学基础 0x01">
 <title>[Hdu] 数学基础</title>
@@ -7,7 +7,7 @@
 <link rel='canonical' href='https://ddlgitgzzhm.github.io/p/hdu-0x01-math/'>
 
 
-<link rel="stylesheet" href="/css/main.0a8be7391d8087c7d54da73badd1c839ac4573f64374125e9f9b47376c9c037d.css"><meta property='og:title' content="[Hdu] 数学基础">
+<link rel="stylesheet" href="/css/main.8703b40a8a34890fa502ee15b56b59b3005556a0f262fbec575ce043900232c4.css"><meta property='og:title' content="[Hdu] 数学基础">
 <meta property='og:description' content="数学基础 0x01">
 <meta property='og:url' content='https://ddlgitgzzhm.github.io/p/hdu-0x01-math/'>
 <meta property='og:site_name' content='GzzhM'>
@@ -60,7 +60,7 @@
                     
                     
                         
-                        <img src="/img/avatar_hu_982993d460bdf308.png" width="300"
+                        <img src="/img/avatar_hu_216528b252869864.png" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -218,6 +218,25 @@
             </a>
         </li>
         
+        
+        <li >
+            <a href='/time-line/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                
+                <span>Time Line</span>
+            </a>
+        </li>
+        
         <li class="menu-bottom-section">
             <ol class="menu">
 
@@ -296,8 +315,8 @@
     <header class="article-header">
         <div class="article-image">
             <a href="/p/hdu-0x01-math/">
-                <img src="/p/hdu-0x01-math/icpc-title_hu_af9303238c26870c.png"
-                        srcset="/p/hdu-0x01-math/icpc-title_hu_af9303238c26870c.png 800w, /p/hdu-0x01-math/icpc-title_hu_d45ccfd71b49c881.png 1600w"
+                <img src="/p/hdu-0x01-math/icpc-title_hu_b51d86d916de2152.png"
+                        srcset="/p/hdu-0x01-math/icpc-title_hu_b51d86d916de2152.png 800w, /p/hdu-0x01-math/icpc-title_hu_fcd72e222532951e.png 1600w"
                         width="800" 
                         height="257" 
                         loading="lazy"
@@ -313,6 +332,10 @@
         
             <a href="/categories/algorithm/" style="background-color: #ff051a; color: #fff;">
                 算法
+            </a>
+        
+            <a href="/categories/time-line/" style="background-color: #6c5ce7; color: #fff;">
+                Time Line
             </a>
         
     </header>
@@ -448,7 +471,7 @@
 <img src="/p/hdu-0x01-math/img.png"
 	width="650"
 	height="322"
-	srcset="/p/hdu-0x01-math/img_hu_2f731d8bd02168b6.png 480w, /p/hdu-0x01-math/img_hu_f8d2f8702386fcba.png 1024w"
+	srcset="/p/hdu-0x01-math/img_hu_45d6e1b4163692d9.png 480w, /p/hdu-0x01-math/img_hu_11b5fe11510d2dd8.png 1024w"
 	loading="lazy"
 	
 		alt="img.png"
@@ -498,32 +521,32 @@
 </span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">    <span class="s">&#34;fmt&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">gcd</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nx">a</span> <span class="p">&gt;</span> <span class="nx">b</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">a</span><span class="p">,</span><span class="nx">b</span> <span class="p">=</span> <span class="nx">b</span><span class="p">,</span><span class="nx">a</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>    
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">;</span> <span class="nx">a</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">;</span>  <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="p">=</span> <span class="nx">b</span><span class="o">%</span><span class="nx">a</span><span class="p">,</span><span class="nx">a</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">b</span> 
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">n</span> <span class="kt">int</span> 
-</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Scan</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">n</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span> <span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">n</span> <span class="p">;</span> <span class="nx">i</span> <span class="o">++</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nx">a</span><span class="p">,</span><span class="nx">b</span> <span class="kt">int</span> 
-</span></span><span class="line"><span class="cl">        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Scan</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">a</span><span class="p">,</span><span class="o">&amp;</span><span class="nx">b</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">gcd</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span><span class="w"> </span><span class="nx">main</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="s">&#34;fmt&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="nf">gcd</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">b</span><span class="p">,</span><span class="nx">a</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">    
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">;</span><span class="w">  </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">b</span><span class="o">%</span><span class="nx">a</span><span class="p">,</span><span class="nx">a</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">b</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">n</span><span class="w"> </span><span class="kt">int</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Scan</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">n</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nx">n</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">++</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="w"> </span><span class="kt">int</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Scan</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">a</span><span class="p">,</span><span class="o">&amp;</span><span class="nx">b</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">gcd</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">))</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <div class="highlight"><div class="chroma">
@@ -557,7 +580,7 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"> 
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span> <span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span> <span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">gcd</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="n">b</span><span class="p">)</span>  <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">temp</span> <span class="p">;</span> 
 </span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
@@ -592,7 +615,8 @@
 <p>T test cases follow.</p>
 <p>Each test case contains a single positive integer N(1&lt;=N&lt;=1,000,000,000).</p>
 <p>Output</p>
-<p>For each test case, you should output the rightmost digit of N^N.</p></blockquote>
+<p>For each test case, you should output the rightmost digit of N^N.</p>
+</blockquote>
 <p>时间范围 :  <code>T * N</code> 必然做法是 <code>T * O(K)</code> 的</p>
 <p><code>2,4,8,16,32,64,128 ...</code>
 <code>3,9,27,81,243 ... </code></p>
@@ -633,7 +657,7 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"> 
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;math.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">t</span><span class="p">;</span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">t</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">t</span> <span class="o">--</span> <span class="p">)</span> <span class="p">{</span>
@@ -720,7 +744,7 @@
         
         
             <div class="article-image">
-                <img src="/p/hdu-0x01-math-02/icpc-title.c2b768b30d2b9dcb0601401c14053c8e_hu_45dea114d7a2c4ec.png" 
+                <img src="/p/hdu-0x01-math-02/icpc-title.c2b768b30d2b9dcb0601401c14053c8e_hu_10b8a58b30f47c88.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -744,7 +768,7 @@
         
         
             <div class="article-image">
-                <img src="/p/leetcode-560/img.6989f1f83b97cf8319719542d5c6b2e8_hu_95d6e72c5c536625.png" 
+                <img src="/p/leetcode-560/img.6989f1f83b97cf8319719542d5c6b2e8_hu_c4ae9a1aa7ac3590.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -757,6 +781,78 @@
 
         <div class="article-details">
             <h2 class="article-title">[LeetCode][hot100] 560. 和为 K 的子数组</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/mit-6.824-learning-1/">
+        
+        
+            <div class="article-image">
+                <img src="/p/mit-6.824-learning-1/title.1767a4b0c97ba199dcdae1bf102b8f1c_hu_3f2ba210c09d65a.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post [mit - 6.824] First Step"
+                        data-key="mit-6.824-learning-1" 
+                        data-hash="md5-F2eksMl7oZnc2uG/ECuPHA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[mit - 6.824] First Step</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/bitlanglang-study-1/">
+        
+        
+            <div class="article-image">
+                <img src="/p/bitlanglang-study-1/title.1767a4b0c97ba199dcdae1bf102b8f1c_hu_3f2ba210c09d65a.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post BitLangLang 视频学习1"
+                        data-key="bitlanglang-study-1" 
+                        data-hash="md5-F2eksMl7oZnc2uG/ECuPHA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">BitLangLang 视频学习1</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/system-summary-2/">
+        
+        
+            <div class="article-image">
+                <img src="/p/system-summary-2/title.1767a4b0c97ba199dcdae1bf102b8f1c_hu_3f2ba210c09d65a.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post [登神长阶] 构建完整的交易系统 1 "
+                        data-key="system-summary-2" 
+                        data-hash="md5-F2eksMl7oZnc2uG/ECuPHA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[登神长阶] 构建完整的交易系统 1 </h2>
         </div>
     </a>
 </article>
@@ -823,7 +919,9 @@
     <section class="copyright">
         &copy; 
         
-        2025 GzzhM
+            2025 - 
+        
+        2026 GzzhM
     </section>
     
     <section class="powerby">
@@ -917,7 +1015,7 @@
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.js" defer></script><script type="text/javascript" src="/ts/custom.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-cn" dir="ltr">
+<html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="给你一个整数数组 nums 和一个整数 k ，请你统计并返回 该数组中和为 k 的子数组的个数">
 <title>[LeetCode][hot100] 560. 和为 K 的子数组</title>
@@ -7,7 +7,7 @@
 <link rel='canonical' href='https://ddlgitgzzhm.github.io/p/leetcode-560/'>
 
 
-<link rel="stylesheet" href="/css/main.0a8be7391d8087c7d54da73badd1c839ac4573f64374125e9f9b47376c9c037d.css"><meta property='og:title' content="[LeetCode][hot100] 560. 和为 K 的子数组">
+<link rel="stylesheet" href="/css/main.8703b40a8a34890fa502ee15b56b59b3005556a0f262fbec575ce043900232c4.css"><meta property='og:title' content="[LeetCode][hot100] 560. 和为 K 的子数组">
 <meta property='og:description' content="给你一个整数数组 nums 和一个整数 k ，请你统计并返回 该数组中和为 k 的子数组的个数">
 <meta property='og:url' content='https://ddlgitgzzhm.github.io/p/leetcode-560/'>
 <meta property='og:site_name' content='GzzhM'>
@@ -60,7 +60,7 @@
                     
                     
                         
-                        <img src="/img/avatar_hu_982993d460bdf308.png" width="300"
+                        <img src="/img/avatar_hu_216528b252869864.png" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -218,6 +218,25 @@
             </a>
         </li>
         
+        
+        <li >
+            <a href='/time-line/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                
+                <span>Time Line</span>
+            </a>
+        </li>
+        
         <li class="menu-bottom-section">
             <ol class="menu">
 
@@ -286,8 +305,8 @@
     <header class="article-header">
         <div class="article-image">
             <a href="/p/leetcode-560/">
-                <img src="/p/leetcode-560/img_hu_ef2bb431159425b.png"
-                        srcset="/p/leetcode-560/img_hu_ef2bb431159425b.png 800w, /p/leetcode-560/img_hu_bd40752b79c0c72.png 1600w"
+                <img src="/p/leetcode-560/img_hu_54f6a2b422963bc8.png"
+                        srcset="/p/leetcode-560/img_hu_54f6a2b422963bc8.png 800w, /p/leetcode-560/img_hu_fe899279f3614a06.png 1600w"
                         width="800" 
                         height="360" 
                         loading="lazy"
@@ -303,6 +322,10 @@
         
             <a href="/categories/algorithm/" style="background-color: #ff051a; color: #fff;">
                 算法
+            </a>
+        
+            <a href="/categories/time-line/" style="background-color: #6c5ce7; color: #fff;">
+                Time Line
             </a>
         
     </header>
@@ -365,7 +388,8 @@
 <p>提示：</p>
 <p>1 &lt;= nums.length &lt;= 2 * 104</p>
 <p>-1000 &lt;= nums[i] &lt;= 1000</p>
-<p>-107 &lt;= k &lt;= 107</p></blockquote>
+<p>-107 &lt;= k &lt;= 107</p>
+</blockquote>
 <h2 id="思路">思路
 </h2><ol>
 <li>
@@ -399,19 +423,19 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">subarraySum</span><span class="p">(</span><span class="nx">nums</span> <span class="p">[]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">k</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">count</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">count</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">=</span> <span class="mi">1</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">preSum</span> <span class="o">:=</span> <span class="mi">0</span> 
-</span></span><span class="line"><span class="cl">    <span class="nx">ans</span> <span class="o">:=</span> <span class="mi">0</span> 
-</span></span><span class="line"><span class="cl">    <span class="k">for</span>  <span class="nx">_</span> <span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">nums</span>  <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">preSum</span> <span class="o">+=</span> <span class="nx">v</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">ans</span> <span class="o">+=</span> <span class="nx">count</span><span class="p">[</span><span class="nx">preSum</span> <span class="o">-</span> <span class="nx">k</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">count</span><span class="p">[</span><span class="nx">preSum</span><span class="p">]</span> <span class="o">++</span> 
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">ans</span> 
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="nf">subarraySum</span><span class="p">(</span><span class="nx">nums</span><span class="w"> </span><span class="p">[]</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="nx">k</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">count</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">count</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">preSum</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">ans</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">for</span><span class="w">  </span><span class="nx">_</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nx">v</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="nx">nums</span><span class="w">  </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nx">preSum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">v</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nx">ans</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">count</span><span class="p">[</span><span class="nx">preSum</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">k</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nx">count</span><span class="p">[</span><span class="nx">preSum</span><span class="p">]</span><span class="w"> </span><span class="o">++</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">ans</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div>
 </section>
@@ -471,7 +495,7 @@
         
         
             <div class="article-image">
-                <img src="/p/hdu-0x01-math-02/icpc-title.c2b768b30d2b9dcb0601401c14053c8e_hu_45dea114d7a2c4ec.png" 
+                <img src="/p/hdu-0x01-math-02/icpc-title.c2b768b30d2b9dcb0601401c14053c8e_hu_10b8a58b30f47c88.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -495,7 +519,7 @@
         
         
             <div class="article-image">
-                <img src="/p/hdu-0x01-math/icpc-title.c2b768b30d2b9dcb0601401c14053c8e_hu_45dea114d7a2c4ec.png" 
+                <img src="/p/hdu-0x01-math/icpc-title.c2b768b30d2b9dcb0601401c14053c8e_hu_10b8a58b30f47c88.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -508,6 +532,78 @@
 
         <div class="article-details">
             <h2 class="article-title">[Hdu] 数学基础</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/mit-6.824-learning-1/">
+        
+        
+            <div class="article-image">
+                <img src="/p/mit-6.824-learning-1/title.1767a4b0c97ba199dcdae1bf102b8f1c_hu_3f2ba210c09d65a.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post [mit - 6.824] First Step"
+                        data-key="mit-6.824-learning-1" 
+                        data-hash="md5-F2eksMl7oZnc2uG/ECuPHA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[mit - 6.824] First Step</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/bitlanglang-study-1/">
+        
+        
+            <div class="article-image">
+                <img src="/p/bitlanglang-study-1/title.1767a4b0c97ba199dcdae1bf102b8f1c_hu_3f2ba210c09d65a.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post BitLangLang 视频学习1"
+                        data-key="bitlanglang-study-1" 
+                        data-hash="md5-F2eksMl7oZnc2uG/ECuPHA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">BitLangLang 视频学习1</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/system-summary-2/">
+        
+        
+            <div class="article-image">
+                <img src="/p/system-summary-2/title.1767a4b0c97ba199dcdae1bf102b8f1c_hu_3f2ba210c09d65a.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post [登神长阶] 构建完整的交易系统 1 "
+                        data-key="system-summary-2" 
+                        data-hash="md5-F2eksMl7oZnc2uG/ECuPHA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[登神长阶] 构建完整的交易系统 1 </h2>
         </div>
     </a>
 </article>
@@ -574,7 +670,9 @@
     <section class="copyright">
         &copy; 
         
-        2025 GzzhM
+            2025 - 
+        
+        2026 GzzhM
     </section>
     
     <section class="powerby">
@@ -668,7 +766,7 @@
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.js" defer></script><script type="text/javascript" src="/ts/custom.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

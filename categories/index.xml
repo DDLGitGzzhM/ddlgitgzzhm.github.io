@@ -5,15 +5,23 @@
         <link>https://ddlgitgzzhm.github.io/categories/</link>
         <description>Recent content in Categories on GzzhM</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>zh-cn</language>
+        <language>en-us</language>
         <copyright>GzzhM</copyright>
-        <lastBuildDate>Fri, 08 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 18 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Time Line</title>
+        <link>https://ddlgitgzzhm.github.io/categories/time-line/</link>
+        <pubDate>Thu, 18 Dec 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/categories/time-line/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>垃圾堆</title>
         <link>https://ddlgitgzzhm.github.io/categories/test/</link>
-        <pubDate>Fri, 08 Aug 2025 00:00:00 +0000</pubDate>
+        <pubDate>Thu, 18 Dec 2025 00:00:00 +0000</pubDate>
         
         <guid>https://ddlgitgzzhm.github.io/categories/test/</guid>
-        <description>&lt;img src="https://ddlgitgzzhm.github.io/categories/test/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post 垃圾堆" /&gt;</description>
+        <description>&lt;img src="https://ddlgitgzzhm.github.io/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post 垃圾堆" /&gt;</description>
         </item>
         <item>
         <title>SQL</title>
@@ -21,7 +29,7 @@
         <pubDate>Mon, 26 May 2025 00:00:00 +0000</pubDate>
         
         <guid>https://ddlgitgzzhm.github.io/categories/sql/</guid>
-        <description>&lt;img src="https://ddlgitgzzhm.github.io/categories/sql/sql.png" alt="Featured image of post SQL" /&gt;</description>
+        <description>&lt;img src="https://ddlgitgzzhm.github.io/sql.png" alt="Featured image of post SQL" /&gt;</description>
         </item>
         <item>
         <title>算法</title>

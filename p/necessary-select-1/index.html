@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-cn" dir="ltr">
+<html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="牛客网刷 sql day 4">
 <title>[SQL] 必要函数</title>
@@ -7,7 +7,7 @@
 <link rel='canonical' href='https://ddlgitgzzhm.github.io/p/necessary-select-1/'>
 
 
-<link rel="stylesheet" href="/css/main.0a8be7391d8087c7d54da73badd1c839ac4573f64374125e9f9b47376c9c037d.css"><meta property='og:title' content="[SQL] 必要函数">
+<link rel="stylesheet" href="/css/main.8703b40a8a34890fa502ee15b56b59b3005556a0f262fbec575ce043900232c4.css"><meta property='og:title' content="[SQL] 必要函数">
 <meta property='og:description' content="牛客网刷 sql day 4">
 <meta property='og:url' content='https://ddlgitgzzhm.github.io/p/necessary-select-1/'>
 <meta property='og:site_name' content='GzzhM'>
@@ -60,7 +60,7 @@
                     
                     
                         
-                        <img src="/img/avatar_hu_982993d460bdf308.png" width="300"
+                        <img src="/img/avatar_hu_216528b252869864.png" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -218,6 +218,25 @@
             </a>
         </li>
         
+        
+        <li >
+            <a href='/time-line/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                
+                <span>Time Line</span>
+            </a>
+        </li>
+        
         <li class="menu-bottom-section">
             <ol class="menu">
 
@@ -295,8 +314,8 @@
     <header class="article-header">
         <div class="article-image">
             <a href="/p/necessary-select-1/">
-                <img src="/p/necessary-select-1/sql_hu_697b8ab9103c4c7a.png"
-                        srcset="/p/necessary-select-1/sql_hu_697b8ab9103c4c7a.png 800w, /p/necessary-select-1/sql_hu_e1fc03ccc52a2a80.png 1600w"
+                <img src="/p/necessary-select-1/sql_hu_b4e0935bb7c197e6.png"
+                        srcset="/p/necessary-select-1/sql_hu_b4e0935bb7c197e6.png 800w, /p/necessary-select-1/sql_hu_2d80e5e39639a773.png 1600w"
                         width="800" 
                         height="379" 
                         loading="lazy"
@@ -312,6 +331,10 @@
         
             <a href="/categories/sql/" style="background-color: #000000; color: #fff;">
                 SQL
+            </a>
+        
+            <a href="/categories/time-line/" style="background-color: #6c5ce7; color: #fff;">
+                Time Line
             </a>
         
     </header>
@@ -369,58 +392,61 @@
 <strong>本题注意</strong>：age为null 也记为 25岁以下</p>
 <p>示例：user_profile</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>id</th>
-          <th>device_id</th>
-          <th>gender</th>
-          <th>age</th>
-          <th>university</th>
-          <th>gpa</th>
-          <th>active_days_within_30</th>
-          <th>question_cnt</th>
-          <th>answer_cnt</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>1</td>
-          <td>2138</td>
-          <td>male</td>
-          <td>21</td>
-          <td>北京大学</td>
-          <td>3.4</td>
-          <td>7</td>
-          <td>2</td>
-          <td>12</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>id</th>
+					<th>device_id</th>
+					<th>gender</th>
+					<th>age</th>
+					<th>university</th>
+					<th>gpa</th>
+					<th>active_days_within_30</th>
+					<th>question_cnt</th>
+					<th>answer_cnt</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>1</td>
+					<td>2138</td>
+					<td>male</td>
+					<td>21</td>
+					<td>北京大学</td>
+					<td>3.4</td>
+					<td>7</td>
+					<td>2</td>
+					<td>12</td>
+			</tr>
+	</tbody>
 </table></div>
 <p>根据题目要求，你的查询应返回以下结果（注意age为null的情况应归类为25岁以下）：</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>age_cut</th>
-          <th>number</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>25岁以下</td>
-          <td>4</td>
-      </tr>
-      <tr>
-          <td>25岁及以上</td>
-          <td>3</td>
-      </tr>
-  </tbody>
-</table></div></blockquote>
+	<thead>
+			<tr>
+					<th>age_cut</th>
+					<th>number</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>25岁以下</td>
+					<td>4</td>
+			</tr>
+			<tr>
+					<td>25岁及以上</td>
+					<td>3</td>
+			</tr>
+	</tbody>
+</table></div>
+</blockquote>
 <p>新知识点</p>
 <blockquote>
-<p>Q : 这个 age_cut , 25岁以下 ，25岁以上 是怎么插进去的</p></blockquote>
+<p>Q : 这个 age_cut , 25岁以下 ，25岁以上 是怎么插进去的</p>
+</blockquote>
 <p>A : 原来 我们 SELECT CONST STRING, 那么就会输出对应的 STRING</p>
 <blockquote>
-<p>Q : 怎么进行判断 25 岁以下, 25岁以上</p></blockquote>
+<p>Q : 怎么进行判断 25 岁以下, 25岁以上</p>
+</blockquote>
 <p>A :</p>
 <ol>
 <li>第一种方法， 使用 <code>CASE (WHEN ... ELSE) END</code> 的形式</li>
@@ -449,8 +475,8 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">           </span><span class="k">ELSE</span><span class="w"> </span><span class="s1">&#39;25岁以下&#39;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">END</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">age_cut</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">number</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">age_cut</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">age_cut</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
@@ -469,8 +495,8 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">when</span><span class="w"> </span><span class="n">age</span><span class="o">&gt;=</span><span class="mi">25</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="s1">&#39;25岁及以上&#39;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;25岁以下&#39;</span><span class="w"> </span><span class="k">end</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">age_cut</span><span class="p">,</span><span class="w"> 
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">number</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">age_cut</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">from</span><span class="w"> </span><span class="n">user_profile</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">age_cut</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>坑点 :</strong></p>
@@ -490,47 +516,49 @@
 <p>题目：现在运营想要计算出2021年8月每天用户练习题目的数量，请取出相应数据</p>
 <p>示例：question_practice_detail</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>id</th>
-          <th>device_id</th>
-          <th>question_id</th>
-          <th>result</th>
-          <th>date</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>1</td>
-          <td>2138</td>
-          <td>111</td>
-          <td>wrong</td>
-          <td>2021-05-03</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>id</th>
+					<th>device_id</th>
+					<th>question_id</th>
+					<th>result</th>
+					<th>date</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>1</td>
+					<td>2138</td>
+					<td>111</td>
+					<td>wrong</td>
+					<td>2021-05-03</td>
+			</tr>
+	</tbody>
 </table></div>
 <p>根据题目要求，你的查询应返回以下结果（按日期升序排列）：</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>day</th>
-          <th>question_cnt</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>13</td>
-          <td>5</td>
-      </tr>
-      <tr>
-          <td>14</td>
-          <td>2</td>
-      </tr>
-  </tbody>
-</table></div></blockquote>
+	<thead>
+			<tr>
+					<th>day</th>
+					<th>question_cnt</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>13</td>
+					<td>5</td>
+			</tr>
+			<tr>
+					<td>14</td>
+					<td>2</td>
+			</tr>
+	</tbody>
+</table></div>
+</blockquote>
 <p>新知识点</p>
 <blockquote>
-<p>Q : 如何获取 日期 day , month , year 的信息</p></blockquote>
+<p>Q : 如何获取 日期 day , month , year 的信息</p>
+</blockquote>
 <ol>
 <li>sql 支持使用 <code>year(), month(), day()</code> 的形式获取对应的 年月日</li>
 <li><code>WEEKDAY()</code> 返回星期索引 , 0 = 星期一 &hellip;</li>
@@ -550,13 +578,13 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="o">#</span><span class="err">获取当前系统的日期时间</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">NOW</span><span class="p">();</span><span class="w"> </span><span class="o">#</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">22</span><span class="w"> </span><span class="mi">13</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">58</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">NOW</span><span class="p">();</span><span class="w"> </span><span class="o">#</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">22</span><span class="w"> </span><span class="mi">13</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">58</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="err">获取当前系统的日期</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">CURDATE</span><span class="p">();</span><span class="w"> </span><span class="o">#</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">22</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="o">#</span><span class="err">获取当前系统的日期</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">CURDATE</span><span class="p">();</span><span class="w"> </span><span class="o">#</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">22</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="err">获取当前系统的时间</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">CURTIME</span><span class="p">();</span><span class="w"> </span><span class="o">#</span><span class="w"> </span><span class="mi">13</span><span class="p">:</span><span class="mi">53</span><span class="p">:</span><span class="mi">11</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="o">#</span><span class="err">获取当前系统的时间</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">CURTIME</span><span class="p">();</span><span class="w"> </span><span class="o">#</span><span class="w"> </span><span class="mi">13</span><span class="p">:</span><span class="mi">53</span><span class="p">:</span><span class="mi">11</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
@@ -581,22 +609,22 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="o">#</span><span class="err">日期增加</span><span class="p">,</span><span class="err">使用函数</span><span class="n">date_add</span><span class="p">(</span><span class="nb">date</span><span class="p">,</span><span class="nb">INTERVAL</span><span class="w"> </span><span class="n">exp</span><span class="w"> </span><span class="k">type</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="err">增加</span><span class="mi">1</span><span class="err">天</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">DATE_ADD</span><span class="p">(</span><span class="s1">&#39;2021-12-22 13:50:58&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">DAY</span><span class="p">);</span><span class="w">  </span><span class="o">#</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">23</span><span class="w"> </span><span class="mi">13</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">58</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="err">增加</span><span class="mi">1</span><span class="err">小时</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">DATE_ADD</span><span class="p">(</span><span class="s1">&#39;2021-12-22 13:50:58&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">HOUR</span><span class="p">);</span><span class="w">  </span><span class="o">#</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">23</span><span class="w"> </span><span class="mi">14</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">58</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="o">#</span><span class="err">增加</span><span class="mi">1</span><span class="err">天</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">DATE_ADD</span><span class="p">(</span><span class="s1">&#39;2021-12-22 13:50:58&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">DAY</span><span class="p">);</span><span class="w">  </span><span class="o">#</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">23</span><span class="w"> </span><span class="mi">13</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">58</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="o">#</span><span class="err">增加</span><span class="mi">1</span><span class="err">小时</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">DATE_ADD</span><span class="p">(</span><span class="s1">&#39;2021-12-22 13:50:58&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">HOUR</span><span class="p">);</span><span class="w">  </span><span class="o">#</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">23</span><span class="w"> </span><span class="mi">14</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">58</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="err">日期减少，使用函数</span><span class="n">date_sub</span><span class="p">(</span><span class="nb">date</span><span class="p">,</span><span class="nb">INTERVAL</span><span class="w"> </span><span class="n">exp</span><span class="w"> </span><span class="k">type</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="err">减少</span><span class="mi">1</span><span class="err">天</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">DATE_SUB</span><span class="p">(</span><span class="s1">&#39;2021-12-01 13:50:58&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">DAY</span><span class="p">);</span><span class="w"> </span><span class="o">#</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">30</span><span class="w"> </span><span class="mi">13</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">58</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="o">#</span><span class="err">日期减少，使用函数</span><span class="n">date_sub</span><span class="p">(</span><span class="nb">date</span><span class="p">,</span><span class="nb">INTERVAL</span><span class="w"> </span><span class="n">exp</span><span class="w"> </span><span class="k">type</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="o">#</span><span class="w"> </span><span class="err">减少</span><span class="mi">1</span><span class="err">天</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">DATE_SUB</span><span class="p">(</span><span class="s1">&#39;2021-12-01 13:50:58&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">DAY</span><span class="p">);</span><span class="w"> </span><span class="o">#</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">30</span><span class="w"> </span><span class="mi">13</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">58</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="err">其他间隔</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">YEAR</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">MONTH</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">DAY</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">HOUR</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">MINUTE</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">SECOND</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="o">#</span><span class="err">其他间隔</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">YEAR</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">MONTH</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">DAY</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">HOUR</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">MINUTE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">SECOND</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>思路</p>
@@ -612,9 +640,9 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">DAY</span><span class="p">(</span><span class="nb">date</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">day</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">question_cnt</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">question_practice_detail</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="k">YEAR</span><span class="p">(</span><span class="nb">date</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2021</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">MONTH</span><span class="p">(</span><span class="nb">date</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="k">day</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">from</span><span class="w"> </span><span class="n">question_practice_detail</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="k">YEAR</span><span class="p">(</span><span class="nb">date</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2021</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">MONTH</span><span class="p">(</span><span class="nb">date</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="k">day</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="计算用户的平均次日留存率">计算用户的平均次日留存率
@@ -623,38 +651,39 @@
 <p>题目：现在运营想要查看用户在某天刷题后第二天还会再来刷题的留存率。请你取出相应数据</p>
 <p>示例：question_practice_detail</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>id</th>
-          <th>device_id</th>
-          <th>question_id</th>
-          <th>result</th>
-          <th>date</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>1</td>
-          <td>2138</td>
-          <td>111</td>
-          <td>wrong</td>
-          <td>2021-05-03</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>id</th>
+					<th>device_id</th>
+					<th>question_id</th>
+					<th>result</th>
+					<th>date</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>1</td>
+					<td>2138</td>
+					<td>111</td>
+					<td>wrong</td>
+					<td>2021-05-03</td>
+			</tr>
+	</tbody>
 </table></div>
 <p>根据示例，你的查询应返回以下结果（保留4位小数）：</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>avg_ret</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>0.3000</td>
-      </tr>
-  </tbody>
-</table></div></blockquote>
+	<thead>
+			<tr>
+					<th>avg_ret</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>0.3000</td>
+			</tr>
+	</tbody>
+</table></div>
+</blockquote>
 <p>题目要求 :</p>
 <ol>
 <li>计算 用户连续两天 都做题的占比</li>
@@ -686,13 +715,13 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">ROUND</span><span class="p">(</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">SUM</span><span class="p">(</span><span class="w"> </span><span class="k">IF</span><span class="p">(</span><span class="n">p2</span><span class="p">.</span><span class="n">device_id</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="p">,</span><span class="mi">4</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_ret</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w">  
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="w"> </span><span class="nb">date</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">question_practice_detail</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">p1</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="w"> </span><span class="nb">date</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">question_practice_detail</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">p2</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ON</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">p1</span><span class="p">.</span><span class="n">device_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p2</span><span class="p">.</span><span class="n">device_id</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">and</span><span class="w"> </span><span class="n">p2</span><span class="p">.</span><span class="nb">date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DATE_ADD</span><span class="p">(</span><span class="n">p1</span><span class="p">.</span><span class="nb">date</span><span class="p">,</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">day</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="w"> </span><span class="nb">date</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">question_practice_detail</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">p1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">device_id</span><span class="p">,</span><span class="w"> </span><span class="nb">date</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">question_practice_detail</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">p2</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="k">ON</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="n">p1</span><span class="p">.</span><span class="n">device_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p2</span><span class="p">.</span><span class="n">device_id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">and</span><span class="w"> </span><span class="n">p2</span><span class="p">.</span><span class="nb">date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DATE_ADD</span><span class="p">(</span><span class="n">p1</span><span class="p">.</span><span class="nb">date</span><span class="p">,</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">day</span><span class="p">)</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><a class="link" href="https://www.nowcoder.com/practice/126083961ae0415fbde061d7ebbde453?tpId=199&amp;tqId=1975681&amp;sourceUrl=%2Fexam%2Foj"  target="_blank" rel="noopener"
@@ -749,7 +778,7 @@
         
         
             <div class="article-image">
-                <img src="/p/com-practise-2/byte_dance.e8a209397c1fe8803cd652e9ed51f704_hu_5bd0c7a052dc0b9a.png" 
+                <img src="/p/com-practise-2/byte_dance.e8a209397c1fe8803cd652e9ed51f704_hu_5f303aa75f1da8d6.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -773,7 +802,7 @@
         
         
             <div class="article-image">
-                <img src="/p/com-practise-1/title.1767a4b0c97ba199dcdae1bf102b8f1c_hu_f545b4d3a613fa96.png" 
+                <img src="/p/com-practise-1/title.1767a4b0c97ba199dcdae1bf102b8f1c_hu_3f2ba210c09d65a.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -797,7 +826,7 @@
         
         
             <div class="article-image">
-                <img src="/p/necessary-select-2/title.1767a4b0c97ba199dcdae1bf102b8f1c_hu_f545b4d3a613fa96.png" 
+                <img src="/p/necessary-select-2/title.1767a4b0c97ba199dcdae1bf102b8f1c_hu_3f2ba210c09d65a.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -821,7 +850,7 @@
         
         
             <div class="article-image">
-                <img src="/p/multi-select/sql.e2fff72502b590a35386a5ba8c70a36a_hu_f7188397613682ca.png" 
+                <img src="/p/multi-select/sql.e2fff72502b590a35386a5ba8c70a36a_hu_a80af483566187ac.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -845,7 +874,7 @@
         
         
             <div class="article-image">
-                <img src="/p/senior-select-1/sql.e2fff72502b590a35386a5ba8c70a36a_hu_f7188397613682ca.png" 
+                <img src="/p/senior-select-1/sql.e2fff72502b590a35386a5ba8c70a36a_hu_a80af483566187ac.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -924,7 +953,9 @@
     <section class="copyright">
         &copy; 
         
-        2025 GzzhM
+            2025 - 
+        
+        2026 GzzhM
     </section>
     
     <section class="powerby">
@@ -1018,7 +1049,7 @@
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.js" defer></script><script type="text/javascript" src="/ts/custom.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
