@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Summary on GzzhM</title>
+        <link>https://ddlgitgzzhm.github.io/categories/summary/</link>
+        <description>Recent content in Summary on GzzhM</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <copyright>GzzhM</copyright>
+        <lastBuildDate>Thu, 11 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/categories/summary/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>[blog] 当前使用体验</title>
+        <link>https://ddlgitgzzhm.github.io/p/blog-summary-26-06-01/</link>
+        <pubDate>Thu, 11 Jun 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/p/blog-summary-26-06-01/</guid>
+        <description>&lt;img src="https://ddlgitgzzhm.github.io/p/blog-summary-26-06-01/blog.png" alt="Featured image of post [blog] 当前使用体验" /&gt;&lt;h2 id=&#34;我的初心&#34;&gt;我的初心
+&lt;/h2&gt;&lt;p&gt;Q :  为什么之前我要写这个博客&lt;/p&gt;
+&lt;p&gt;我创建 Blog  这个项目的初心 是打算日常记录 以及 学习记录 分享&lt;/p&gt;
+&lt;p&gt;可是从毕业以及工作之后越来越没有学习的心思了&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;工作内容变动&lt;/li&gt;
+&lt;li&gt;恋爱的琐事&lt;/li&gt;
+&lt;li&gt;副业的变动&lt;/li&gt;
+&lt;li&gt;牛熊转换
+&amp;hellip;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;各种内容充斥在生活里面，让我开始摆烂&lt;/p&gt;
+&lt;h2 id=&#34;项目的扎手点&#34;&gt;项目的扎手点
+&lt;/h2&gt;&lt;p&gt;目前这个项目的设计逻辑是&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;使用者在 IDEA 编辑对应的 Markdown 文件
+&lt;ul&gt;
+&lt;li&gt;如果你要发布一个文章 你需要 创建一个 package 指的是手动的右键点击创建 package&lt;/li&gt;
+&lt;li&gt;然后插入一个 title 图片 如果没有图片的话会很丑&lt;/li&gt;
+&lt;li&gt;还需要手动填写文件的日期 date&lt;/li&gt;
+&lt;li&gt;手动填写 slug&lt;/li&gt;
+&lt;li&gt;手动填写 categories&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;在本地运行 &lt;code&gt;hugo server&lt;/code&gt; 进行确认&lt;/li&gt;
+&lt;li&gt;提交 &amp;amp; push 然后等 action 同步最后才上线&lt;/li&gt;
+&lt;li&gt;如果需要编辑和更新文章的话 那同样麻烦&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;一些吐槽&#34;&gt;一些吐槽
+&lt;/h2&gt;&lt;p&gt;而且我的并不打算把我的文章广为流传，因为确实没有什么内容，不值得推广，如果我真想要分享 不如去 知乎上面分享&lt;/p&gt;
+&lt;p&gt;另外 Markdown 的缺点，你并不能手动 的拖动调整图片的大小 这是我很烦的一点&lt;/p&gt;
+&lt;p&gt;后来 我尝试了 Notion 和 Obsidian&lt;/p&gt;
+&lt;p&gt;Obsidian 可以说是本地化的 Markdown 文件，同样处理图片很麻烦&lt;/p&gt;
+&lt;p&gt;Notion 的话对我来说很好用，但是他没有标签也不能自定义展示，我没在用 Blog 的时候 大部分时间都在用 Notion&lt;/p&gt;
+&lt;p&gt;另外 Notion 必须联网这点很不好，而且 notion 自家的代理太烂了，时长卡顿&lt;/p&gt;
+&lt;p&gt;经历了很多内容 最后还是打算捡起来这个 项目， 就想尝试 能不能做好，先慢慢做下去吧&lt;/p&gt;
+&lt;p&gt;另外 Notion 预计只能记录一些生活化相关的内容，偏学习或者是技术的内容，我感觉记录在上面不太专业，而且也不可以定制化展示&lt;/p&gt;
+&lt;h2 id=&#34;后续想法&#34;&gt;后续想法
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;想要考虑做成 动态页面，这样子可以在前端直接发布文章，也可以自动的打标签，可以防止一开始创建文件的繁琐步骤&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;但是这样成本预计就上来了，现在使用 git-page 部署的，只能部署静态网页，边走边看了&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;或者是简单的版本，可以考虑写几个 scripts ， 用于自动创建 page，这个看着是效益最高的&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
