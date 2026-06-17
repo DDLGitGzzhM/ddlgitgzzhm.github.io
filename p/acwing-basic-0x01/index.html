@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="给你一个整数数组 nums 和一个整数 k ，请你统计并返回 该数组中和为 k 的子数组的个数">
-<title>[LeetCode][hot100] 560. 和为 K 的子数组</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="当我们重新开始，我们以不再年轻">
+<title>[Acwing] 基础算法(一)</title>
 
-<link rel='canonical' href='https://ddlgitgzzhm.github.io/p/leetcode-560/'>
+<link rel='canonical' href='https://ddlgitgzzhm.github.io/p/acwing-basic-0x01/'>
 
 
-<link rel="stylesheet" href="/css/main.5f52d9bdb5328032483602d39190605c26795406e34426aaf61371918422ccb5.css"><meta property='og:title' content="[LeetCode][hot100] 560. 和为 K 的子数组">
-<meta property='og:description' content="给你一个整数数组 nums 和一个整数 k ，请你统计并返回 该数组中和为 k 的子数组的个数">
-<meta property='og:url' content='https://ddlgitgzzhm.github.io/p/leetcode-560/'>
+<link rel="stylesheet" href="/css/main.5f52d9bdb5328032483602d39190605c26795406e34426aaf61371918422ccb5.css"><meta property='og:title' content="[Acwing] 基础算法(一)">
+<meta property='og:description' content="当我们重新开始，我们以不再年轻">
+<meta property='og:url' content='https://ddlgitgzzhm.github.io/p/acwing-basic-0x01/'>
 <meta property='og:site_name' content='GzzhM'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='leetcode-hot100' /><meta property='article:published_time' content='2025-04-29T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-04-29T00:00:00&#43;00:00'/><meta property='og:image' content='https://ddlgitgzzhm.github.io/p/leetcode-560/img.png' />
-<meta name="twitter:title" content="[LeetCode][hot100] 560. 和为 K 的子数组">
-<meta name="twitter:description" content="给你一个整数数组 nums 和一个整数 k ，请你统计并返回 该数组中和为 k 的子数组的个数"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://ddlgitgzzhm.github.io/p/leetcode-560/img.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='acwing' /><meta property='article:published_time' content='2026-06-17T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-06-17T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="[Acwing] 基础算法(一)">
+<meta name="twitter:description" content="当我们重新开始，我们以不再年轻">
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -309,8 +308,8 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#题目">题目</a></li>
-    <li><a href="#思路">思路</a></li>
+    <li><a href="#方法">方法</a></li>
+    <li><a href="#快速排序">快速排序</a></li>
   </ol>
 </nav>
         </div>
@@ -322,20 +321,8 @@
 
 
             <main class="main full-width">
-    <article class="has-image main-article">
+    <article class="main-article">
     <header class="article-header">
-        <div class="article-image">
-            <a href="/p/leetcode-560/">
-                <img src="/p/leetcode-560/img_hu_54f6a2b422963bc8.png"
-                        srcset="/p/leetcode-560/img_hu_54f6a2b422963bc8.png 800w, /p/leetcode-560/img_hu_fe899279f3614a06.png 1600w"
-                        width="800" 
-                        height="360" 
-                        loading="lazy"
-                        alt="Featured image of post [LeetCode][hot100] 560. 和为 K 的子数组" />
-                
-            </a>
-        </div>
-    
 
     <div class="article-details">
     
@@ -354,12 +341,12 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/leetcode-560/">[LeetCode][hot100] 560. 和为 K 的子数组</a>
+            <a href="/p/acwing-basic-0x01/">[Acwing] 基础算法(一)</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            给你一个整数数组 nums 和一个整数 k ，请你统计并返回 该数组中和为 k 的子数组的个数
+            当我们重新开始，我们以不再年轻
         </h3>
         
     </div>
@@ -380,7 +367,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2025-04-29</time>
+                <time class="article-time--published">2026-06-17</time>
             </div>
         
 
@@ -396,69 +383,30 @@
     <section class="article-content">
     
     
-    <h2 id="题目">题目
-</h2><blockquote>
-<p>给你一个整数数组 nums 和一个整数 k ，请你统计并返回 该数组中和为 k 的子数组的个数 。
-子数组是数组中元素的连续非空序列。</p>
-<p>示例 1：</p>
-<p>输入：nums = [1,1,1], k = 2</p>
-<p>输出：2</p>
-<p>示例 2：</p>
-<p>输入：nums = [1,2,3], k = 3</p>
-<p>输出：2</p>
-<p>提示：</p>
-<p>1 &lt;= nums.length &lt;= 2 * 104</p>
-<p>-1000 &lt;= nums[i] &lt;= 1000</p>
-<p>-107 &lt;= k &lt;= 107</p>
-</blockquote>
-<h2 id="思路">思路
-</h2><ol>
-<li>
-<p>对于 需要找到 <code>X + Y  = K</code> 的模型，我们统一想到使用 <code>map[X-K] = Y</code> 的优化，可以将 <code>n^2 -&gt; O(n)</code></p>
-</li>
-<li>
-<p>对于这题我们需要把子数组和看为<code>X</code>, 我们计算前缀和 <code>SUM[i]</code> 表示，以 <code>i</code> 结尾前面所有数值的和. 因为我们知道 <code>K</code> 所以我们并不需要去找到我们的 <code>Y</code>, 我们只需要保证，我们能全量的枚举出<code>X</code> 即 <code>SUM[i]</code></p>
-</li>
-<li>
-<p>因此我们只需要<code>ans = ans + map[sum[i] - K]</code> 即可</p>
-</li>
-</ol>
-<p>tips :</p>
+    <h2 id="方法">方法
+</h2><p>课上: 学习 <code>主要思想</code></p>
+<p>课下:</p>
 <ol>
-<li>当我们 <code>sum[1] - K == 2</code> 并且在 <code>sum[3] - K == 2</code> , 那么我们是否重复计算了 <code>[0~3]</code> 的某些子数组呢 ?</li>
+<li>理解代码,背过代码</li>
+<li>根据题目默写代码 ( 3 ~ 5 次 )</li>
 </ol>
-<p>结论是 : 我们 <code>sum[3]-K == 2</code> 的成立是由于引入了<code>A[2]</code> , 因此不存在重复计算</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="nf">subarraySum</span><span class="p">(</span><span class="nx">nums</span><span class="w"> </span><span class="p">[]</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="nx">k</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">count</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">count</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">preSum</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">ans</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">for</span><span class="w">  </span><span class="nx">_</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nx">v</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="nx">nums</span><span class="w">  </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nx">preSum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">v</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nx">ans</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">count</span><span class="p">[</span><span class="nx">preSum</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">k</span><span class="p">]</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nx">count</span><span class="p">[</span><span class="nx">preSum</span><span class="p">]</span><span class="w"> </span><span class="o">++</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">ans</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div>
+<h2 id="快速排序">快速排序
+</h2><p>记录一下在上班的时候 能够听满 30 分钟的课程 之前可是想都不敢想的</p>
+<p><img src="/p/acwing-basic-0x01/img1.png"
+	width="878"
+	height="518"
+	srcset="/p/acwing-basic-0x01/img1_hu_58c55dbae6005ee5.png 480w, /p/acwing-basic-0x01/img1_hu_44338467473aa09d.png 1024w"
+	loading="lazy"
+	
+		alt="img.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="169"
+		data-flex-basis="406px"
+	
+></p>
+
 </section>
 
 
@@ -466,7 +414,7 @@
     
     <section class="article-tags">
         
-            <a href="/tags/leetcode-hot100/">Leetcode-Hot100</a>
+            <a href="/tags/acwing/">Acwing</a>
         
     </section>
 
@@ -511,19 +459,6 @@
         <div class="flex article-list--tile">
             
                 
-<article class="">
-    <a href="/p/acwing-basic-0x01/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">[Acwing] 基础算法(一)</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
 <article class="has-image">
     <a href="/p/hdu-0x01-math-02/">
         
@@ -566,6 +501,30 @@
 
         <div class="article-details">
             <h2 class="article-title">[Hdu] 数学基础</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/leetcode-560/">
+        
+        
+            <div class="article-image">
+                <img src="/p/leetcode-560/img.6989f1f83b97cf8319719542d5c6b2e8_hu_c4ae9a1aa7ac3590.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post [LeetCode][hot100] 560. 和为 K 的子数组"
+                        data-key="leetcode-560" 
+                        data-hash="md5-aYnx&#43;DuXz4MZcZVC1cay6A==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[LeetCode][hot100] 560. 和为 K 的子数组</h2>
         </div>
     </a>
 </article>

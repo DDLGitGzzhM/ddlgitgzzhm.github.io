@@ -7,7 +7,38 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>GzzhM</copyright>
-        <lastBuildDate>Thu, 11 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/categories/time-line/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 17 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/categories/time-line/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>[Acwing] 基础算法(一)</title>
+        <link>https://ddlgitgzzhm.github.io/p/acwing-basic-0x01/</link>
+        <pubDate>Wed, 17 Jun 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/p/acwing-basic-0x01/</guid>
+        <description>&lt;h2 id=&#34;方法&#34;&gt;方法
+&lt;/h2&gt;&lt;p&gt;课上: 学习 &lt;code&gt;主要思想&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;课下:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;理解代码,背过代码&lt;/li&gt;
+&lt;li&gt;根据题目默写代码 ( 3 ~ 5 次 )&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;快速排序&#34;&gt;快速排序
+&lt;/h2&gt;&lt;p&gt;记录一下在上班的时候 能够听满 30 分钟的课程 之前可是想都不敢想的&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/acwing-basic-0x01/img1.png&#34;
+	width=&#34;878&#34;
+	height=&#34;518&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/acwing-basic-0x01/img1_hu_58c55dbae6005ee5.png 480w, https://ddlgitgzzhm.github.io/p/acwing-basic-0x01/img1_hu_44338467473aa09d.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;169&#34;
+		data-flex-basis=&#34;406px&#34;
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>[blog] 当前使用体验</title>
         <link>https://ddlgitgzzhm.github.io/p/blog-summary-26-06-01/</link>
         <pubDate>Thu, 11 Jun 2026 00:00:00 +0000</pubDate>
