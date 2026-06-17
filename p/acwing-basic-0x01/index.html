@@ -309,7 +309,15 @@
             <nav id="TableOfContents">
   <ol>
     <li><a href="#方法">方法</a></li>
-    <li><a href="#快速排序">快速排序</a></li>
+    <li><a href="#快速排序">快速排序</a>
+      <ol>
+        <li><a href="#算法思路">算法思路</a></li>
+        <li><a href="#核心代码展示">核心代码展示</a></li>
+        <li><a href="#时间复杂度分析">时间复杂度分析</a></li>
+        <li><a href="#犯错">犯错</a></li>
+        <li><a href="#感悟">感悟</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -391,7 +399,203 @@
 <li>根据题目默写代码 ( 3 ~ 5 次 )</li>
 </ol>
 <h2 id="快速排序">快速排序
-</h2><p>记录一下在上班的时候 能够听满 30 分钟的课程 之前可是想都不敢想的</p>
+</h2><h3 id="算法思路">算法思路
+</h3><ol>
+<li>寻找区间内的随机一个值, 将其当作中间值</li>
+<li>遍历当前区间, 将区间分为 <code>[l ~ x] [x ~l]</code> 的形式</li>
+<li>递归处理区间, 将大区间拆分成多个小区间进行排序</li>
+</ol>
+<h3 id="核心代码展示">核心代码展示
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">quick_sort</span><span class="p">(</span><span class="kt">int</span> <span class="n">q</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">l</span> <span class="o">&gt;=</span> <span class="n">r</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">l</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">r</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">q</span><span class="p">[(</span><span class="n">l</span> <span class="o">+</span> <span class="n">r</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">do</span> <span class="n">i</span><span class="o">++</span><span class="p">;</span> <span class="k">while</span> <span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">do</span> <span class="n">j</span><span class="o">--</span><span class="p">;</span> <span class="k">while</span> <span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="p">)</span> <span class="n">swap</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="n">j</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">quick_sort</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">quick_sort</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="时间复杂度分析">时间复杂度分析
+</h3><p>由于区间是对半拆分的 最多只有 logN 层</p>
+<p>但是每层都需要进行一次 <code>while(i&lt;j)</code> 的遍历 每层需要 <code>o(n)</code> 的时间复杂度</p>
+<p>所以总时间复杂度是 <code>o nlogn</code></p>
+<p>最坏情况下 :</p>
+<p>例子 A：已有序 + 基准取 q[l]</p>
+<p>数组：[1, 2, 3, 4, 5]，每次 pivot = 最左边：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">第1次: <span class="o">[</span><span class="m">1</span> <span class="p">|</span> 2,3,4,5<span class="o">]</span>     左 <span class="m">1</span> 个，右 <span class="m">4</span> 个
+</span></span><span class="line"><span class="cl">第2次:      <span class="o">[</span><span class="m">2</span> <span class="p">|</span> 3,4,5<span class="o">]</span>  右 <span class="m">4</span> 个继续
+</span></span><span class="line"><span class="cl">第3次:           <span class="o">[</span><span class="m">3</span> <span class="p">|</span> 4,5<span class="o">]</span>
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>分区大小每次都是 <code>n, n-1, n-2, …, 1</code>
+总工作量 <code>n + (n-1) + (n-2) + … + 1 = n(n+1)/2 = O(n²)</code></p>
+<p>理想情况</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">        n
+</span></span><span class="line"><span class="cl">      /   <span class="se">\
+</span></span></span><span class="line"><span class="cl">    n/2   n/2
+</span></span><span class="line"><span class="cl">   /  <span class="se">\ </span>  /  <span class="se">\
+</span></span></span><span class="line"><span class="cl"> n/4 ...        高度 ≈ log n，每层总工作量 n
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>最坏情况</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">n
+</span></span><span class="line"><span class="cl"> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  n-1
+</span></span><span class="line"><span class="cl">   <span class="se">\
+</span></span></span><span class="line"><span class="cl">    n-2
+</span></span><span class="line"><span class="cl">     <span class="se">\
+</span></span></span><span class="line"><span class="cl">      ...    链状，高度 n，总工作量 n+<span class="o">(</span>n-1<span class="o">)</span>+... <span class="o">=</span> O<span class="o">(</span>n²<span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="犯错">犯错
+</h3><p>一开始因为不喜欢 <code>do while</code> 的形式，所以自己单独写了一个 <code>while</code> 的形式</p>
+<p>后续发现一直 TLE 后面看了一下 在两个相同数的时候，如果先进行判断然后再进行位移指针会卡住程序的运行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">初始: <span class="nv">i</span><span class="o">=</span>1, <span class="nv">j</span><span class="o">=</span><span class="m">2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">第 <span class="m">1</span> 轮:
+</span></span><span class="line"><span class="cl">  左扫: <span class="m">67</span> &lt; <span class="m">67</span> ? 否 → i 停在 <span class="m">1</span>
+</span></span><span class="line"><span class="cl">  右扫: <span class="m">67</span> &gt; <span class="m">67</span> ? 否 → j 停在 <span class="m">2</span>
+</span></span><span class="line"><span class="cl">  swap<span class="o">(</span>67, 67<span class="o">)</span> → 数组不变
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">第 <span class="m">2</span> 轮:
+</span></span><span class="line"><span class="cl">  i 还是 1, j 还是 <span class="m">2</span>  → 完全一样 → 永远循环
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">初始: <span class="nv">i</span><span class="o">=</span>0, <span class="nv">j</span><span class="o">=</span><span class="m">3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">第 <span class="m">1</span> 轮:
+</span></span><span class="line"><span class="cl">  <span class="k">do</span> i++ → <span class="nv">i</span><span class="o">=</span>1, q<span class="o">[</span>1<span class="o">]</span>&lt;67? 否
+</span></span><span class="line"><span class="cl">  <span class="k">do</span> j-- → <span class="nv">j</span><span class="o">=</span>2, q<span class="o">[</span>2<span class="o">]</span>&gt;67? 否
+</span></span><span class="line"><span class="cl">  swap<span class="o">(</span>67,67<span class="o">)</span> → 数组不变
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">第 <span class="m">2</span> 轮:
+</span></span><span class="line"><span class="cl">  <span class="k">do</span> i++ → <span class="nv">i</span><span class="o">=</span><span class="m">2</span>   ← 强制从 <span class="m">1</span> 走到 <span class="m">2</span>
+</span></span><span class="line"><span class="cl">  <span class="k">do</span> j-- → <span class="nv">j</span><span class="o">=</span><span class="m">1</span>   ← 强制从 <span class="m">2</span> 走到 <span class="m">1</span>
+</span></span><span class="line"><span class="cl">  现在 <span class="nv">i</span><span class="o">=</span>2, <span class="nv">j</span><span class="o">=</span><span class="m">1</span> → i&lt;j 为假 → 退出
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">递归 <span class="o">(</span>1,1<span class="o">)</span> 和 <span class="o">(</span>2,2<span class="o">)</span> → 结束
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">void</span><span class="w"> </span><span class="nf">quick_sort</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="nx">q</span><span class="p">[],</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nx">l</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w">  </span><span class="nx">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">if</span><span class="p">(</span><span class="w"> </span><span class="nx">l</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="nx">r</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">q</span><span class="p">[</span><span class="nx">l</span><span class="p">]</span><span class="w"> </span><span class="p">,</span><span class="w">  </span><span class="nx">i</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">l</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nx">j</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">r</span><span class="w"> </span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nf">while</span><span class="p">(</span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nx">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nf">while</span><span class="p">(</span><span class="nx">q</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nx">x</span><span class="p">)</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">++</span><span class="w"> </span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nf">while</span><span class="p">(</span><span class="nx">q</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="nx">x</span><span class="p">)</span><span class="nx">j</span><span class="w"> </span><span class="o">--</span><span class="w"> </span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">if</span><span class="p">(</span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nx">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nf">swap</span><span class="p">(</span><span class="nx">q</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span><span class="w"> </span><span class="nx">q</span><span class="p">[</span><span class="nx">j</span><span class="p">]);</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nf">quick_sort</span><span class="p">(</span><span class="nx">q</span><span class="p">,</span><span class="w"> </span><span class="nx">l</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nx">j</span><span class="w"> </span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nf">quick_sort</span><span class="p">(</span><span class="nx">q</span><span class="p">,</span><span class="w"> </span><span class="nx">j</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nx">r</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="感悟">感悟
+</h3><p>记录一下在上班的时候 能够听满 30 分钟的课程 之前可是想都不敢想的</p>
 <p><img src="/p/acwing-basic-0x01/img1.png"
 	width="878"
 	height="518"
