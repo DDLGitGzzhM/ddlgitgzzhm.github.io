@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="给你一个整数数组 nums 和一个整数 k ，请你统计并返回 该数组中和为 k 的子数组的个数">
-<title>[LeetCode][hot100] 560. 和为 K 的子数组</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="当我们重新开始，我们以不再年轻">
+<title>[Acwing] 基础算法(二)</title>
 
-<link rel='canonical' href='https://ddlgitgzzhm.github.io/p/leetcode-560/'>
+<link rel='canonical' href='https://ddlgitgzzhm.github.io/p/acwing-basic-0x02/'>
 
 
-<link rel="stylesheet" href="/css/main.9a5c8f2dd65f8933ebb1c2d0175afb75dd9fc8765e238f5b09b6ba39536a73f9.css"><meta property='og:title' content="[LeetCode][hot100] 560. 和为 K 的子数组">
-<meta property='og:description' content="给你一个整数数组 nums 和一个整数 k ，请你统计并返回 该数组中和为 k 的子数组的个数">
-<meta property='og:url' content='https://ddlgitgzzhm.github.io/p/leetcode-560/'>
+<link rel="stylesheet" href="/css/main.9a5c8f2dd65f8933ebb1c2d0175afb75dd9fc8765e238f5b09b6ba39536a73f9.css"><meta property='og:title' content="[Acwing] 基础算法(二)">
+<meta property='og:description' content="当我们重新开始，我们以不再年轻">
+<meta property='og:url' content='https://ddlgitgzzhm.github.io/p/acwing-basic-0x02/'>
 <meta property='og:site_name' content='GzzhM'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='leetcode-hot100' /><meta property='article:published_time' content='2025-04-29T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-04-29T00:00:00&#43;00:00'/><meta property='og:image' content='https://ddlgitgzzhm.github.io/p/leetcode-560/img.png' />
-<meta name="twitter:title" content="[LeetCode][hot100] 560. 和为 K 的子数组">
-<meta name="twitter:description" content="给你一个整数数组 nums 和一个整数 k ，请你统计并返回 该数组中和为 k 的子数组的个数"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://ddlgitgzzhm.github.io/p/leetcode-560/img.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='acwing' /><meta property='article:published_time' content='2026-06-23T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-06-23T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="[Acwing] 基础算法(二)">
+<meta name="twitter:description" content="当我们重新开始，我们以不再年轻">
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -309,8 +308,15 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#题目">题目</a></li>
-    <li><a href="#思路">思路</a></li>
+    <li><a href="#二分排序">二分排序</a></li>
+    <li><a href="#整数二分">整数二分</a>
+      <ol>
+        <li><a href="#算法思路">算法思路</a></li>
+        <li><a href="#核心代码展示">核心代码展示</a></li>
+        <li><a href="#时间复杂度分析">时间复杂度分析</a></li>
+        <li><a href="#感悟">感悟</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -322,20 +328,8 @@
 
 
             <main class="main full-width">
-    <article class="has-image main-article">
+    <article class="main-article">
     <header class="article-header">
-        <div class="article-image">
-            <a href="/p/leetcode-560/">
-                <img src="/p/leetcode-560/img_hu_54f6a2b422963bc8.png"
-                        srcset="/p/leetcode-560/img_hu_54f6a2b422963bc8.png 800w, /p/leetcode-560/img_hu_fe899279f3614a06.png 1600w"
-                        width="800" 
-                        height="360" 
-                        loading="lazy"
-                        alt="Featured image of post [LeetCode][hot100] 560. 和为 K 的子数组" />
-                
-            </a>
-        </div>
-    
 
     <div class="article-details">
     
@@ -354,12 +348,12 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/leetcode-560/">[LeetCode][hot100] 560. 和为 K 的子数组</a>
+            <a href="/p/acwing-basic-0x02/">[Acwing] 基础算法(二)</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            给你一个整数数组 nums 和一个整数 k ，请你统计并返回 该数组中和为 k 的子数组的个数
+            当我们重新开始，我们以不再年轻
         </h3>
         
     </div>
@@ -380,7 +374,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2025-04-29</time>
+                <time class="article-time--published">2026-06-23</time>
             </div>
         
 
@@ -396,39 +390,41 @@
     <section class="article-content">
     
     
-    <h2 id="题目">题目
-</h2><blockquote>
-<p>给你一个整数数组 nums 和一个整数 k ，请你统计并返回 该数组中和为 k 的子数组的个数 。
-子数组是数组中元素的连续非空序列。</p>
-<p>示例 1：</p>
-<p>输入：nums = [1,1,1], k = 2</p>
-<p>输出：2</p>
-<p>示例 2：</p>
-<p>输入：nums = [1,2,3], k = 3</p>
-<p>输出：2</p>
-<p>提示：</p>
-<p>1 &lt;= nums.length &lt;= 2 * 104</p>
-<p>-1000 &lt;= nums[i] &lt;= 1000</p>
-<p>-107 &lt;= k &lt;= 107</p>
-</blockquote>
-<h2 id="思路">思路
-</h2><ol>
-<li>
-<p>对于 需要找到 <code>X + Y  = K</code> 的模型，我们统一想到使用 <code>map[X-K] = Y</code> 的优化，可以将 <code>n^2 -&gt; O(n)</code></p>
-</li>
-<li>
-<p>对于这题我们需要把子数组和看为<code>X</code>, 我们计算前缀和 <code>SUM[i]</code> 表示，以 <code>i</code> 结尾前面所有数值的和. 因为我们知道 <code>K</code> 所以我们并不需要去找到我们的 <code>Y</code>, 我们只需要保证，我们能全量的枚举出<code>X</code> 即 <code>SUM[i]</code></p>
-</li>
-<li>
-<p>因此我们只需要<code>ans = ans + map[sum[i] - K]</code> 即可</p>
-</li>
-</ol>
-<p>tips :</p>
+    <h2 id="二分排序">二分排序
+</h2><h2 id="整数二分">整数二分
+</h2><h3 id="算法思路">算法思路
+</h3><p>比较玄学的一句话目前还没懂</p>
+<p><code>二分不一定单调，但是单调一定二分</code></p>
+<p>算法思路</p>
 <ol>
-<li>当我们 <code>sum[1] - K == 2</code> 并且在 <code>sum[3] - K == 2</code> , 那么我们是否重复计算了 <code>[0~3]</code> 的某些子数组呢 ?</li>
+<li>对于一个区间可以拆分成 左边不满足条件 右边满足条件 的数据，可以求满足或者是不满足的数据的边界</li>
 </ol>
-<p>结论是 : 我们 <code>sum[3]-K == 2</code> 的成立是由于引入了<code>A[2]</code> , 因此不存在重复计算</p>
-<div class="highlight"><div class="chroma">
+<p><img src="/p/acwing-basic-0x02/img1.png"
+	width="1148"
+	height="228"
+	srcset="/p/acwing-basic-0x02/img1_hu_4cd5bcf3cefdb2e2.png 480w, /p/acwing-basic-0x02/img1_hu_f71f08b1e4676e84.png 1024w"
+	loading="lazy"
+	
+		alt="img.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="503"
+		data-flex-basis="1208px"
+	
+></p>
+<p>对于边界的的定义 有 <code>左边界</code> 和 <code>右边界</code></p>
+<p>整体抽象思路如下</p>
+<ol>
+<li>设定 mid</li>
+<li><code>check(mid)</code> 如果 <code>mid</code> 符合 右区间/左区间</li>
+<li>那么答案一定在 右区间/左区间, 将 l/r 指针移动到  mid</li>
+</ol>
+<p>对于答案在右区间来说，那么需要把 <code>l</code> 移动到 <code>mid</code> 因为 mid 也可能是答案 ，否则到话 <code>r=mid-1</code></p>
+<p>同样答案在左区间来说，那么需要把 <code>r</code> 移动到 <code>mid</code> 否则到话 <code>l=mid+1</code></p>
+<p>需要注意的是 因为程序 下取整的原因，需要保证 在移动 <code>l=mid</code> 的时候 <code>mid =l+r+1&gt;&gt;1</code></p>
+<h3 id="核心代码展示">核心代码展示
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -442,23 +438,40 @@
 </span><span class="lnt">10
 </span><span class="lnt">11
 </span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="nf">subarraySum</span><span class="p">(</span><span class="nx">nums</span><span class="w"> </span><span class="p">[]</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="nx">k</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">count</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">count</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">preSum</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">ans</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">for</span><span class="w">  </span><span class="nx">_</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nx">v</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="nx">nums</span><span class="w">  </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nx">preSum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">v</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nx">ans</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">count</span><span class="p">[</span><span class="nx">preSum</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">k</span><span class="p">]</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nx">count</span><span class="p">[</span><span class="nx">preSum</span><span class="p">]</span><span class="w"> </span><span class="o">++</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">ans</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl">        <span class="k">while</span><span class="p">(</span><span class="n">l</span> <span class="o">&lt;</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">l</span><span class="o">+</span><span class="n">r</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">x</span><span class="p">)</span> <span class="n">r</span> <span class="o">=</span> <span class="n">mid</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span> <span class="n">l</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">!=</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;-1 -1&#34;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span><span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="s">&#34; &#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">l</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>  <span class="n">r</span><span class="o">=</span> <span class="n">n</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">while</span><span class="p">(</span><span class="n">l</span> <span class="o">&lt;</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">l</span><span class="o">+</span><span class="n">r</span><span class="o">+</span><span class="mi">1</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">x</span><span class="p">)</span> <span class="n">l</span> <span class="o">=</span> <span class="n">mid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="k">else</span> <span class="n">r</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">r</span><span class="o">-</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div>
+</div><h3 id="时间复杂度分析">时间复杂度分析
+</h3><p>每次操作都将区间一分为二，最多logn次求解</p>
+<h3 id="感悟">感悟
+</h3><ol>
+<li>左区间调动右指针，右区间调动左指针有点反直觉 但是实际理解下来还好</li>
+</ol>
+<p>这个是我下班的时候看的，一开始没想明白，回家锻炼之后然后今天突发的想要跑步，跑了个5公里回来继续看 写下的</p>
+
 </section>
 
 
@@ -466,7 +479,7 @@
     
     <section class="article-tags">
         
-            <a href="/tags/leetcode-hot100/">Leetcode-Hot100</a>
+            <a href="/tags/acwing/">Acwing</a>
         
     </section>
 
@@ -509,19 +522,6 @@
     <h2 class="section-title">相关文章</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
-            
-                
-<article class="">
-    <a href="/p/acwing-basic-0x02/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">[Acwing] 基础算法(二)</h2>
-        </div>
-    </a>
-</article>
-
             
                 
 <article class="">
@@ -579,6 +579,30 @@
 
         <div class="article-details">
             <h2 class="article-title">[Hdu] 数学基础</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/leetcode-560/">
+        
+        
+            <div class="article-image">
+                <img src="/p/leetcode-560/img.6989f1f83b97cf8319719542d5c6b2e8_hu_c4ae9a1aa7ac3590.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post [LeetCode][hot100] 560. 和为 K 的子数组"
+                        data-key="leetcode-560" 
+                        data-hash="md5-aYnx&#43;DuXz4MZcZVC1cay6A==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[LeetCode][hot100] 560. 和为 K 的子数组</h2>
         </div>
     </a>
 </article>
