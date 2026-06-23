@@ -7,7 +7,7 @@
 <link rel='canonical' href='https://ddlgitgzzhm.github.io/p/acwing-basic-0x01/'>
 
 
-<link rel="stylesheet" href="/css/main.5f52d9bdb5328032483602d39190605c26795406e34426aaf61371918422ccb5.css"><meta property='og:title' content="[Acwing] 基础算法(一)">
+<link rel="stylesheet" href="/css/main.9a5c8f2dd65f8933ebb1c2d0175afb75dd9fc8765e238f5b09b6ba39536a73f9.css"><meta property='og:title' content="[Acwing] 基础算法(一)">
 <meta property='og:description' content="当我们重新开始，我们以不再年轻">
 <meta property='og:url' content='https://ddlgitgzzhm.github.io/p/acwing-basic-0x01/'>
 <meta property='og:site_name' content='GzzhM'>
@@ -318,6 +318,7 @@
         <li><a href="#感悟">感悟</a></li>
       </ol>
     </li>
+    <li><a href="#第二次默写">第二次默写</a></li>
   </ol>
 </nav>
         </div>
@@ -610,6 +611,53 @@
 		data-flex-basis="406px"
 	
 ></p>
+<h2 id="第二次默写">第二次默写
+</h2><p>第二次默写失败了好多次</p>
+<ol>
+<li><code>signal: bus error</code> 这个错误 指的是程序访问了不合法的内存地址 因为我代码总累加写错了</li>
+</ol>
+<p>变成了 <code>j++</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">quick_sort</span><span class="p">(</span><span class="kt">int</span> <span class="n">q</span><span class="p">[],</span><span class="kt">int</span> <span class="n">l</span> <span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// ... 
+</span></span></span><span class="line"><span class="cl"><span class="k">do</span> <span class="n">j</span> <span class="o">++</span> <span class="p">;</span> <span class="k">while</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">)</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">swap</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">q</span><span class="p">[</span><span class="n">j</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// ...
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>第二个点就是 需要保证 <code>i &lt; j </code> 才能够进行 <code>swap</code> 不然会把原来已经排序好的程序重新打乱</li>
+<li>边界的选取</li>
+</ol>
+<p>在竞技编程中，为了防错，大家通常死记硬背以下两套固定组合，千万不要交叉使用：</p>
+<p>组合一（最常用，推荐）：向下取整配 j</p>
+<p>基准值：<code>x = q[(l + r) &gt;&gt; 1];</code></p>
+<p>划分线：j</p>
+<p>递归：<code>quick_sort(q, l, j);</code> 和 <code>quick_sort(q, j + 1, r);</code></p>
+<p>组合二：向上取整配 i - 1</p>
+<p>基准值：<code>x = q[(l + r + 1) &gt;&gt; 1];</code></p>
+<p>划分线：<code>i - 1</code></p>
+<p>递归：<code>quick_sort(q, l, i - 1);</code> 和 <code>quick_sort(q, i, r);</code></p>
 
 </section>
 
