@@ -319,6 +319,14 @@
       </ol>
     </li>
     <li><a href="#第二次默写">第二次默写</a></li>
+    <li><a href="#归并排序">归并排序</a>
+      <ol>
+        <li><a href="#算法思路-1">算法思路</a></li>
+        <li><a href="#核心代码展示-1">核心代码展示</a></li>
+        <li><a href="#时间复杂度分析-1">时间复杂度分析</a></li>
+        <li><a href="#感悟-1">感悟</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -658,6 +666,58 @@
 <p>基准值：<code>x = q[(l + r + 1) &gt;&gt; 1];</code></p>
 <p>划分线：<code>i - 1</code></p>
 <p>递归：<code>quick_sort(q, l, i - 1);</code> 和 <code>quick_sort(q, i, r);</code></p>
+<h2 id="归并排序">归并排序
+</h2><h3 id="算法思路-1">算法思路
+</h3><ol>
+<li>递归处理大区间一分为2为小区间</li>
+<li>双指针合并两个小区间 ， 保证数组有序</li>
+</ol>
+<h3 id="核心代码展示-1">核心代码展示
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">merge_sort</span><span class="p">(</span><span class="kt">int</span> <span class="n">q</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">l</span> <span class="o">&gt;=</span> <span class="n">r</span><span class="p">)</span> <span class="k">return</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">l</span> <span class="o">+</span> <span class="n">r</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">	<span class="n">merge_sort</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="n">mid</span><span class="p">)</span> <span class="p">,</span> <span class="n">merge_sort</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">,</span> <span class="n">i</span> <span class="o">=</span> <span class="n">l</span> <span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">mid</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">q</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="n">temp</span><span class="p">[</span><span class="o">++</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="n">i</span> <span class="o">++</span> <span class="p">]</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">else</span> <span class="n">temp</span><span class="p">[</span><span class="o">++</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="n">j</span> <span class="o">++</span> <span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">mid</span><span class="p">)</span> <span class="n">temp</span><span class="p">[</span><span class="o">++</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="n">i</span> <span class="o">++</span> <span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="k">while</span><span class="p">(</span><span class="n">j</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="p">)</span> <span class="n">temp</span><span class="p">[</span><span class="o">++</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="n">j</span> <span class="o">++</span><span class="p">]</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">l</span> <span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">;</span>  <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">r</span> <span class="p">;</span> <span class="n">i</span> <span class="o">++</span> <span class="p">,</span> <span class="n">j</span> <span class="o">++</span> <span class="p">)</span> <span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="时间复杂度分析-1">时间复杂度分析
+</h3><ol>
+<li>递归处理最多拆分成  logN 个区间，每个区间最多进行 N 次</li>
+</ol>
+<p>最坏情况下都排序也是 nlogn 的</p>
+<h3 id="感悟-1">感悟
+</h3><p>归并排序的过程很好理解，但是实际写代码下来 指针很多 <code>i,j,k,mid</code> ，然后还加上递归回溯的处理，导致整个过程比较难理解</p>
 
 </section>
 
