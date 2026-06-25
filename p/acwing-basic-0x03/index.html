@@ -342,6 +342,14 @@
         <li><a href="#感悟-3">感悟</a></li>
       </ol>
     </li>
+    <li><a href="#二维差分">二维差分</a>
+      <ol>
+        <li><a href="#算法思路-4">算法思路</a></li>
+        <li><a href="#核心代码展示-4">核心代码展示</a></li>
+        <li><a href="#时间复杂度分析-4">时间复杂度分析</a></li>
+        <li><a href="#感悟-4">感悟</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -605,6 +613,113 @@
 </ol>
 <h3 id="感悟-3">感悟
 </h3><p>这里说实话就有点抽象了，不实际想想或者是推导很难理解这部分代码</p>
+<h2 id="二维差分">二维差分
+</h2><h3 id="算法思路-4">算法思路
+</h3><p>我们在已知 一维差分的操作会因为前缀和的原因导致 操作值累加在区间上</p>
+<p>在不推导 差分数组的前提下 :</p>
+<p>我们可以直观的想想 如果我们在 <code>x1,y1</code>增加 <code>c</code> 那么剩下的范围都会被影响，即取一个差集</p>
+<p>所以我们如果需要给 <code>x1,y1</code> ,<code>x2,y2</code> 增加 <code>c</code>  的话我们应该</p>
+<p><code>x1,y1 +c</code>,<code>x1,y2+1 -c</code>, <code>x2+1,y1 -c</code> , <code>x2+1,y2+1 +c</code></p>
+<p>从而使得我们的矩形能够加 <code>c</code></p>
+<p><img src="/p/acwing-basic-0x03/img1.png"
+	width="704"
+	height="550"
+	srcset="/p/acwing-basic-0x03/img1_hu_4d16b40212e7ab83.png 480w, /p/acwing-basic-0x03/img1_hu_728ce997f2b5692.png 1024w"
+	loading="lazy"
+	
+		alt="img1.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="128"
+		data-flex-basis="307px"
+	
+></p>
+<p>反过来如果我们 给 <code>x1,y1,x1,y1</code> 这个区间增加 <code>c</code> 那么最终我们得到的就是原始的数组</p>
+<h3 id="核心代码展示-4">核心代码展示
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">insert</span><span class="p">(</span><span class="kt">int</span> <span class="n">x1</span><span class="p">,</span><span class="kt">int</span> <span class="n">y1</span><span class="p">,</span><span class="kt">int</span> <span class="n">x2</span><span class="p">,</span><span class="kt">int</span> <span class="n">y2</span><span class="p">,</span><span class="kt">int</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b</span><span class="p">[</span><span class="n">x1</span><span class="p">][</span><span class="n">y1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b</span><span class="p">[</span><span class="n">x2</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">y1</span><span class="p">]</span> <span class="o">-=</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b</span><span class="p">[</span><span class="n">x1</span><span class="p">][</span><span class="n">y2</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-=</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b</span><span class="p">[</span><span class="n">x2</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">y2</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ios</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="k">nullptr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="n">m</span><span class="o">&gt;&gt;</span><span class="n">q</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span> <span class="p">;</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">m</span> <span class="p">;</span> <span class="n">j</span> <span class="o">++</span> <span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">c</span> <span class="p">;</span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">insert</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">c</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">q</span> <span class="o">--</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span class="n">y2</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">x1</span><span class="o">&gt;&gt;</span><span class="n">y1</span><span class="o">&gt;&gt;</span><span class="n">x2</span><span class="o">&gt;&gt;</span><span class="n">y2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">c</span> <span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">insert</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="n">y2</span><span class="p">,</span><span class="n">c</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span> <span class="p">;</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">m</span> <span class="p">;</span> <span class="n">j</span> <span class="o">++</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span> <span class="n">n</span> <span class="p">;</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">m</span> <span class="p">;</span><span class="n">j</span> <span class="o">++</span> <span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="s">&#34; &#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">         <span class="p">}</span>
+</span></span><span class="line"><span class="cl">         <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="时间复杂度分析-4">时间复杂度分析
+</h3><p>O n*m</p>
+<h3 id="感悟-4">感悟
+</h3><p>二维差分说实话一开始没反应过来，我听y总讲的时候，感觉怎么跳的这么快，连构造数组都不出，原来这里反向思考了一下</p>
+<p>而且对于  (x2 + 1) 我刚开始以为 x 是 列，问了 gemini 后才知道是行</p>
 
 </section>
 
