@@ -308,12 +308,38 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#前缀和">前缀和</a>
+    <li><a href="#前缀和">前缀和</a></li>
+    <li><a href="#一维前缀和">一维前缀和</a>
       <ol>
         <li><a href="#算法思路">算法思路</a></li>
         <li><a href="#核心代码展示">核心代码展示</a></li>
         <li><a href="#时间复杂度分析">时间复杂度分析</a></li>
         <li><a href="#感悟">感悟</a></li>
+      </ol>
+    </li>
+    <li><a href="#二维前缀和">二维前缀和</a>
+      <ol>
+        <li><a href="#算法思路-1">算法思路</a></li>
+        <li><a href="#核心代码展示-1">核心代码展示</a></li>
+        <li><a href="#时间复杂度分析-1">时间复杂度分析</a></li>
+        <li><a href="#感悟-1">感悟</a></li>
+      </ol>
+    </li>
+    <li><a href="#差分">差分</a></li>
+    <li><a href="#一维差分">一维差分</a>
+      <ol>
+        <li><a href="#算法思路-2">算法思路</a></li>
+        <li><a href="#核心代码展示-2">核心代码展示</a></li>
+        <li><a href="#时间复杂度分析-2">时间复杂度分析</a></li>
+        <li><a href="#感悟-2">感悟</a></li>
+      </ol>
+    </li>
+    <li><a href="#二维前缀和-1">二维前缀和</a>
+      <ol>
+        <li><a href="#算法思路-3">算法思路</a></li>
+        <li><a href="#核心代码展示-3">核心代码展示</a></li>
+        <li><a href="#时间复杂度分析-3">时间复杂度分析</a></li>
+        <li><a href="#感悟-3">感悟</a></li>
       </ol>
     </li>
   </ol>
@@ -390,6 +416,7 @@
     
     
     <h2 id="前缀和">前缀和
+</h2><h2 id="一维前缀和">一维前缀和
 </h2><h3 id="算法思路">算法思路
 </h3><ol>
 <li>使用 Sum 数组累加计算数值数组的和</li>
@@ -423,6 +450,161 @@
 <p>但是在多次区间询问的时候可以提前把和计算出来从而使得 <code>o(n*m)</code> 变成 <code>o(n+m)</code></p>
 <h3 id="感悟">感悟
 </h3><p>小学数学</p>
+<h2 id="二维前缀和">二维前缀和
+</h2><h3 id="算法思路-1">算法思路
+</h3><ol>
+<li>
+<p>通过数学方法将 <code>Sxy</code> 代表二维空间中矩形的面积，从而根据二维关系进行处理</p>
+</li>
+<li>
+<p>不过需要注意的是 我们在处理一个区域的面积大时候， 需要保证角落上的点也被计算所以就需要 <code>S[x1][y2-1]</code> 以及 <code>s[x2-1][y1]</code> 这种处理</p>
+</li>
+</ol>
+<p>由于作图的时候 只有点线，并没有画出具体的面，所以导致写代码的时候很少联想到</p>
+<p><img src="/p/acwing-basic-0x03/img.png"
+	width="1708"
+	height="662"
+	srcset="/p/acwing-basic-0x03/img_hu_60e7c450e7700e11.png 480w, /p/acwing-basic-0x03/img_hu_ba1c2bddf84c2077.png 1024w"
+	loading="lazy"
+	
+		alt="img.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="258"
+		data-flex-basis="619px"
+	
+></p>
+<h3 id="核心代码展示-1">核心代码展示
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span> 
+</span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">m</span> <span class="p">;</span> <span class="n">j</span> <span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">q</span> <span class="o">--</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">x1</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="n">y2</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">x1</span><span class="o">&gt;&gt;</span><span class="n">y1</span><span class="o">&gt;&gt;</span><span class="n">x2</span><span class="o">&gt;&gt;</span><span class="n">y2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span><span class="o">&lt;&lt;</span> <span class="n">s</span><span class="p">[</span><span class="n">x2</span><span class="p">][</span><span class="n">y2</span><span class="p">]</span> <span class="o">-</span> <span class="n">s</span><span class="p">[</span><span class="n">x2</span><span class="p">][</span><span class="n">y1</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="o">-</span> <span class="n">s</span><span class="p">[</span><span class="n">x1</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">y2</span><span class="p">]</span> <span class="o">+</span> <span class="n">s</span><span class="p">[</span><span class="n">x1</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">y1</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="时间复杂度分析-1">时间复杂度分析
+</h3><ol>
+<li>o(n*m)</li>
+</ol>
+<h3 id="感悟-1">感悟
+</h3><p>不用死记公式，根据二维图像脑中进行想象</p>
+<h2 id="差分">差分
+</h2><h2 id="一维差分">一维差分
+</h2><h3 id="算法思路-2">算法思路
+</h3><ol>
+<li>使用 Sum 数组累加计算数值数组的和</li>
+</ol>
+<p><code>sum[i] = sum[i-1] + a[i]</code></p>
+<p>从而可以很快的求出某个区间的和，例如</p>
+<p><code>sum[l~r] = sum[r] - sum[l-1]</code></p>
+<h3 id="核心代码展示-2">核心代码展示
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span> <span class="p">;</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span> <span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">m</span> <span class="o">--</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">l</span> <span class="p">,</span> <span class="n">r</span> <span class="p">;</span>  <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">l</span> <span class="o">&gt;&gt;</span> <span class="n">r</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">s</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">-</span> <span class="n">s</span><span class="p">[</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="时间复杂度分析-2">时间复杂度分析
+</h3><ol>
+<li>在只有一次区间询问的时候 和 for 循环直接计算无异 都是<code>o(n)</code></li>
+</ol>
+<p>但是在多次区间询问的时候可以提前把和计算出来从而使得 <code>o(n*m)</code> 变成 <code>o(n+m)</code></p>
+<h3 id="感悟-2">感悟
+</h3><p>小学数学</p>
+<h2 id="二维前缀和-1">二维前缀和
+</h2><h3 id="算法思路-3">算法思路
+</h3><p>构造数组 <code>b[i]=a[i]-a[i-1]</code> 是的 <code>Sum[b[]] = a[i]</code></p>
+<p>如果我们需要对一个区间进行一次操作，如 <code>计算 区间 [l,r] +c </code>之后的总和，我们很自然的可以想到 <code>s[r]-s[l-1] + (r-l+1)*c</code></p>
+<p>但是如果我们需要对不同的区间进行多次操作,我们就没办法这样</p>
+<p>基于 <code>sum[b[]] = a[i]</code> 的性质，我们对 <code>b[l]+c</code> 并且对 <code>b[r+1]-c</code> 我们得到的数组就是</p>
+<p><code>b[l]=a[l]-a[l-1]+c, b[l+1] = a[l+1]-a[l], .... b[r+1] = a[r+1] - a[r] - a[r]</code></p>
+<p>如果计算前缀和的话 会变成</p>
+<p><code>a[l] + ... a[r] + (r-l+1)*c</code></p>
+<h3 id="核心代码展示-3">核心代码展示
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">insert</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span><span class="kt">int</span> <span class="n">r</span><span class="p">,</span><span class="kt">int</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b</span><span class="p">[</span><span class="n">l</span><span class="p">]</span>  <span class="o">+=</span> <span class="n">c</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b</span><span class="p">[</span><span class="n">r</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-=</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ios</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="k">nullptr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="n">m</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span> <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span> <span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">insert</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">m</span> <span class="o">--</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">l</span><span class="o">&gt;&gt;</span><span class="n">r</span><span class="o">&gt;&gt;</span><span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">insert</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span> <span class="p">;</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span> <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="s">&#34; &#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="时间复杂度分析-3">时间复杂度分析
+</h3><ol>
+<li>差分时间复杂度 O(1)</li>
+</ol>
+<h3 id="感悟-3">感悟
+</h3><p>这里说实话就有点抽象了，不实际想想或者是推导很难理解这部分代码</p>
 
 </section>
 
