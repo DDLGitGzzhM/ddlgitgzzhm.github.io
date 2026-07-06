@@ -7,7 +7,196 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>GzzhM</copyright>
-        <lastBuildDate>Thu, 02 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/categories/time-line/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 06 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/categories/time-line/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>[重磅消息] 我被裁员了！</title>
+        <link>https://ddlgitgzzhm.github.io/p/fire-workd-01/</link>
+        <pubDate>Mon, 06 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/p/fire-workd-01/</guid>
+        <description>&lt;p&gt;写在前头&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;种一棵树的最好时间是十年前，其次是现在&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;我们什么都没做错，我们只是被筛选&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;工作历程&#34;&gt;工作历程
+&lt;/h2&gt;&lt;p&gt;在这家公司大概有 &lt;code&gt;3年了&lt;/code&gt;, 我只能说缘分让我留在了这，而且我正好也懒不向上求。&lt;/p&gt;
+&lt;p&gt;现在的我没有情绪上的特大波动，仿佛就好像认为自己本该走一样，无非早点晚点。&lt;/p&gt;
+&lt;p&gt;但是我也没什么思绪能够理清现在的表达逻辑，就简单的说一下&lt;/p&gt;
+&lt;h3 id=&#34;组内变动&#34;&gt;&lt;strong&gt;组内变动&lt;/strong&gt;
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;从我实习到现在，我们组确切的说变动了&lt;code&gt;4次&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;第一次是 &lt;code&gt;DEFI &amp;amp; CEFI&lt;/code&gt; 的拆分，这是从业务属性上进行拆分&lt;/li&gt;
+&lt;li&gt;第二次是 将 &lt;code&gt;Collector Account&lt;/code&gt; 的组合并，负责底层调度账户的逻辑写好大概有2年了，没什么新内容。所以那个组被砍掉了，归为我们拆出来的组管&lt;/li&gt;
+&lt;li&gt;第三次是 &lt;code&gt;数据组&lt;/code&gt; 合并到 &lt;code&gt;CEFI&lt;/code&gt; 组，同样的，&lt;code&gt;数据组&lt;/code&gt; 的大部分内容都很简单，无非就是处理 数据接口 API调度以及处理旧数据，大体的框架跑安稳了几年之后没什么新东西，同时处理旧数据的内容可以直接使用&lt;code&gt;SOP&lt;/code&gt;进行处理，并且很多东西都&lt;code&gt;配置化了&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;第四次就是我们这次了, 也可以说不是变动吧 我们组原先的 &lt;code&gt;Leader&lt;/code&gt; 换人了，新招了一位 &lt;code&gt;Leader&lt;/code&gt; 过来，新增了一些 &lt;code&gt;快照处理&lt;/code&gt; &lt;code&gt;回溯&lt;/code&gt; &lt;code&gt;账户暂停&lt;/code&gt; 的需求。然后需求做的差不多,我们也被裁员了&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;我经历了 &lt;code&gt;3次完整的业务组调整&lt;/code&gt;,见过很多人走,也见过很多人来&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;一位组内的实习生,因为临近春招，频繁请假,然后被裁员了，裁员的很突然，实习生嘛，没什么交接流程直接就走了&lt;/li&gt;
+&lt;li&gt;还有一些实习了很久但是没转正的，说是想要回家工作去了新疆&lt;/li&gt;
+&lt;li&gt;还有一个从腾讯微宝出来的,但是他没通过转正考核&lt;/li&gt;
+&lt;li&gt;还有一位也是腾讯出来的,但是他转正后工作了几个月就跳槽去了证券&lt;/li&gt;
+&lt;li&gt;还有一些刚团建完就被裁员的&lt;/li&gt;
+&lt;li&gt;为了出国然后辞职的&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;好多好多, 刚毕业那会我对很多同事都很热情,同样我也经常和他们交流。但是走的人越多,我越沉默,渐渐的我不说话&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;多年之前 我是这么寂寞的, 今时今日我也是这么寂寞的 ... 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;寂寞又怎么样？
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;礁石都不说话
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;但是水流过去之后
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;礁石留下
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            ---- &amp;lt;&amp;lt;江南随笔&amp;gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;自身成长&#34;&gt;自身成长
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;我刚买了两瓶新的盐，一瓶酱油，一瓶橄榄油,我还没来得及用，但是我要走了
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            ---- 我自己
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;硬说我这两年没有成长是真的，甚至可以说我是退步了&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;我忘记了之前大学那会的算法题&lt;/li&gt;
+&lt;li&gt;我忘记了我实习时候写在简历上的项目&lt;/li&gt;
+&lt;li&gt;我忘记了我当初准备面试时候背的八股文&lt;/li&gt;
+&lt;li&gt;我失去了学习的热情&lt;/li&gt;
+&lt;li&gt;我失去了这两年的时间&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&amp;hellip;&lt;/p&gt;
+&lt;p&gt;所以我可以 &lt;code&gt;大大方方的承认&lt;/code&gt; 我失败了,我退步了&lt;/p&gt;
+&lt;p&gt;那么你说我没改变吗？&lt;/p&gt;
+&lt;p&gt;2024年&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;我尝试拍漫展，学习修图，并且获得了不错的作品，有一些摄影的朋友&lt;/li&gt;
+&lt;li&gt;我完整的完成了我的毕设&lt;/li&gt;
+&lt;li&gt;我一个人租房 一个人换房&lt;/li&gt;
+&lt;li&gt;第一次出国&lt;/li&gt;
+&lt;li&gt;我好像就没了&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;2025年&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;我爬了一座雪山&lt;/li&gt;
+&lt;li&gt;开始陆陆续续减肥 从 170 减到了 150&lt;/li&gt;
+&lt;li&gt;我买了人生第一辆公路车&lt;/li&gt;
+&lt;li&gt;人生第一次搬家&lt;/li&gt;
+&lt;li&gt;卖掉了我的摄影设备&lt;/li&gt;
+&lt;li&gt;开始玩期货，并且从 200u 赚到了 20W RMB .不得不承认这段时间回不去了&lt;/li&gt;
+&lt;li&gt;开始玩基金&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;2026年&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;开始自己做饭&lt;/li&gt;
+&lt;li&gt;开始护肤&lt;/li&gt;
+&lt;li&gt;开始护发&lt;/li&gt;
+&lt;li&gt;开始锻炼, 从 150 减到了 140&lt;/li&gt;
+&lt;li&gt;开始跑步&lt;/li&gt;
+&lt;li&gt;开始价值投资&lt;/li&gt;
+&lt;li&gt;开始玩股票&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;我尝试了很多很多，同时也浪费了很多很多&lt;/p&gt;
+&lt;p&gt;我知道主要让我赚钱的是工作, 但是我并没有在上面进行努力&lt;/p&gt;
+&lt;h3 id=&#34;补充&#34;&gt;补充
+&lt;/h3&gt;&lt;p&gt;在这3年值得提几句的点真不多，我刚得到 &lt;code&gt;优秀员工&lt;/code&gt; 下一秒就被裁了，从任务上看&lt;/p&gt;
+&lt;p&gt;实习期间 :&lt;/p&gt;
+&lt;p&gt;那时候 &lt;code&gt;AI&lt;/code&gt;还没火，我单独写了一个 异步调度任务 的需求 一整个完整的需求&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;从异步调度 API&lt;/li&gt;
+&lt;li&gt;存入数据库状态，发送给MQ&lt;/li&gt;
+&lt;li&gt;MQ轮询消费&lt;/li&gt;
+&lt;li&gt;处理数据&lt;/li&gt;
+&lt;li&gt;数据入库，状态更新&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;正式期间 :&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;优化数据库存储&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;这个说实话方案是 我 &lt;code&gt;Leader&lt;/code&gt; 出的，我只是负责实行而已&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Auth 服务器迁移&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;这个比较难描述，我们单独把敏感的API信息放到了一个 Auth 服务器上面，但是我们之前 V1 版本维护的不好。所以我们做了 V2 升级&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;好像就没有了，一时半会没想起来 后面第二篇整理的时候在想吧&lt;/p&gt;
+&lt;h2 id=&#34;后期规划和安排&#34;&gt;后期规划和安排
+&lt;/h2&gt;&lt;p&gt;我原本是想着&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;去尼泊尔学一趟英语 顺便走一趟尼泊尔徒步&lt;/li&gt;
+&lt;li&gt;然后去埃及学滑雪&lt;/li&gt;
+&lt;li&gt;去菲律宾潜水&lt;/li&gt;
+&lt;li&gt;最后去趟日本旅行&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;但是我发现如果我这么玩下来可能要半年了，到时候我会&lt;code&gt;脱节吗&lt;/code&gt; 我不知道，我是否又能做到在旅行的时候学习呢&lt;/p&gt;
+&lt;p&gt;然后下午的时候想了一下发现我思路错误了&lt;/p&gt;
+&lt;p&gt;我应该先学习 然后再投简历和面试的时候出去玩&lt;/p&gt;
+&lt;p&gt;这次预计 gap 3个月，因为赔偿hi &lt;code&gt;N+1&lt;/code&gt; 正好 &lt;code&gt;3个月&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;预计是 &lt;code&gt;2个月准备&lt;/code&gt; +&lt;code&gt;1个月游玩&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;期间的安排还没定过，预计是&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;先洗一遍简历的项目&lt;/li&gt;
+&lt;li&gt;然后背八股文 和 一些中间件&lt;/li&gt;
+&lt;li&gt;期间看情况有没有时间学第二语言&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;我感觉这几个月会很忙&lt;/p&gt;
+&lt;p&gt;当然还有一些其他问题&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;整理工作的经验&lt;/li&gt;
+&lt;li&gt;社保要不要自己交，断交，以及失业金的领取&lt;/li&gt;
+&lt;li&gt;要不要换个房子租，去海边租&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;一些感悟&#34;&gt;一些感悟
+&lt;/h2&gt;&lt;p&gt;其实我很早就能猜到我们组要裁员的，大概是3个月前，我们组就没什么需求了&lt;/p&gt;
+&lt;p&gt;但是那时候我还没有开始，因为 第一出差 第二 端午 51 假期规划出游&lt;/p&gt;
+&lt;p&gt;直到最近一个月才开始重新刷算法题，但是当我开始我才发现我开始晚了&lt;/p&gt;
+&lt;p&gt;裁员的事其实上周 ，CTO就找leader聊过了，但是名单是这周才出。&lt;/p&gt;
+&lt;p&gt;从 CTO 的角度来看，CTO只能看到 一个人有没有写bug，他的薪资是多少，他的产出是多少&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;我可以认为是我们组产出是第二高的，或者是第一&lt;/li&gt;
+&lt;li&gt;bug的话因为AI的出现很少有了&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;CTO 同样还需要参考 &lt;code&gt;产品经理&lt;/code&gt; 和 &lt;code&gt;Leader&lt;/code&gt; 的建议&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Leader 从可替代性，涉及模块出发，我确实会走。 因为我自己拥有的模块业务属性不高，而且可替代性很强。我相当于是一个工具，只是被用，而不是在培养&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;从产品经理的角度来看，自从有了AI的加持，对于一个需求能不能做，合不合适做，这个问题就变的微乎其微了，所以我的护城河也没了&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;其他&#34;&gt;其他
+&lt;/h2&gt;&lt;p&gt;写累了 明天再写吧，写这么点东西竟然写了我一个小时&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>[Acwing] 基础算法（四) 离散化&amp;区间合并</title>
         <link>https://ddlgitgzzhm.github.io/p/acwing-basic-0x04/</link>
         <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
