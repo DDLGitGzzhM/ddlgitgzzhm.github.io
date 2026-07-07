@@ -7,7 +7,136 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>GzzhM</copyright>
-        <lastBuildDate>Mon, 06 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/tags/%E5%B7%A5%E4%BD%9C/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 07 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/tags/%E5%B7%A5%E4%BD%9C/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>裁员之后我该何去何从</title>
+        <link>https://ddlgitgzzhm.github.io/p/fire-workd-02/</link>
+        <pubDate>Tue, 07 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/p/fire-workd-02/</guid>
+        <description>&lt;p&gt;写在前头 :&lt;/p&gt;
+&lt;p&gt;周一通知的裁员，今天周二，这一周还有很多任务要做，今天可以说是这周最忙的一天&lt;/p&gt;
+&lt;p&gt;今天一整天都没怎么摸鱼，没有写算法题没有写项目。回到家也很累，今天锻炼就锻炼了15分钟&lt;/p&gt;
+&lt;p&gt;现在是 22：29 我想我应该做点什么&lt;/p&gt;
+&lt;h2 id=&#34;现状&#34;&gt;现状
+&lt;/h2&gt;&lt;p&gt;这次被裁员了 20% ，&lt;code&gt;覆巢之下，安有完卵&lt;/code&gt; , 我应该算是最年轻的一个&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;跟我同一批的人他在做什么 :&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;跟我同一批的人有4个，指的是我们公司的，至于互联网上的其他人我并不清楚&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;清华哥，实习的时候和我对接，但是实习结束后没有选择转正 而是去日本工作了&lt;/li&gt;
+&lt;li&gt;equation，目前应该是单独处理一个业务组，好像是在做最新的业务&lt;/li&gt;
+&lt;li&gt;yapeng,一开始是在行情组工作，但是后面分了一半心思去做 AI Agent了主要是对接客户成功那边&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;反观我而是一直在组内安分守己 温水煮青蛙，我并不知道他们为什么会去接触这种新业务的，是Leader推荐还是CTO选拔，或者是自己去私聊。我是一个局外人&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;跟我同一批被裁的人在做什么 :&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;跟我同一批被裁的目前聊下来的大概有 4个，至少有4个有一些打算&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;sunl, 我前组的同事，在我实习转正之后跳到了风控组。我很佩服他这个决定，可以说是天时地利人和而且非常大胆&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;我记得我们公司春初的时候让大家填了一个表，询问是否想要留在自己组，如果不想要留在自己组最想去哪个组。但是我并不思变，依旧选择自己组&lt;/p&gt;
+&lt;p&gt;但是 sunl 是前年就转组了，没转组之前预计在我们的业务组呆了2年 。可惜的是他也被裁了。我没记错他应该是去年结婚的，估计现在经济压力负担也大，他现在的目标就就是&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;下周就能到岗&lt;/li&gt;
+&lt;li&gt;远程高新工作&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;有点佩服，一直都在更新简历？不用准备？下周就能到岗&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;xll，一位工作了很久的同事，说是这波裁员之后 都可以领退休金了，社保已经交满15年了&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;他现在的想法是&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;先玩一个月&lt;/li&gt;
+&lt;li&gt;然后复习&lt;/li&gt;
+&lt;li&gt;最后转 AI&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;哦 另外两个没有表明意向，我也不清楚。我本来预计是想要gap半年的，但是看到老一辈的都这么卷，我感觉我也不能松懈&lt;/p&gt;
+&lt;h2 id=&#34;我的想法&#34;&gt;我的想法
+&lt;/h2&gt;&lt;p&gt;我现在的想法是什么 :&lt;/p&gt;
+&lt;p&gt;从先玩再准备 ，改变成先准备在玩&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;预计一天学习 9:00 到 21:00 , 12个小时 。算上buffer-time 预计是 10~12个小时&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;先准备一个月，大概是 300 ~ 360 h&lt;/p&gt;
+&lt;p&gt;预计需要完成3个项目&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;一个 Python 搭建的 AI Chat 项目， 这个项目来自 Acwing ; &lt;code&gt;https://www.acwing.com/activity/content/4250/&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;之前写到一半放弃了，18个课时，算上double，总共36个课时&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;一个 Golang 的项目，这个还没有找可能是从实习简历里面捞一个出来，或者是重新写一个。预计课时也是18左右 double 36&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;一个 Mit 6.824 我很可惜，我一直没有完整的思考和写过这个项目，预计课时 10 double 20&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;一个 Java 项目 可能也来自 Acwing 或者是 Java 星球里面的 12306 抢票系统 。 预计课时 18 double 36&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;项目花费课时 36*3 + 20 = 128&lt;/p&gt;
+&lt;p&gt;期间还需要补充八股文&lt;/p&gt;
+&lt;p&gt;主要复习来自 &lt;a class=&#34;link&#34; href=&#34;https://xiaolincoding.com/network/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://xiaolincoding.com/network/&lt;/a&gt; 小林coding&lt;/p&gt;
+&lt;p&gt;计算机网络 5个章节 预计一个章节 10小时，总共50个小时&lt;/p&gt;
+&lt;p&gt;操作系统 10个章节 预计一个章节 10小时 预计100个小时&lt;/p&gt;
+&lt;p&gt;Mysql 总共8个章节 预计一个章节 10小时 预计 80个小时&lt;/p&gt;
+&lt;p&gt;Redis 总共8个章节 预计一个章节 10小时 预计 80个小时&lt;/p&gt;
+&lt;p&gt;100+160+50 = 310 h (看来欠的有点多 hh)&lt;/p&gt;
+&lt;p&gt;可能还需要准备一下 Etcd，分布式，高并发，MQ 等问题 这里预计要 50个小时&lt;/p&gt;
+&lt;p&gt;总共 360h&lt;/p&gt;
+&lt;p&gt;剩下的时间还需要算上算法的内容，预计课时是 45，算上刷题和复习 double一下 大概90&lt;/p&gt;
+&lt;p&gt;还有一些时间大概就是 准备一下面试题什么的&lt;/p&gt;
+&lt;p&gt;总共算一下大概就是&lt;/p&gt;
+&lt;p&gt;128 + 360 + 90 = 578 大概高强度 一天10个小时学习，57天 大概是两个月。 如果是下周一开始准备的话大概是9月14号后开始进行玩&lt;/p&gt;
+&lt;p&gt;(这里简单算一笔账，如果每天回家学习1个小时，大概需要学习578天也就是2年，但是现在只需要两个月) hh , 果然上班之后时间都不是自己的&lt;/p&gt;
+&lt;p&gt;这周因为还有工作，所以预计会在周五总结一下手上有的和手上没有的，同时决策一些方案。例如去哪里玩 什么的&lt;/p&gt;
+&lt;h2 id=&#34;写在后面&#34;&gt;写在后面
+&lt;/h2&gt;&lt;p&gt;我承认这个计划可能很难，我感觉也会失败，而且失败的代价或许是惨痛的，因为算上double 我可能会gap 4个月&lt;/p&gt;
+&lt;p&gt;或者说找不到好的工作 。&lt;/p&gt;
+&lt;p&gt;但是我想说的是，现在没有更好的选择了 不是吗&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;我能做到的是当下最好的选择&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;加油，这下真该加油了&lt;/p&gt;
+&lt;h2 id=&#34;补充一下&#34;&gt;补充一下
+&lt;/h2&gt;&lt;p&gt;刚刚写完之后 清了一下游戏的体力想到一些问题&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;如果我写 Java 项目那么就需要多准备一份 Java 八股文，预计会额外增加故事点，这可能会增加压力，但是他会带来更多选择的好处这个值得决策，而且我引入 Java 项目主要是可以多一个资料全一点的高并发项目可以抄，Golang这边目前没看到&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;我的时间都去哪了？ 假设一天正常工作8小时，其中摸鱼时间1小时，这一小时我会水群看知乎看小红书，这叫放松 。 那么我早上9：00起床，9：30到公司，晚上18：30下班，到睡觉0：30期间有6个小时&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;锻炼，炒菜，吃饭洗澡洗碗 1个小时半&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;游戏清体力过日常 1个小时&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;回家刷抖音/B站 1个小时&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果要跑步的话 1个小时&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;那么还剩 1个半小时，这一个半小时就是学习的一个半小时，但是我又要提前半个小时放松大脑，所以只有1个小时&lt;/p&gt;
+&lt;p&gt;这个小时就是 23：00到00：00 ，这个时间点之前我再记录日记，现在再写博客，闲暇的时候我会去水群，其他时间可能会去看直播&lt;/p&gt;
+&lt;p&gt;所以我只有工作了之后我确实只有 1个小时的休闲时间，当然如果把刷抖音/b站，游戏去掉 或者说加起来控制再1个小时，那么我只会多出一个小时 可是这样事情会变得很枯燥&lt;/p&gt;
+&lt;p&gt;而且之前我还在和女朋友聊天，再学习漫展修图 各种各种，看来我工作的时候确实没时间学习，或者说学习是一条很长的战线&lt;/p&gt;
+&lt;p&gt;哦 还有我玩游戏1个小时只是搬砖游戏的一个小时，偶尔还会去玩其他游戏占用其他时间，另外之前炒股又花了一部分时间&lt;/p&gt;
+&lt;p&gt;突然想起来 史铁生的《好运设计》 ， 以及某些政府政策导致某些人群 某些地区的发展变动&lt;/p&gt;
+&lt;p&gt;我的时间被谁设计了，我的一生被谁设计了 。我选择了这个行业，但是我并没有在这个行业看到希望看到的之后绝望&lt;/p&gt;
+&lt;p&gt;倘若我能拿 22 *15 总包也只有30，算一年存20w，十年才200w，可是有什么工作能够工作10年，或者说我有什么耐心有什么毅力能够在枯燥 动荡日子里坚持十年&lt;/p&gt;
+&lt;p&gt;坚持十年后 买房100w 买车20w 结婚20w 总共花费 140w，赡养父母 20w 总共160w 我还剩40w 这时候我还剩下什么&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;逆流河这条路是看不到尽头的，只有深深的绝望
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+        </item>
+        <item>
         <title>[重磅消息] 我被裁员了！</title>
         <link>https://ddlgitgzzhm.github.io/p/fire-workd-01/</link>
         <pubDate>Mon, 06 Jul 2026 00:00:00 +0000</pubDate>
