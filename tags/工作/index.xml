@@ -7,7 +7,166 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>GzzhM</copyright>
-        <lastBuildDate>Tue, 07 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/tags/%E5%B7%A5%E4%BD%9C/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 08 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/tags/%E5%B7%A5%E4%BD%9C/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>整理</title>
+        <link>https://ddlgitgzzhm.github.io/p/fire-workd-03/</link>
+        <pubDate>Wed, 08 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/p/fire-workd-03/</guid>
+        <description>&lt;p&gt;我去过两个很远的地方，一个是 香港的麦理浩径 一个是成都的雪山&lt;/p&gt;
+&lt;p&gt;去成都雪山的时候&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;我买了一个 25L 的背包&lt;/li&gt;
+&lt;li&gt;提前一晚上买了一点路餐&lt;/li&gt;
+&lt;li&gt;买了运动相机&lt;/li&gt;
+&lt;li&gt;买了2个登山杖&lt;/li&gt;
+&lt;li&gt;买了速干内衣&lt;/li&gt;
+&lt;li&gt;买了抓绒内衣&lt;/li&gt;
+&lt;li&gt;买了冲锋衣冲锋裤&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这些不是我自己想出来的，参考的网上的攻略&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;“世间上到现在所有的问题都有人有答案”&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;去麦里浩径补充买了一些东西&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;一个 48L 的背包&lt;/li&gt;
+&lt;li&gt;睡袋&lt;/li&gt;
+&lt;li&gt;帐篷&lt;/li&gt;
+&lt;li&gt;能量胶&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;我说这些是想表明，想要出发需要先整理，整理出发需要什么，现在有什么，我没有什么&lt;/p&gt;
+&lt;h2 id=&#34;我有什么&#34;&gt;我有什么
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;2年的工作经验，虽然很多都是 dirty - work 。但是也有一些值得拿出来讲的事&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;另外 我leader和其他同事做的事情 其实也可以拿过来让自己用&lt;/li&gt;
+&lt;li&gt;开发中使用 AI Cursor Skills prompts 的经验&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Acwing 的算法基础课和提高课，以及之前刷过算法的经验&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.acwing.com/activity/content/11/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.acwing.com/activity/content/11/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;虽然把之前学的算法忘的差不多了，但是实际去重温 会发现比从0开始学速度更快，而且感受更不一样&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;一个 Java 的知识星球&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://nageoffer.com/planet/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://nageoffer.com/planet/&lt;/a&gt; 我才发现竟然更新了 Agent 项目 ，不得不承认 Java 高性价比可以直接抄的项目有很多，路线上看的比Golang更清晰&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;一个 Python 的 AI Chat 课&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.acwing.com/activity/content/4250/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.acwing.com/activity/content/4250/&lt;/a&gt; ，体积小 仅 18个课时，视频形式 从0到1，到项目上线&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;一个 Java 的 在线匹配课&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.acwing.com/activity/content/1877/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.acwing.com/activity/content/1877/&lt;/a&gt; 依旧是体积小，视频形式从0到1，到项目上线，我记得这个项目前端占比了10个课时左右&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;一个完整的 Golang 课程&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://u.geekbang.org/subject/go3rd&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://u.geekbang.org/subject/go3rd&lt;/a&gt; 总共24周，视频时长还没统计过，预计覆盖很多内容，但是视频是24年11月份的，不涉及现在 AI 相关内容&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;一些简单的 Go 项目&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://geektutu.com/post/gee.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://geektutu.com/post/gee.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1op4y177iS/?spm_id_from=333.1387.homepage.video_card.click&amp;amp;vd_source=25934349561f43f2cda2ed48ce984f9b&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.bilibili.com/video/BV1op4y177iS/?spm_id_from=333.1387.homepage.video_card.click&amp;vd_source=25934349561f43f2cda2ed48ce984f9b&lt;/a&gt; 一套简单的Go-zero实现&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;我没有什么&#34;&gt;我没有什么
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;良好的 Golang 基础 ，现在要问我 Golang 数据结构的实现，GC 什么的我都不清楚&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;良好的八股文基础，同样的 计算机网络 操作系统 Redis什么都忘记了&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;没有 Mysql 相关经验，工作用的是 Pg&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;没有 Kafka 、etcd、docker 的经验，工作用的 Redis stream实现的MQ&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;没有高并发 GRPC 等相关的经验&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;市场需要什么&#34;&gt;市场需要什么
+&lt;/h2&gt;&lt;p&gt;网易 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;熟悉 Gin、Go-zero&lt;/li&gt;
+&lt;li&gt;熟悉 Restful API 设计规范&lt;/li&gt;
+&lt;li&gt;熟悉 Golang 生态的服务架构设计&lt;/li&gt;
+&lt;li&gt;熟悉 中间件的使用 MySQL、Redis、Kafka、RocketMQ&lt;/li&gt;
+&lt;li&gt;具有高并发业务相关经验&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;游卡 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;精通 Golang 相关网络服务开发 熟悉 Python&lt;/li&gt;
+&lt;li&gt;熟练掌握设计模式以及面向对象的设计模式&lt;/li&gt;
+&lt;li&gt;熟悉网络基本原理，比如 TCP/IP，HTTP 协议&lt;/li&gt;
+&lt;li&gt;熟悉 MYSQL 数据库，了解 MYSQL索引优化，查询优化，存储优化&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;字节 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;熟悉分布式系统设计、微服务系统设计、稳定性治理、常用中间件原理&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;腾讯 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;熟悉 Mysql、redis、es、mongo等存储 以及常见的消息中间件&lt;/li&gt;
+&lt;li&gt;熟悉 TCP/IP 与 HTTP 等网络协议&lt;/li&gt;
+&lt;li&gt;有海量服务、高性能、分布式系统设计、开发经验者优先&lt;/li&gt;
+&lt;li&gt;AI 工程化实践 : 熟悉使用 主流 Ai coding工具，有LLM接口继承，对话系统开发或Ai Agent 工程化落地经验者优先&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;我应该怎么做&#34;&gt;我应该怎么做
+&lt;/h2&gt;&lt;p&gt;提炼&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;提炼 这两年 dirty work 中的 （难点 ，怎么解决的，遇到的问题，闪光点）&lt;/li&gt;
+&lt;li&gt;AI 在项目中的使用方法&lt;/li&gt;
+&lt;li&gt;BS设计模式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;重温&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;算法+刷题&lt;/li&gt;
+&lt;li&gt;Go语言的面试问题，深度理解&lt;/li&gt;
+&lt;li&gt;八股文&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;学习&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Mysql&lt;/li&gt;
+&lt;li&gt;Redis&lt;/li&gt;
+&lt;li&gt;Kafka&lt;/li&gt;
+&lt;li&gt;etcd&lt;/li&gt;
+&lt;li&gt;docker&lt;/li&gt;
+&lt;li&gt;设计模式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;需要&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;AI Agent 后端 (预计魔改一下Java的那个项目)&lt;/li&gt;
+&lt;li&gt;高并发服务 （可能选择邓明的那个或者是魔改一下我实习的项目，看一下哪个ROI高点）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;写在最后&#34;&gt;写在最后
+&lt;/h2&gt;&lt;p&gt;我自己也看不清未来的走势，站在这个时间点 我也迷茫 恐惧 想要逃避&lt;/p&gt;
+&lt;p&gt;但是我内心有一股劲，或者说我还年轻，我只有一双脚，能走到哪里，我也想看看&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>裁员之后我该何去何从</title>
         <link>https://ddlgitgzzhm.github.io/p/fire-workd-02/</link>
         <pubDate>Tue, 07 Jul 2026 00:00:00 +0000</pubDate>
