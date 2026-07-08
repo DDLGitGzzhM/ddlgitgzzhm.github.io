@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="整理背包 准备出发">
-<title>整理</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="dirty work 中寻找一些闪光点">
+<title>垃圾中堆中黄金</title>
 
-<link rel='canonical' href='https://ddlgitgzzhm.github.io/p/fire-workd-03/'>
+<link rel='canonical' href='https://ddlgitgzzhm.github.io/p/fire-workd-04/'>
 
 
-<link rel="stylesheet" href="/css/main.9a5c8f2dd65f8933ebb1c2d0175afb75dd9fc8765e238f5b09b6ba39536a73f9.css"><meta property='og:title' content="整理">
-<meta property='og:description' content="整理背包 准备出发">
-<meta property='og:url' content='https://ddlgitgzzhm.github.io/p/fire-workd-03/'>
+<link rel="stylesheet" href="/css/main.9a5c8f2dd65f8933ebb1c2d0175afb75dd9fc8765e238f5b09b6ba39536a73f9.css"><meta property='og:title' content="垃圾中堆中黄金">
+<meta property='og:description' content="dirty work 中寻找一些闪光点">
+<meta property='og:url' content='https://ddlgitgzzhm.github.io/p/fire-workd-04/'>
 <meta property='og:site_name' content='GzzhM'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='工作' /><meta property='article:published_time' content='2026-07-08T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-07-08T00:00:00&#43;00:00'/>
-<meta name="twitter:title" content="整理">
-<meta name="twitter:description" content="整理背包 准备出发">
+<meta name="twitter:title" content="垃圾中堆中黄金">
+<meta name="twitter:description" content="dirty work 中寻找一些闪光点">
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -308,11 +308,38 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#我有什么">我有什么</a></li>
-    <li><a href="#我没有什么">我没有什么</a></li>
-    <li><a href="#市场需要什么">市场需要什么</a></li>
-    <li><a href="#我应该怎么做">我应该怎么做</a></li>
-    <li><a href="#写在最后">写在最后</a></li>
+    <li><a href="#开始回忆">开始回忆</a>
+      <ol>
+        <li><a href="#账户暂停">账户暂停</a>
+          <ol>
+            <li><a href="#个人想法">个人想法</a></li>
+          </ol>
+        </li>
+        <li><a href="#ai总结">Ai总结</a></li>
+        <li><a href="#async">Async</a>
+          <ol>
+            <li><a href="#背景">背景</a></li>
+            <li><a href="#整理">整理</a></li>
+          </ol>
+        </li>
+        <li><a href="#ai一句话总结">AI一句话总结</a></li>
+        <li><a href="#auth-升级">Auth 升级</a>
+          <ol>
+            <li><a href="#背景说明">背景说明</a></li>
+            <li><a href="#整理-1">整理</a></li>
+            <li><a href="#个人想法-1">个人想法</a></li>
+            <li><a href="#ai总结-1">Ai总结</a></li>
+          </ol>
+        </li>
+        <li><a href="#trans-表优化">Trans 表优化</a>
+          <ol>
+            <li><a href="#背景-1">背景</a></li>
+            <li><a href="#整理-2">整理</a></li>
+            <li><a href="#ai总结-2">Ai总结</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -344,12 +371,12 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/fire-workd-03/">整理</a>
+            <a href="/p/fire-workd-04/">垃圾中堆中黄金</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            整理背包 准备出发
+            dirty work 中寻找一些闪光点
         </h3>
         
     </div>
@@ -386,157 +413,211 @@
     <section class="article-content">
     
     
-    <p>我去过两个很远的地方，一个是 香港的麦理浩径 一个是成都的雪山</p>
-<p>去成都雪山的时候</p>
+    <p>说实话没有什么比较好的思路能够一下子整理出工作中的闪光点</p>
+<p>目前能想到的切入点</p>
+<ul>
+<li>人脑回忆这两年的Backlog</li>
+<li>从上到下扫描这两年全部的Backlog</li>
+<li>根据产品季度目标 PO-backlog 来整理</li>
+</ul>
+<p>预计采用的方案是</p>
+<p>1+3,如果数量不够可能会使用 2进行补充</p>
+<h2 id="开始回忆">开始回忆
+</h2><h3 id="账户暂停">账户暂停
+</h3><p>我们系统内部维护一个 Account Api 状态</p>
+<p>包括 <code>只读</code>,<code>归档</code>,<code>Error</code>,<code>交易</code></p>
+<p>需要增加一个账户<code>暂停</code>的状态，把<code>归档</code>的状态下掉，为什么下掉<code>归档</code>忘记了，看着是从业务理解层面上下掉的</p>
+<p>暂停的账户需要停止</p>
 <ol>
-<li>我买了一个 25L 的背包</li>
-<li>提前一晚上买了一点路餐</li>
-<li>买了运动相机</li>
-<li>买了2个登山杖</li>
-<li>买了速干内衣</li>
-<li>买了抓绒内衣</li>
-<li>买了冲锋衣冲锋裤</li>
+<li>资产的更新</li>
+<li>记录的抓取</li>
 </ol>
-<p>这些不是我自己想出来的，参考的网上的攻略</p>
-<p><code>“世间上到现在所有的问题都有人有答案”</code></p>
-<p>去麦里浩径补充买了一些东西</p>
+<p>印象中是做了</p>
 <ol>
-<li>一个 48L 的背包</li>
-<li>睡袋</li>
-<li>帐篷</li>
-<li>能量胶</li>
+<li>在 Account 表中增加一列 boolean 表示账户是暂停还是启动</li>
+<li>在 Collector Account Monitor 中根据账户的状态进行控制是否要进行资产更新</li>
+<li>在 Fetch Data Monitor 中根据账户的状态进行控制是否要进行抓取记录</li>
 </ol>
-<p>我说这些是想表明，想要出发需要先整理，整理出发需要什么，现在有什么，我没有什么</p>
-<h2 id="我有什么">我有什么
-</h2><ol>
-<li>
-<p>2年的工作经验，虽然很多都是 dirty - work 。但是也有一些值得拿出来讲的事</p>
-<ul>
-<li>另外 我leader和其他同事做的事情 其实也可以拿过来让自己用</li>
-<li>开发中使用 AI Cursor Skills prompts 的经验</li>
-</ul>
-</li>
-<li>
-<p>Acwing 的算法基础课和提高课，以及之前刷过算法的经验</p>
-<ul>
-<li><a class="link" href="https://www.acwing.com/activity/content/11/"  target="_blank" rel="noopener"
-    >https://www.acwing.com/activity/content/11/</a></li>
-<li>虽然把之前学的算法忘的差不多了，但是实际去重温 会发现比从0开始学速度更快，而且感受更不一样</li>
-</ul>
-</li>
-<li>
-<p>一个 Java 的知识星球</p>
-<ul>
-<li><a class="link" href="https://nageoffer.com/planet/"  target="_blank" rel="noopener"
-    >https://nageoffer.com/planet/</a> 我才发现竟然更新了 Agent 项目 ，不得不承认 Java 高性价比可以直接抄的项目有很多，路线上看的比Golang更清晰</li>
-</ul>
-</li>
-<li>
-<p>一个 Python 的 AI Chat 课</p>
-<ul>
-<li><a class="link" href="https://www.acwing.com/activity/content/4250/"  target="_blank" rel="noopener"
-    >https://www.acwing.com/activity/content/4250/</a> ，体积小 仅 18个课时，视频形式 从0到1，到项目上线</li>
-</ul>
-</li>
-<li>
-<p>一个 Java 的 在线匹配课</p>
-<ul>
-<li><a class="link" href="https://www.acwing.com/activity/content/1877/"  target="_blank" rel="noopener"
-    >https://www.acwing.com/activity/content/1877/</a> 依旧是体积小，视频形式从0到1，到项目上线，我记得这个项目前端占比了10个课时左右</li>
-</ul>
-</li>
-<li>
-<p>一个完整的 Golang 课程</p>
-<ul>
-<li><a class="link" href="https://u.geekbang.org/subject/go3rd"  target="_blank" rel="noopener"
-    >https://u.geekbang.org/subject/go3rd</a> 总共24周，视频时长还没统计过，预计覆盖很多内容，但是视频是24年11月份的，不涉及现在 AI 相关内容</li>
-</ul>
-</li>
-<li>
-<p>一些简单的 Go 项目</p>
-<ul>
-<li><a class="link" href="https://geektutu.com/post/gee.html"  target="_blank" rel="noopener"
-    >https://geektutu.com/post/gee.html</a></li>
-<li><a class="link" href="https://www.bilibili.com/video/BV1op4y177iS/?spm_id_from=333.1387.homepage.video_card.click&amp;vd_source=25934349561f43f2cda2ed48ce984f9b"  target="_blank" rel="noopener"
-    >https://www.bilibili.com/video/BV1op4y177iS/?spm_id_from=333.1387.homepage.video_card.click&vd_source=25934349561f43f2cda2ed48ce984f9b</a> 一套简单的Go-zero实现</li>
-</ul>
-</li>
-</ol>
-<h2 id="我没有什么">我没有什么
-</h2><ol>
-<li>
-<p>良好的 Golang 基础 ，现在要问我 Golang 数据结构的实现，GC 什么的我都不清楚</p>
-</li>
-<li>
-<p>良好的八股文基础，同样的 计算机网络 操作系统 Redis什么都忘记了</p>
-</li>
-<li>
-<p>没有 Mysql 相关经验，工作用的是 Pg</p>
-</li>
-<li>
-<p>没有 Kafka 、etcd、docker 的经验，工作用的 Redis stream实现的MQ</p>
-</li>
-<li>
-<p>没有高并发 GRPC 等相关的经验</p>
-</li>
-</ol>
-<h2 id="市场需要什么">市场需要什么
-</h2><p>网易 :</p>
+<p><strong>这里感觉不对 :</strong></p>
+<p>优化了一下流程</p>
 <ol>
-<li>熟悉 Gin、Go-zero</li>
-<li>熟悉 Restful API 设计规范</li>
-<li>熟悉 Golang 生态的服务架构设计</li>
-<li>熟悉 中间件的使用 MySQL、Redis、Kafka、RocketMQ</li>
-<li>具有高并发业务相关经验</li>
+<li>写了一个 prompts 然后把对应任务的 pr丢给他 让他分析</li>
 </ol>
-<p>游卡 :</p>
+<p>这次改动做了什么</p>
 <ol>
-<li>精通 Golang 相关网络服务开发 熟悉 Python</li>
-<li>熟练掌握设计模式以及面向对象的设计模式</li>
-<li>熟悉网络基本原理，比如 TCP/IP，HTTP 协议</li>
-<li>熟悉 MYSQL 数据库，了解 MYSQL索引优化，查询优化，存储优化</li>
+<li>通过 <code>migration</code> 给涉及到的3张Account数据库表增加 <code>state</code> 的列</li>
+<li>处理相关下游模块的 暂停程序 <code>collector</code> , <code>monitory</code> , <code>api hook</code></li>
+<li>通过 go 一个 <code>migrateArchivedToPaused</code> 将历史归档状态的账户改成暂停的账户</li>
 </ol>
-<p>字节 :</p>
+<p>亮点 :</p>
 <ol>
-<li>熟悉分布式系统设计、微服务系统设计、稳定性治理、常用中间件原理</li>
+<li>复杂领域模型的状态及设计，因为涉及到 <code>子账户暂停母账户才可以暂停</code></li>
+<li>跨模块一致性改造</li>
+<li>存量数据迁移</li>
 </ol>
-<p>腾讯 :</p>
+<h4 id="个人想法">个人想法
+</h4><p>理了一下这个backlog，感觉并不是很惊艳，只能说涉及到的模块多，下游设计到的多，导致做的周期比较长比较大</p>
+<p>我感觉可以把 <code>migration</code> 单独提出来说一下，可以去挖一下我们公司 <code>migration</code> 的实现</p>
+<h3 id="ai总结">Ai总结
+</h3><p>主导 CeFi 账户 Pause/Resume 端到端设计与实现，将原先混用的「归档」语义拆分为运行态（Normal/Paused）与 API 权限态，新增 DB 三字段并完成 v2.171 migration。实现 Prop/Sub 级联状态机、恢复前 API 复检、事务与业务日志；改造 Collector 与 Monitor 共 6+ 后台 Job，暂停账户停止资产拉取与 API 巡检；完成归档账户存量迁移及多轮生产 bugfix，保障 v2.171 稳定上线。</p>
+<h3 id="async">Async
+</h3><h4 id="背景">背景
+</h4><p>交易所接口的实时查询接口只能够查询最近3个月的数据，如果想要获取更早的数据需要透过异步接口获取</p>
 <ol>
-<li>熟悉 Mysql、redis、es、mongo等存储 以及常见的消息中间件</li>
-<li>熟悉 TCP/IP 与 HTTP 等网络协议</li>
-<li>有海量服务、高性能、分布式系统设计、开发经验者优先</li>
-<li>AI 工程化实践 : 熟悉使用 主流 Ai coding工具，有LLM接口继承，对话系统开发或Ai Agent 工程化落地经验者优先</li>
+<li>请求下载ID | 这一步一个月有次数限制，而且IP权重很高</li>
+<li>根据请求下载ID 去请求下载链接</li>
 </ol>
-<h2 id="我应该怎么做">我应该怎么做
-</h2><p>提炼</p>
+<h4 id="整理">整理
+</h4><p>整体思路</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">REST</span> <span class="err">入口（统一限流</span><span class="o">/</span><span class="err">配额</span><span class="o">/</span><span class="err">落库）</span>
+</span></span><span class="line"><span class="cl">    <span class="err">↓</span>
+</span></span><span class="line"><span class="cl"><span class="n">DownloadId</span> <span class="err">工厂（</span><span class="n">exg</span> <span class="o">+</span> <span class="n">dataType</span> <span class="err">→</span> <span class="n">handler</span><span class="err">）</span>
+</span></span><span class="line"><span class="cl">    <span class="err">↓</span>
+</span></span><span class="line"><span class="cl"><span class="n">Redis</span> <span class="err">队列（解耦「申请」与「轮询下载」）</span>
+</span></span><span class="line"><span class="cl">    <span class="err">↓</span>
+</span></span><span class="line"><span class="cl"><span class="err">后台</span> <span class="n">Scan</span> <span class="n">Job</span><span class="err">（轮询</span> <span class="o">+</span> <span class="err">下载</span> <span class="o">+</span> <span class="err">重试）</span>
+</span></span><span class="line"><span class="cl">    <span class="err">↓</span>
+</span></span><span class="line"><span class="cl"><span class="n">MQ</span> <span class="err">→</span> <span class="n">Consumer</span><span class="err">（</span><span class="n">CSV</span> <span class="err">解析</span> <span class="err">→</span> <span class="err">标准</span> <span class="n">OTS</span> <span class="err">格式</span> <span class="err">→</span> <span class="err">入库）</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>亮点</p>
+<ol>
+<li>
+<p>Redis 队列进行接藕操作</p>
+</li>
+<li>
+<p>任务每次在发版 进程重新启动的时候进行Recover</p>
+</li>
+<li>
+<p>状态机驱动 <code>not_started → packaging_data → downloading → importing → succeed/failed，含 packaging_data_with_error</code></p>
+</li>
+<li>
+<p>双层配额控制</p>
 <ul>
-<li>提炼 这两年 dirty work 中的 （难点 ，怎么解决的，遇到的问题，闪光点）</li>
-<li>AI 在项目中的使用方法</li>
-<li>BS设计模式</li>
+<li>进程级 : <code>rate.Limiter</code> 一分钟一次，防止误操作</li>
+<li>账户级 : Redis 控制自然月计数</li>
 </ul>
-<p>重温</p>
+</li>
+<li>
+<p>Mock 测试体系</p>
+</li>
+</ol>
+<h3 id="ai一句话总结">AI一句话总结
+</h3><p>设计并实现 CAM 加密资产管理系统历史数据异步拉取引擎（Go / Redis / PostgreSQL / MQ）：从 0 搭建 Binance/OKX/Bybit 异步导出全链路（申请 → 轮询 → 下载 → CSV 解析入库），含双层配额控制、Redis 队列解耦、PG 状态机与发版容错恢复；支撑对账与历史回溯，模块累计 100+ 次生产迭代。</p>
+<h3 id="auth-升级">Auth 升级
+</h3><h4 id="背景说明">背景说明
+</h4><p>我们的 Apikey 铭感信息 都存放到 Auth 服务器上，之前 Auth 服务器上的 APikey_1 表数据太脏了</p>
+<ol>
+<li>apikey 不是存放在prop层级的，而是母子层级都可能存在</li>
+</ol>
+<p>现在想要升级 apikey_1 为 apikey_2</p>
+<ol>
+<li>希望所有 apikey 都收拢到 prop层级上面</li>
+</ol>
+<p>&ndash;</p>
+<p>C交易所账户有层级结构：Prop 母账户（如 bnprop）下挂多个子账户（如 binancef、binanced）。原先每个子账户都要单独配置 API Key，运维成本高、易出错。</p>
+<p>这套改动实现：子账户自动复用 Prop 母账户的 API 凭证，并支持复制已有 Prop 账户创建新账户，同时完成 Auth 服务从 V1 到 V2 的平滑迁移。</p>
+<h4 id="整理-1">整理
+</h4><p>存储层 : 新增 account_apikey_2 表</p>
+<p>Auth Server 层 : 新增 Copy Api 的功能,暴露出copy-api的接口</p>
+<p>Auth Client 层 : 封装 Copy 调用， V1/V2 自动切换</p>
+<p>业务层 : CopyHelper 统一调度：读 Key、写 Key、复制账户</p>
+<p>观测层 : 给每一个回退增加统计</p>
+<p><strong>核心决策设计 :</strong></p>
+<ol>
+<li>
+<p>双表并存，平滑迁移</p>
 <ul>
-<li>算法+刷题</li>
-<li>Go语言的面试问题，深度理解</li>
-<li>八股文</li>
+<li>V1（account_apikey）与 V2（account_apikey_v2）共存</li>
+<li>支持 V1→V1、V2→V2、V1→V2 三种 Copy 路径</li>
+<li>客户端按 Auth 版本自动路由，V1 读不到时自动 V1→V2 迁移</li>
 </ul>
-<p>学习</p>
+</li>
+<li>
+<p>灰度发布</p>
 <ul>
-<li>Mysql</li>
-<li>Redis</li>
-<li>Kafka</li>
-<li>etcd</li>
-<li>docker</li>
-<li>设计模式</li>
+<li>CopyRegionControl() 控制 master 环境先上线</li>
+<li>后续通过 Auth 版本检测自动切换 V2</li>
 </ul>
-<p>需要</p>
-<ul>
-<li>AI Agent 后端 (预计魔改一下Java的那个项目)</li>
-<li>高并发服务 （可能选择邓明的那个或者是魔改一下我实习的项目，看一下哪个ROI高点）</li>
-</ul>
-<h2 id="写在最后">写在最后
-</h2><p>我自己也看不清未来的走势，站在这个时间点 我也迷茫 恐惧 想要逃避</p>
-<p>但是我内心有一股劲，或者说我还年轻，我只有一双脚，能走到哪里，我也想看看</p>
+</li>
+</ol>
+<h4 id="个人想法-1">个人想法
+</h4><p>这个功能比较难做，涉及到的模块很多，而且 更新 新增 删除 apikey 暴露给了很多地方，还需要做版本控制</p>
+<p>导致改动的地方很多</p>
+<h4 id="ai总结-1">Ai总结
+</h4><p>负责设计并实现交易账户 API Key 共享能力，解决 Prop 母账户与子账户重复配置凭证的问题。新建 account_apikey_v2 存储层，提供 V1/V2 双版本 Copy API；在 tradeacc、auth_client、交易所 Sign 模块实现统一 CopyHelper，支持子账户自动复用 Prop 凭证及复制开户；设计 V1→V2 平滑迁移与降级回退，配合 Feature Toggle 灰度发布；新增 Copy 降级监控指标。涉及 5 个核心模块、1,000+ 行代码，6 天内分 4 个 PR 交付。</p>
+<h3 id="trans-表优化">Trans 表优化
+</h3><h4 id="背景-1">背景
+</h4><p>成交表的数据有很多，一个客户一天的数据甚至就能到百万级别的了，需要优化一下存储</p>
+<p>我们Trans表主要存储 <code>id,business_id,account,time,detail</code>这几个字段，之前 detail 是直接存储的交易所的原始返回</p>
+<p>所以主要是优化这部分内容，通过压缩存储来进行优化</p>
+<p>压缩算法和测试是运维那边来处理的（后续需要去看一下）</p>
+<h4 id="整理-2">整理
+</h4><p>我们存在两个结构一个 是 <code>ec.OTSTrans</code> 供给上层业务组使用 一个是 <code>db.Trans</code> 用于存储</p>
+<ol>
+<li>新增 SlimOTSTrans，将 <code>ec.OTSTrans</code> 的 jsontag 改为短JSON名处理例如 <code>a/b/c...</code></li>
+<li>在 OTSTransToDB 的时候使用 Compressor 进行控制</li>
+<li>新增 <code>blob</code> 和 <code>blob_format</code> 列用于表示是否是压缩内容 以及存入压缩内容</li>
+<li>将detail字段进行私有化控制，全部业务层统一使用 <code>GetDetails()</code>和<code>SetDetails()</code>进行访问</li>
+</ol>
+<p>流程
+写入时：JSON → Slim 序列化 → 压缩 → 写入 blob，清空 details；读取时：按 blob_format 自动解压还原</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">┌─────────────────────────────────────────────────────────┐
+</span></span><span class="line"><span class="cl">│  Layer 1: JSON 字段瘦身 (SlimOTSTrans 短字段名)          │
+</span></span><span class="line"><span class="cl">├─────────────────────────────────────────────────────────┤
+</span></span><span class="line"><span class="cl">│  Layer 2: 二进制压缩 (xz / zstd / vanilla)               │
+</span></span><span class="line"><span class="cl">├─────────────────────────────────────────────────────────┤
+</span></span><span class="line"><span class="cl">│  Layer 3: 存储分离 (details 清空 → blob 存压缩数据)      │
+</span></span><span class="line"><span class="cl">└─────────────────────────────────────────────────────────┘
+</span></span><span class="line"><span class="cl">                          ↓
+</span></span><span class="line"><span class="cl">              blob_format 标识格式，统一读写入口
+</span></span><span class="line"><span class="cl">                          ↓
+</span></span><span class="line"><span class="cl">         blob_format=0 读旧 details（向后兼容）
+</span></span><span class="line"><span class="cl">         blob_format&gt;0 读 blob 解压（新数据）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>架构与设计</p>
+<p>全链路存储优化：不是简单「加个 gzip」，而是从 JSON 结构、压缩算法、DB Schema、读写 API 到 20+ 下游模块的系统性改造。</p>
+<p>向后兼容设计：blob_format 双轨读写，支持新旧数据共存，生产可渐进迁移。</p>
+<p>零拷贝转换：SlimOTSTrans 与 OTSTrans 通过 unsafe.Pointer 转换，并用 init() 校验 struct layout，兼顾性能与安全。</p>
+<h4 id="ai总结-2">Ai总结
+</h4><ol>
+<li>
+<p>设计并实现 CAM 历史交易流水存储优化：Slim JSON 瘦身 + zstd/xz 压缩 + blob 分离存储，解决核心表存储与 I/O 瓶颈。</p>
+</li>
+<li>
+<p>通过 blob_format 双轨兼容设计实现零停机迁移，重构 40+ 下游模块统一读写接口，开发 CLI 批量迁移工具并完成多环境灰度发布。</p>
+</li>
+</ol>
 
 </section>
 
@@ -591,12 +672,12 @@
             
                 
 <article class="">
-    <a href="/p/fire-workd-04/">
+    <a href="/p/fire-workd-03/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">垃圾中堆中黄金</h2>
+            <h2 class="article-title">整理</h2>
         </div>
     </a>
 </article>
