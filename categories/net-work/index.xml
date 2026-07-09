@@ -2,12 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>计算机网络 on GzzhM</title>
-        <link>https://ddlgitgzzhm.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</link>
+        <link>https://ddlgitgzzhm.github.io/categories/net-work/</link>
         <description>Recent content in 计算机网络 on GzzhM</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>GzzhM</copyright>
-        <lastBuildDate>Thu, 09 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 09 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/categories/net-work/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>[计算机网络] 基础篇</title>
         <link>https://ddlgitgzzhm.github.io/p/net-work-0x01/</link>
         <pubDate>Thu, 09 Jul 2026 00:00:00 +0000</pubDate>
@@ -75,6 +75,50 @@
 &lt;/ol&gt;
 &lt;h2 id=&#34;感悟&#34;&gt;感悟
 &lt;/h2&gt;&lt;p&gt;基础篇讲的内容很多，但是我看了一些内容感觉都是 &lt;code&gt;无用的&lt;/code&gt; ，至少对工作开发无用，如果我是面试官我也不会以这种问题去刁难&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>[计算机网络] 应用层</title>
+        <link>https://ddlgitgzzhm.github.io/p/net-work-0x02/</link>
+        <pubDate>Thu, 09 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/p/net-work-0x02/</guid>
+        <description>&lt;h2 id=&#34;http&#34;&gt;HTTP
+&lt;/h2&gt;&lt;p&gt;超文本传输协议 : HyperText Transfer Protocol&lt;/p&gt;
+&lt;h3 id=&#34;常见错误码-&#34;&gt;常见错误码 :
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;2xx&lt;/code&gt; 成功状态码 :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;200 OK&lt;/code&gt; 一切正常&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;204 No Content&lt;/code&gt; 与 200 OK基本相同，但相应没有 body 数据&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;3xx&lt;/code&gt; 重定向状态码&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;301 Moved Permanently&lt;/code&gt; 永久重定向&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;302 Found&lt;/code&gt; 临时重定向&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;4xx&lt;/code&gt; 客户端发送的报文有误,服务器无法处理&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;400&lt;/code&gt; : 客户端请求的报文有误&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;403&lt;/code&gt; : 服务器禁止访问资源&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;404&lt;/code&gt; : 服务器请求的资源不存在, 无法提供给客户端&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;5xx&lt;/code&gt; 客户端请求报文正常,但是服务器内部处理发送了错误&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;500&lt;/code&gt; 笼统的错误码,服务器发生了错误&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;501&lt;/code&gt; 客户端请求的功能还不支持&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;502&lt;/code&gt; 访问后端服务器错误, 网关错误&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;503&lt;/code&gt; 服务器繁忙,服务器可能正在升级&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;http-常见字段&#34;&gt;HTTP 常见字段
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;Content-Length&lt;/code&gt; : 本次回应的数据长度&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Connection&lt;/code&gt; : 客户端要求服务器使用 &lt;code&gt;HTTP&lt;/code&gt; 长连接机制,以便其他请求复用&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Content-Type&lt;/code&gt; : 告诉客户端 本次的数据是什么格式&lt;/p&gt;
+&lt;h3 id=&#34;get-和-post-的区别&#34;&gt;GET 和 POST 的区别
+&lt;/h3&gt;&lt;p&gt;GET 的语义 : 从服务器获取指定的资源&lt;/p&gt;
+&lt;p&gt;POST 的语义 : 根据请求负荷（报文body）对指定的资源做出处理&lt;/p&gt;
+&lt;p&gt;我们开发的时候也是一样的 &lt;code&gt;GET 一般用于只读, POST 一般用于操作&lt;/code&gt;, 但是 &lt;code&gt;GET&lt;/code&gt; 可能会产生拼接的 &lt;code&gt;URL&lt;/code&gt; 过长的情况,这时候需要改为&lt;code&gt;POST&lt;/code&gt;进行请求&lt;/p&gt;
+&lt;h3 id=&#34;http-特性&#34;&gt;HTTP 特性
+&lt;/h3&gt;&lt;p&gt;HTTP 常见的， 感觉好无聊，不如看几个面筋去，今天先td了&lt;/p&gt;
 </description>
         </item>
         
