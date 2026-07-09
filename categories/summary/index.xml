@@ -115,8 +115,8 @@
 &lt;p&gt;Mock 测试体系&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3 id=&#34;ai一句话总结&#34;&gt;AI一句话总结
-&lt;/h3&gt;&lt;p&gt;设计并实现 CAM 加密资产管理系统历史数据异步拉取引擎（Go / Redis / PostgreSQL / MQ）：从 0 搭建 Binance/OKX/Bybit 异步导出全链路（申请 → 轮询 → 下载 → CSV 解析入库），含双层配额控制、Redis 队列解耦、PG 状态机与发版容错恢复；支撑对账与历史回溯，模块累计 100+ 次生产迭代。&lt;/p&gt;
+&lt;h4 id=&#34;ai一句话总结&#34;&gt;AI一句话总结
+&lt;/h4&gt;&lt;p&gt;设计并实现 CAM 加密资产管理系统历史数据异步拉取引擎（Go / Redis / PostgreSQL / MQ）：从 0 搭建 Binance/OKX/Bybit 异步导出全链路（申请 → 轮询 → 下载 → CSV 解析入库），含双层配额控制、Redis 队列解耦、PG 状态机与发版容错恢复；支撑对账与历史回溯，模块累计 100+ 次生产迭代。&lt;/p&gt;
 &lt;h3 id=&#34;auth-升级&#34;&gt;Auth 升级
 &lt;/h3&gt;&lt;h4 id=&#34;背景说明&#34;&gt;背景说明
 &lt;/h4&gt;&lt;p&gt;我们的 Apikey 铭感信息 都存放到 Auth 服务器上，之前 Auth 服务器上的 APikey_1 表数据太脏了&lt;/p&gt;
