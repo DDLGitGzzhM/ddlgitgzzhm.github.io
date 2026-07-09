@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>面经 on GzzhM</title>
+        <link>https://ddlgitgzzhm.github.io/categories/interview/</link>
+        <description>Recent content in 面经 on GzzhM</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <copyright>GzzhM</copyright>
+        <lastBuildDate>Thu, 09 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/categories/interview/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>面经每日一看</title>
+        <link>https://ddlgitgzzhm.github.io/p/%E9%9D%A2%E7%BB%8F%E6%AF%8F%E6%97%A5%E4%B8%80%E7%9C%8B/</link>
+        <pubDate>Thu, 09 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/p/%E9%9D%A2%E7%BB%8F%E6%AF%8F%E6%97%A5%E4%B8%80%E7%9C%8B/</guid>
+        <description>&lt;p&gt;学累了我就看面经，看多了就会发现都是一些什么神人在卷，然后就不想学了&lt;/p&gt;
+&lt;p&gt;本篇面筋来自 : &lt;a class=&#34;link&#34; href=&#34;https://www.nowcoder.com/discuss/631514581503926272?sourceSSR=users&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.nowcoder.com/discuss/631514581503926272?sourceSSR=users&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;店匠科技-一面&#34;&gt;店匠科技 一面
+&lt;/h2&gt;&lt;h3 id=&#34;算法题&#34;&gt;算法题
+&lt;/h3&gt;&lt;p&gt;两数之和&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;暴力做法 N^2 匹配&lt;/li&gt;
+&lt;li&gt;优化做法 通过 Map 进行标记&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;twoSum&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;nums&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;target&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;hashTable&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;map&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;range&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;nums&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ok&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;hashTable&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;target&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ok&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;hashTable&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;聊项目&#34;&gt;聊项目
+&lt;/h3&gt;&lt;h4 id=&#34;系统数据模型怎么设计的&#34;&gt;系统数据模型怎么设计的
+&lt;/h4&gt;&lt;p&gt;说实话我自己做的项目都数据库表可以说是抄的，我们系统的呢&lt;/p&gt;
+&lt;p&gt;对于一张数据表 &lt;code&gt;historytrade_trans&lt;/code&gt; 我们拥有&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/%E9%9D%A2%E7%BB%8F%E6%AF%8F%E6%97%A5%E4%B8%80%E7%9C%8B/image.png&#34;
+	width=&#34;1097&#34;
+	height=&#34;767&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/%E9%9D%A2%E7%BB%8F%E6%AF%8F%E6%97%A5%E4%B8%80%E7%9C%8B/image_hu_f4e1f52ab4dd27f8.png 480w, https://ddlgitgzzhm.github.io/p/%E9%9D%A2%E7%BB%8F%E6%AF%8F%E6%97%A5%E4%B8%80%E7%9C%8B/image_hu_35292d1ab807b210.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;143&#34;
+		data-flex-basis=&#34;343px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;对于一张 &lt;code&gt;Tradeacc&lt;/code&gt; 表 我们拥有&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/%E9%9D%A2%E7%BB%8F%E6%AF%8F%E6%97%A5%E4%B8%80%E7%9C%8B/resource_tradeacc.png&#34;
+	width=&#34;1006&#34;
+	height=&#34;886&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/%E9%9D%A2%E7%BB%8F%E6%AF%8F%E6%97%A5%E4%B8%80%E7%9C%8B/resource_tradeacc_hu_469a9dff68f3d513.png 480w, https://ddlgitgzzhm.github.io/p/%E9%9D%A2%E7%BB%8F%E6%AF%8F%E6%97%A5%E4%B8%80%E7%9C%8B/resource_tradeacc_hu_6feef01f830bbfc6.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;resource_tradeacc.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;113&#34;
+		data-flex-basis=&#34;272px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/%E9%9D%A2%E7%BB%8F%E6%AF%8F%E6%97%A5%E4%B8%80%E7%9C%8B/tradeacc_index.png&#34;
+	width=&#34;997&#34;
+	height=&#34;386&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/%E9%9D%A2%E7%BB%8F%E6%AF%8F%E6%97%A5%E4%B8%80%E7%9C%8B/tradeacc_index_hu_c9fb669d7c46b6f6.png 480w, https://ddlgitgzzhm.github.io/p/%E9%9D%A2%E7%BB%8F%E6%AF%8F%E6%97%A5%E4%B8%80%E7%9C%8B/tradeacc_index_hu_1b6dccaf9e3ba272.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;tradeacc_index.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;258&#34;
+		data-flex-basis=&#34;619px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Trans表中，我们把会演进的内容放到了 &lt;code&gt;detail&lt;/code&gt; 中 ，好处是 如果增加或者是删除字段 不需要频繁更改 列&lt;/p&gt;
+&lt;p&gt;通用设计表的步骤 :&lt;/p&gt;
+&lt;p&gt;区分实体 :&lt;/p&gt;
+&lt;p&gt;主数据  :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;特征 : 数据少,变，被引用&lt;/li&gt;
+&lt;li&gt;例如 : 账户表&lt;/li&gt;
+&lt;li&gt;默认倾向 : 宽表 + 局部 Json&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;事件 :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;特征 : 多,追加写,按时间查&lt;/li&gt;
+&lt;li&gt;例如 : 成交表&lt;/li&gt;
+&lt;li&gt;默认倾向 : 窄表 + payload&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;关系 :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;特征 : 关联 A-B&lt;/li&gt;
+&lt;li&gt;例如 : 关系表&lt;/li&gt;
+&lt;li&gt;默认倾向 : 极简列 + 联合唯一&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;监控关注的业务指标&#34;&gt;监控关注的业务指标
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;我们只关注 IP 层级的限速&lt;/li&gt;
+&lt;li&gt;入库率&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;八股&#34;&gt;八股
+&lt;/h3&gt;&lt;h4 id=&#34;session-是什么&#34;&gt;Session 是什么
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;不清楚&lt;/li&gt;
+&lt;li&gt;前端有session，可以直接拿到apifox用&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;一致性&#34;&gt;一致性
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;不清楚&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;分布式事务&#34;&gt;分布式事务
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;不清楚&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;店匠科技-二面&#34;&gt;店匠科技 二面
+&lt;/h2&gt;&lt;h3 id=&#34;算法题-1&#34;&gt;算法题
+&lt;/h3&gt;&lt;p&gt;一个文件里有40亿个数字，找出最大的10个数字&lt;/p&gt;
+&lt;p&gt;写不下去了有点累&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
