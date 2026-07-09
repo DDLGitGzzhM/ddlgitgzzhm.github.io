@@ -7,7 +7,77 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>GzzhM</copyright>
-        <lastBuildDate>Wed, 08 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/categories/time-line/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 09 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/categories/time-line/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>[计算机网络] 基础篇</title>
+        <link>https://ddlgitgzzhm.github.io/p/net-work-0x01/</link>
+        <pubDate>Thu, 09 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/p/net-work-0x01/</guid>
+        <description>&lt;p&gt;写在开头 :&lt;/p&gt;
+&lt;p&gt;本次复习主要使用 : &lt;a class=&#34;link&#34; href=&#34;https://www.xiaolincoding.com/network/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.xiaolincoding.com/network/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;个人对此上面的评价 : 应该很难找到同效益的平替内容了, 如果有人不知道这个他可能会去b站上面看考研的来复习？&lt;/p&gt;
+&lt;h2 id=&#34;tcpip-网络模型有哪几层&#34;&gt;TCP/IP 网络模型有哪几层
+&lt;/h2&gt;&lt;p&gt;应用层、传输层、网络层、网络接口层&lt;/p&gt;
+&lt;p&gt;这是TCP/IP的体系结构, 之前可能学习的都是7层网络结构，内容太复杂了&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/net-work-0x01/image.png&#34;
+	width=&#34;954&#34;
+	height=&#34;449&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/net-work-0x01/image_hu_613e6a8e07921252.png 480w, https://ddlgitgzzhm.github.io/p/net-work-0x01/image_hu_d13bbeda014d7200.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;212&#34;
+		data-flex-basis=&#34;509px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;其中传输层有 :&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;TCP 和 UDP 两个传输协议&lt;/p&gt;
+&lt;p&gt;TCP 自身拥有 : 流量控制，超时重传，拥塞控制&lt;/p&gt;
+&lt;p&gt;UDP 相对简单称为不可靠协议&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;网络层 :&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;IP 协议 : 组装传输层的报文加上IP包头组装成IP报文进行传递&lt;/p&gt;
+&lt;h2 id=&#34;键入网址到网页显示期间发生了什么&#34;&gt;键入网址到网页显示,期间发生了什么
+&lt;/h2&gt;&lt;h3 id=&#34;http&#34;&gt;HTTP
+&lt;/h3&gt;&lt;p&gt;浏览器解析 &lt;code&gt;URL&lt;/code&gt;, 一个 URL 到组成如下 :&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;http:&lt;/code&gt; URL表示访问数据的协议&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;//&lt;/code&gt; + &lt;code&gt;web服务器&lt;/code&gt; + &lt;code&gt;数据源文件路径名&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;对URL进行解析之后，会根据这些信息来生成 HTTP 请求报文&lt;/p&gt;
+&lt;h3 id=&#34;dns&#34;&gt;DNS
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;查询服务器域名对应的IP地址&lt;/code&gt; 进行发送对应的 HTTP 消息&lt;/p&gt;
+&lt;p&gt;域名则是上面的 &lt;code&gt;web服务器&lt;/code&gt; 例如 &lt;code&gt;www.server.com&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/net-work-0x01/image2.png&#34;
+	width=&#34;1505&#34;
+	height=&#34;1095&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/net-work-0x01/image2_hu_d020c4578cad27d9.png 480w, https://ddlgitgzzhm.github.io/p/net-work-0x01/image2_hu_7157aebf42da0e4f.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image2.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;137&#34;
+		data-flex-basis=&#34;329px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;ip--tcpudp-协议栈&#34;&gt;IP + TCP/UDP 协议栈
+&lt;/h3&gt;&lt;p&gt;找到对应的 IP 地址后, 通过 IP 协议进行传输&lt;/p&gt;
+&lt;p&gt;然后根据 TCP 和 UDP 的方式进行发送和接受数据&lt;/p&gt;
+&lt;h2 id=&#34;tcp-链接-三次握手&#34;&gt;TCP 链接 (三次握手)
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;服务端主动监听某个端口，处于 &lt;code&gt;LISTEN&lt;/code&gt; 状态&lt;/li&gt;
+&lt;li&gt;客户端主动发起链接 &lt;code&gt;SYN&lt;/code&gt;，处于 &lt;code&gt;SYN_SENT&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;服务端收到发起链接，返回 &lt;code&gt;SYN+ACK&lt;/code&gt; , 处于 &lt;code&gt;SYN_RCVD&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;客户端收到服务端发起的 &lt;code&gt;SYN+ACK&lt;/code&gt; 后发送 &lt;code&gt;ACK&lt;/code&gt; 处于 &lt;code&gt;ESTABLISHED&lt;/code&gt; 状态&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;感悟&#34;&gt;感悟
+&lt;/h2&gt;&lt;p&gt;基础篇讲的内容很多，但是我看了一些内容感觉都是 &lt;code&gt;无用的&lt;/code&gt; ，至少对工作开发无用，如果我是面试官我也不会以这种问题去刁难&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>[LeetCode] 300. 最长递增子序列</title>
         <link>https://ddlgitgzzhm.github.io/p/leetcode-300/</link>
         <pubDate>Wed, 08 Jul 2026 00:00:00 +0000</pubDate>
