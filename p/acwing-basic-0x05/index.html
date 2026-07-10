@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="dirty work 中寻找一些闪光点">
-<title>垃圾中堆找黄金</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="浪费完整的一天">
+<title>[Acwing] 基础算法（五) 数据结构 单链表</title>
 
-<link rel='canonical' href='https://ddlgitgzzhm.github.io/p/fire-workd-04/'>
+<link rel='canonical' href='https://ddlgitgzzhm.github.io/p/acwing-basic-0x05/'>
 
 
-<link rel="stylesheet" href="/css/main.9a5c8f2dd65f8933ebb1c2d0175afb75dd9fc8765e238f5b09b6ba39536a73f9.css"><meta property='og:title' content="垃圾中堆找黄金">
-<meta property='og:description' content="dirty work 中寻找一些闪光点">
-<meta property='og:url' content='https://ddlgitgzzhm.github.io/p/fire-workd-04/'>
+<link rel="stylesheet" href="/css/main.9a5c8f2dd65f8933ebb1c2d0175afb75dd9fc8765e238f5b09b6ba39536a73f9.css"><meta property='og:title' content="[Acwing] 基础算法（五) 数据结构 单链表">
+<meta property='og:description' content="浪费完整的一天">
+<meta property='og:url' content='https://ddlgitgzzhm.github.io/p/acwing-basic-0x05/'>
 <meta property='og:site_name' content='GzzhM'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='工作' /><meta property='article:published_time' content='2026-07-08T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-07-08T00:00:00&#43;00:00'/>
-<meta name="twitter:title" content="垃圾中堆找黄金">
-<meta name="twitter:description" content="dirty work 中寻找一些闪光点">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='acwing' /><meta property='article:tag' content='链表' /><meta property='article:published_time' content='2026-07-10T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-07-10T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="[Acwing] 基础算法（五) 数据结构 单链表">
+<meta name="twitter:description" content="浪费完整的一天">
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -308,36 +308,11 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#开始回忆">开始回忆</a>
+    <li><a href="#链表">链表</a></li>
+    <li><a href="#单链表">单链表</a>
       <ol>
-        <li><a href="#账户暂停">账户暂停</a>
-          <ol>
-            <li><a href="#个人想法">个人想法</a></li>
-          </ol>
-        </li>
-        <li><a href="#ai总结">Ai总结</a></li>
-        <li><a href="#async">Async</a>
-          <ol>
-            <li><a href="#背景">背景</a></li>
-            <li><a href="#整理">整理</a></li>
-            <li><a href="#ai一句话总结">AI一句话总结</a></li>
-          </ol>
-        </li>
-        <li><a href="#auth-升级">Auth 升级</a>
-          <ol>
-            <li><a href="#背景说明">背景说明</a></li>
-            <li><a href="#整理-1">整理</a></li>
-            <li><a href="#个人想法-1">个人想法</a></li>
-            <li><a href="#ai总结-1">Ai总结</a></li>
-          </ol>
-        </li>
-        <li><a href="#trans-表优化">Trans 表优化</a>
-          <ol>
-            <li><a href="#背景-1">背景</a></li>
-            <li><a href="#整理-2">整理</a></li>
-            <li><a href="#ai总结-2">Ai总结</a></li>
-          </ol>
-        </li>
+        <li><a href="#算法思路">算法思路</a></li>
+        <li><a href="#完整代码">完整代码</a></li>
       </ol>
     </li>
   </ol>
@@ -358,8 +333,8 @@
     
     <header class="article-category">
         
-            <a href="/categories/summary/" style="background-color: #000000; color: #fff;">
-                Summary
+            <a href="/categories/algorithm/" style="background-color: #ff051a; color: #fff;">
+                算法
             </a>
         
             <a href="/categories/time-line/" style="background-color: #6c5ce7; color: #fff;">
@@ -371,12 +346,12 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/fire-workd-04/">垃圾中堆找黄金</a>
+            <a href="/p/acwing-basic-0x05/">[Acwing] 基础算法（五) 数据结构 单链表</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            dirty work 中寻找一些闪光点
+            浪费完整的一天
         </h3>
         
     </div>
@@ -397,7 +372,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2026-07-08</time>
+                <time class="article-time--published">2026-07-10</time>
             </div>
         
 
@@ -413,168 +388,61 @@
     <section class="article-content">
     
     
-    <p>说实话没有什么比较好的思路能够一下子整理出工作中的闪光点</p>
-<p>目前能想到的切入点</p>
-<ul>
-<li>人脑回忆这两年的Backlog</li>
-<li>从上到下扫描这两年全部的Backlog</li>
-<li>根据产品季度目标 PO-backlog 来整理</li>
-</ul>
-<p>预计采用的方案是</p>
-<p>1+3,如果数量不够可能会使用 2进行补充</p>
-<h2 id="开始回忆">开始回忆
-</h2><h3 id="账户暂停">账户暂停
-</h3><p>我们系统内部维护一个 Account Api 状态</p>
-<p>包括 <code>只读</code>,<code>归档</code>,<code>Error</code>,<code>交易</code></p>
-<p>需要增加一个账户<code>暂停</code>的状态，把<code>归档</code>的状态下掉，为什么下掉<code>归档</code>忘记了，看着是从业务理解层面上下掉的</p>
-<p>暂停的账户需要停止</p>
-<ol>
-<li>资产的更新</li>
-<li>记录的抓取</li>
-</ol>
-<p>印象中是做了</p>
-<ol>
-<li>在 Account 表中增加一列 boolean 表示账户是暂停还是启动</li>
-<li>在 Collector Account Monitor 中根据账户的状态进行控制是否要进行资产更新</li>
-<li>在 Fetch Data Monitor 中根据账户的状态进行控制是否要进行抓取记录</li>
-</ol>
-<p><strong>这里感觉不对 :</strong></p>
-<p>优化了一下流程</p>
-<ol>
-<li>写了一个 prompts 然后把对应任务的 pr丢给他 让他分析</li>
-</ol>
-<p>这次改动做了什么</p>
-<ol>
-<li>通过 <code>migration</code> 给涉及到的3张Account数据库表增加 <code>state</code> 的列</li>
-<li>处理相关下游模块的 暂停程序 <code>collector</code> , <code>monitory</code> , <code>api hook</code></li>
-<li>通过 go 一个 <code>migrateArchivedToPaused</code> 将历史归档状态的账户改成暂停的账户</li>
-</ol>
-<p>亮点 :</p>
-<ol>
-<li>复杂领域模型的状态及设计，因为涉及到 <code>子账户暂停母账户才可以暂停</code></li>
-<li>跨模块一致性改造</li>
-<li>存量数据迁移</li>
-</ol>
-<h4 id="个人想法">个人想法
-</h4><p>理了一下这个backlog，感觉并不是很惊艳，只能说涉及到的模块多，下游设计到的多，导致做的周期比较长比较大</p>
-<p>我感觉可以把 <code>migration</code> 单独提出来说一下，可以去挖一下我们公司 <code>migration</code> 的实现</p>
-<h3 id="ai总结">Ai总结
-</h3><p>主导 CeFi 账户 Pause/Resume 端到端设计与实现，将原先混用的「归档」语义拆分为运行态（Normal/Paused）与 API 权限态，新增 DB 三字段并完成 v2.171 migration。实现 Prop/Sub 级联状态机、恢复前 API 复检、事务与业务日志；改造 Collector 与 Monitor 共 6+ 后台 Job，暂停账户停止资产拉取与 API 巡检；完成归档账户存量迁移及多轮生产 bugfix，保障 v2.171 稳定上线。</p>
-<h3 id="async">Async
-</h3><h4 id="背景">背景
-</h4><p>交易所接口的实时查询接口只能够查询最近3个月的数据，如果想要获取更早的数据需要透过异步接口获取</p>
-<ol>
-<li>请求下载ID | 这一步一个月有次数限制，而且IP权重很高</li>
-<li>根据请求下载ID 去请求下载链接</li>
-</ol>
-<h4 id="整理">整理
-</h4><p>整体思路</p>
+    <h2 id="链表">链表
+</h2><h2 id="单链表">单链表
+</h2><h3 id="算法思路">算法思路
+</h3><p>我们使用</p>
+<p><code>head</code> 存储头节点</p>
+<p><code>e[i]</code> 存储下标 i 节点的值</p>
+<p><code>ne[i]</code> 表示 <code>i</code> 的后继节点在哪</p>
+<p><code>idx</code> 表示当前点位</p>
+<p>对于插入头部的操作</p>
+<p><code>e[idx] = x, ne[idx] = head, head = idx++;</code></p>
+<p>中间插入的操作</p>
+<p><code>e[idx] = x, ne[idx] = ne[k], ne[k] = idx++;</code></p>
+<p>删除的操作</p>
+<p><code>e[idx] = x, ne[idx] = ne[k], ne[k] = idx++;</code></p>
+<p>下面是一个演示过程 :</p>
+<p>头插入</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">REST</span> <span class="err">入口（统一限流</span><span class="o">/</span><span class="err">配额</span><span class="o">/</span><span class="err">落库）</span>
-</span></span><span class="line"><span class="cl">    <span class="err">↓</span>
-</span></span><span class="line"><span class="cl"><span class="n">DownloadId</span> <span class="err">工厂（</span><span class="n">exg</span> <span class="o">+</span> <span class="n">dataType</span> <span class="err">→</span> <span class="n">handler</span><span class="err">）</span>
-</span></span><span class="line"><span class="cl">    <span class="err">↓</span>
-</span></span><span class="line"><span class="cl"><span class="n">Redis</span> <span class="err">队列（解耦「申请」与「轮询下载」）</span>
-</span></span><span class="line"><span class="cl">    <span class="err">↓</span>
-</span></span><span class="line"><span class="cl"><span class="err">后台</span> <span class="n">Scan</span> <span class="n">Job</span><span class="err">（轮询</span> <span class="o">+</span> <span class="err">下载</span> <span class="o">+</span> <span class="err">重试）</span>
-</span></span><span class="line"><span class="cl">    <span class="err">↓</span>
-</span></span><span class="line"><span class="cl"><span class="n">MQ</span> <span class="err">→</span> <span class="n">Consumer</span><span class="err">（</span><span class="n">CSV</span> <span class="err">解析</span> <span class="err">→</span> <span class="err">标准</span> <span class="n">OTS</span> <span class="err">格式</span> <span class="err">→</span> <span class="err">入库）</span>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">H 1:  e[0]=1, ne[0]=-1, head=0        → 链表: 1
+</span></span><span class="line"><span class="cl">H 2:  e[1]=2, ne[1]=0,  head=1        → 链表: 2 → 1
+</span></span><span class="line"><span class="cl">H 3:  e[2]=3, ne[2]=1,  head=2        → 链表: 3 → 2 → 1
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>亮点</p>
-<ol>
-<li>
-<p>Redis 队列进行接藕操作</p>
-</li>
-<li>
-<p>任务每次在发版 进程重新启动的时候进行Recover</p>
-</li>
-<li>
-<p>状态机驱动 <code>not_started → packaging_data → downloading → importing → succeed/failed，含 packaging_data_with_error</code></p>
-</li>
-<li>
-<p>双层配额控制</p>
-<ul>
-<li>进程级 : <code>rate.Limiter</code> 一分钟一次，防止误操作</li>
-<li>账户级 : Redis 控制自然月计数</li>
-</ul>
-</li>
-<li>
-<p>Mock 测试体系</p>
-</li>
-</ol>
-<h4 id="ai一句话总结">AI一句话总结
-</h4><p>设计并实现 CAM 加密资产管理系统历史数据异步拉取引擎（Go / Redis / PostgreSQL / MQ）：从 0 搭建 Binance/OKX/Bybit 异步导出全链路（申请 → 轮询 → 下载 → CSV 解析入库），含双层配额控制、Redis 队列解耦、PG 状态机与发版容错恢复；支撑对账与历史回溯，模块累计 100+ 次生产迭代。</p>
-<h3 id="auth-升级">Auth 升级
-</h3><h4 id="背景说明">背景说明
-</h4><p>我们的 Apikey 铭感信息 都存放到 Auth 服务器上，之前 Auth 服务器上的 APikey_1 表数据太脏了</p>
-<ol>
-<li>apikey 不是存放在prop层级的，而是母子层级都可能存在</li>
-</ol>
-<p>现在想要升级 apikey_1 为 apikey_2</p>
-<ol>
-<li>希望所有 apikey 都收拢到 prop层级上面</li>
-</ol>
-<p>&ndash;</p>
-<p>C交易所账户有层级结构：Prop 母账户（如 bnprop）下挂多个子账户（如 binancef、binanced）。原先每个子账户都要单独配置 API Key，运维成本高、易出错。</p>
-<p>这套改动实现：子账户自动复用 Prop 母账户的 API 凭证，并支持复制已有 Prop 账户创建新账户，同时完成 Auth 服务从 V1 到 V2 的平滑迁移。</p>
-<h4 id="整理-1">整理
-</h4><p>存储层 : 新增 account_apikey_2 表</p>
-<p>Auth Server 层 : 新增 Copy Api 的功能,暴露出copy-api的接口</p>
-<p>Auth Client 层 : 封装 Copy 调用， V1/V2 自动切换</p>
-<p>业务层 : CopyHelper 统一调度：读 Key、写 Key、复制账户</p>
-<p>观测层 : 给每一个回退增加统计</p>
-<p><strong>核心决策设计 :</strong></p>
-<ol>
-<li>
-<p>双表并存，平滑迁移</p>
-<ul>
-<li>V1（account_apikey）与 V2（account_apikey_v2）共存</li>
-<li>支持 V1→V1、V2→V2、V1→V2 三种 Copy 路径</li>
-<li>客户端按 Auth 版本自动路由，V1 读不到时自动 V1→V2 迁移</li>
-</ul>
-</li>
-<li>
-<p>灰度发布</p>
-<ul>
-<li>CopyRegionControl() 控制 master 环境先上线</li>
-<li>后续通过 Auth 版本检测自动切换 V2</li>
-</ul>
-</li>
-</ol>
-<h4 id="个人想法-1">个人想法
-</h4><p>这个功能比较难做，涉及到的模块很多，而且 更新 新增 删除 apikey 暴露给了很多地方，还需要做版本控制</p>
-<p>导致改动的地方很多</p>
-<h4 id="ai总结-1">Ai总结
-</h4><p>负责设计并实现交易账户 API Key 共享能力，解决 Prop 母账户与子账户重复配置凭证的问题。新建 account_apikey_v2 存储层，提供 V1/V2 双版本 Copy API；在 tradeacc、auth_client、交易所 Sign 模块实现统一 CopyHelper，支持子账户自动复用 Prop 凭证及复制开户；设计 V1→V2 平滑迁移与降级回退，配合 Feature Toggle 灰度发布；新增 Copy 降级监控指标。涉及 5 个核心模块、1,000+ 行代码，6 天内分 4 个 PR 交付。</p>
-<h3 id="trans-表优化">Trans 表优化
-</h3><h4 id="背景-1">背景
-</h4><p>成交表的数据有很多，一个客户一天的数据甚至就能到百万级别的了，需要优化一下存储</p>
-<p>我们Trans表主要存储 <code>id,business_id,account,time,detail</code>这几个字段，之前 detail 是直接存储的交易所的原始返回</p>
-<p>所以主要是优化这部分内容，通过压缩存储来进行优化</p>
-<p>压缩算法和测试是运维那边来处理的（后续需要去看一下）</p>
-<h4 id="整理-2">整理
-</h4><p>我们存在两个结构一个 是 <code>ec.OTSTrans</code> 供给上层业务组使用 一个是 <code>db.Trans</code> 用于存储</p>
-<ol>
-<li>新增 SlimOTSTrans，将 <code>ec.OTSTrans</code> 的 jsontag 改为短JSON名处理例如 <code>a/b/c...</code></li>
-<li>在 OTSTransToDB 的时候使用 Compressor 进行控制</li>
-<li>新增 <code>blob</code> 和 <code>blob_format</code> 列用于表示是否是压缩内容 以及存入压缩内容</li>
-<li>将detail字段进行私有化控制，全部业务层统一使用 <code>GetDetails()</code>和<code>SetDetails()</code>进行访问</li>
-</ol>
-<p>流程
-写入时：JSON → Slim 序列化 → 压缩 → 写入 blob，清空 details；读取时：按 blob_format 自动解压还原</p>
+</div><p>调用 <code>Insert 3 5</code> 在第三个数后面插入5</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">e[3] = 5
+</span></span><span class="line"><span class="cl">ne[3] = ne[2] = 1    // 新节点先接上原来的后继
+</span></span><span class="line"><span class="cl">ne[2] = 3            // 节点 2 改指向新节点
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>调用 <code>Insert 4 4</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">e[3] = 5
+</span></span><span class="line"><span class="cl">ne[3] = ne[2] = 1    // 新节点先接上原来的后继
+</span></span><span class="line"><span class="cl">ne[2] = 3            // 节点 2 改指向新节点
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>最终情况</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -589,36 +457,158 @@
 </span><span class="lnt">10
 </span><span class="lnt">11
 </span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">┌─────────────────────────────────────────────────────────┐
-</span></span><span class="line"><span class="cl">│  Layer 1: JSON 字段瘦身 (SlimOTSTrans 短字段名)          │
-</span></span><span class="line"><span class="cl">├─────────────────────────────────────────────────────────┤
-</span></span><span class="line"><span class="cl">│  Layer 2: 二进制压缩 (xz / zstd / vanilla)               │
-</span></span><span class="line"><span class="cl">├─────────────────────────────────────────────────────────┤
-</span></span><span class="line"><span class="cl">│  Layer 3: 存储分离 (details 清空 → blob 存压缩数据)      │
-</span></span><span class="line"><span class="cl">└─────────────────────────────────────────────────────────┘
-</span></span><span class="line"><span class="cl">                          ↓
-</span></span><span class="line"><span class="cl">              blob_format 标识格式，统一读写入口
-</span></span><span class="line"><span class="cl">                          ↓
-</span></span><span class="line"><span class="cl">         blob_format=0 读旧 details（向后兼容）
-</span></span><span class="line"><span class="cl">         blob_format&gt;0 读 blob 解压（新数据）
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">逻辑链表:  head
+</span></span><span class="line"><span class="cl">              ↓
+</span></span><span class="line"><span class="cl">         ┌────┐    ┌────┐    ┌────┐    ┌────┐    ┌────┐
+</span></span><span class="line"><span class="cl">         │ 3  │ →  │ 5  │ →  │ 4  │ →  │ 2  │ →  │ 1  │ → NULL
+</span></span><span class="line"><span class="cl">         └────┘    └────┘    └────┘    └────┘    └────┘
+</span></span><span class="line"><span class="cl">         下标2     下标3     下标4     下标1     下标0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">数组状态:
+</span></span><span class="line"><span class="cl">  i:    0    1    2    3    4
+</span></span><span class="line"><span class="cl"> e[i]:  1    2    3    5    4
+</span></span><span class="line"><span class="cl">ne[i]: -1    0    3    4    1
+</span></span><span class="line"><span class="cl">              ↑    ↑    ↑
+</span></span><span class="line"><span class="cl">              │    │    └─ head=2
+</span></span><span class="line"><span class="cl">              │    └─ ne[2]=3 指向节点5
+</span></span><span class="line"><span class="cl">              └─ ne[4]=1 指向节点2
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>架构与设计</p>
-<p>全链路存储优化：不是简单「加个 gzip」，而是从 JSON 结构、压缩算法、DB Schema、读写 API 到 20+ 下游模块的系统性改造。</p>
-<p>向后兼容设计：blob_format 双轨读写，支持新旧数据共存，生产可渐进迁移。</p>
-<p>零拷贝转换：SlimOTSTrans 与 OTSTrans 通过 unsafe.Pointer 转换，并用 init() 校验 struct layout，兼顾性能与安全。</p>
-<h4 id="ai总结-2">Ai总结
-</h4><ol>
-<li>
-<p>设计并实现 CAM 历史交易流水存储优化：Slim JSON 瘦身 + zstd/xz 压缩 + blob 分离存储，解决核心表存储与 I/O 瓶颈。</p>
-</li>
-<li>
-<p>通过 blob_format 双轨兼容设计实现零停机迁移，重构 40+ 下游模块统一读写接口，开发 CLI 批量迁移工具并完成多环境灰度发布。</p>
-</li>
-</ol>
-
+</div><h3 id="完整代码">完整代码
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;bits/stdc++.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define LL long long
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="mf">1e5</span><span class="o">+</span><span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">head</span><span class="p">,</span> <span class="n">e</span><span class="p">[</span><span class="n">N</span><span class="p">],</span> <span class="n">ne</span><span class="p">[</span><span class="n">N</span><span class="p">],</span> <span class="n">idx</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">head</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">add_to_head</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">e</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ne</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">head</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">head</span> <span class="o">=</span> <span class="n">idx</span> <span class="o">++</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="p">,</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">e</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ne</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">ne</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ne</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">idx</span> <span class="o">++</span> <span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 1 , ne[0] = -1
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 2 , ne[1] = 0
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 3 , ne[2] = 1
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 5 , ne[4] = ne[3-1] = 1 ; 3, 1 (ne[3] = 5)
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 4 , ne[3] = 2
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">remove</span><span class="p">(</span><span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ne</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">ne</span><span class="p">[</span><span class="n">ne</span><span class="p">[</span><span class="n">k</span><span class="p">]];</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">n</span><span class="p">;</span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">init</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span> <span class="n">n</span> <span class="p">;</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">char</span> <span class="n">op</span> <span class="p">;</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">op</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">op</span> <span class="o">==</span> <span class="sc">&#39;H&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">x</span><span class="p">;</span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">add_to_head</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span><span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">op</span> <span class="o">==</span> <span class="sc">&#39;D&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">x</span><span class="p">;</span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">x</span><span class="p">)</span> <span class="n">head</span> <span class="o">=</span> <span class="n">ne</span><span class="p">[</span><span class="n">head</span><span class="p">];</span> 
+</span></span><span class="line"><span class="cl">            <span class="k">else</span> <span class="n">remove</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span><span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">op</span> <span class="o">==</span> <span class="sc">&#39;I&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">k</span><span class="p">,</span><span class="n">x</span><span class="p">;</span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">k</span><span class="o">&gt;&gt;</span><span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">add</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">head</span> <span class="p">;</span> <span class="n">i</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span> <span class="p">;</span> <span class="n">i</span> <span class="o">=</span> <span class="n">ne</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="s">&#34; &#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
 </section>
 
 
@@ -626,7 +616,9 @@
     
     <section class="article-tags">
         
-            <a href="/tags/%E5%B7%A5%E4%BD%9C/">工作</a>
+            <a href="/tags/acwing/">Acwing</a>
+        
+            <a href="/tags/%E9%93%BE%E8%A1%A8/">链表</a>
         
     </section>
 
@@ -672,12 +664,12 @@
             
                 
 <article class="">
-    <a href="/p/fire-workd-03/">
+    <a href="/p/acwing-basic-0x04/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">整理</h2>
+            <h2 class="article-title">[Acwing] 基础算法（四) 离散化&amp;区间合并</h2>
         </div>
     </a>
 </article>
@@ -685,12 +677,12 @@
             
                 
 <article class="">
-    <a href="/p/fire-workd-02/">
+    <a href="/p/acwing-basic-0x03/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">裁员之后我该何去何从</h2>
+            <h2 class="article-title">[Acwing] 基础算法(三) 前缀和&amp;差分</h2>
         </div>
     </a>
 </article>
@@ -698,36 +690,12 @@
             
                 
 <article class="">
-    <a href="/p/fire-workd-01/">
+    <a href="/p/acwing-basic-0x02/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">[重磅消息] 我被裁员了！</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/blog-summary-26-06-01/">
-        
-        
-            <div class="article-image">
-                <img src="/p/blog-summary-26-06-01/blog.5fdfc7135f1ff52876494b1d15b84404_hu_eafc8e9d50d47a44.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post [blog] 当前使用体验"
-                        data-key="blog-summary-26-06-01" 
-                        data-hash="md5-X9/HE18f9Sh2SUsdFbhEBA==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">[blog] 当前使用体验</h2>
+            <h2 class="article-title">[Acwing] 基础算法(二) 二分</h2>
         </div>
     </a>
 </article>
@@ -735,12 +703,25 @@
             
                 
 <article class="">
-    <a href="/p/acwing-basic-0x05/">
+    <a href="/p/acwing-basic-0x01/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">[Acwing] 基础算法（五) 数据结构 单链表</h2>
+            <h2 class="article-title">[Acwing] 基础算法(一) 排序</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/leetcode-300/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[LeetCode] 300. 最长递增子序列</h2>
         </div>
     </a>
 </article>

@@ -9,10 +9,10 @@
         <copyright>GzzhM</copyright>
         <lastBuildDate>Thu, 09 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/categories/interview/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>面经每日一看</title>
-        <link>https://ddlgitgzzhm.github.io/p/%E9%9D%A2%E7%BB%8F%E6%AF%8F%E6%97%A5%E4%B8%80%E7%9C%8B/</link>
+        <link>https://ddlgitgzzhm.github.io/p/interview_0x01/</link>
         <pubDate>Thu, 09 Jul 2026 00:00:00 +0000</pubDate>
         
-        <guid>https://ddlgitgzzhm.github.io/p/%E9%9D%A2%E7%BB%8F%E6%AF%8F%E6%97%A5%E4%B8%80%E7%9C%8B/</guid>
+        <guid>https://ddlgitgzzhm.github.io/p/interview_0x01/</guid>
         <description>&lt;p&gt;学累了我就看面经，看多了就会发现都是一些什么神人在卷，然后就不想学了&lt;/p&gt;
 &lt;p&gt;本篇面筋来自 : &lt;a class=&#34;link&#34; href=&#34;https://www.nowcoder.com/discuss/631514581503926272?sourceSSR=users&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.nowcoder.com/discuss/631514581503926272?sourceSSR=users&lt;/a&gt;&lt;/p&gt;
@@ -53,10 +53,10 @@
 &lt;/h3&gt;&lt;h4 id=&#34;系统数据模型怎么设计的&#34;&gt;系统数据模型怎么设计的
 &lt;/h4&gt;&lt;p&gt;说实话我自己做的项目都数据库表可以说是抄的，我们系统的呢&lt;/p&gt;
 &lt;p&gt;对于一张数据表 &lt;code&gt;historytrade_trans&lt;/code&gt; 我们拥有&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/%E9%9D%A2%E7%BB%8F%E6%AF%8F%E6%97%A5%E4%B8%80%E7%9C%8B/image.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/interview_0x01/image.png&#34;
 	width=&#34;1097&#34;
 	height=&#34;767&#34;
-	srcset=&#34;https://ddlgitgzzhm.github.io/p/%E9%9D%A2%E7%BB%8F%E6%AF%8F%E6%97%A5%E4%B8%80%E7%9C%8B/image_hu_f4e1f52ab4dd27f8.png 480w, https://ddlgitgzzhm.github.io/p/%E9%9D%A2%E7%BB%8F%E6%AF%8F%E6%97%A5%E4%B8%80%E7%9C%8B/image_hu_35292d1ab807b210.png 1024w&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/interview_0x01/image_hu_f4e1f52ab4dd27f8.png 480w, https://ddlgitgzzhm.github.io/p/interview_0x01/image_hu_35292d1ab807b210.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;image.png&#34;
@@ -68,10 +68,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;对于一张 &lt;code&gt;Tradeacc&lt;/code&gt; 表 我们拥有&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/%E9%9D%A2%E7%BB%8F%E6%AF%8F%E6%97%A5%E4%B8%80%E7%9C%8B/resource_tradeacc.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/interview_0x01/resource_tradeacc.png&#34;
 	width=&#34;1006&#34;
 	height=&#34;886&#34;
-	srcset=&#34;https://ddlgitgzzhm.github.io/p/%E9%9D%A2%E7%BB%8F%E6%AF%8F%E6%97%A5%E4%B8%80%E7%9C%8B/resource_tradeacc_hu_469a9dff68f3d513.png 480w, https://ddlgitgzzhm.github.io/p/%E9%9D%A2%E7%BB%8F%E6%AF%8F%E6%97%A5%E4%B8%80%E7%9C%8B/resource_tradeacc_hu_6feef01f830bbfc6.png 1024w&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/interview_0x01/resource_tradeacc_hu_469a9dff68f3d513.png 480w, https://ddlgitgzzhm.github.io/p/interview_0x01/resource_tradeacc_hu_6feef01f830bbfc6.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;resource_tradeacc.png&#34;
@@ -82,10 +82,10 @@
 		data-flex-basis=&#34;272px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/%E9%9D%A2%E7%BB%8F%E6%AF%8F%E6%97%A5%E4%B8%80%E7%9C%8B/tradeacc_index.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/interview_0x01/tradeacc_index.png&#34;
 	width=&#34;997&#34;
 	height=&#34;386&#34;
-	srcset=&#34;https://ddlgitgzzhm.github.io/p/%E9%9D%A2%E7%BB%8F%E6%AF%8F%E6%97%A5%E4%B8%80%E7%9C%8B/tradeacc_index_hu_c9fb669d7c46b6f6.png 480w, https://ddlgitgzzhm.github.io/p/%E9%9D%A2%E7%BB%8F%E6%AF%8F%E6%97%A5%E4%B8%80%E7%9C%8B/tradeacc_index_hu_1b6dccaf9e3ba272.png 1024w&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/interview_0x01/tradeacc_index_hu_c9fb669d7c46b6f6.png 480w, https://ddlgitgzzhm.github.io/p/interview_0x01/tradeacc_index_hu_1b6dccaf9e3ba272.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;tradeacc_index.png&#34;
