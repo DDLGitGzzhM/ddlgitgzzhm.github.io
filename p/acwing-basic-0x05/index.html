@@ -2,17 +2,17 @@
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="浪费完整的一天">
-<title>[Acwing] 基础算法（五) 数据结构 单链表</title>
+<title>[Acwing] 基础算法（五) 数据结构 链表</title>
 
 <link rel='canonical' href='https://ddlgitgzzhm.github.io/p/acwing-basic-0x05/'>
 
 
-<link rel="stylesheet" href="/css/main.9a5c8f2dd65f8933ebb1c2d0175afb75dd9fc8765e238f5b09b6ba39536a73f9.css"><meta property='og:title' content="[Acwing] 基础算法（五) 数据结构 单链表">
+<link rel="stylesheet" href="/css/main.9a5c8f2dd65f8933ebb1c2d0175afb75dd9fc8765e238f5b09b6ba39536a73f9.css"><meta property='og:title' content="[Acwing] 基础算法（五) 数据结构 链表">
 <meta property='og:description' content="浪费完整的一天">
 <meta property='og:url' content='https://ddlgitgzzhm.github.io/p/acwing-basic-0x05/'>
 <meta property='og:site_name' content='GzzhM'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='acwing' /><meta property='article:tag' content='链表' /><meta property='article:published_time' content='2026-07-10T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-07-10T00:00:00&#43;00:00'/>
-<meta name="twitter:title" content="[Acwing] 基础算法（五) 数据结构 单链表">
+<meta name="twitter:title" content="[Acwing] 基础算法（五) 数据结构 链表">
 <meta name="twitter:description" content="浪费完整的一天">
     <link rel="shortcut icon" href="/favicon.ico" />
 
@@ -315,6 +315,12 @@
         <li><a href="#完整代码">完整代码</a></li>
       </ol>
     </li>
+    <li><a href="#双链表">双链表</a>
+      <ol>
+        <li><a href="#算法思路-1">算法思路</a></li>
+        <li><a href="#代码">代码</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -346,7 +352,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/acwing-basic-0x05/">[Acwing] 基础算法（五) 数据结构 单链表</a>
+            <a href="/p/acwing-basic-0x05/">[Acwing] 基础算法（五) 数据结构 链表</a>
         </h2>
     
         
@@ -604,6 +610,146 @@
 </span></span><span class="line"><span class="cl">        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="s">&#34; &#34;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="双链表">双链表
+</h2><h3 id="算法思路-1">算法思路
+</h3><p>我们假设 <code>[0] [1]</code> 代表我们的左右端点</p>
+<p>初始化的时候 <code>r[0] = 1 , l[1] = 0, idx = 2</code></p>
+<p>对于插入操作</p>
+<ol>
+<li>
+<p>我们需要给当前节点赋值</p>
+</li>
+<li>
+<p>并且使得当前节点的左右指针指向上下两个数</p>
+<ul>
+<li><code>l[idx] = k, r[idx] = r[k]</code></li>
+</ul>
+</li>
+<li>
+<p>同时修改两个被影响的指针</p>
+<ul>
+<li><code>l[r[k]] = idx, r[k] = idx</code></li>
+</ul>
+</li>
+</ol>
+<p>这是插入右端点的思路，插入左端点可以认为是在前一个节点插入右端点即<code>inser(l[k],x)</code></p>
+<p>对于删除操作,我们需要把 当前节点的上一个节点 和 下一个节点互相建立关系</p>
+<ol>
+<li>
+<p>将当前节点的左节点的右节点指向下一个节点</p>
+<ul>
+<li><code>r[l[k]] = r[k]</code></li>
+</ul>
+</li>
+<li>
+<p>将当前节点的右节点的左节点指向上一个节点</p>
+<ul>
+<li><code>l[r[k]] = l[k]</code></li>
+</ul>
+</li>
+</ol>
+<p>另外需要注意的是，我们一开始就使用了两个节点所以对于操作的节点我们应该认为是 <code>k+1</code></p>
+<h3 id="代码">代码
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">e</span><span class="p">[</span><span class="n">N</span><span class="p">],</span><span class="n">l</span><span class="p">[</span><span class="n">N</span><span class="p">],</span><span class="n">r</span><span class="p">[</span><span class="n">N</span><span class="p">],</span><span class="n">idx</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">l</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">idx</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">k</span><span class="p">,</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">e</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">l</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">k</span> <span class="p">,</span><span class="n">r</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">l</span><span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="n">k</span><span class="p">]]</span> <span class="o">=</span> <span class="n">idx</span><span class="p">,</span> <span class="n">r</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">idx</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">idx</span> <span class="o">++</span> <span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">remove</span><span class="p">(</span><span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">l</span><span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="n">k</span><span class="p">]]</span> <span class="o">=</span> <span class="n">l</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r</span><span class="p">[</span><span class="n">l</span><span class="p">[</span><span class="n">k</span><span class="p">]]</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">init</span><span class="p">()</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">n</span><span class="p">;</span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span> <span class="n">n</span> <span class="p">;</span><span class="n">i</span> <span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">string</span> <span class="n">op</span><span class="p">;</span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">op</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">op</span> <span class="o">==</span> <span class="s">&#34;L&#34;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">x</span><span class="p">;</span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">add</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">op</span> <span class="o">==</span> <span class="s">&#34;R&#34;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">x</span><span class="p">;</span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">add</span><span class="p">(</span><span class="n">l</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">op</span> <span class="o">==</span> <span class="s">&#34;D&#34;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">k</span><span class="p">;</span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">k</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">remove</span><span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">op</span> <span class="o">==</span> <span class="s">&#34;IL&#34;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">k</span><span class="p">,</span><span class="n">x</span><span class="p">;</span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">k</span><span class="o">&gt;&gt;</span><span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">add</span><span class="p">(</span><span class="n">l</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span><span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">k</span><span class="p">,</span><span class="n">x</span><span class="p">;</span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">k</span><span class="o">&gt;&gt;</span><span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">add</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">;</span> <span class="n">i</span><span class="o">!=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="s">&#34; &#34;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
