@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="平平无奇的一天">
-<title>[Acwing] 基础算法(七) Tire 树</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="很难，但是一切正常">
+<title>[Acwing] 基础算法(八) 堆</title>
 
-<link rel='canonical' href='https://ddlgitgzzhm.github.io/p/acwing-basic-0x07/'>
+<link rel='canonical' href='https://ddlgitgzzhm.github.io/p/acwing-basic-0x08/'>
 
 
-<link rel="stylesheet" href="/css/main.9a5c8f2dd65f8933ebb1c2d0175afb75dd9fc8765e238f5b09b6ba39536a73f9.css"><meta property='og:title' content="[Acwing] 基础算法(七) Tire 树">
-<meta property='og:description' content="平平无奇的一天">
-<meta property='og:url' content='https://ddlgitgzzhm.github.io/p/acwing-basic-0x07/'>
+<link rel="stylesheet" href="/css/main.9a5c8f2dd65f8933ebb1c2d0175afb75dd9fc8765e238f5b09b6ba39536a73f9.css"><meta property='og:title' content="[Acwing] 基础算法(八) 堆">
+<meta property='og:description' content="很难，但是一切正常">
+<meta property='og:url' content='https://ddlgitgzzhm.github.io/p/acwing-basic-0x08/'>
 <meta property='og:site_name' content='GzzhM'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='acwing' /><meta property='article:tag' content='Tire' /><meta property='article:published_time' content='2026-07-12T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-07-12T00:00:00&#43;00:00'/>
-<meta name="twitter:title" content="[Acwing] 基础算法(七) Tire 树">
-<meta name="twitter:description" content="平平无奇的一天">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='acwing' /><meta property='article:tag' content='heap' /><meta property='article:published_time' content='2026-07-13T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-07-13T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="[Acwing] 基础算法(八) 堆">
+<meta name="twitter:description" content="很难，但是一切正常">
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -308,10 +308,17 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#tire">Tire</a>
+    <li><a href="#heap">Heap</a>
       <ol>
         <li><a href="#算法思路">算法思路</a></li>
-        <li><a href="#代码展示">代码展示</a></li>
+        <li><a href="#代码">代码</a></li>
+        <li><a href="#时间复杂度分析">时间复杂度分析</a></li>
+      </ol>
+    </li>
+    <li><a href="#模拟堆">模拟堆</a>
+      <ol>
+        <li><a href="#代码-1">代码</a></li>
+        <li><a href="#一些感想">一些感想</a></li>
       </ol>
     </li>
   </ol>
@@ -345,12 +352,12 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/acwing-basic-0x07/">[Acwing] 基础算法(七) Tire 树</a>
+            <a href="/p/acwing-basic-0x08/">[Acwing] 基础算法(八) 堆</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            平平无奇的一天
+            很难，但是一切正常
         </h3>
         
     </div>
@@ -371,7 +378,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2026-07-12</time>
+                <time class="article-time--published">2026-07-13</time>
             </div>
         
 
@@ -387,19 +394,175 @@
     <section class="article-content">
     
     
-    <h2 id="tire">Tire
+    <h2 id="heap">Heap
 </h2><h3 id="算法思路">算法思路
-</h3><p>解决问题 :</p>
-<p>解决单词统计类型的问题，或者是说 有多少 <code>prefix</code> 是以当前字符串为前缀的串</p>
-<p>算法思路 ：</p>
-<p>由于这种题目出现会控制单词长度，所以我们考虑开一个 <code>[N][26]</code> 树用于存储</p>
+</h3><p>我们使用一维数组来表示一个堆,堆的性质是一个完全二叉树，其中根是最小值，左右节点均小于父节点</p>
+<p>我们使用 <code>x表示根节点，则 2*x表示左节点 , 2*x+1 表示右节点</code></p>
+<p>考虑</p>
 <ol>
-<li>对于一个单词，相当于一个单边树</li>
-<li>对于 <code>abc</code> ,<code>abcd</code> 树会在 <code>c</code> 处进行分叉</li>
-<li>每个节点单独赋值 <code>idx</code></li>
-<li>对于访问一个字符串我们可以从 根节点开始访问，对于其子串可以使用 <code>p = tire[p][u]</code> 的形式进行递归访问</li>
+<li>插入一个数</li>
+<li>删除最小值</li>
+<li>求最小值</li>
 </ol>
-<h3 id="代码展示">代码展示
+<p>对于插入一个数 :</p>
+<ol>
+<li>因为是使用一维数组进行存储的，所以插入的数会在末尾，我们需要考虑进行 <code>up</code> 操作，将其和其父节点进行比较，如果比父节点小那么交换</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">up</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">u</span><span class="o">/</span><span class="mi">2</span> <span class="o">&amp;&amp;</span> <span class="n">h</span><span class="p">[</span><span class="n">u</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">h</span><span class="p">[</span><span class="n">u</span><span class="p">])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">heap_swap</span><span class="p">(</span><span class="n">u</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">u</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">u</span> <span class="o">/=</span> <span class="mi">2</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>对于删除最小值</li>
+</ol>
+<p>因为最小值在 <code>h[1]</code> 所以考虑删除的时候，应该交换<code>h[size]</code> ，然后<code>size--</code> 最后将 <code>size</code> 进行一次<code>down</code>操作</p>
+<p><code>down</code>操作也是很简单就能想到是和 <code>左右节点进行比较</code> ,如果比左右节点大那么进行交换</p>
+<h3 id="代码">代码
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">h</span><span class="p">[</span><span class="n">N</span><span class="p">],</span><span class="n">sz</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">down</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">t</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">&lt;=</span> <span class="n">sz</span> <span class="o">&amp;&amp;</span> <span class="n">h</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">h</span><span class="p">[</span><span class="n">x</span> <span class="o">*</span> <span class="mi">2</span><span class="p">])</span> <span class="n">t</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">sz</span> <span class="o">&amp;&amp;</span> <span class="n">h</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">h</span><span class="p">[</span><span class="n">x</span><span class="o">*</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="p">)</span> <span class="n">t</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">h</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">!=</span> <span class="n">h</span><span class="p">[</span><span class="n">t</span><span class="p">])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">swap</span><span class="p">(</span><span class="n">h</span><span class="p">[</span><span class="n">x</span><span class="p">],</span><span class="n">h</span><span class="p">[</span><span class="n">t</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">down</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ios</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="k">nullptr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="n">m</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span> <span class="p">;</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">h</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">  <span class="n">sz</span> <span class="o">=</span> <span class="n">n</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="p">;</span> <span class="n">i</span> <span class="o">--</span> <span class="p">)</span> <span class="n">down</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">while</span><span class="p">(</span><span class="n">m</span> <span class="o">--</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">h</span><span class="p">[</span><span class="n">sz</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="s">&#34; &#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">h</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">h</span><span class="p">[</span><span class="n">sz</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sz</span> <span class="o">--</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">down</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="时间复杂度分析">时间复杂度分析
+</h3><p>建树的时候是 <code>o(n)</code> 的 遍历树的时候 是 <code>ologn</code></p>
+<h2 id="模拟堆">模拟堆
+</h2><p>在普通堆的基础上增加了</p>
+<ol>
+<li>删除第 k 个数</li>
+<li>修改第 k 个数</li>
+</ol>
+<p>对于删除 第 k 个数</p>
+<ol>
+<li>我们需要考虑存储 , 第k个数 对应在 <code>heap</code>中的下标是什么 即 <code>ph[k]</code></li>
+<li>同时因为涉及到交换，我们需要在 <code>o(1)</code> 的时间复杂度知道  堆下标<code>i = 2*x? 2*x+1</code> 上堆元素，是第几次插入的 <code>hp</code></li>
+</ol>
+<p>因为如果不知道 <code>hp 元素</code></p>
+<p>我们在交换的时候会遇到</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">原来：第 m 次插入在位置 a  →  ph[m] = a
+</span></span><span class="line"><span class="cl">      第 n 次插入在位置 b  →  ph[n] = b
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">交换后：第 m 次插入到了 b  →  ph[m] = b
+</span></span><span class="line"><span class="cl">        第 n 次插入到了 a  →  ph[n] = a
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这种奇异的问题，原本第<code>m</code>次插入的<code>a</code> 变成了 第<code>n</code>次插入的</p>
+<p>除非我们进行 <code>oN</code> 的处理</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">// 没有 hp 时，每次 swap 都要扫一遍
+</span></span><span class="line"><span class="cl">for (int k = 1; k &lt;= m; k++)
+</span></span><span class="line"><span class="cl">    if (ph[k] == a) ph[k] = b;
+</span></span><span class="line"><span class="cl">    else if (ph[k] == b) ph[k] = a;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>但是我们如果引入了 <code>hp</code> 后只需要进行 更换即可</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">void heap_swap(int a, int b)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    swap(ph[hp[a]], ph[hp[b]]);  // ph[hp[a]]=a, ph[hp[b]]=b → 交换后变成 b 和 a
+</span></span><span class="line"><span class="cl">    swap(hp[a], hp[b]);
+</span></span><span class="line"><span class="cl">    swap(h[a], h[b]);
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="代码-1">代码
 </h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -436,45 +599,111 @@
 </span><span class="lnt">32
 </span><span class="lnt">33
 </span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">son</span><span class="p">[</span><span class="n">N</span><span class="p">][</span><span class="mi">26</span><span class="p">],</span> <span class="n">n</span><span class="p">,</span> <span class="n">idx</span> <span class="p">;</span> 
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">cnt</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="n">str</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">int n,m;
+</span></span><span class="line"><span class="cl">int h[N],sz , hp[N], ph[N];
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">insert</span><span class="p">(</span><span class="kt">char</span> <span class="n">str</span><span class="p">[])</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">;</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">u</span> <span class="o">=</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="sc">&#39;a&#39;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">son</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="n">u</span><span class="p">])</span> <span class="n">son</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="o">++</span><span class="n">idx</span> <span class="p">;</span> 
-</span></span><span class="line"><span class="cl">        <span class="n">p</span> <span class="o">=</span> <span class="n">son</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="n">u</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="n">cnt</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">++</span> <span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">void heap_swap(int a,int b)  {
+</span></span><span class="line"><span class="cl">    swap(h[a],h[b]);
+</span></span><span class="line"><span class="cl">    swap(ph[hp[a]], ph[hp[b]]);
+</span></span><span class="line"><span class="cl">    swap(hp[a],hp[b]);
+</span></span><span class="line"><span class="cl">}
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">query</span><span class="p">(</span><span class="kt">char</span> <span class="n">str</span><span class="p">[])</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">;</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">u</span> <span class="o">=</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="sc">&#39;a&#39;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">son</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="n">u</span><span class="p">])</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="n">p</span> <span class="o">=</span> <span class="n">son</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="n">u</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">cnt</span><span class="p">[</span><span class="n">p</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">void down(int x) {
+</span></span><span class="line"><span class="cl">    int t = x;
+</span></span><span class="line"><span class="cl">    if(x * 2 &lt;= sz &amp;&amp; h[t] &gt; h[x * 2]) t = x * 2;
+</span></span><span class="line"><span class="cl">    if(x * 2 + 1 &lt;= sz &amp;&amp; h[t] &gt; h[x*2 + 1] + 1) t = x*2+ 1;
+</span></span><span class="line"><span class="cl">    if(x != t) {
+</span></span><span class="line"><span class="cl">       heap_swap(x,t);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    down(t);
+</span></span><span class="line"><span class="cl">}
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span> <span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="k">while</span><span class="p">(</span><span class="n">n</span> <span class="o">--</span> <span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">op</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%s%s&#34;</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="n">str</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">op</span> <span class="o">==</span> <span class="sc">&#39;I&#39;</span><span class="p">)</span> <span class="n">insert</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">query</span><span class="p">(</span><span class="n">str</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">void up(int u ) {
+</span></span><span class="line"><span class="cl">    while(u/2 &amp;&amp; h[u/2] &gt; h[u]) {
+</span></span><span class="line"><span class="cl">        heap_swap(u/2,u);
+</span></span><span class="line"><span class="cl">        u /= 2 ;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">int main() {
+</span></span><span class="line"><span class="cl">  ios::sync_with_stdio(false);
+</span></span><span class="line"><span class="cl">  cin.tie(nullptr);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  int n;cin&gt;&gt;n;
+</span></span><span class="line"><span class="cl">  while(n -- ) {
+</span></span><span class="line"><span class="cl">    string op;cin&gt;&gt;op;
+</span></span><span class="line"><span class="cl">    if(op == &#34;I&#34;) {
+</span></span><span class="line"><span class="cl">        int x;cin&gt;&gt;x;
+</span></span><span class="line"><span class="cl">        h[++sz] = x ;
+</span></span><span class="line"><span class="cl">        m ++ ;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        ph[m] = sz ;
+</span></span><span class="line"><span class="cl">        hp[sz] = m ;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        up(sz);
+</span></span><span class="line"><span class="cl">    }else if(op == &#34;PM&#34;) {
+</span></span><span class="line"><span class="cl">        cout&lt;&lt;h[1]&lt;&lt;endl;
+</span></span><span class="line"><span class="cl">    }else if(op == &#34;DM&#34;) {
+</span></span><span class="line"><span class="cl">        heap_swap(1,sz);
+</span></span><span class="line"><span class="cl">        sz -- ;
+</span></span><span class="line"><span class="cl">        down(1);
+</span></span><span class="line"><span class="cl">    }else if(op == &#34;D&#34;) {
+</span></span><span class="line"><span class="cl">        int k;cin&gt;&gt;k;
+</span></span><span class="line"><span class="cl">        k = ph[k];
+</span></span><span class="line"><span class="cl">        heap_swap(k,sz);
+</span></span><span class="line"><span class="cl">        sz -- ;
+</span></span><span class="line"><span class="cl">        up(k);
+</span></span><span class="line"><span class="cl">        down(k);
+</span></span><span class="line"><span class="cl">    }else {
+</span></span><span class="line"><span class="cl">        int k,x;cin&gt;&gt;k&gt;&gt;x;
+</span></span><span class="line"><span class="cl">        k = ph[k];
+</span></span><span class="line"><span class="cl">        h[k] = x;
+</span></span><span class="line"><span class="cl">        up(k);
+</span></span><span class="line"><span class="cl">        down(k);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">  }
+</span></span><span class="line"><span class="cl">  return 0;
+</span></span><span class="line"><span class="cl">}
 </span></span></code></pre></td></tr></table>
 </div>
-</div>
+</div><h3 id="一些感想">一些感想
+</h3><p>好难，说实话 涉及到一些指针的来回跳动就完全不会了</p>
+
 </section>
 
 
@@ -484,7 +713,7 @@
         
             <a href="/tags/acwing/">Acwing</a>
         
-            <a href="/tags/tire/">Tire</a>
+            <a href="/tags/heap/">Heap</a>
         
     </section>
 
@@ -530,12 +759,12 @@
             
                 
 <article class="">
-    <a href="/p/acwing-basic-0x08/">
+    <a href="/p/acwing-basic-0x07/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">[Acwing] 基础算法(八) 堆</h2>
+            <h2 class="article-title">[Acwing] 基础算法(七) Tire 树</h2>
         </div>
     </a>
 </article>
