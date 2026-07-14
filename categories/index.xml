@@ -8,6 +8,22 @@
         <language>en-us</language>
         <copyright>GzzhM</copyright>
         <lastBuildDate>Tue, 14 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Program</title>
+        <link>https://ddlgitgzzhm.github.io/categories/program/</link>
+        <pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/categories/program/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Summary</title>
+        <link>https://ddlgitgzzhm.github.io/categories/summary/</link>
+        <pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/categories/summary/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>Time Line</title>
         <link>https://ddlgitgzzhm.github.io/categories/time-line/</link>
         <pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate>
@@ -22,14 +38,6 @@
         
         <guid>https://ddlgitgzzhm.github.io/categories/algorithm/</guid>
         <description>&lt;img src="https://ddlgitgzzhm.github.io/categories/algorithm/algorithm.png" alt="Featured image of post 算法" /&gt;</description>
-        </item>
-        <item>
-        <title>Summary</title>
-        <link>https://ddlgitgzzhm.github.io/categories/summary/</link>
-        <pubDate>Sun, 12 Jul 2026 00:00:00 +0000</pubDate>
-        
-        <guid>https://ddlgitgzzhm.github.io/categories/summary/</guid>
-        <description></description>
         </item>
         <item>
         <title>计算机网络</title>
