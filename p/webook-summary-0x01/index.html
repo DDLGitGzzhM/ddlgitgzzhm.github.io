@@ -319,7 +319,20 @@
         <li><a href="#问题">问题</a></li>
       </ol>
     </li>
-    <li><a href="#基本数据结构">基本数据结构</a></li>
+    <li><a href="#基本数据结构">基本数据结构</a>
+      <ol>
+        <li><a href="#切片">切片</a>
+          <ol>
+            <li><a href="#子切片">子切片</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#map">map</a></li>
+    <li><a href="#接口--结构体">接口 &amp; 结构体</a></li>
+    <li><a href="#衍生类型">衍生类型</a></li>
+    <li><a href="#类型别名">类型别名</a></li>
+    <li><a href="#泛型">泛型</a></li>
     <li><a href="#面试重点">面试重点</a></li>
     <li><a href="#最后">最后</a></li>
   </ol>
@@ -594,13 +607,151 @@
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="基本数据结构">基本数据结构
-</h2><h2 id="面试重点">面试重点
-</h2><h2 id="最后">最后
+</h2><h3 id="切片">切片
+</h3><p>语法 <code>[]type</code> ,数组的话是 <code>[int]type</code></p>
+<p>初始化方式 :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">s1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">}</span><span class="w"> </span><span class="cp">//创建了一个 3个亚孙的切片</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">s1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="c1">// 初始化 3个元素，这时候访问 s1[0] = 0 </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nx">s2</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="c1">// 创建一个 4个元素的切片， 这时候访问 s1[0] panic</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>推荐使用 <code>s1 := make([]type,0,cap)</code> 的方式进行创建</p>
+<h4 id="子切片">子切片
+</h4><p>切片可以通过 <code>[start:end]</code> 的形式获取子切片，其中范围是 <code>左闭右开</code> 的</p>
+<p>内存共享问题 :</p>
+<ol>
+<li>在没有发生扩容的情况下， 子切片 和 切片 是共享一个数组的</li>
+<li>即如果 子切改变了一个数，那么原本的切片也会改变</li>
+</ol>
+<h2 id="map">map
+</h2><p>初始化方法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">m1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="s">&#34;key&#34;</span><span class="p">:</span><span class="w"> </span><span class="s">&#34;value&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>对于 <code>for k,v := range map</code> 来说，每次结果都是不一样的</p>
+<h2 id="接口--结构体">接口 &amp; 结构体
+</h2><p>接口是 <code>一组行为的抽象</code></p>
+<p><code>type name interface{}</code></p>
+<p>结构体</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="衍生类型">衍生类型
+</h2><p>如果我们想使用第三方库，但是又没办法修改代码，又想扩展这个库的结构体，我们会使用到这个</p>
+<p>衍生类型只共享字段 并不共享实现的方法</p>
+<p>即 <code>typeB</code> 拥有的方法 , <code>typeA</code>并不能够调用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span><span class="w"> </span><span class="nx">typeA</span><span class="w"> </span><span class="nx">typeB</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="类型别名">类型别名
+</h2><p>不同于 衍生类型， 可以说是一个别名 类型本质上是没有变的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span><span class="w"> </span><span class="nx">typeA</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">typeB</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="泛型">泛型
+</h2><p>对于下面这个例子，其中 <code>T</code> 就是泛型可以是任意类型</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span><span class="w"> </span><span class="nx">List</span><span class="p">[</span><span class="nx">T</span><span class="w"> </span><span class="kt">any</span><span class="p">]</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>泛型语法</p>
+<p>对于 <code>Number</code> 来说就是一个 泛型约束</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="nx">Sum</span><span class="p">[</span><span class="nx">T</span><span class="w"> </span><span class="nx">Number</span><span class="p">](</span><span class="nx">vals</span><span class="w"> </span><span class="o">...</span><span class="nx">T</span><span class="p">)</span><span class="w"> </span><span class="nx">T</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="kd">var</span><span class="w"> </span><span class="nx">res</span><span class="w"> </span><span class="nx">T</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="nx">_</span><span class="p">,</span><span class="w"> </span><span class="nx">val</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="nx">vals</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">res</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">val</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="nx">res</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">type</span><span class="w"> </span><span class="nx">Number</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="kt">int64</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="面试重点">面试重点
+</h2><ol>
+<li>什么是闭包？闭包有什么缺陷</li>
+<li>什么情况下会栈溢出</li>
+<li>什么是不定参数 ？调用方法的时候 不定参数可以传入 0个值吗？方法内部怎么使用不定参数？</li>
+<li>什么是 defer ? 能解释一下 defer 的运行机制吗 ？</li>
+<li>一个方法内部 defer 能不能超过 8个？</li>
+<li>defer 内部能不能修改返回值? 怎么改？</li>
+<li>数组和切片有什么区别？</li>
+<li>切片怎么扩容 ？</li>
+</ol>
+<h2 id="最后">最后
 </h2><ol>
 <li>了解函数式编程在在业务中的使用</li>
 <li>了解内存泄漏，业务上的内存泄漏，排查方法，解决办法</li>
 <li>了解垃圾回收的机制</li>
 <li>了解 Option 模式</li>
+<li>slice 的底层实现</li>
+<li>map 的底层实现</li>
+<li>defer 的实现原理 和机制</li>
+<li>闭包</li>
 </ol>
 <p>写出一个 泛型工具支持</p>
 <ol>
