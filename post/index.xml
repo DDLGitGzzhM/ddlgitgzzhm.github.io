@@ -7,7 +7,93 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>GzzhM</copyright>
-        <lastBuildDate>Tue, 14 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 15 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>[all_in_ai]  AI 名词扫盲</title>
+        <link>https://ddlgitgzzhm.github.io/p/all_in_ai-ai-%E5%90%8D%E8%AF%8D%E6%89%AB%E7%9B%B2/</link>
+        <pubDate>Wed, 15 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/p/all_in_ai-ai-%E5%90%8D%E8%AF%8D%E6%89%AB%E7%9B%B2/</guid>
+        <description>&lt;p&gt;名词扫盲&lt;/p&gt;
+&lt;h2 id=&#34;大模型&#34;&gt;大模型
+&lt;/h2&gt;&lt;h3 id=&#34;什么是大模型&#34;&gt;什么是大模型
+&lt;/h3&gt;&lt;p&gt;LLM (large language Model) 大语言模型。平时说的 [AI 对话] [AI 助手] 都是大模型&lt;/p&gt;
+&lt;p&gt;大的体现 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;参数量大 : 模型内部有数千亿个参数&lt;/li&gt;
+&lt;li&gt;训练数据大&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;根据给的上下文，预测接下来最合理的文字是什么&lt;/p&gt;
+&lt;h3 id=&#34;大模型读文字的基本方式&#34;&gt;大模型读文字的基本方式
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;Token&lt;/code&gt; 是大模型处理文本的 基本单位 。LLM 会把一句话拆分成多个 &lt;code&gt;token&lt;/code&gt; 进行读取&lt;/p&gt;
+&lt;p&gt;对于一句话 &lt;code&gt;hello world&lt;/code&gt; ，通常会被切分为 &lt;code&gt;[&amp;quot;hello&amp;quot;, &amp;quot;world&amp;quot;]&lt;/code&gt; ，大约一个单词对应一个&lt;code&gt;token&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Token :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;决定模型能处理的文本长度上限 : 最常见的就是 &lt;code&gt;200k&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;决定 API 调用花费&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;上下文窗口&#34;&gt;上下文窗口
+&lt;/h3&gt;&lt;p&gt;上下文窗口 ，限制了 &lt;code&gt;token&lt;/code&gt; 的量。 跟达模型聊的越久，越容易忘记前面发生的事&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;GPT-4 有 128K token 窗口，大约 10w个汉字&lt;/li&gt;
+&lt;li&gt;Claude 3.5  有 200k 的 &lt;code&gt;token&lt;/code&gt; 窗口&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;不过上下文窗口并不只是包含你询问的数据，它包含 &lt;code&gt;你发出去的所有消息+模型的所有回复+调用工具的结果&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;大模型是无状态的&#34;&gt;大模型是无状态的
+&lt;/h3&gt;&lt;p&gt;LLM 本身没有任何记忆，每次调用 APi 对他来说都是第一次见面&lt;/p&gt;
+&lt;p&gt;为什么我们在网页端 Gemini 和 Gpt 上面聊天都能记住前面的话，是因为在应用层，代码已经处理了记忆&lt;/p&gt;
+&lt;p&gt;每次我们发送消息，他都会把历史对话打包成为一个列表传给大模型&lt;/p&gt;
+&lt;p&gt;这就引入了两件事 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;为什么上下文窗口会写满&lt;/strong&gt; : 历史对话越多，上下文窗口会更快的被占满&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;为什么 Agent 需要管理记忆&lt;/strong&gt; :  Agent 在执行长任务时，必须主动决定 把哪些历史传进去，不然窗口很快就会塞满&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;对话的角色结构--systemuserassistant&#34;&gt;对话的角色结构 : system,user,assistant
+&lt;/h3&gt;&lt;p&gt;既然多轮对话是靠 &lt;code&gt;传历史列表&lt;/code&gt;实现的，那么列表长什么样&lt;/p&gt;
+&lt;p&gt;调用大模型 API 时，你传入的不是一段裸文字，而是一个有结构的消息列表，每条消息都有一个 角色（role） ：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;system ： 系统提示 ，给模型的&amp;quot;身份设定和行为规则&amp;quot;。比如「你是一个 OnCall 助理，只能回答和系统故障相关的问题，回答必须简洁」。这部分用户看不见，但模型会严格遵守&lt;/li&gt;
+&lt;li&gt;user ： 用户的输入 ，就是你说的话&lt;/li&gt;
+&lt;li&gt;assistant ： 模型之前的回复 ，多轮对话时，把历史回复也打包进来，模型才知道&amp;quot;之前说了什么&amp;quot;
+用伪代码表示，大概长这样：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;messages = [
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  { role: &amp;#34;system&amp;#34;,    content: &amp;#34;你是一个 OnCall 助理，回答必须简洁&amp;#34; },
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  { role: &amp;#34;user&amp;#34;,      content: &amp;#34;昨晚数据库报警是什么原因？&amp;#34; },
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  { role: &amp;#34;assistant&amp;#34;, content: &amp;#34;是慢查询导致的连接池耗尽。&amp;#34; },
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  { role: &amp;#34;user&amp;#34;,      content: &amp;#34;怎么预防？&amp;#34; },   // 当前问题
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://cloud.tencent.com/developer/article/2643849&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://cloud.tencent.com/developer/article/2643849&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;大模型能帮我们做什么&#34;&gt;大模型能帮我们做什么
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;使用自然语言，分析意图&lt;/li&gt;
+&lt;li&gt;会进行逻辑思考，拆解任务和做决策&lt;/li&gt;
+&lt;li&gt;生成符合要求的内容&lt;/li&gt;
+&lt;li&gt;看懂规则并且执行&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;大模型做不到什么&#34;&gt;大模型做不到什么
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;没有执行能力, 只能通过 &lt;code&gt;agent+tool&lt;/code&gt;的方式进行调用&lt;/li&gt;
+&lt;li&gt;知识有保质期，容易瞎编&lt;/li&gt;
+&lt;li&gt;上下文窗口有限，记不住太长的内容&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;开发场景&#34;&gt;开发场景
+&lt;/h2&gt;&lt;p&gt;在理解完上面的概念之后，我们可以知道 &lt;code&gt;agent 开发&lt;/code&gt; 就是给 &lt;code&gt;llm&lt;/code&gt; 增加 &lt;code&gt;Tool 调用,funciton call ,MCP&lt;/code&gt; 并且 加上 &lt;code&gt;RAG (知识库)&lt;/code&gt; 进行应用开发&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>[Acwing] 基础算法(九) 质数</title>
         <link>https://ddlgitgzzhm.github.io/p/acwing-basic-0x09/</link>
         <pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate>
@@ -910,7 +996,7 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;其他&#34;&gt;其他
 &lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;多协程快排的实现&lt;/li&gt;
+&lt;li&gt;多协程快排的实现 闭包&lt;/li&gt;
 &lt;/ol&gt;
 </description>
         </item>
