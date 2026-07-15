@@ -2,17 +2,17 @@
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="是机会 也是 陷阱">
-<title>[all_in_ai]  AI 名词扫盲</title>
+<title>[all_in_ai]  AI 名词扫盲 prompt</title>
 
-<link rel='canonical' href='https://ddlgitgzzhm.github.io/p/all_in_ai-ai-%E5%90%8D%E8%AF%8D%E6%89%AB%E7%9B%B2/'>
+<link rel='canonical' href='https://ddlgitgzzhm.github.io/p/all_in_ai-ai-%E5%90%8D%E8%AF%8D%E6%89%AB%E7%9B%B2-prompt/'>
 
 
-<link rel="stylesheet" href="/css/main.9a5c8f2dd65f8933ebb1c2d0175afb75dd9fc8765e238f5b09b6ba39536a73f9.css"><meta property='og:title' content="[all_in_ai]  AI 名词扫盲">
+<link rel="stylesheet" href="/css/main.9a5c8f2dd65f8933ebb1c2d0175afb75dd9fc8765e238f5b09b6ba39536a73f9.css"><meta property='og:title' content="[all_in_ai]  AI 名词扫盲 prompt">
 <meta property='og:description' content="是机会 也是 陷阱">
-<meta property='og:url' content='https://ddlgitgzzhm.github.io/p/all_in_ai-ai-%E5%90%8D%E8%AF%8D%E6%89%AB%E7%9B%B2/'>
+<meta property='og:url' content='https://ddlgitgzzhm.github.io/p/all_in_ai-ai-%E5%90%8D%E8%AF%8D%E6%89%AB%E7%9B%B2-prompt/'>
 <meta property='og:site_name' content='GzzhM'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-07-15T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-07-15T00:00:00&#43;00:00'/>
-<meta name="twitter:title" content="[all_in_ai]  AI 名词扫盲">
+<meta name="twitter:title" content="[all_in_ai]  AI 名词扫盲 prompt">
 <meta name="twitter:description" content="是机会 也是 陷阱">
     <link rel="shortcut icon" href="/favicon.ico" />
 
@@ -308,18 +308,14 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#大模型">大模型</a>
+    <li><a href="#prompt">Prompt</a>
       <ol>
-        <li><a href="#什么是大模型">什么是大模型</a></li>
-        <li><a href="#大模型读文字的基本方式">大模型读文字的基本方式</a></li>
-        <li><a href="#上下文窗口">上下文窗口</a></li>
-        <li><a href="#大模型是无状态的">大模型是无状态的</a></li>
-        <li><a href="#对话的角色结构--systemuserassistant">对话的角色结构 : system,user,assistant</a></li>
-        <li><a href="#大模型能帮我们做什么">大模型能帮我们做什么</a></li>
-        <li><a href="#大模型做不到什么">大模型做不到什么</a></li>
+        <li><a href="#为什么-prompt-很重要">为什么 prompt 很重要</a></li>
+        <li><a href="#user-prompts">user prompts</a></li>
+        <li><a href="#system-prompt">System Prompt</a></li>
+        <li><a href="#如何写好一个-pormpts">如何写好一个 pormpts</a></li>
       </ol>
     </li>
-    <li><a href="#开发场景">开发场景</a></li>
   </ol>
 </nav>
         </div>
@@ -351,7 +347,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/all_in_ai-ai-%E5%90%8D%E8%AF%8D%E6%89%AB%E7%9B%B2/">[all_in_ai]  AI 名词扫盲</a>
+            <a href="/p/all_in_ai-ai-%E5%90%8D%E8%AF%8D%E6%89%AB%E7%9B%B2-prompt/">[all_in_ai]  AI 名词扫盲 prompt</a>
         </h2>
     
         
@@ -394,48 +390,45 @@
     
     
     <p>名词扫盲</p>
-<h2 id="大模型">大模型
-</h2><h3 id="什么是大模型">什么是大模型
-</h3><p>LLM (large language Model) 大语言模型。平时说的 [AI 对话] [AI 助手] 都是大模型</p>
-<p>大的体现 :</p>
+<h2 id="prompt">Prompt
+</h2><p>Prompts (提示词) ; 对于同一个 LLM , 不同的人用 结果天差地别，而 prompt 就是为了 统一 。</p>
+<p>可以是 :</p>
 <ol>
-<li>参数量大 : 模型内部有数千亿个参数</li>
-<li>训练数据大</li>
+<li>具体的指令</li>
+<li>具体的问题</li>
+<li>具体的背景</li>
+<li>具体的格式要求</li>
 </ol>
-<p>根据给的上下文，预测接下来最合理的文字是什么</p>
-<h3 id="大模型读文字的基本方式">大模型读文字的基本方式
-</h3><p><code>Token</code> 是大模型处理文本的 基本单位 。LLM 会把一句话拆分成多个 <code>token</code> 进行读取</p>
-<p>对于一句话 <code>hello world</code> ，通常会被切分为 <code>[&quot;hello&quot;, &quot;world&quot;]</code> ，大约一个单词对应一个<code>token</code></p>
-<p>Token :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">messages = [
+</span></span><span class="line"><span class="cl">  { role: &#34;system&#34;,  content: &#34;你是一个 OnCall 助理，回答必须简洁&#34; },
+</span></span><span class="line"><span class="cl">  { role: &#34;user&#34;,    content: &#34;昨晚数据库报警是什么原因？&#34; },
+</span></span><span class="line"><span class="cl">]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>system</code>和<code>user</code> 都是 <code>prompt</code> 的一部分</p>
+<h3 id="为什么-prompt-很重要">为什么 prompt 很重要
+</h3><p><code>llm</code> 本质上是一个 <code>next-token</code> 的预测及其 。 对于模糊的上下文，他往哪里走的方向就越多，输出的就越随机</p>
+<p>但是给的上下文越精确，它搜索的范围就越窄</p>
+<h3 id="user-prompts">user prompts
+</h3><p>大部分 Ai 对话 都是 <code>user protmps</code></p>
+<p>好的 <code>User prompts</code> 的三要素 :</p>
 <ol>
-<li>决定模型能处理的文本长度上限 : 最常见的就是 <code>200k</code></li>
-<li>决定 API 调用花费</li>
+<li><strong>目标明确</strong> ：要做什么？分析、总结、改写、生成代码，得明说。&ldquo;帮我看看这个日志&quot;不是目标，&ldquo;帮我分析这段日志里的报错原因并给出排查方向&quot;才是。</li>
+<li><strong>背景充足</strong> ：大模型不知道你的业务、你的系统架构、你的团队惯例，它只能靠你给的信息推断。背景给得越充分，它越不需要乱猜，幻觉越少。</li>
+<li><strong>输出要求</strong> ：格式、长度、风格，不说，它随心所欲。你想要 Markdown 列表？想要 JSON？想要 3 条以内？一定要在 Prompt 里讲清楚。</li>
 </ol>
-<h3 id="上下文窗口">上下文窗口
-</h3><p>上下文窗口 ，限制了 <code>token</code> 的量。 跟达模型聊的越久，越容易忘记前面发生的事</p>
-<ul>
-<li>GPT-4 有 128K token 窗口，大约 10w个汉字</li>
-<li>Claude 3.5  有 200k 的 <code>token</code> 窗口</li>
-</ul>
-<p>不过上下文窗口并不只是包含你询问的数据，它包含 <code>你发出去的所有消息+模型的所有回复+调用工具的结果</code></p>
-<h3 id="大模型是无状态的">大模型是无状态的
-</h3><p>LLM 本身没有任何记忆，每次调用 APi 对他来说都是第一次见面</p>
-<p>为什么我们在网页端 Gemini 和 Gpt 上面聊天都能记住前面的话，是因为在应用层，代码已经处理了记忆</p>
-<p>每次我们发送消息，他都会把历史对话打包成为一个列表传给大模型</p>
-<p>这就引入了两件事 :</p>
-<ol>
-<li><strong>为什么上下文窗口会写满</strong> : 历史对话越多，上下文窗口会更快的被占满</li>
-<li><strong>为什么 Agent 需要管理记忆</strong> :  Agent 在执行长任务时，必须主动决定 把哪些历史传进去，不然窗口很快就会塞满</li>
-</ol>
-<h3 id="对话的角色结构--systemuserassistant">对话的角色结构 : system,user,assistant
-</h3><p>既然多轮对话是靠 <code>传历史列表</code>实现的，那么列表长什么样</p>
-<p>调用大模型 API 时，你传入的不是一段裸文字，而是一个有结构的消息列表，每条消息都有一个 角色（role） ：</p>
-<ul>
-<li>system ： 系统提示 ，给模型的&quot;身份设定和行为规则&quot;。比如「你是一个 OnCall 助理，只能回答和系统故障相关的问题，回答必须简洁」。这部分用户看不见，但模型会严格遵守</li>
-<li>user ： 用户的输入 ，就是你说的话</li>
-<li>assistant ： 模型之前的回复 ，多轮对话时，把历史回复也打包进来，模型才知道&quot;之前说了什么&quot;
-用伪代码表示，大概长这样：</li>
-</ul>
+<p>场景对比 :</p>
+<p>❌ 简单版 ：「数据库怎么了？」
+大模型不知道你说的是哪个数据库、什么时间发生的、有什么报警信息、你想要什么样的答案。</p>
+<p>✅ 完整版 ：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -443,34 +436,83 @@
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
-</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">messages = [
-</span></span><span class="line"><span class="cl">  { role: &#34;system&#34;,    content: &#34;你是一个 OnCall 助理，回答必须简洁&#34; },
-</span></span><span class="line"><span class="cl">  { role: &#34;user&#34;,      content: &#34;昨晚数据库报警是什么原因？&#34; },
-</span></span><span class="line"><span class="cl">  { role: &#34;assistant&#34;, content: &#34;是慢查询导致的连接池耗尽。&#34; },
-</span></span><span class="line"><span class="cl">  { role: &#34;user&#34;,      content: &#34;怎么预防？&#34; },   // 当前问题
-</span></span><span class="line"><span class="cl">]
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">以下是今天凌晨 2 点的数据库报警日志：
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[日志内容]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">请分析可能的根本原因，并给出 3 条排查建议，以 Markdown 列表格式输出。
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><a class="link" href="https://cloud.tencent.com/developer/article/2643849"  target="_blank" rel="noopener"
-    >https://cloud.tencent.com/developer/article/2643849</a></p>
-<h3 id="大模型能帮我们做什么">大模型能帮我们做什么
-</h3><ol>
-<li>使用自然语言，分析意图</li>
-<li>会进行逻辑思考，拆解任务和做决策</li>
-<li>生成符合要求的内容</li>
-<li>看懂规则并且执行</li>
+</div><h3 id="system-prompt">System Prompt
+</h3><p>用户层面看不到 <code>system prompt</code> 这是开发提前写进去的一个 底层指令</p>
+<p>system prompts 的三个核心用途 :</p>
+<ol>
+<li><strong>身份设定</strong> ：给模型一个具体的角色</li>
 </ol>
-<h3 id="大模型做不到什么">大模型做不到什么
-</h3><ol>
-<li>没有执行能力, 只能通过 <code>agent+tool</code>的方式进行调用</li>
-<li>知识有保质期，容易瞎编</li>
-<li>上下文窗口有限，记不住太长的内容</li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">你是一个 OnCall 助理，专门帮助工程师排查和分析系统故障。
+</span></span><span class="line"><span class="cl">你只处理与系统稳定性、报警分析、故障排查相关的问题。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li><strong>行为规则</strong>：定义模型&quot;能做什么、不能做什么&rdquo;</li>
 </ol>
-<h2 id="开发场景">开发场景
-</h2><p>在理解完上面的概念之后，我们可以知道 <code>agent 开发</code> 就是给 <code>llm</code> 增加 <code>Tool 调用,funciton call ,MCP</code> 并且 加上 <code>RAG (知识库)</code> 进行应用开发</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">不允许回答与系统故障无关的话题。
+</span></span><span class="line"><span class="cl">如果你不确定某个判断，必须说明&#34;我不确定，建议进一步验证&#34;。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">不要自行假设任何背景信息，只根据用户提供的内容作答。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li><strong>输出格式约束</strong> ：让模型每次都按固定格式输出</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">你的回答必须是 JSON 格式，包含以下字段：
+</span></span><span class="line"><span class="cl">summary：对问题的一句话概括
+</span></span><span class="line"><span class="cl">root_cause：可能的根本原因列表
+</span></span><span class="line"><span class="cl">action_items：建议的排查步骤列表
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="如何写好一个-pormpts">如何写好一个 pormpts
+</h3><ol>
+<li>给模型&quot;角色&rdquo;</li>
+<li>正向约束 &gt;  负向约束</li>
+</ol>
+<ul>
+<li>❌不要太啰嗦</li>
+<li>✅回答控制在3句话以内</li>
+</ul>
+<ol start="3">
+<li>喂足够的信息</li>
+<li>指定输出格式</li>
+<li>Few-shot . 给几个参考例子</li>
+<li>让模型先思考再回答</li>
+</ol>
+<ul>
+<li>请先逐步分析，再给出最终结论</li>
+</ul>
 
 </section>
 
@@ -519,6 +561,19 @@
             
                 
 <article class="">
+    <a href="/p/all_in_ai-ai-%E5%90%8D%E8%AF%8D%E6%89%AB%E7%9B%B2-%E5%A4%A7%E6%A8%A1%E5%9E%8B/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[all_in_ai]  AI 名词扫盲 大模型</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
     <a href="/p/acwing-basic-0x09/">
         
         
@@ -564,19 +619,6 @@
 
         <div class="article-details">
             <h2 class="article-title">[Acwing] 基础算法(八) 堆</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/p/no-plan-time-review/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">2026-07-12 不定时复盘</h2>
         </div>
     </a>
 </article>

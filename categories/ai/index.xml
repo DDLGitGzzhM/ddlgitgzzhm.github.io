@@ -8,11 +8,143 @@
         <language>en-us</language>
         <copyright>GzzhM</copyright>
         <lastBuildDate>Wed, 15 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/categories/ai/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>[all_in_ai]  AI 名词扫盲</title>
-        <link>https://ddlgitgzzhm.github.io/p/all_in_ai-ai-%E5%90%8D%E8%AF%8D%E6%89%AB%E7%9B%B2/</link>
+        <title>[all_in_ai]  AI 名词扫盲 prompt</title>
+        <link>https://ddlgitgzzhm.github.io/p/all_in_ai-ai-%E5%90%8D%E8%AF%8D%E6%89%AB%E7%9B%B2-prompt/</link>
         <pubDate>Wed, 15 Jul 2026 00:00:00 +0000</pubDate>
         
-        <guid>https://ddlgitgzzhm.github.io/p/all_in_ai-ai-%E5%90%8D%E8%AF%8D%E6%89%AB%E7%9B%B2/</guid>
+        <guid>https://ddlgitgzzhm.github.io/p/all_in_ai-ai-%E5%90%8D%E8%AF%8D%E6%89%AB%E7%9B%B2-prompt/</guid>
+        <description>&lt;p&gt;名词扫盲&lt;/p&gt;
+&lt;h2 id=&#34;prompt&#34;&gt;Prompt
+&lt;/h2&gt;&lt;p&gt;Prompts (提示词) ; 对于同一个 LLM , 不同的人用 结果天差地别，而 prompt 就是为了 统一 。&lt;/p&gt;
+&lt;p&gt;可以是 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;具体的指令&lt;/li&gt;
+&lt;li&gt;具体的问题&lt;/li&gt;
+&lt;li&gt;具体的背景&lt;/li&gt;
+&lt;li&gt;具体的格式要求&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;messages = [
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  { role: &amp;#34;system&amp;#34;,  content: &amp;#34;你是一个 OnCall 助理，回答必须简洁&amp;#34; },
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  { role: &amp;#34;user&amp;#34;,    content: &amp;#34;昨晚数据库报警是什么原因？&amp;#34; },
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;code&gt;system&lt;/code&gt;和&lt;code&gt;user&lt;/code&gt; 都是 &lt;code&gt;prompt&lt;/code&gt; 的一部分&lt;/p&gt;
+&lt;h3 id=&#34;为什么-prompt-很重要&#34;&gt;为什么 prompt 很重要
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;llm&lt;/code&gt; 本质上是一个 &lt;code&gt;next-token&lt;/code&gt; 的预测及其 。 对于模糊的上下文，他往哪里走的方向就越多，输出的就越随机&lt;/p&gt;
+&lt;p&gt;但是给的上下文越精确，它搜索的范围就越窄&lt;/p&gt;
+&lt;h3 id=&#34;user-prompts&#34;&gt;user prompts
+&lt;/h3&gt;&lt;p&gt;大部分 Ai 对话 都是 &lt;code&gt;user protmps&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;好的 &lt;code&gt;User prompts&lt;/code&gt; 的三要素 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;目标明确&lt;/strong&gt; ：要做什么？分析、总结、改写、生成代码，得明说。&amp;ldquo;帮我看看这个日志&amp;quot;不是目标，&amp;ldquo;帮我分析这段日志里的报错原因并给出排查方向&amp;quot;才是。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;背景充足&lt;/strong&gt; ：大模型不知道你的业务、你的系统架构、你的团队惯例，它只能靠你给的信息推断。背景给得越充分，它越不需要乱猜，幻觉越少。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;输出要求&lt;/strong&gt; ：格式、长度、风格，不说，它随心所欲。你想要 Markdown 列表？想要 JSON？想要 3 条以内？一定要在 Prompt 里讲清楚。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;场景对比 :&lt;/p&gt;
+&lt;p&gt;❌ 简单版 ：「数据库怎么了？」
+大模型不知道你说的是哪个数据库、什么时间发生的、有什么报警信息、你想要什么样的答案。&lt;/p&gt;
+&lt;p&gt;✅ 完整版 ：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;以下是今天凌晨 2 点的数据库报警日志：
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[日志内容]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;请分析可能的根本原因，并给出 3 条排查建议，以 Markdown 列表格式输出。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;system-prompt&#34;&gt;System Prompt
+&lt;/h3&gt;&lt;p&gt;用户层面看不到 &lt;code&gt;system prompt&lt;/code&gt; 这是开发提前写进去的一个 底层指令&lt;/p&gt;
+&lt;p&gt;system prompts 的三个核心用途 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;身份设定&lt;/strong&gt; ：给模型一个具体的角色&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;你是一个 OnCall 助理，专门帮助工程师排查和分析系统故障。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;你只处理与系统稳定性、报警分析、故障排查相关的问题。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;&lt;strong&gt;行为规则&lt;/strong&gt;：定义模型&amp;quot;能做什么、不能做什么&amp;rdquo;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;不允许回答与系统故障无关的话题。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;如果你不确定某个判断，必须说明&amp;#34;我不确定，建议进一步验证&amp;#34;。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;不要自行假设任何背景信息，只根据用户提供的内容作答。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;&lt;strong&gt;输出格式约束&lt;/strong&gt; ：让模型每次都按固定格式输出&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;你的回答必须是 JSON 格式，包含以下字段：
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;summary：对问题的一句话概括
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;root_cause：可能的根本原因列表
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;action_items：建议的排查步骤列表
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;如何写好一个-pormpts&#34;&gt;如何写好一个 pormpts
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;给模型&amp;quot;角色&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;正向约束 &amp;gt;  负向约束&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;❌不要太啰嗦&lt;/li&gt;
+&lt;li&gt;✅回答控制在3句话以内&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;喂足够的信息&lt;/li&gt;
+&lt;li&gt;指定输出格式&lt;/li&gt;
+&lt;li&gt;Few-shot . 给几个参考例子&lt;/li&gt;
+&lt;li&gt;让模型先思考再回答&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;请先逐步分析，再给出最终结论&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>[all_in_ai]  AI 名词扫盲 大模型</title>
+        <link>https://ddlgitgzzhm.github.io/p/all_in_ai-ai-%E5%90%8D%E8%AF%8D%E6%89%AB%E7%9B%B2-%E5%A4%A7%E6%A8%A1%E5%9E%8B/</link>
+        <pubDate>Wed, 15 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/p/all_in_ai-ai-%E5%90%8D%E8%AF%8D%E6%89%AB%E7%9B%B2-%E5%A4%A7%E6%A8%A1%E5%9E%8B/</guid>
         <description>&lt;p&gt;名词扫盲&lt;/p&gt;
 &lt;h2 id=&#34;大模型&#34;&gt;大模型
 &lt;/h2&gt;&lt;h3 id=&#34;什么是大模型&#34;&gt;什么是大模型
