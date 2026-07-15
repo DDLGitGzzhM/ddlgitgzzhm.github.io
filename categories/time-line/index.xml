@@ -8,6 +8,397 @@
         <language>en-us</language>
         <copyright>GzzhM</copyright>
         <lastBuildDate>Wed, 15 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/categories/time-line/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>[all_in_ai]  AI 名词扫盲 agent</title>
+        <link>https://ddlgitgzzhm.github.io/p/ai-agent-0x03/</link>
+        <pubDate>Wed, 15 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/p/ai-agent-0x03/</guid>
+        <description>&lt;p&gt;名词扫盲&lt;/p&gt;
+&lt;h2 id=&#34;agent&#34;&gt;Agent
+&lt;/h2&gt;&lt;p&gt;对于 &lt;code&gt;llm&lt;/code&gt; 和 &lt;code&gt;prompt&lt;/code&gt; 他都只能进行 &lt;code&gt;ask&lt;/code&gt; 操作，并不能干，只是能输出&lt;/p&gt;
+&lt;h3 id=&#34;什么是-agent&#34;&gt;什么是 Agent
+&lt;/h3&gt;&lt;p&gt;Agent (智能体) : 能够自主感知环境，作出决策，调用工具，完成多步骤任务的程序&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;自主（Autonomously） ：不需要人在每一步发指令。你给它一个目标，它自己判断下一步做什么&lt;/li&gt;
+&lt;li&gt;多步骤（Multi-step） ：一个任务可能要走 5 步、10 步，Agent 自己把这些步骤串起来&lt;/li&gt;
+&lt;li&gt;工具调用（Tool use） ：调用真实的函数，查数据库、搜网页、发通知、写文件，不只是&amp;quot;说说&amp;quot;，而是真的去做&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;一句话总结： Agent = 大模型（大脑）+ 工具（双手）+ 执行循环（思考-行动-观察-再思考）&lt;/p&gt;
+&lt;h3 id=&#34;为什么需要-agent&#34;&gt;为什么需要 Agent
+&lt;/h3&gt;&lt;p&gt;之前我们说过大模型的三大短板：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;没有执行能力 ：只能生成文字，不能操作外部系统&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;知识有截止日期 ：不知道最新数据，看不到你的私有系统&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;没有持久记忆 ：每次调用对它都是全新的，不能积累任务中间状态&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;agent-的核心组成&#34;&gt;Agent 的核心组成
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;大模型（LLM），大脑&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;负责理解任务、分析当前状态、决定下一步做什么。所有的&amp;quot;推理&amp;quot;都在这里发生，该查什么、查完之后怎么解读、下一步往哪走，全是大模型来判断。&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;工具（Tools），双手&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;一个个可以被调用的真实函数：查数据库、调用搜索引擎、读写文件、发通知、调用 API……
+大模型告诉 Agent &amp;ldquo;调用这个工具、传这些参数&amp;rdquo;，代码层面真正去执行。工具的结果会返回给大模型，供它继续推理。大模型不&amp;quot;直接&amp;quot;操作外部系统，它通过工具来&amp;quot;动手&amp;quot;。&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;记忆（Memory），记事本&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;短期记忆 ：当前任务里的对话历史 + 每次工具调用的结果，存在 context window 里。Agent 执行第 5 步时，&amp;ldquo;记得&amp;quot;第 1 步查到了什么，靠的就是这个&lt;/li&gt;
+&lt;li&gt;长期记忆 ：跨会话需要记住的信息，存在外部数据库，需要时检索出来注入 context&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;为什么需要记忆？多步骤任务里，每一步的结果都是下一步判断的依据。没有记忆，每步都是&amp;quot;从零开始&amp;rdquo;，Agent 根本没法串联多步骤任务。&lt;/p&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;执行循环（Loop），节拍器&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Agent 的&amp;quot;引擎&amp;quot;。不断重复&amp;quot;思考 → 行动 → 观察&amp;quot;这个循环，直到任务完成。没有这个循环，Agent 只是一次性的问答，无法串联多步骤。这个循环是 Agent 和普通大模型调用之间最根本的区别。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/ai-agent-0x03/img.png&#34;
+	width=&#34;2722&#34;
+	height=&#34;1484&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/ai-agent-0x03/img_hu_bd20916cc3f73b5d.png 480w, https://ddlgitgzzhm.github.io/p/ai-agent-0x03/img_hu_4b3485aa34f7fa3a.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;183&#34;
+		data-flex-basis=&#34;440px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;agent-是怎么工作的-react-循环&#34;&gt;Agent 是怎么工作的. ReAct 循环
+&lt;/h3&gt;&lt;p&gt;目前主流的 Agent 工作范式叫做 &lt;code&gt;ReAct&lt;/code&gt; 即 &lt;code&gt;Reasoing+Acting&lt;/code&gt; 即 推理 + 行动 + 观察 + 在推理 ..&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;用户：帮我调查今晚 23:00 的数据库报警
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[第 1 轮]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Think：需要先拿到具体的报警详情
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Act：调用 get_alarm_details(time=&amp;#34;23:00&amp;#34;)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Observe：返回&amp;#34;连接数突增，连接池耗尽，持续 8 分钟后自动恢复&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[第 2 轮]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Think：连接数突增，需要看是哪些查询造成的
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Act：调用 query_slow_log(timerange=&amp;#34;22:50-23:10&amp;#34;)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Observe：发现 3 条全表扫描的慢查询，来自同一个用户 ID
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[第 3 轮]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Think：根因已经清楚，生成分析报告
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Act：输出最终分析结论（Final Answer）
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;几个关键机制：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;结果回流 ：每一轮的工具调用结果都会追加到 context window 里，大模型下一轮能&amp;quot;看到&amp;quot;所有历史。所以它能基于已有发现继续推理，而不是每次都从零开始。这就是为什么前面&amp;quot;记忆&amp;quot;那个组件如此重要。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;动态决策 ：每一步该怎么走，是大模型实时推理出来的，不是你提前写好的。发现是慢查询，它就去查慢查询日志；如果发现是网络问题，它就会去查网络相关的工具。路径是活的，不是死的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;何时停止 ：大模型判断任务已完成时输出&amp;quot;最终答案&amp;quot;，或者达到预设的最大轮数上限。两个条件任意满足一个，循环结束。
+这就是&amp;quot;自主&amp;quot;的含义，你给任务目标，它自己决定怎么走到终点。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;agent-的另一个工作模式--plan-and-execute&#34;&gt;Agent 的另一个工作模式  Plan and Execute
+&lt;/h3&gt;&lt;p&gt;ReAct 很好用，但有一个先天的弱点。&lt;/p&gt;
+&lt;p&gt;ReAct 是「边想边做」，每一步只看眼前，这一步的结果决定下一步的方向。对于 2-3 步能解决的短任务，这完全没问题。但如果任务很复杂、步骤很多呢？&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;问题一：长任务容易「迷路」&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;ReAct 跑了 8 轮之后，context window 里已经堆满了历史操作记录。大模型要在这一大堆信息里同时维持「当前在第几步」「最终目标是什么」「还缺哪些信息」，注意力越来越稀释，越往后越容易偏离最初的目标。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;问题二：容易绕弯路&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;没有全局规划，每步只看眼前，就像在迷宫里随机探索，走了 5 步之后才发现方向不对，只能回头重来，白白消耗了好几轮 LLM 调用。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;问题三：token 消耗滚雪球&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;ReAct 每一轮都要把完整的对话历史带上。步骤越多，每轮的 context 越长，后期每次 LLM 调用的 token 消耗都很高，成本直线上升。&lt;/p&gt;
+&lt;p&gt;这三个问题催生了另一种工作模式： &lt;code&gt;Plan and Execute（规划-执行模式）&lt;/code&gt; 。&lt;/p&gt;
+&lt;p&gt;核心思路用一句话说清楚： &lt;code&gt;先让大模型把整个任务规划成一份清单，再逐步按清单执行，而不是走一步看一步&lt;/code&gt;。&lt;/p&gt;
+&lt;h4 id=&#34;plan-and-execute-的两个阶段&#34;&gt;Plan and Execute 的两个阶段
+&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;第一阶段：Planner（规划阶段）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;大模型拿到任务，先不调任何工具，专注做一件事： 把任务完整拆解成一份有序的子任务清单 。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;用户：「帮我调查今晚 23:00 的数据库报警，写一份完整的故障分析报告」
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Planner 输出的计划：
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  步骤 1：获取 23:00 报警的详细信息（报警类型、持续时间、影响范围）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  步骤 2：查询报警时间段内的慢查询日志，定位异常 SQL
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  步骤 3：查询报警时间段内的数据库连接数、CPU、内存指标
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  步骤 4：关联步骤 2 和步骤 3 的结果，分析根因
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  步骤 5：生成完整的故障分析报告，包含时间线、根因和改进建议
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;第二阶段：Executor（执行阶段）&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;执行步骤 1：
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  → 调用 get_alarm_details(time=&amp;#34;23:00&amp;#34;)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  ← 返回「连接数突增，连接池耗尽，持续 8 分钟后自动恢复」
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;执行步骤 2：
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  → 调用 query_slow_log(timerange=&amp;#34;22:50-23:10&amp;#34;)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  ← 发现 3 条全表扫描的慢查询，来自同一个用户 ID
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;执行步骤 3：
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  → 调用 get_db_metrics(timerange=&amp;#34;22:50-23:10&amp;#34;)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  ← CPU 正常，连接数峰值达到上限 500，内存无异常
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;执行步骤 4：
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  → 大模型综合步骤 2、3 结果进行分析
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  ← 结论：慢查询导致连接长时间占用，连接池耗尽触发报警
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;执行步骤 5：
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  → 生成故障分析报告
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  ← 完整报告输出，任务完成
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;re-planning-重新规划&#34;&gt;Re-planning （重新规划）
+&lt;/h3&gt;&lt;p&gt;执行中途如果遇到了计划没预料到的情况，比如步骤 2 查不到慢查询，但发现了大量锁等待，Executor 可以把这个新信息反馈给 Planner，重新生成后续步骤的计划，而不是一条路走到黑。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;用户任务
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  ↓
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[Planner]  大模型一次性生成完整计划
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  ↓
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;执行计划 = [步骤1, 步骤2, 步骤3, 步骤4, 步骤5]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  ↓
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[Executor] 按顺序执行每个步骤
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  步骤1 → 调工具 → 结果
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  步骤2 → 调工具 → 结果      ← 遇到意外？触发 Re-planning，重新调整后续计划
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  步骤3 → 调工具 → 结果
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  ...
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  ↓
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;最终结果汇总 → 输出给用户
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;react-vs-plan-and-execute怎么选&#34;&gt;ReAct vs Plan and Execute：怎么选？
+&lt;/h3&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;对比维度&lt;/th&gt;
+					&lt;th&gt;ReAct&lt;/th&gt;
+					&lt;th&gt;Plan and Execute&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;决策时机&lt;/td&gt;
+					&lt;td&gt;每一步实时决策&lt;/td&gt;
+					&lt;td&gt;开始前一次性规划&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;全局视野&lt;/td&gt;
+					&lt;td&gt;弱（只看当前这步）&lt;/td&gt;
+					&lt;td&gt;强（提前看到全貌）&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;灵活性&lt;/td&gt;
+					&lt;td&gt;强（随时根据结果调整）&lt;/td&gt;
+					&lt;td&gt;弱（计划一旦生成，调整成本高）&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;适合任务步骤&lt;/td&gt;
+					&lt;td&gt;少（3 步以内）&lt;/td&gt;
+					&lt;td&gt;多（5 步以上的复杂任务）&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;token 消耗&lt;/td&gt;
+					&lt;td&gt;随步数线性增长，后期很贵&lt;/td&gt;
+					&lt;td&gt;规划阶段集中消耗，执行阶段可控&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;实现难度&lt;/td&gt;
+					&lt;td&gt;低（结构简单）&lt;/td&gt;
+					&lt;td&gt;中（需要管理计划状态和 Re-planning 逻辑）&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;简单记忆：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;任务步骤少、目标模糊、需要随机应变 → 用 ReAct&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;任务步骤多、目标明确、需要全局把控 → 用 Plan and Execute&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;系统复杂、两者都需要 → Plan and Execute 做外层框架，每个子任务内部跑 ReAct&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;最后这种「外层 Plan and Execute + 内层 ReAct」的搭配，在实际生产系统里最常见，用规划保证大方向不跑偏，用 ReAct 保证每个子任务执行时足够灵活。&lt;/p&gt;
+&lt;h3 id=&#34;agent-vs-workflow&#34;&gt;Agent vs Workflow
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;Workflow&lt;/code&gt;（工作流）是你提前写好所有步骤和分支逻辑的流程：先做 A，再做 B，如果 B 的结果是 X 就走流程 C，否则走流程 D。大模型只是其中某个步骤里被调用一次，整体流程是硬编码的。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Agent&lt;/code&gt; 是你只给任务目标，大模型自己实时决定每一步做什么、调用什么工具、根据结果决定下一步。执行路径是动态的，每次运行可能走不同的路径。&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;对比维度&lt;/th&gt;
+					&lt;th&gt;Workflow&lt;/th&gt;
+					&lt;th&gt;Agent&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;决策者&lt;/td&gt;
+					&lt;td&gt;你（写死的代码逻辑）&lt;/td&gt;
+					&lt;td&gt;大模型（实时推理）&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;执行路径&lt;/td&gt;
+					&lt;td&gt;固定&lt;/td&gt;
+					&lt;td&gt;动态&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;适合场景&lt;/td&gt;
+					&lt;td&gt;步骤明确、重复性高&lt;/td&gt;
+					&lt;td&gt;任务开放、情况多变&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;可预测性&lt;/td&gt;
+					&lt;td&gt;高&lt;/td&gt;
+					&lt;td&gt;低&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;成本&lt;/td&gt;
+					&lt;td&gt;低&lt;/td&gt;
+					&lt;td&gt;高（多轮 LLM 调用）&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;两者没有高下之分，适合不同的场景：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;流程能写清楚、步骤是固定的 → 优先用 Workflow ，更稳、更省钱、更可预期&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;任务是开放式的、需要根据中间结果动态决策 → 用 Agent&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;最常见的实际架构： Workflow 做骨架，Agent 负责其中需要判断的环节 ，两者结合，不是非此即彼&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;一个真是的-agent&#34;&gt;一个真是的 agent
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;run_agent&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;user_message&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;messages&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;role&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;system&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;content&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;SYSTEM_PROMPT&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;role&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;user&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;   &lt;span class=&#34;s2&#34;&gt;&amp;#34;content&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;user_message&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;True&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;c1&#34;&gt;# 1. 调用大模型，让它思考下一步&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;response&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;llm&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;call&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;messages&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;c1&#34;&gt;# 2. 如果大模型说&amp;#34;我完成了&amp;#34;，退出循环&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;response&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;is_final_answer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;response&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;content&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;c1&#34;&gt;# 3. 否则，执行大模型指定的工具&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;tool_result&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;execute_tool&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;response&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tool_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;response&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tool_args&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;c1&#34;&gt;# 4. 把工具结果追加到 messages，供下一轮参考&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;messages&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;append&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;({&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;role&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;tool&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;content&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;tool_result&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;})&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;总结&#34;&gt;总结
+&lt;/h2&gt;&lt;p&gt;整理一下这一章的核心认知：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Agent 是什么&lt;/code&gt; ：以大模型为大脑，能自主调用工具、完成多步骤任务的程序。让大模型从&amp;quot;只能说&amp;quot;变成&amp;quot;能干&amp;quot;。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;核心组成&lt;/code&gt; ：大模型（大脑）+ 工具（双手）+ 记忆（记事本）+ 执行循环（节拍器）&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;核心机制&lt;/code&gt;：Think → Act → Observe 循环，每轮工具结果都回流给大模型，直到完成&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;和 Workflow 的本质区别&lt;/code&gt; ：决策者不同，Workflow 是你提前写好的代码逻辑，Agent 是大模型实时推理。两者不是竞争关系，实际系统里经常结合使用&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>[all_in_ai]  AI 名词扫盲 prompt</title>
         <link>https://ddlgitgzzhm.github.io/p/ai-prompt-0x02/</link>
         <pubDate>Wed, 15 Jul 2026 00:00:00 +0000</pubDate>

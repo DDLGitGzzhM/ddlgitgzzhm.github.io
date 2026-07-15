@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="是机会 也是 陷阱">
+<title>[all_in_ai]  AI 名词扫盲 agent</title>
+
+<link rel='canonical' href='https://ddlgitgzzhm.github.io/p/ai-agent-0x03/'>
+
+
+<link rel="stylesheet" href="/css/main.9a5c8f2dd65f8933ebb1c2d0175afb75dd9fc8765e238f5b09b6ba39536a73f9.css"><meta property='og:title' content="[all_in_ai]  AI 名词扫盲 agent">
+<meta property='og:description' content="是机会 也是 陷阱">
+<meta property='og:url' content='https://ddlgitgzzhm.github.io/p/ai-agent-0x03/'>
+<meta property='og:site_name' content='GzzhM'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-07-15T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-07-15T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="[all_in_ai]  AI 名词扫盲 agent">
+<meta name="twitter:description" content="是机会 也是 陷阱">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_216528b252869864.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍟</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">GzzhM</a></h1>
+            <h2 class="site-description">应该怎么做？</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/DDLGitGzzhM'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>文章归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>查找</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友情链接</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/time-line/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                
+                <span>Time Line</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/roadmap/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                
+                <span>Road Map</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#agent">Agent</a>
+      <ol>
+        <li><a href="#什么是-agent">什么是 Agent</a></li>
+        <li><a href="#为什么需要-agent">为什么需要 Agent</a></li>
+        <li><a href="#agent-的核心组成">Agent 的核心组成</a></li>
+        <li><a href="#agent-是怎么工作的-react-循环">Agent 是怎么工作的. ReAct 循环</a></li>
+        <li><a href="#agent-的另一个工作模式--plan-and-execute">Agent 的另一个工作模式  Plan and Execute</a>
+          <ol>
+            <li><a href="#plan-and-execute-的两个阶段">Plan and Execute 的两个阶段</a></li>
+          </ol>
+        </li>
+        <li><a href="#re-planning-重新规划">Re-planning （重新规划）</a></li>
+        <li><a href="#react-vs-plan-and-execute怎么选">ReAct vs Plan and Execute：怎么选？</a></li>
+        <li><a href="#agent-vs-workflow">Agent vs Workflow</a></li>
+        <li><a href="#一个真是的-agent">一个真是的 agent</a></li>
+      </ol>
+    </li>
+    <li><a href="#总结">总结</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/time-line/" style="background-color: #6c5ce7; color: #fff;">
+                Time Line
+            </a>
+        
+            <a href="/categories/ai/" >
+                Ai
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/ai-agent-0x03/">[all_in_ai]  AI 名词扫盲 agent</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            是机会 也是 陷阱
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2026-07-15</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>名词扫盲</p>
+<h2 id="agent">Agent
+</h2><p>对于 <code>llm</code> 和 <code>prompt</code> 他都只能进行 <code>ask</code> 操作，并不能干，只是能输出</p>
+<h3 id="什么是-agent">什么是 Agent
+</h3><p>Agent (智能体) : 能够自主感知环境，作出决策，调用工具，完成多步骤任务的程序</p>
+<ul>
+<li>自主（Autonomously） ：不需要人在每一步发指令。你给它一个目标，它自己判断下一步做什么</li>
+<li>多步骤（Multi-step） ：一个任务可能要走 5 步、10 步，Agent 自己把这些步骤串起来</li>
+<li>工具调用（Tool use） ：调用真实的函数，查数据库、搜网页、发通知、写文件，不只是&quot;说说&quot;，而是真的去做</li>
+</ul>
+<p>一句话总结： Agent = 大模型（大脑）+ 工具（双手）+ 执行循环（思考-行动-观察-再思考）</p>
+<h3 id="为什么需要-agent">为什么需要 Agent
+</h3><p>之前我们说过大模型的三大短板：</p>
+<ol>
+<li>
+<p>没有执行能力 ：只能生成文字，不能操作外部系统</p>
+</li>
+<li>
+<p>知识有截止日期 ：不知道最新数据，看不到你的私有系统</p>
+</li>
+<li>
+<p>没有持久记忆 ：每次调用对它都是全新的，不能积累任务中间状态</p>
+</li>
+</ol>
+<h3 id="agent-的核心组成">Agent 的核心组成
+</h3><ol>
+<li>大模型（LLM），大脑</li>
+</ol>
+<p>负责理解任务、分析当前状态、决定下一步做什么。所有的&quot;推理&quot;都在这里发生，该查什么、查完之后怎么解读、下一步往哪走，全是大模型来判断。</p>
+<ol start="2">
+<li>工具（Tools），双手</li>
+</ol>
+<p>一个个可以被调用的真实函数：查数据库、调用搜索引擎、读写文件、发通知、调用 API……
+大模型告诉 Agent &ldquo;调用这个工具、传这些参数&rdquo;，代码层面真正去执行。工具的结果会返回给大模型，供它继续推理。大模型不&quot;直接&quot;操作外部系统，它通过工具来&quot;动手&quot;。</p>
+<ol start="3">
+<li>记忆（Memory），记事本</li>
+</ol>
+<ul>
+<li>短期记忆 ：当前任务里的对话历史 + 每次工具调用的结果，存在 context window 里。Agent 执行第 5 步时，&ldquo;记得&quot;第 1 步查到了什么，靠的就是这个</li>
+<li>长期记忆 ：跨会话需要记住的信息，存在外部数据库，需要时检索出来注入 context</li>
+</ul>
+<p>为什么需要记忆？多步骤任务里，每一步的结果都是下一步判断的依据。没有记忆，每步都是&quot;从零开始&rdquo;，Agent 根本没法串联多步骤任务。</p>
+<ol start="4">
+<li>执行循环（Loop），节拍器</li>
+</ol>
+<p>Agent 的&quot;引擎&quot;。不断重复&quot;思考 → 行动 → 观察&quot;这个循环，直到任务完成。没有这个循环，Agent 只是一次性的问答，无法串联多步骤。这个循环是 Agent 和普通大模型调用之间最根本的区别。</p>
+<p><img src="/p/ai-agent-0x03/img.png"
+	width="2722"
+	height="1484"
+	srcset="/p/ai-agent-0x03/img_hu_bd20916cc3f73b5d.png 480w, /p/ai-agent-0x03/img_hu_4b3485aa34f7fa3a.png 1024w"
+	loading="lazy"
+	
+		alt="img.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="183"
+		data-flex-basis="440px"
+	
+></p>
+<h3 id="agent-是怎么工作的-react-循环">Agent 是怎么工作的. ReAct 循环
+</h3><p>目前主流的 Agent 工作范式叫做 <code>ReAct</code> 即 <code>Reasoing+Acting</code> 即 推理 + 行动 + 观察 + 在推理 ..</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">用户：帮我调查今晚 23:00 的数据库报警
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[第 1 轮]
+</span></span><span class="line"><span class="cl">Think：需要先拿到具体的报警详情
+</span></span><span class="line"><span class="cl">Act：调用 get_alarm_details(time=&#34;23:00&#34;)
+</span></span><span class="line"><span class="cl">Observe：返回&#34;连接数突增，连接池耗尽，持续 8 分钟后自动恢复&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[第 2 轮]
+</span></span><span class="line"><span class="cl">Think：连接数突增，需要看是哪些查询造成的
+</span></span><span class="line"><span class="cl">Act：调用 query_slow_log(timerange=&#34;22:50-23:10&#34;)
+</span></span><span class="line"><span class="cl">Observe：发现 3 条全表扫描的慢查询，来自同一个用户 ID
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[第 3 轮]
+</span></span><span class="line"><span class="cl">Think：根因已经清楚，生成分析报告
+</span></span><span class="line"><span class="cl">Act：输出最终分析结论（Final Answer）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>几个关键机制：</p>
+<ul>
+<li>
+<p>结果回流 ：每一轮的工具调用结果都会追加到 context window 里，大模型下一轮能&quot;看到&quot;所有历史。所以它能基于已有发现继续推理，而不是每次都从零开始。这就是为什么前面&quot;记忆&quot;那个组件如此重要。</p>
+</li>
+<li>
+<p>动态决策 ：每一步该怎么走，是大模型实时推理出来的，不是你提前写好的。发现是慢查询，它就去查慢查询日志；如果发现是网络问题，它就会去查网络相关的工具。路径是活的，不是死的。</p>
+</li>
+<li>
+<p>何时停止 ：大模型判断任务已完成时输出&quot;最终答案&quot;，或者达到预设的最大轮数上限。两个条件任意满足一个，循环结束。
+这就是&quot;自主&quot;的含义，你给任务目标，它自己决定怎么走到终点。</p>
+</li>
+</ul>
+<h3 id="agent-的另一个工作模式--plan-and-execute">Agent 的另一个工作模式  Plan and Execute
+</h3><p>ReAct 很好用，但有一个先天的弱点。</p>
+<p>ReAct 是「边想边做」，每一步只看眼前，这一步的结果决定下一步的方向。对于 2-3 步能解决的短任务，这完全没问题。但如果任务很复杂、步骤很多呢？</p>
+<p><strong>问题一：长任务容易「迷路」</strong></p>
+<p>ReAct 跑了 8 轮之后，context window 里已经堆满了历史操作记录。大模型要在这一大堆信息里同时维持「当前在第几步」「最终目标是什么」「还缺哪些信息」，注意力越来越稀释，越往后越容易偏离最初的目标。</p>
+<p><strong>问题二：容易绕弯路</strong></p>
+<p>没有全局规划，每步只看眼前，就像在迷宫里随机探索，走了 5 步之后才发现方向不对，只能回头重来，白白消耗了好几轮 LLM 调用。</p>
+<p><strong>问题三：token 消耗滚雪球</strong></p>
+<p>ReAct 每一轮都要把完整的对话历史带上。步骤越多，每轮的 context 越长，后期每次 LLM 调用的 token 消耗都很高，成本直线上升。</p>
+<p>这三个问题催生了另一种工作模式： <code>Plan and Execute（规划-执行模式）</code> 。</p>
+<p>核心思路用一句话说清楚： <code>先让大模型把整个任务规划成一份清单，再逐步按清单执行，而不是走一步看一步</code>。</p>
+<h4 id="plan-and-execute-的两个阶段">Plan and Execute 的两个阶段
+</h4><p><strong>第一阶段：Planner（规划阶段）</strong></p>
+<p>大模型拿到任务，先不调任何工具，专注做一件事： 把任务完整拆解成一份有序的子任务清单 。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">用户：「帮我调查今晚 23:00 的数据库报警，写一份完整的故障分析报告」
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Planner 输出的计划：
+</span></span><span class="line"><span class="cl">  步骤 1：获取 23:00 报警的详细信息（报警类型、持续时间、影响范围）
+</span></span><span class="line"><span class="cl">  步骤 2：查询报警时间段内的慢查询日志，定位异常 SQL
+</span></span><span class="line"><span class="cl">  步骤 3：查询报警时间段内的数据库连接数、CPU、内存指标
+</span></span><span class="line"><span class="cl">  步骤 4：关联步骤 2 和步骤 3 的结果，分析根因
+</span></span><span class="line"><span class="cl">  步骤 5：生成完整的故障分析报告，包含时间线、根因和改进建议
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>第二阶段：Executor（执行阶段）</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">执行步骤 1：
+</span></span><span class="line"><span class="cl">  → 调用 get_alarm_details(time=&#34;23:00&#34;)
+</span></span><span class="line"><span class="cl">  ← 返回「连接数突增，连接池耗尽，持续 8 分钟后自动恢复」
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">执行步骤 2：
+</span></span><span class="line"><span class="cl">  → 调用 query_slow_log(timerange=&#34;22:50-23:10&#34;)
+</span></span><span class="line"><span class="cl">  ← 发现 3 条全表扫描的慢查询，来自同一个用户 ID
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">执行步骤 3：
+</span></span><span class="line"><span class="cl">  → 调用 get_db_metrics(timerange=&#34;22:50-23:10&#34;)
+</span></span><span class="line"><span class="cl">  ← CPU 正常，连接数峰值达到上限 500，内存无异常
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">执行步骤 4：
+</span></span><span class="line"><span class="cl">  → 大模型综合步骤 2、3 结果进行分析
+</span></span><span class="line"><span class="cl">  ← 结论：慢查询导致连接长时间占用，连接池耗尽触发报警
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">执行步骤 5：
+</span></span><span class="line"><span class="cl">  → 生成故障分析报告
+</span></span><span class="line"><span class="cl">  ← 完整报告输出，任务完成
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="re-planning-重新规划">Re-planning （重新规划）
+</h3><p>执行中途如果遇到了计划没预料到的情况，比如步骤 2 查不到慢查询，但发现了大量锁等待，Executor 可以把这个新信息反馈给 Planner，重新生成后续步骤的计划，而不是一条路走到黑。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">用户任务
+</span></span><span class="line"><span class="cl">  ↓
+</span></span><span class="line"><span class="cl">[Planner]  大模型一次性生成完整计划
+</span></span><span class="line"><span class="cl">  ↓
+</span></span><span class="line"><span class="cl">执行计划 = [步骤1, 步骤2, 步骤3, 步骤4, 步骤5]
+</span></span><span class="line"><span class="cl">  ↓
+</span></span><span class="line"><span class="cl">[Executor] 按顺序执行每个步骤
+</span></span><span class="line"><span class="cl">  步骤1 → 调工具 → 结果
+</span></span><span class="line"><span class="cl">  步骤2 → 调工具 → 结果      ← 遇到意外？触发 Re-planning，重新调整后续计划
+</span></span><span class="line"><span class="cl">  步骤3 → 调工具 → 结果
+</span></span><span class="line"><span class="cl">  ...
+</span></span><span class="line"><span class="cl">  ↓
+</span></span><span class="line"><span class="cl">最终结果汇总 → 输出给用户
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="react-vs-plan-and-execute怎么选">ReAct vs Plan and Execute：怎么选？
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>对比维度</th>
+					<th>ReAct</th>
+					<th>Plan and Execute</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>决策时机</td>
+					<td>每一步实时决策</td>
+					<td>开始前一次性规划</td>
+			</tr>
+			<tr>
+					<td>全局视野</td>
+					<td>弱（只看当前这步）</td>
+					<td>强（提前看到全貌）</td>
+			</tr>
+			<tr>
+					<td>灵活性</td>
+					<td>强（随时根据结果调整）</td>
+					<td>弱（计划一旦生成，调整成本高）</td>
+			</tr>
+			<tr>
+					<td>适合任务步骤</td>
+					<td>少（3 步以内）</td>
+					<td>多（5 步以上的复杂任务）</td>
+			</tr>
+			<tr>
+					<td>token 消耗</td>
+					<td>随步数线性增长，后期很贵</td>
+					<td>规划阶段集中消耗，执行阶段可控</td>
+			</tr>
+			<tr>
+					<td>实现难度</td>
+					<td>低（结构简单）</td>
+					<td>中（需要管理计划状态和 Re-planning 逻辑）</td>
+			</tr>
+	</tbody>
+</table></div>
+<p>简单记忆：</p>
+<ul>
+<li>
+<p>任务步骤少、目标模糊、需要随机应变 → 用 ReAct</p>
+</li>
+<li>
+<p>任务步骤多、目标明确、需要全局把控 → 用 Plan and Execute</p>
+</li>
+<li>
+<p>系统复杂、两者都需要 → Plan and Execute 做外层框架，每个子任务内部跑 ReAct</p>
+</li>
+</ul>
+<p>最后这种「外层 Plan and Execute + 内层 ReAct」的搭配，在实际生产系统里最常见，用规划保证大方向不跑偏，用 ReAct 保证每个子任务执行时足够灵活。</p>
+<h3 id="agent-vs-workflow">Agent vs Workflow
+</h3><p><code>Workflow</code>（工作流）是你提前写好所有步骤和分支逻辑的流程：先做 A，再做 B，如果 B 的结果是 X 就走流程 C，否则走流程 D。大模型只是其中某个步骤里被调用一次，整体流程是硬编码的。</p>
+<p><code>Agent</code> 是你只给任务目标，大模型自己实时决定每一步做什么、调用什么工具、根据结果决定下一步。执行路径是动态的，每次运行可能走不同的路径。</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>对比维度</th>
+					<th>Workflow</th>
+					<th>Agent</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>决策者</td>
+					<td>你（写死的代码逻辑）</td>
+					<td>大模型（实时推理）</td>
+			</tr>
+			<tr>
+					<td>执行路径</td>
+					<td>固定</td>
+					<td>动态</td>
+			</tr>
+			<tr>
+					<td>适合场景</td>
+					<td>步骤明确、重复性高</td>
+					<td>任务开放、情况多变</td>
+			</tr>
+			<tr>
+					<td>可预测性</td>
+					<td>高</td>
+					<td>低</td>
+			</tr>
+			<tr>
+					<td>成本</td>
+					<td>低</td>
+					<td>高（多轮 LLM 调用）</td>
+			</tr>
+	</tbody>
+</table></div>
+<p>两者没有高下之分，适合不同的场景：</p>
+<ul>
+<li>
+<p>流程能写清楚、步骤是固定的 → 优先用 Workflow ，更稳、更省钱、更可预期</p>
+</li>
+<li>
+<p>任务是开放式的、需要根据中间结果动态决策 → 用 Agent</p>
+</li>
+<li>
+<p>最常见的实际架构： Workflow 做骨架，Agent 负责其中需要判断的环节 ，两者结合，不是非此即彼</p>
+</li>
+</ul>
+<h3 id="一个真是的-agent">一个真是的 agent
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">run_agent</span><span class="p">(</span><span class="n">user_message</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">messages</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span><span class="s2">&#34;role&#34;</span><span class="p">:</span> <span class="s2">&#34;system&#34;</span><span class="p">,</span> <span class="s2">&#34;content&#34;</span><span class="p">:</span> <span class="n">SYSTEM_PROMPT</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span><span class="s2">&#34;role&#34;</span><span class="p">:</span> <span class="s2">&#34;user&#34;</span><span class="p">,</span>   <span class="s2">&#34;content&#34;</span><span class="p">:</span> <span class="n">user_message</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 1. 调用大模型，让它思考下一步</span>
+</span></span><span class="line"><span class="cl">        <span class="n">response</span> <span class="o">=</span> <span class="n">llm</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># 2. 如果大模型说&#34;我完成了&#34;，退出循环</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">is_final_answer</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">content</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># 3. 否则，执行大模型指定的工具</span>
+</span></span><span class="line"><span class="cl">        <span class="n">tool_result</span> <span class="o">=</span> <span class="n">execute_tool</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">tool_name</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">tool_args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># 4. 把工具结果追加到 messages，供下一轮参考</span>
+</span></span><span class="line"><span class="cl">        <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&#34;role&#34;</span><span class="p">:</span> <span class="s2">&#34;tool&#34;</span><span class="p">,</span> <span class="s2">&#34;content&#34;</span><span class="p">:</span> <span class="n">tool_result</span><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="总结">总结
+</h2><p>整理一下这一章的核心认知：</p>
+<p><code>Agent 是什么</code> ：以大模型为大脑，能自主调用工具、完成多步骤任务的程序。让大模型从&quot;只能说&quot;变成&quot;能干&quot;。</p>
+<p><code>核心组成</code> ：大模型（大脑）+ 工具（双手）+ 记忆（记事本）+ 执行循环（节拍器）</p>
+<p><code>核心机制</code>：Think → Act → Observe 循环，每轮工具结果都回流给大模型，直到完成</p>
+<p><code>和 Workflow 的本质区别</code> ：决策者不同，Workflow 是你提前写好的代码逻辑，Agent 是大模型实时推理。两者不是竞争关系，实际系统里经常结合使用</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/ai-prompt-0x02/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[all_in_ai]  AI 名词扫盲 prompt</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/al-llm-0x01/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[all_in_ai]  AI 名词扫盲 大模型</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/acwing-basic-0x09/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[Acwing] 基础算法(九) 质数</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/webook-summary-0x01/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[webook-tidy] Golang 基础语法</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/closure-0x01/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">闭包</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="DDLGitGzzhM/ddlgitgzzhm.github.io"
+        issue-term="pathname"
+        
+        label="comments"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025 - 
+        
+        2026 GzzhM
+    </section>
+    
+    <section class="powerby">
+        使用 Golang 构建 <br />
+        
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script><script type="text/javascript" src="/ts/custom.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
