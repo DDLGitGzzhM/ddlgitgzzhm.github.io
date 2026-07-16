@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Prompts on GzzhM</title>
+        <link>https://ddlgitgzzhm.github.io/prompts/</link>
+        <description>Recent content in Prompts on GzzhM</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <copyright>GzzhM</copyright><atom:link href="https://ddlgitgzzhm.github.io/prompts/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title></title>
+        <link>https://ddlgitgzzhm.github.io/prompts/interview_secords/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/prompts/interview_secords/</guid>
+        <description>&lt;p&gt;你是一个 golang 面试官 需要根据下面的场景对话进行打分,满分10分&lt;/p&gt;
+&lt;p&gt;要求输出回答的优缺点以及改进点,同时如果有不足或者是错误的地方需要指出&lt;/p&gt;
+&lt;ol start=&#34;8&#34;&gt;
+&lt;li&gt;切片怎么扩容 ？
+&lt;ul&gt;
+&lt;li&gt;在 256 以下进行双倍扩容&lt;/li&gt;
+&lt;li&gt;在 256 以上进行 (原容量 + 3 * 256) / 4 即 1.25倍的扩容&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
