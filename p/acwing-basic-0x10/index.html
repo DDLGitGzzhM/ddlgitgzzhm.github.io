@@ -322,6 +322,10 @@
         <li><a href="#算法思路-2">算法思路</a></li>
         <li><a href="#代码-2">代码</a></li>
         <li><a href="#时间复杂度-2">时间复杂度</a></li>
+        <li><a href="#最大公约数">最大公约数</a></li>
+        <li><a href="#算法思路-3">算法思路</a></li>
+        <li><a href="#代码-3">代码</a></li>
+        <li><a href="#时间复杂度-3">时间复杂度</a></li>
       </ol>
     </li>
   </ol>
@@ -620,6 +624,26 @@
 </div>
 </div><h3 id="时间复杂度-2">时间复杂度
 </h3><p>o sqrtN</p>
+<h3 id="最大公约数">最大公约数
+</h3><h3 id="算法思路-3">算法思路
+</h3><p>我们知道 如果 <code>x | a</code> 并且 <code>x | b</code> 那么 <code>x | a * y + b * k</code></p>
+<p>同理对于 <code>gcd(a,b) = gcd(b, a % b)</code>  为什么等式成立 ？ 因为  <code>x | b</code> 那么 <code>x | a + c * b</code> 这里的 <code>c</code> 就是 <code>-a/b</code></p>
+<p>因为 <code>x | a + c *b - c*b</code> 等式成立 所以 <code>x|a</code>成立</p>
+<h3 id="代码-3">代码
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">gcd</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">b</span> <span class="o">?</span> <span class="n">gcd</span><span class="p">(</span><span class="n">b</span> <span class="p">,</span> <span class="n">a</span> <span class="o">%</span><span class="n">b</span><span class="p">)</span> <span class="o">:</span> <span class="n">a</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="时间复杂度-3">时间复杂度
+</h3><p>on</p>
 
 </section>
 
@@ -676,6 +700,19 @@
             
                 
 <article class="">
+    <a href="/p/acwing-basic-0x11/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[Acwing] 基础算法(十一) 欧拉函数</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
     <a href="/p/acwing-basic-0x09/">
         
         
@@ -721,19 +758,6 @@
 
         <div class="article-details">
             <h2 class="article-title">[Acwing] 基础算法（七) 并查集</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/p/acwing-basic-0x06/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">[Acwing] 基础算法(六) 数据结构 栈&amp;队列</h2>
         </div>
     </a>
 </article>
