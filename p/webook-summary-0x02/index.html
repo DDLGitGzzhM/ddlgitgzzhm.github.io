@@ -2,7 +2,7 @@
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="登陆与注册的实现">
-<title>[webook-tidy] Gorm &amp; 用户基本功能 &amp; docker</title>
+<title>[webook-tidy] Gin &amp; 基本路由</title>
 
 <link rel='canonical' href='https://ddlgitgzzhm.github.io/p/webook-summary-0x02/'>
 
@@ -308,22 +308,21 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#gorm">Gorm</a></li>
-    <li><a href="#docker-compose">Docker Compose</a>
+    <li><a href="#gin-入门">Gin 入门</a>
       <ol>
-        <li><a href="#项目结构">项目结构</a></li>
-        <li><a href="#一些疑问">一些疑问</a></li>
+        <li><a href="#gin-engine">Gin-Engine</a></li>
+        <li><a href="#gin-context">Gin-Context</a></li>
+        <li><a href="#gin-路由注册">Gin 路由注册</a></li>
       </ol>
     </li>
-    <li><a href="#http">HTTP</a>
+    <li><a href="#基本路由">基本路由</a>
       <ol>
-        <li><a href="#无状态协议-http">无状态协议 HTTP</a></li>
-        <li><a href="#cookie">Cookie</a></li>
-        <li><a href="#session">Session</a></li>
+        <li><a href="#跨域请求">跨域请求</a></li>
+        <li><a href="#中间件">中间件</a></li>
       </ol>
     </li>
     <li><a href="#面试">面试</a></li>
-    <li><a href="#后续">后续</a></li>
+    <li><a href="#最后">最后</a></li>
   </ol>
 </nav>
         </div>
@@ -401,56 +400,10 @@
     <section class="article-content">
     
     
-    <h2 id="gorm">Gorm
-</h2><p><code>Orm (Object Relational Mapping)</code> :  对象关系映射 。  <code>Orm</code>框架 提供 不需要关注 实体对象 与 数据库之间的操作关系</p>
-<h2 id="docker-compose">Docker Compose
-</h2><p>docker compose 启动 mysql8</p>
-<p>基本语法 :</p>
-<ol>
-<li>services : 服务列表</li>
-<li>image : 镜像</li>
-<li>command : 启动命令 (启动命令行参数)</li>
-<li>volumes : 挂载文件</li>
-<li>ports : 端口映射关系</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;3.7&#39;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="nt">services</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">mysql8</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">mysql:8.0.29</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span>--<span class="l">default-authentication-plugin=mysql_native_password</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l">always</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">MYSQL_ROOT_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l">root</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">./script/mysql/:/docker-entrypoint-initdb.d/</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;13316:3306&#34;</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p>基础命令 :</p>
-<p><code>dokcer compose up</code> : 初始化 dokcer-compose 并且懂
-<code>docker compose down</code> : 删除 docker-compose 里面创建的容器</p>
-<h3 id="项目结构">项目结构
-</h3><p>Service : 代表 领域服务 完整的业务的处理过程</p>
-<p>Repository : 按照 DDD 的说法 是代表领域对象的存储 ，可以认为是存储数据的抽象</p>
-<p>Dao : 代表数据库操作</p>
-<p>domain : 代表领域对象</p>
+    <h2 id="gin-入门">Gin 入门
+</h2><h3 id="gin-engine">Gin-Engine
+</h3><p>在 <code>Gin</code> 中, 一个 <code>Web</code> 服务器被抽象成为 <code>Engine</code></p>
+<p><code>Engine</code> 承担了路由器注册、接入 <code>middleware</code> 的核心职责</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -464,79 +417,73 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">├── domain
-</span></span><span class="line"><span class="cl">│   ├── user.go
-</span></span><span class="line"><span class="cl">├── repository
-</span></span><span class="line"><span class="cl">│   ├── cache
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">│   ├── dao
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">│   └── user.go
-</span></span><span class="line"><span class="cl">├── service
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">server</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">gin</span><span class="p">.</span><span class="nf">Default</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">type</span><span class="w"> </span><span class="nx">Engine</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// ... </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">RouterGroup</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// ...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
-</div><p>这里简单提一下 :</p>
-<p>我们公司项目的调用逻辑是 :</p>
-<p>每一层都有自己相同的 <code>user</code> , 从这里看</p>
-<ul>
-<li><code>htv2-db</code> 操作代表 <code>dao</code></li>
-<li><code>exgv2</code> 层代表 <code>domain</code> (和 db 弱关联，但是算是底层数据)</li>
-<li><code>cefiacc</code> 即是 <code>Repository</code></li>
-<li><code>ec</code>代表 <code>service</code> 封装给其他组进行调用</li>
-</ul>
+</div><h3 id="gin-context">Gin-Context
+</h3><p><code>Gin</code> 封装的上下文, 其中 <code>Request</code> 和 <code>Writer</code> 负责 处理请求 和 返回相应</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span><span class="w"> </span><span class="nx">Context</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">writermem</span><span class="w"> </span><span class="nx">responseWriter</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">Request</span><span class="w">   </span><span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">Writer</span><span class="w">    </span><span class="nx">ResponseWriter</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">Params</span><span class="w">   </span><span class="nx">Params</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">handlers</span><span class="w"> </span><span class="nx">HandlersChain</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// ..</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>对于 <code>GET</code> 的参数我们使用 <code>query</code> 进行获取参数</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ec --&gt; cefiacc --&gt;  exgv2 --&gt; htv2(db)
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">code</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">ctx</span><span class="p">.</span><span class="nf">Query</span><span class="p">(</span><span class="s">&#34;code&#34;</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="一些疑问">一些疑问
-</h3><ol>
-<li>
-<p>为什么有了 <code>repository</code> 之后 还要有 <code>dao</code> ?</p>
-<ul>
-<li><code>repository</code> 是一个整体抽象，本质上可以考虑用 <code>ES</code>或者是<code>Mysql</code>或者是 <code>mongoDB</code> 并不代表数据库</li>
-</ul>
-</li>
-</ol>
-<p><img src="/p/webook-summary-0x02/img.png"
-	width="764"
-	height="309"
-	srcset="/p/webook-summary-0x02/img_hu_528a4c5c86f68617.png 480w, /p/webook-summary-0x02/img_hu_f5afcdf472984fd8.png 1024w"
-	loading="lazy"
-	
-		alt="img.png"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="247"
-		data-flex-basis="593px"
-	
-></p>
-<h2 id="http">HTTP
-</h2><h3 id="无状态协议-http">无状态协议 HTTP
-</h3><p>HTTP 是无状态协议，对于连续发送的两次请求, <code>HTTP</code> 并不知道两次都是同一个人发的</p>
-<p>只能引入 <code>cookie</code> 和 <code>session</code> 进行记录</p>
-<h3 id="cookie">Cookie
-</h3><p>浏览器存储一些数据到本地，这些数据就是 <code>Cookie</code></p>
-<p>因为 <code>Cokkie</code> 是放在浏览器本地的，所以很不安全</p>
-<p>一些关键配置 :</p>
-<ul>
-<li>
-<p><code>Domain</code> : <code>cookie</code> 可以用在什么域名下</p>
-</li>
-<li>
-<p><code>Path</code>  : <code>cookie</code> 可以用在什么路径下</p>
-</li>
-<li>
-<p><code>Max-age</code> 和 <code>Expires</code> : 过期时间</p>
-</li>
-<li>
-<p><code>Secure</code> : 只用于 HTTPS 协议</p>
-</li>
-</ul>
+</div><p>对于 <code>POST</code> 的参数 我们使用 <code>Bind</code> 进行获取参数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="w">	</span><span class="kd">type</span><span class="w"> </span><span class="nx">Req</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">Code</span><span class="w">  </span><span class="kt">string</span><span class="w"> </span><span class="s">`json:&#34;code&#34;`</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">Phone</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="s">`json:&#34;phone&#34;`</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="kd">var</span><span class="w"> </span><span class="nx">req</span><span class="w"> </span><span class="nx">Req</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">ctx</span><span class="p">.</span><span class="nf">Bind</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">req</span><span class="p">);</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="gin-路由注册">Gin 路由注册
+</h3><p>在 <code>Engine</code> 的 <code>RouterGroup</code> 支持注册 <code>Restful</code> 的接口</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -553,27 +500,79 @@
 </span><span class="lnt">12
 </span><span class="lnt">13
 </span><span class="lnt">14
+</span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="nf">SetCookie</span><span class="p">(</span><span class="nx">w</span><span class="w"> </span><span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span><span class="w"> </span><span class="nx">r</span><span class="w"> </span><span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="nx">cookie</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">http</span><span class="p">.</span><span class="nx">Cookie</span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nx">Name</span><span class="p">:</span><span class="w">     </span><span class="s">&#34;access_token&#34;</span><span class="p">,</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nx">MaxAge</span><span class="p">:</span><span class="w">   </span><span class="mi">3600</span><span class="p">,</span><span class="w">       
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nx">Path</span><span class="p">:</span><span class="w">     </span><span class="s">&#34;/&#34;</span><span class="p">,</span><span class="w">        
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nx">HttpOnly</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">       
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nx">Secure</span><span class="p">:</span><span class="w">   </span><span class="kc">true</span><span class="p">,</span><span class="w">     
-</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="c1">// send cookie via header</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="nx">http</span><span class="p">.</span><span class="nf">SetCookie</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">cookie</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintln</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;Cookie has been set!&#34;</span><span class="p">)</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// ... </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">group</span><span class="w"> </span><span class="o">*</span><span class="nx">RouterGroup</span><span class="p">)</span><span class="w"> </span><span class="nf">POST</span><span class="p">(</span><span class="nx">relativePath</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">handlers</span><span class="w"> </span><span class="o">...</span><span class="nx">HandlerFunc</span><span class="p">)</span><span class="w"> </span><span class="nx">IRoutes</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="nx">group</span><span class="p">.</span><span class="nf">handle</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">MethodPost</span><span class="p">,</span><span class="w"> </span><span class="nx">relativePath</span><span class="p">,</span><span class="w"> </span><span class="nx">handlers</span><span class="p">)</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// GET is a shortcut for router.Handle(&#34;GET&#34;, path, handlers).</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">group</span><span class="w"> </span><span class="o">*</span><span class="nx">RouterGroup</span><span class="p">)</span><span class="w"> </span><span class="nf">GET</span><span class="p">(</span><span class="nx">relativePath</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">handlers</span><span class="w"> </span><span class="o">...</span><span class="nx">HandlerFunc</span><span class="p">)</span><span class="w"> </span><span class="nx">IRoutes</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="nx">group</span><span class="p">.</span><span class="nf">handle</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">MethodGet</span><span class="p">,</span><span class="w"> </span><span class="nx">relativePath</span><span class="p">,</span><span class="w"> </span><span class="nx">handlers</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// DELETE is a shortcut for router.Handle(&#34;DELETE&#34;, path, handlers).</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">group</span><span class="w"> </span><span class="o">*</span><span class="nx">RouterGroup</span><span class="p">)</span><span class="w"> </span><span class="nf">DELETE</span><span class="p">(</span><span class="nx">relativePath</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">handlers</span><span class="w"> </span><span class="o">...</span><span class="nx">HandlerFunc</span><span class="p">)</span><span class="w"> </span><span class="nx">IRoutes</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="nx">group</span><span class="p">.</span><span class="nf">handle</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">MethodDelete</span><span class="p">,</span><span class="w"> </span><span class="nx">relativePath</span><span class="p">,</span><span class="w"> </span><span class="nx">handlers</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// ... </span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="session">Session
-</h3><p>由于 <code>Cookie</code> 本身不安全的特性，所以大部分 我们不把一些关键信息放在 <code>Cookie</code></p>
-<p>关键数据我们希望放在后端，这个存储的东西就是 <code>session</code></p>
+</div><h2 id="基本路由">基本路由
+</h2><h3 id="跨域请求">跨域请求
+</h3><p>前端端口是 <code>localhost:3000</code> 请求到了后端 <code>localhost:8080</code></p>
+<p>对于域名和端口任意一个不同都是跨域请求</p>
+<p><img src="/p/webook-summary-0x02/img.png"
+	width="913"
+	height="177"
+	srcset="/p/webook-summary-0x02/img_hu_41141d0ebaee0d27.png 480w, /p/webook-summary-0x02/img_hu_4d6346664ba39b6f.png 1024w"
+	loading="lazy"
+	
+		alt="img.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="515"
+		data-flex-basis="1237px"
+	
+></p>
+<p>跨域请求问题 是浏览器那边进行控制的</p>
+<p>每次浏览器请求前，会提前发送一个 <code>Option</code> 的方法 访问 <code>allow-origins,allow-headers,allow-method</code></p>
+<p>如果不在允许范围内就会失败</p>
+<p><img src="/p/webook-summary-0x02/preflight.png"
+	width="522"
+	height="299"
+	srcset="/p/webook-summary-0x02/preflight_hu_d4a67a245febf617.png 480w, /p/webook-summary-0x02/preflight_hu_ffef34d1ec7ff1c9.png 1024w"
+	loading="lazy"
+	
+		alt="preflight.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="174"
+		data-flex-basis="418px"
+	
+></p>
+<h3 id="中间件">中间件
+</h3><p>对于请求 发送到 实际业务逻辑 。 前后插入的额外处理即是 <code>middleware</code></p>
+<p>也就是 <code>AOP</code>编程 。</p>
+<p><img src="/p/webook-summary-0x02/middleware.png"
+	width="786"
+	height="155"
+	srcset="/p/webook-summary-0x02/middleware_hu_4b25b8cf0f5b16fb.png 480w, /p/webook-summary-0x02/middleware_hu_ec5a9658915ee85e.png 1024w"
+	loading="lazy"
+	
+		alt="middleware.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="507"
+		data-flex-basis="1217px"
+	
+></p>
+<p>最常见的 AOP 就是</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -581,38 +580,43 @@
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
-</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="w">	</span><span class="nx">sess</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">sessions</span><span class="p">.</span><span class="nf">Default</span><span class="p">(</span><span class="nx">ctx</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">sess</span><span class="p">.</span><span class="nf">Set</span><span class="p">(</span><span class="s">&#34;userId&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">user</span><span class="p">.</span><span class="nx">Id</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">sess</span><span class="p">.</span><span class="nf">Options</span><span class="p">(</span><span class="nx">sessions</span><span class="p">.</span><span class="nx">Options</span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">MaxAge</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">})</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">sess</span><span class="p">.</span><span class="nf">Save</span><span class="p">()</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nf">beforeHook</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nf">do</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nf">afterHook</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nx">限流start</span><span class="w"> </span><span class="o">--</span><span class="p">&gt;</span><span class="w"> </span><span class="nx">熔断start</span><span class="w"> </span><span class="o">--</span><span class="p">&gt;</span><span class="w"> </span><span class="nx">handler</span><span class="w"> </span><span class="o">--</span><span class="p">&gt;</span><span class="w"> </span><span class="nx">熔断end</span><span class="w"> </span><span class="o">--</span><span class="p">&gt;</span><span class="w"> </span><span class="nx">限流end</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><hr>
-<p>个人理解 :</p>
-<ol>
-<li><code>session</code>也离不开本地化存储，大部分都是放在 <code>cookie</code>中 如果禁用了<code>cookie</code>也会考虑放在<code>header</code>或者是<code>query</code>中</li>
-<li>使用<code>session</code>无非是把敏感信息的相关校验放在了后端</li>
-</ol>
-<h2 id="面试">面试
+</div><p>Gin 插件支持使用 <code>Use</code> 进行中间件的注册</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">group</span><span class="w"> </span><span class="o">*</span><span class="nx">RouterGroup</span><span class="p">)</span><span class="w"> </span><span class="nf">Use</span><span class="p">(</span><span class="nx">middleware</span><span class="w"> </span><span class="o">...</span><span class="nx">HandlerFunc</span><span class="p">)</span><span class="w"> </span><span class="nx">IRoutes</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nx">group</span><span class="p">.</span><span class="nx">Handlers</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">append</span><span class="p">(</span><span class="nx">group</span><span class="p">.</span><span class="nx">Handlers</span><span class="p">,</span><span class="w"> </span><span class="nx">middleware</span><span class="o">...</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">return</span><span class="w"> </span><span class="nx">group</span><span class="p">.</span><span class="nf">returnObj</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="面试">面试
 </h2><ol>
-<li>什么是 cookie 什么是 session ?</li>
-<li>cookie 和 Session 比起来有什么缺点</li>
-<li>Session ID 可以放在哪里 ？</li>
-<li>用户密码加密算法选取有什么注意事项</li>
-<li>怎么做登陆校验</li>
+<li>什么是 <code>Gin</code> 的 <code>middleware</code> ？  能用来解决什么问题 ？</li>
+<li>什么是跨域问题 ，怎么解决？</li>
+<li>跨域问题需要设置哪些头部？</li>
 </ol>
-<h2 id="后续">后续
-</h2><p>增强扩展 <code>GORM</code> 功能</p>
+<h2 id="最后">最后
+</h2><p>设计并实现一个 <code>Gin插件库</code></p>
+<p>使用 <code>middleware</code> 机制实现 <code>Gin</code> 插件库支持</p>
 <ol>
-<li>为 GORM 提供可观测性的插件实现</li>
-<li>为 GORM 提供读写分离插件</li>
-<li>为 GORM 提供 BeforeFind 功能</li>
-<li>为 GORM 提供辅助方法</li>
+<li><strong>Web 治理</strong> ： 熔断限流降级</li>
+<li><strong>可观测性</strong> : 包括日志、metrics、tracing</li>
+<li><strong>身份认证与鉴权</strong> :</li>
 </ol>
 
 </section>
@@ -662,12 +666,25 @@
             
                 
 <article class="">
-    <a href="/p/webook-summary-0x02/">
+    <a href="/p/webook-summary-0x03/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">[webook-tidy] Gin &amp; 基本路由</h2>
+            <h2 class="article-title">[webook-tidy] Gorm &amp; 用户基本功能 &amp; docker</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/webook-summary-0x04/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[webook-tidy] Session &amp; JWT</h2>
         </div>
     </a>
 </article>
@@ -707,19 +724,6 @@
 
         <div class="article-details">
             <h2 class="article-title">2026-07-12 不定时复盘</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/p/fire-workd-04/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">垃圾中堆找黄金</h2>
         </div>
     </a>
 </article>
