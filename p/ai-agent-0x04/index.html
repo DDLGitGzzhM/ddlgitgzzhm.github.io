@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="关于为什么我好久不使用这个项目">
-<title>[blog] 当前使用体验</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="是机会 也是 陷阱">
+<title>[all_in_ai]  AI 名词扫盲 Tool</title>
 
-<link rel='canonical' href='https://ddlgitgzzhm.github.io/p/blog-summary-26-06-01/'>
+<link rel='canonical' href='https://ddlgitgzzhm.github.io/p/ai-agent-0x04/'>
 
 
-<link rel="stylesheet" href="/css/main.9a5c8f2dd65f8933ebb1c2d0175afb75dd9fc8765e238f5b09b6ba39536a73f9.css"><meta property='og:title' content="[blog] 当前使用体验">
-<meta property='og:description' content="关于为什么我好久不使用这个项目">
-<meta property='og:url' content='https://ddlgitgzzhm.github.io/p/blog-summary-26-06-01/'>
+<link rel="stylesheet" href="/css/main.9a5c8f2dd65f8933ebb1c2d0175afb75dd9fc8765e238f5b09b6ba39536a73f9.css"><meta property='og:title' content="[all_in_ai]  AI 名词扫盲 Tool">
+<meta property='og:description' content="是机会 也是 陷阱">
+<meta property='og:url' content='https://ddlgitgzzhm.github.io/p/ai-agent-0x04/'>
 <meta property='og:site_name' content='GzzhM'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-06-11T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-06-11T00:00:00&#43;00:00'/><meta property='og:image' content='https://ddlgitgzzhm.github.io/p/blog-summary-26-06-01/blog.png' />
-<meta name="twitter:title" content="[blog] 当前使用体验">
-<meta name="twitter:description" content="关于为什么我好久不使用这个项目"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://ddlgitgzzhm.github.io/p/blog-summary-26-06-01/blog.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-07-18T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-07-18T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="[all_in_ai]  AI 名词扫盲 Tool">
+<meta name="twitter:description" content="是机会 也是 陷阱">
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -309,10 +308,16 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#我的初心">我的初心</a></li>
-    <li><a href="#项目的扎手点">项目的扎手点</a></li>
-    <li><a href="#一些吐槽">一些吐槽</a></li>
-    <li><a href="#后续想法">后续想法</a></li>
+    <li><a href="#agent-和-tool">Agent 和 Tool</a></li>
+    <li><a href="#tool">Tool</a>
+      <ol>
+        <li><a href="#tool-的四要素">Tool 的四要素</a>
+          <ol>
+            <li><a href="#函数本体">函数本体</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -324,31 +329,19 @@
 
 
             <main class="main full-width">
-    <article class="has-image main-article">
+    <article class="main-article">
     <header class="article-header">
-        <div class="article-image">
-            <a href="/p/blog-summary-26-06-01/">
-                <img src="/p/blog-summary-26-06-01/blog_hu_56b4e95a45a0d1b6.png"
-                        srcset="/p/blog-summary-26-06-01/blog_hu_56b4e95a45a0d1b6.png 800w, /p/blog-summary-26-06-01/blog_hu_86bb67c36b1149b0.png 1600w"
-                        width="800" 
-                        height="449" 
-                        loading="lazy"
-                        alt="Featured image of post [blog] 当前使用体验" />
-                
-            </a>
-        </div>
-    
 
     <div class="article-details">
     
     <header class="article-category">
         
-            <a href="/categories/summary/" style="background-color: #000000; color: #fff;">
-                Summary
-            </a>
-        
             <a href="/categories/time-line/" style="background-color: #6c5ce7; color: #fff;">
                 Time Line
+            </a>
+        
+            <a href="/categories/ai/" >
+                Ai
             </a>
         
     </header>
@@ -356,12 +349,12 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/blog-summary-26-06-01/">[blog] 当前使用体验</a>
+            <a href="/p/ai-agent-0x04/">[all_in_ai]  AI 名词扫盲 Tool</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            关于为什么我好久不使用这个项目
+            是机会 也是 陷阱
         </h3>
         
     </div>
@@ -382,7 +375,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2026-06-11</time>
+                <time class="article-time--published">2026-07-18</time>
             </div>
         
 
@@ -398,56 +391,137 @@
     <section class="article-content">
     
     
-    <h2 id="我的初心">我的初心
-</h2><p>Q :  为什么之前我要写这个博客</p>
-<p>我创建 Blog  这个项目的初心 是打算日常记录 以及 学习记录 分享</p>
-<p>可是从毕业以及工作之后越来越没有学习的心思了</p>
+    <p>如果想让 AI 给你输出一套方案 或者是分类规则 是非常容易的</p>
+<p>但是想让他给你查看今天天气，或者是预定明天机票一般来说都不能很完美的进行</p>
+<p>而 <code>Tool</code> 就是为了实现这些内容</p>
+<h2 id="agent-和-tool">Agent 和 Tool
+</h2><p><code>Agent</code>在上一篇文章中指出 是负责作出决策和调用工具，所以 <code>Agent</code>主要负责的就是 调度和决策</p>
+<p>用户 : 提供需求</p>
+<p>大模型 LLM :  负责决策，先做什么 后做什么</p>
+<p>Agent : 负责 Tool 的调度，和 LLM  调度</p>
+<p>Tool : 实际处理解决 问题的操作</p>
+<hr>
+<p>具体来说，当你给 Agent 下一条指令：「帮我读取 C 盘目录下的 hello_world.cpp 文件，移动到 D 盘目录下，最后给我总结一下这个文件的核心内容」，整个执行流程是这样的：</p>
+<p><img src="/p/ai-agent-0x04/img.png"
+	width="531"
+	height="726"
+	srcset="/p/ai-agent-0x04/img_hu_3b94d5312f4e180c.png 480w, /p/ai-agent-0x04/img_hu_3f73387990148791.png 1024w"
+	loading="lazy"
+	
+		alt="img.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="73"
+		data-flex-basis="175px"
+	
+></p>
 <ol>
-<li>工作内容变动</li>
-<li>恋爱的琐事</li>
-<li>副业的变动</li>
-<li>牛熊转换
-&hellip;</li>
+<li><strong>Agent 把需求 + 工具清单打包，发给大模型</strong> ：「用户想做这件事，你有这些工具可以用，第一步该怎么做？」</li>
+<li><strong>大模型做决策，返回指令</strong> ：「调用【读取文件】工具，路径是 C://hello_world.cpp」</li>
+<li><strong>Agent 执行指令，调用工具</strong> ：真正去磁盘上读文件</li>
+<li><strong>Agent 把结果回传给大模型</strong> ：「文件读取成功，内容是……」</li>
+<li><strong>大模型根据结果，决定下一步</strong> ：「好，现在调用【移动文件】工具，把它移到 D 盘」</li>
+<li><strong>循环执行，直到任务完成</strong> ：所有步骤跑完，大模型生成最终总结</li>
+<li><strong>Agent 把结果反馈给你</strong> ：任务完成
+你看，这整个过程里，「决策」始终在大模型，「执行」始终在工具，而 Agent 就是那个来回传话、推进任务的协调员。</li>
 </ol>
-<p>各种内容充斥在生活里面，让我开始摆烂</p>
-<h2 id="项目的扎手点">项目的扎手点
-</h2><p>目前这个项目的设计逻辑是</p>
-<ol>
-<li>使用者在 IDEA 编辑对应的 Markdown 文件
-<ul>
-<li>如果你要发布一个文章 你需要 创建一个 package 指的是手动的右键点击创建 package</li>
-<li>然后插入一个 title 图片 如果没有图片的话会很丑</li>
-<li>还需要手动填写文件的日期 date</li>
-<li>手动填写 slug</li>
-<li>手动填写 categories</li>
-</ul>
-</li>
-<li>在本地运行 <code>hugo server</code> 进行确认</li>
-<li>提交 &amp; push 然后等 action 同步最后才上线</li>
-<li>如果需要编辑和更新文章的话 那同样麻烦</li>
-</ol>
-<h2 id="一些吐槽">一些吐槽
-</h2><p>而且我的并不打算把我的文章广为流传，因为确实没有什么内容，不值得推广，如果我真想要分享 不如去 知乎上面分享</p>
-<p>另外 Markdown 的缺点，你并不能手动 的拖动调整图片的大小 这是我很烦的一点</p>
-<p>后来 我尝试了 Notion 和 Obsidian</p>
-<p>Obsidian 可以说是本地化的 Markdown 文件，同样处理图片很麻烦</p>
-<p>Notion 的话对我来说很好用，但是他没有标签也不能自定义展示，我没在用 Blog 的时候 大部分时间都在用 Notion</p>
-<p>另外 Notion 必须联网这点很不好，而且 notion 自家的代理太烂了，时长卡顿</p>
-<p>经历了很多内容 最后还是打算捡起来这个 项目， 就想尝试 能不能做好，先慢慢做下去吧</p>
-<p>另外 Notion 预计只能记录一些生活化相关的内容，偏学习或者是技术的内容，我感觉记录在上面不太专业，而且也不可以定制化展示</p>
-<h2 id="后续想法">后续想法
-</h2><ol>
-<li>
-<p>想要考虑做成 动态页面，这样子可以在前端直接发布文章，也可以自动的打标签，可以防止一开始创建文件的繁琐步骤</p>
-<ul>
-<li>但是这样成本预计就上来了，现在使用 git-page 部署的，只能部署静态网页，边走边看了</li>
-</ul>
-</li>
-<li>
-<p>或者是简单的版本，可以考虑写几个 scripts ， 用于自动创建 page，这个看着是效益最高的</p>
-</li>
-</ol>
-
+<h2 id="tool">Tool
+</h2><p>我们在写 <code>skills</code> 的时候，经常会用到 <code>python</code> 处理脚本</p>
+<p>那么 <code>python</code> 代码就是 <code>tool</code> 吗</p>
+<h3 id="tool-的四要素">Tool 的四要素
+</h3><h4 id="函数本体">函数本体
+</h4><p>函数本体 ： 真正干活的代码</p>
+<p>name (名称) : 大模型的识别标签</p>
+<p>description (描述) ： 整个工具定义最重要的字段</p>
+<p>parameters (参数定义) : 告诉大模型我们应该怎么填参数</p>
+<p>函数本体 :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># ===== 第一部分：函数本体（大模型看不到，Agent 负责执行）=====</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_weather</span><span class="p">(</span><span class="n">city</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">date</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;调用天气 API，查询指定城市指定日期的天气&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;https://api.weather.com/v1/forecast&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;city&#34;</span><span class="p">:</span> <span class="n">city</span><span class="p">,</span> <span class="s2">&#34;date&#34;</span><span class="p">:</span> <span class="n">date</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;city&#34;</span><span class="p">:</span> <span class="n">city</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;date&#34;</span><span class="p">:</span> <span class="n">date</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;weather&#34;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="s2">&#34;condition&#34;</span><span class="p">],</span>   <span class="c1"># 晴/多云/雨</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;temperature&#34;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="s2">&#34;temp_c&#34;</span><span class="p">],</span>  <span class="c1"># 摄氏度</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;humidity&#34;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="s2">&#34;humidity&#34;</span><span class="p">]</span>    <span class="c1"># 湿度百分比</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>工具说明书 包含 name + description + parameters</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="c1">// ===== 第二三四部分：工具说明书（大模型看到的部分，靠这个决定要不要调用）=====
+</span></span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;get_weather&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;查询指定城市在指定日期的天气情况。当用户询问某地天气、出行建议、是否需要带伞等问题时使用此工具，返回天气状况、气温和湿度信息。&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;parameters&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;object&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;properties&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;city&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;要查询天气的城市名称，例如：北京、上海、广州&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;date&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;查询日期，格式：YYYY-MM-DD，例如：2025-03-21&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;required&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;city&#34;</span><span class="p">,</span> <span class="s2">&#34;date&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
 </section>
 
 
@@ -495,6 +569,45 @@
             
                 
 <article class="">
+    <a href="/p/ai-agent-0x03/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[all_in_ai]  AI 名词扫盲 agent</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/ai-prompt-0x02/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[all_in_ai]  AI 名词扫盲 prompt</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/al-llm-0x01/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[all_in_ai]  AI 名词扫盲 大模型</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
     <a href="/p/webook-summary-0x02/">
         
         
@@ -514,45 +627,6 @@
 
         <div class="article-details">
             <h2 class="article-title">[webook-tidy] Gorm &amp; 用户基本功能 &amp; docker</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/p/webook-summary-0x04/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">[webook-tidy] Session &amp; JWT &amp; Security</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/p/webook-summary-0x01/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">[webook-tidy] Golang 基础语法</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/p/closure-0x01/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">闭包</h2>
         </div>
     </a>
 </article>
