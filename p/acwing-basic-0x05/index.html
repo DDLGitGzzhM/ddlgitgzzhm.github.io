@@ -407,7 +407,7 @@
 <p>中间插入的操作</p>
 <p><code>e[idx] = x, ne[idx] = ne[k], ne[k] = idx++;</code></p>
 <p>删除的操作</p>
-<p><code>e[idx] = x, ne[idx] = ne[k], ne[k] = idx++;</code></p>
+<p><code>ne[k] = ne[ne[k]];</code></p>
 <p>下面是一个演示过程 :</p>
 <p>头插入</p>
 <div class="highlight"><div class="chroma">

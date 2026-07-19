@@ -26,7 +26,7 @@
 &lt;p&gt;中间插入的操作&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;e[idx] = x, ne[idx] = ne[k], ne[k] = idx++;&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;删除的操作&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;e[idx] = x, ne[idx] = ne[k], ne[k] = idx++;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ne[k] = ne[ne[k]];&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;下面是一个演示过程 :&lt;/p&gt;
 &lt;p&gt;头插入&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
