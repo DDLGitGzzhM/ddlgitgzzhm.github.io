@@ -7,7 +7,144 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>GzzhM</copyright>
-        <lastBuildDate>Sat, 18 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/categories/time-line/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 20 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/categories/time-line/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>协程池</title>
+        <link>https://ddlgitgzzhm.github.io/p/gouroutine_pool_0x01/</link>
+        <pubDate>Mon, 20 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/p/gouroutine_pool_0x01/</guid>
+        <description>&lt;h2 id=&#34;池化技术&#34;&gt;池化技术
+&lt;/h2&gt;&lt;p&gt;我们对于一个批量操作，例如 &lt;code&gt;批量暂停账户&lt;/code&gt; 或者是 &lt;code&gt;批量删除数据&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;我们很常规的做法就是 接口开放 &lt;code&gt;[]business_list&lt;/code&gt; 然后通过 &lt;code&gt;for&lt;/code&gt; 进行处理对应的对应的业务逻辑&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Handler&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;req&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;error&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// ... &lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;_&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;item&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;range&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;business_list&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;handle&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;item&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// ... &lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;但是这种在数据量大的时候会有一个问题 那么就是 &lt;code&gt;前端等待超时&lt;/code&gt;, 这个超时 我上班的时候看着是 &lt;code&gt;nginx&lt;/code&gt;还是前端那边特定组件控制的&lt;/p&gt;
+&lt;p&gt;这时候可能就会想到&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;我们只提交 &lt;code&gt;tasks&lt;/code&gt; 然后放入到数据库中，单独开启一个 &lt;code&gt;go backend_job&lt;/code&gt; 进行处理，并且处理对应的状态流转。 这种思路在我们 批量处理数据的地方 &lt;code&gt;屡见不鲜&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;这里就需要考虑 状态的流转，展示&lt;/li&gt;
+&lt;li&gt;如果进程重启，还需要恢复&lt;/li&gt;
+&lt;li&gt;如果数据量很大很大，是不是要考虑 分批分次进行，还需要进度控制&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用 &lt;code&gt;long-task&lt;/code&gt; 接口，前端发起&lt;code&gt;req&lt;/code&gt;请求，后端返回一个 &lt;code&gt;task-id&lt;/code&gt; 然后每次都适用 &lt;code&gt;task-id&lt;/code&gt;进行请求 查看任务状态 。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;这种做法，我能想到的问题就是，用户会被硬控在前端页面一直&lt;code&gt;loading&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;池化技术貌似并不能很好的解决 第一个方案，如果数据量真的很大很大，感觉还是要进行分批分次进行 ，并且加上进度控制 。  顶多优化一下每轮的次数&lt;/p&gt;
+&lt;p&gt;更多的是优化第二个内容，优化接口的响应和返回&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[AI Asking]: 池化技术在业务中 最多解决哪一类问题？我们什么时候用到池化技术
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;p&gt;突然想起来了 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;这里的池化技术 特指 &lt;code&gt;并发池&lt;/code&gt; 而不是 &lt;code&gt;连接池&lt;/code&gt; 对于 连接池的技术不熟悉&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;gmp&#34;&gt;GMP
+&lt;/h2&gt;&lt;p&gt;现在我是一个小白, 例如如果我们要实现 &lt;code&gt;清理 100w条数据&lt;/code&gt; 那么是否是 开 &lt;code&gt;100w&lt;/code&gt; 个 &lt;code&gt;gorutine&lt;/code&gt; 更好呢，毕竟每一个 &lt;code&gt;gourtine&lt;/code&gt; 单独处理最快&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/gouroutine_pool_0x01/gmp.png&#34;
+	width=&#34;793&#34;
+	height=&#34;685&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/gouroutine_pool_0x01/gmp_hu_11e1e79c43921417.png 480w, https://ddlgitgzzhm.github.io/p/gouroutine_pool_0x01/gmp_hu_bdf90f1c74e344d9.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;gmp.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;115&#34;
+		data-flex-basis=&#34;277px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;我么可以从 &lt;code&gt;GMP设计图&lt;/code&gt; 中很直观的看到&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;全局队列&lt;/strong&gt; : 存放等待运行的 &lt;code&gt;G&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;P的本地队列&lt;/strong&gt; : 存放的也是等待运行的 &lt;code&gt;G&lt;/code&gt; 。 本地队列的限制是 &lt;code&gt;256&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;P列表&lt;/strong&gt; : 可以认为是 逻辑上的 CPU . 数量可以认为是 CPU 的核数&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;M&lt;/strong&gt; : 线程 ; 想要运行任务就需要获取 &lt;code&gt;P&lt;/code&gt;  . 并且通过内核线程 &lt;code&gt;Kernel Thread&lt;/code&gt; 进行 &lt;code&gt;CPU&lt;/code&gt; 的相关调度请求&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;一些调度关系 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;如果 当前 &lt;code&gt;M&lt;/code&gt; 绑定的 &lt;code&gt;P&lt;/code&gt; 的 &lt;code&gt;G&lt;/code&gt; 阻塞了，那么会重新调度一个新的 &lt;code&gt;M&lt;/code&gt; 进行后续 &lt;code&gt;G&lt;/code&gt; 的运行&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;G&lt;/code&gt; 如果运行完之后 会产生对应的 &lt;code&gt;GC&lt;/code&gt; 占用一定的内存空间&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果当前本地队列 &lt;code&gt;P&lt;/code&gt; 没有可运行的 &lt;code&gt;G&lt;/code&gt;, 那么会去全局队列进行寻找&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果 当前本地队列 &lt;code&gt;P&lt;/code&gt; 没有可运行的 &lt;code&gt;G&lt;/code&gt; 并且 全局队列为空 ，那么会去其他队列进行偷取 .  (降低性能)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;大量创建-go-协程的代价&#34;&gt;大量创建 go 协程的代价
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;内存开销:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;初始阶段 goroutine 大概只有 &lt;code&gt;2k&lt;/code&gt; 的内存开销  . ps : 一个线程 大概需要 &lt;code&gt;2M&lt;/code&gt; 的开销&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.23.4.darwin-arm64/src/runtime/runtime2.go:422&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;调度开销:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;我们可以从上面的图中看到 ，一个&lt;code&gt;G&lt;/code&gt; 需要先放到全局队列，然后到本地队列，最后到&lt;code&gt;P&lt;/code&gt; 又需要根据&lt;code&gt;M&lt;/code&gt;进行绑定最后跑到内核线程 。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;并且一个很坏的结果是，当我们的&lt;code&gt;G&lt;/code&gt; 阻塞后，会创建新的&lt;code&gt;M&lt;/code&gt; 来进行执行，导致内核的线程开销也会变大&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;gc开销:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;协程占用的内存最终需要 Gc 来回收&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;p&gt;到点了 要休息吃饭去了，后续内容 TBD 预计这两天处理完&lt;/p&gt;
+&lt;h2 id=&#34;协程池&#34;&gt;协程池
+&lt;/h2&gt;&lt;h2 id=&#34;手写协程池&#34;&gt;手写协程池
+&lt;/h2&gt;&lt;h2 id=&#34;协程池的应用&#34;&gt;协程池的应用
+&lt;/h2&gt;&lt;h2 id=&#34;其他&#34;&gt;其他
+&lt;/h2&gt;</description>
+        </item>
+        <item>
         <title>[all_in_ai]  AI 名词扫盲 Tool</title>
         <link>https://ddlgitgzzhm.github.io/p/ai-agent-0x04/</link>
         <pubDate>Sat, 18 Jul 2026 00:00:00 +0000</pubDate>
