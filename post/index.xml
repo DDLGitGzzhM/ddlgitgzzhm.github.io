@@ -7,7 +7,161 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>GzzhM</copyright>
-        <lastBuildDate>Mon, 20 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 22 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>战略性调整</title>
+        <link>https://ddlgitgzzhm.github.io/p/upgrade-study-0x01/</link>
+        <pubDate>Wed, 22 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/p/upgrade-study-0x01/</guid>
+        <description>&lt;h2 id=&#34;我做了什么&#34;&gt;我做了什么
+&lt;/h2&gt;&lt;p&gt;可以说, 我持续学习了 一周半(今天是周三)&lt;/p&gt;
+&lt;p&gt;上周学习了 &lt;code&gt;7天&lt;/code&gt;, 没什么公司的事 无非就是开几个同步会&lt;/p&gt;
+&lt;p&gt;总共学习时间 &lt;code&gt;39h&lt;/code&gt; ，那么一天学习时间大概在 &lt;code&gt;5.7h&lt;/code&gt; 左右&lt;/p&gt;
+&lt;p&gt;大部分实现在 &lt;code&gt;golang&lt;/code&gt; 语言上面 ，少部分在算法和总结上面&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/upgrade-study-0x01/29th_wek.png&#34;
+	width=&#34;1320&#34;
+	height=&#34;1040&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/upgrade-study-0x01/29th_wek_hu_a5d4ab331c8812b5.png 480w, https://ddlgitgzzhm.github.io/p/upgrade-study-0x01/29th_wek_hu_a548864c25247110.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;29th_wek.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;126&#34;
+		data-flex-basis=&#34;304px&#34;
+	
+&gt; &lt;img src=&#34;https://ddlgitgzzhm.github.io/p/upgrade-study-0x01/30th_wek.png&#34;
+	width=&#34;1320&#34;
+	height=&#34;1014&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/upgrade-study-0x01/30th_wek_hu_d07470a3da63c999.png 480w, https://ddlgitgzzhm.github.io/p/upgrade-study-0x01/30th_wek_hu_1450ea1d9420ada5.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;30th_wek.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;130&#34;
+		data-flex-basis=&#34;312px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;一些想说的话&#34;&gt;一些想说的话
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;承认我很累:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;不得不承认一天学习 &lt;code&gt;6h&lt;/code&gt; 很累，超他妈的超级累&lt;/p&gt;
+&lt;p&gt;我回想一下我每天的生活&lt;/p&gt;
+&lt;p&gt;早上&lt;/p&gt;
+&lt;p&gt;9:00 起床  - 9:30 开始学习 - 10:40左右休息&lt;/p&gt;
+&lt;p&gt;11:00 学习 - 11:40 休息&lt;/p&gt;
+&lt;p&gt;12:00 吃饭 - 13:00午休结束&lt;/p&gt;
+&lt;p&gt;早上总共预计 &lt;code&gt;1h&lt;/code&gt; + &lt;code&gt;40min&lt;/code&gt; = &lt;code&gt;1h40min&lt;/code&gt; 的学习时间&lt;/p&gt;
+&lt;p&gt;下午&lt;/p&gt;
+&lt;p&gt;13:10 学习 - 14:30 结束&lt;/p&gt;
+&lt;p&gt;14:50 学习 - 15:50 结束&lt;/p&gt;
+&lt;p&gt;16:00 - 18:00 开始发散&lt;/p&gt;
+&lt;p&gt;下午的有效学习可能只在 &lt;code&gt;2h&lt;/code&gt; 另外&lt;code&gt;2h&lt;/code&gt; 印象中不是那么有效&lt;/p&gt;
+&lt;p&gt;晚上&lt;/p&gt;
+&lt;p&gt;18:00 - 19:00 期间做饭，无氧锻炼&lt;/p&gt;
+&lt;p&gt;19:00 - 20:00 洗澡吃饭&lt;/p&gt;
+&lt;p&gt;20:00 - 21:00 休息，玩游戏&lt;/p&gt;
+&lt;p&gt;21:00 - 22:00 (可能会跑步或者是散步，跑步的话会要一个小时，散步的话只要半个小时)&lt;/p&gt;
+&lt;p&gt;22:00 - 23:00 (之前这段时间会去学习算法，但是最近一直在和女朋友聊天)&lt;/p&gt;
+&lt;p&gt;23:00 - 00:00 (写算法题，总结，这段时间最近也在和女朋友聊天)&lt;/p&gt;
+&lt;p&gt;00:00 - 0:30 睡觉&lt;/p&gt;
+&lt;p&gt;晚上的有效学习时间预计也只在 &lt;code&gt;2h&lt;/code&gt; ，但是最近一直在和女朋友聊天。&lt;/p&gt;
+&lt;p&gt;就算是我算上 下午的不高效学习时间 和 女朋友聊天的时间 那么一天也有 &lt;code&gt;7h40min&lt;/code&gt; 的时间,但是这好累，就是为了多出这 &lt;code&gt;4h&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;从利益的角度考虑，确实一天多学习了 &lt;code&gt;4h&lt;/code&gt; 确实比一天学习 &lt;code&gt;3h&lt;/code&gt; 的多一天 但是这样好累&lt;/p&gt;
+&lt;p&gt;另外吐槽一下&lt;/p&gt;
+&lt;p&gt;自从不上班之后，他妈的周六周天都没了，一直在他妈的学&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;我方向歪了？&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;我不知道是不是我方向歪了，说实话我在 &lt;code&gt;Go&lt;/code&gt;上面已经投入了 &lt;code&gt;52h&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;按我之前实习准备来说这&lt;code&gt;52h&lt;/code&gt; 都够我写&lt;code&gt;3个项目了&lt;/code&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;一个 博客系统 。 亮点在于 点赞服务的设计，缓存的控制，ES，Grafana QPS的处理&lt;/li&gt;
+&lt;li&gt;一个 geeRPC 框架&lt;/li&gt;
+&lt;li&gt;一个 基于 RPC的聊天室&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;但是反观我现在得到了什么&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;一个只完成了 &lt;code&gt;1/3&lt;/code&gt; 的项目，目前只完成了&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;使用 DDD 进行项目架构, TDD 进行业务开发
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;支持 微信、SMS、邮箱注册登陆的方式, 使用多种限流算法进行无登陆态的限流 . 自选型通过 cookie+JWT 进行维护登陆权限和状态控制
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;使用装饰器以及面向接口设计,封装和二次开发 日志组件 和 监控组件 以及配置组件
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;使用 K8S 进行线上环境的部署
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;支持分级数据展示,设计线上表和开发表. 实现多台实例上的一致性问题
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;支持 MySQL 平滑迁移到 Mongodb . 设计并实现 SMS 的熔断以及限流业务
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;后面还有&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;待实现 Kafka 点赞、榜单设计、微服务拆分、分布式任务调度、ELK、支付、秒杀、Feed流设计
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;说实话有点后悔了，我是随便找了一个 24年的训练营的 课程走的 。 当然也不能说是随便 只能说是最全面当下最好的系统课了&lt;/p&gt;
+&lt;p&gt;总共 21周的 视频，一周平均 &lt;code&gt;3&lt;/code&gt; 个 &lt;code&gt;3h&lt;/code&gt; 的视频 总共时长 &lt;code&gt;189h&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;说实话 这比 &lt;a class=&#34;link&#34; href=&#34;https://ddlgitgzzhm.github.io/p/fire-workd-02/#%E6%88%91%E7%9A%84%E6%83%B3%E6%B3%95&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;当初规划&lt;/a&gt; 翻了好几倍&lt;/p&gt;
+&lt;p&gt;而且说实话这个课程有我只能给到中规中矩的评价&lt;/p&gt;
+&lt;p&gt;优点&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;资料比较详细&lt;/li&gt;
+&lt;li&gt;核心场景，面试考点，实际开发中的情况都有介绍&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;缺点&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;时长太长了，内容体量很大&lt;/li&gt;
+&lt;li&gt;多个模块之间可能没什么关联，例如 引入了 Mongodb 和 k8s 也只是为了实现 dao层级的切换，以及简单的部署。但是讲完之后后面就再也没用到了&lt;/li&gt;
+&lt;li&gt;有一些代码并没有在课上完成，也就是就算&lt;code&gt;189h&lt;/code&gt;学习完成后，可能还需要多花&lt;code&gt;90h&lt;/code&gt;用来处理其他内容&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;说实话 不后悔是假的，如果我真想要找下一份工作&lt;/p&gt;
+&lt;p&gt;我应该把实习的项目捡起来，花&lt;code&gt;20h&lt;/code&gt;记住，然后再花&lt;code&gt;30h-40h&lt;/code&gt;的时间准备&lt;code&gt;AI Agent&lt;/code&gt;那个仙骨&lt;/p&gt;
+&lt;p&gt;然后再花 &lt;code&gt;40h&lt;/code&gt;准备面经，但是现在好像上了贼船&lt;/p&gt;
+&lt;h3 id=&#34;小总结&#34;&gt;小总结
+&lt;/h3&gt;&lt;p&gt;我不知道应该怎么走，但是我要继续走&lt;/p&gt;
+&lt;p&gt;这里简单算一笔账 ， 课时总共 &lt;code&gt;21周&lt;/code&gt;，那么一周我学习&lt;code&gt;7周&lt;/code&gt; 的内容 &lt;code&gt;3周&lt;/code&gt;就能解决&lt;/p&gt;
+&lt;p&gt;这要求我一天基本上就要解决掉&lt;code&gt;一周&lt;/code&gt;的学习内容 大概 &lt;code&gt;9h&lt;/code&gt; ,算上倍数 &lt;code&gt;4.5h&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;感觉是可以的&lt;/p&gt;
+&lt;p&gt;那么我就需要把每天学习的时间 &lt;code&gt;[3h40min , 7h40min]&lt;/code&gt; 改成 &lt;code&gt;6h40min&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;这样子我可以使用多出来的 &lt;code&gt;2h&lt;/code&gt; 进行很好的复习和总结&lt;/p&gt;
+&lt;p&gt;那么如果我把玩游戏的&lt;code&gt;1h&lt;/code&gt;拿出来呢？如果我把晚上睡前的&lt;code&gt;1h&lt;/code&gt;拿出来呢？&lt;/p&gt;
+&lt;p&gt;或许学生时代的我有这个精力&lt;/p&gt;
+&lt;h2 id=&#34;总结&#34;&gt;总结
+&lt;/h2&gt;&lt;p&gt;简单理清了一下现状&lt;/p&gt;
+&lt;p&gt;第一个月 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;完成 &lt;code&gt;21周&lt;/code&gt; 学习的内容&lt;/li&gt;
+&lt;li&gt;保证每周平均每天 &lt;code&gt;6h40min&lt;/code&gt;的学习时间 ，其中 &lt;code&gt;4h&lt;/code&gt; 放在 &lt;code&gt;go&lt;/code&gt;上面，当然如果一天学习了一周的内容，可以考虑往后吞并一周 或者是进行总结&lt;/li&gt;
+&lt;li&gt;其余&lt;code&gt;2h&lt;/code&gt;用于算法的学习 以及总结&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;第二个月 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;把原先的精力放在 熟悉八股文&lt;/li&gt;
+&lt;li&gt;模拟面试&lt;/li&gt;
+&lt;li&gt;面经&lt;/li&gt;
+&lt;li&gt;算法题&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;第二个月底+第三个月 尝试开始投递&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;写给我自己 :&lt;/p&gt;
+&lt;p&gt;我承认这很难，但是计算下来看着也不是没有完成的希望 。 最近学习破防了好几次，总感觉来不及，但是计算下来发现是可以完成的&lt;/p&gt;
+&lt;p&gt;我清楚的知道这两个月会很枯燥 也会很难 可能没有结果 也能会有坏结果 但是我当下能做的也只有这个&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>协程池</title>
         <link>https://ddlgitgzzhm.github.io/p/gouroutine_pool_0x01/</link>
         <pubDate>Mon, 20 Jul 2026 00:00:00 +0000</pubDate>
