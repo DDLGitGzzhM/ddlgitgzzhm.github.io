@@ -7,7 +7,354 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>GzzhM</copyright>
-        <lastBuildDate>Wed, 22 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/tags/gold/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 23 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/tags/gold/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>登陆与注册的设计</title>
+        <link>https://ddlgitgzzhm.github.io/p/register-login-desin/</link>
+        <pubDate>Thu, 23 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/p/register-login-desin/</guid>
+        <description>&lt;h2 id=&#34;简历-preview&#34;&gt;简历 preview
+&lt;/h2&gt;&lt;p&gt;简历上 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;设计并实现了 完整的 高安全性,高可用,高扩展的 登陆与注册 服务&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;面试中 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;系统支持 邮箱注册,短信验证登陆,系统扫码登陆的功能, 使用 JWT + Cookie 的形式维护登陆状态, 采用 长短Token 进行续期. 采用 Lua+滑动窗口 实现非访问登陆的限流&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;短信验证登陆支持 阿里云和腾讯云的切换, 使用负载均衡算法进行处理切换 同时设计对应的降级策略 failover 保证服务崩溃也能使得部分功能正常&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;对接微信开发平台 实现微信扫码登陆 处理2次回调内容&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;难点 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;一开始使用 cookie + session 实现的注册与登陆，在使用 wrk 压测的时候 发现 redis 有很大的压力. 决定牺牲一点性能 采用 JWT&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;用户表设计的时候 由于密码是隐私内容 需要考虑加密, 在选择加密算法的时候进行了选择, 经历了xxx,最后选择 bcrypt&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用 wrk 压测的时候发现，登陆接口并没有限制会引入大量异常流量，于是自己设计了一个限流中间件，利用 Redis 本身的单线程特性，采用滑动窗口实现&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在对接微信扫码登陆时, 因为需要本地测试，但是 微信api返回的是 注册域名的 跳转链接 。 最后改了本地的 hosts实现测试。 另外因为之前表设计缺陷，实现该功能后额外增加了一列微信，并且重新设计了唯一联合索引&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;全部开发使用 DDD 模式架构进行整理，使用 TDD 业务开发 整个开发过程比较繁琐，另外引入装饰器模式 和 面向接口编程在牺牲开发效率的情况下 保证系统的高扩展性&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;跨域问题&#34;&gt;跨域问题
+&lt;/h2&gt;&lt;p&gt;跨域问题 是因为 : 发请求的域名 + 端口  和 接收请求的域名 + 端口 对不上 。 比如 前端 localost:3000 发到 localhost:8080 上&lt;/p&gt;
+&lt;p&gt;对于跨域问题 : 浏览器会提前发送一个 &lt;code&gt;preflight&lt;/code&gt; 询问自己愿意接受的请求&lt;/p&gt;
+&lt;p&gt;解决的办法 :  &lt;code&gt;Gin&lt;/code&gt; 提供了解决问题的 中间件来处理&lt;/p&gt;
+&lt;p&gt;通过 &lt;code&gt;middle&lt;/code&gt; 设置 :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;AllowCrendentials : 允许带上用户认证信息&lt;/li&gt;
+&lt;li&gt;AllowHeader : 业务请求可以带上的头&lt;/li&gt;
+&lt;li&gt;AllowOrigin : 哪些来源是可以被允许的&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;cors&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;New&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;cors&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Config&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;			&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;AllowOrigins&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;     &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;http://localhost:3000&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;http://localhost:3001&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;			&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;AllowHeaders&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;     &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Content-Type&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Authorization&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;			&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;AllowCredentials&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;			&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ExposeHeaders&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;x-jwt-token&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;x-refresh-token&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;		&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;})&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;加密&#34;&gt;加密
+&lt;/h2&gt;&lt;p&gt;选择加密算法的标准就一个, 难破解. 需要考虑以下的问题 :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;相同的密码&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;难以通过碰撞来破解&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;常见的加密算法 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;md5&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在 &lt;code&gt;1&lt;/code&gt; 的基础上引入 &lt;code&gt;salt&lt;/code&gt; 这里需要额外存储&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用 &lt;code&gt;PBKDF2&lt;/code&gt;,&lt;code&gt;BCrypt&lt;/code&gt; 随机盐值的加密算法进行加密&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;cookie--session--jwt&#34;&gt;Cookie &amp;amp; Session &amp;amp; JWT
+&lt;/h2&gt;&lt;h3 id=&#34;cookie&#34;&gt;Cookie
+&lt;/h3&gt;&lt;p&gt;浏览器存储一些数据到本.&lt;/p&gt;
+&lt;p&gt;不安全 : 可以通过 &lt;code&gt;cookie-editor&lt;/code&gt;插件进行获取&lt;/p&gt;
+&lt;p&gt;一些设置 :&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Domain&lt;/code&gt;: cookie 可以用在什么域名下&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Path&lt;/code&gt;: Cookie 可以用在什么 &lt;code&gt;path&lt;/code&gt; 下&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;max-Age&lt;/code&gt;: 过期时间&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Http-only&lt;/code&gt;: 如果设置为true, js代码无法使用这个 cookie&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Secure&lt;/code&gt;: 只能使用于 &lt;code&gt;https&lt;/code&gt; 协议&lt;/p&gt;
+&lt;h4 id=&#34;一些有意思的问题&#34;&gt;一些有意思的问题
+&lt;/h4&gt;&lt;p&gt;Q : 为什么有一些网站喜欢禁用 Cookie&lt;/p&gt;
+&lt;p&gt;A : 没看懂 说实话，安全相关的内容 难理解&lt;/p&gt;
+&lt;h3 id=&#34;session&#34;&gt;Session
+&lt;/h3&gt;&lt;p&gt;我的理解 就是一个 key-string , 不过他是由后端存储&lt;/p&gt;
+&lt;p&gt;但是他还是强依赖 cookie , 无非最重要的一点就是 &lt;code&gt;cookie如果存放敏感信息会被获取,所以引入session,传入 session_id 用于后端校验&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;如何让客户端懈怠 session_id :&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;最佳的方式就是放在 &lt;code&gt;cookie&lt;/code&gt;中, 毕竟 &lt;code&gt;cookie&lt;/code&gt;还可以设置 &lt;code&gt;secure&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;如果禁用了 &lt;code&gt;cookie&lt;/code&gt; 可以考虑放在 &lt;code&gt;header&lt;/code&gt; 和 &lt;code&gt;sess_id&lt;/code&gt; 中&lt;/p&gt;
+&lt;h3 id=&#34;jwt&#34;&gt;JWT
+&lt;/h3&gt;&lt;p&gt;JWT 由 &lt;code&gt;header+playload+sign&lt;/code&gt; 组成&lt;/p&gt;
+&lt;p&gt;JWT 与 Session 比较 :&lt;/p&gt;
+&lt;p&gt;优点 :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;不依赖第三方存储&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;适用于分布式环境&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;提高性能 (没有 Redis 访问)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;缺点 :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;对加密依赖非常大&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;最好不要在 JWT 放置敏感信息&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;安全性问题&#34;&gt;安全性问题
+&lt;/h2&gt;&lt;p&gt;Q : 我们实现登陆与注册系统之后 有一个最大的问题就是&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;任何人都可以注册&lt;/li&gt;
+&lt;li&gt;任何人都可以登陆&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;因此我们需要考虑 &lt;code&gt;限流&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;这里采用 &lt;code&gt;Redis&lt;/code&gt;+lua 滑动 窗口限流&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Q : 如何保证 JWT 或者是 Session 泄漏 攻击者假冒你&lt;/p&gt;
+&lt;p&gt;采用验证码二次验证，对比上一次的信息 例如 &lt;code&gt;user-agent&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;性能问题&#34;&gt;性能问题
+&lt;/h2&gt;&lt;p&gt;使用 &lt;code&gt;wrk&lt;/code&gt; 进行性能压测&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;wrk -t1 -d1s -c2 -s ./script.lua urlpath/signup&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;参数解释如下. :&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;-t&lt;/code&gt;: 线程数量&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;-d&lt;/code&gt;: 持续时间&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;-c&lt;/code&gt;: 并发数量&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;-s&lt;/code&gt;: 测试脚本&lt;/p&gt;
+&lt;p&gt;压测下来预计会发现两个问题&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;加密算法 . JWT 在注册和登录后会进行加密和解密，预计相差 &lt;code&gt;10倍&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;数据库查询&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;优化数据库查询&#34;&gt;优化数据库查询
+&lt;/h3&gt;&lt;p&gt;我们常见的一种写法是 &lt;code&gt;cache-db-cache&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;FindById&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;cache&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;_&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;SetDB&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;场景问题决策&#34;&gt;场景问题决策
+&lt;/h4&gt;&lt;p&gt;Q : &lt;code&gt;Session&lt;/code&gt; 的 过期时间如何刷新 ?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;用户每次访问, 都刷新. 如果 session 部署在 redis 上，那么影响很大&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;快要过期了我再刷新 。 有 gap&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;固定时间刷新，引入 &lt;code&gt;updateAt&lt;/code&gt; 参数 , 用户每次访问的时候 如果超过固定的时间 那么刷新&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Q : 长短 &lt;code&gt;token&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;第三方服务治理&#34;&gt;第三方服务治理
+&lt;/h2&gt;&lt;p&gt;整体思路 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;尽量不要搞崩第三方&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;万一第三方崩了，你的系统还能够稳定运行&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;failover&#34;&gt;failover
+&lt;/h3&gt;&lt;p&gt;failover (失效转移)&lt;/p&gt;
+&lt;p&gt;如果第三方崩了 那么就直接换一个服务商&lt;/p&gt;
+&lt;p&gt;策略有 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;轮询&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;缺点每次都从头开始，负载不均衡&lt;/li&gt;
+&lt;li&gt;如果 sms svc 很多, 轮询很慢&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;动态轮询&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;每次使用 &lt;code&gt;i%length&lt;/code&gt;的方式进行轮询&lt;/li&gt;
+&lt;li&gt;不过这里需要注意并发问题 需要引入 &lt;code&gt;atomic&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;动态判断第三方&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;真的计算服务商是否还在运作正常 .&lt;/li&gt;
+&lt;li&gt;可以从错误率&lt;/li&gt;
+&lt;li&gt;响应时间判断&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;面试题&#34;&gt;面试题
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;什么是 &lt;code&gt;Gin&lt;/code&gt; 的 &lt;code&gt;middle-ware&lt;/code&gt; ？ 能解决什么问题 ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;什么是跨域问题，怎么解决 ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;跨域问题需要设置哪些头部 ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;什么是 cookie，什么是 session ?&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;cookie 和 session 比起来有什么缺点 ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Session ID 可以放在哪里？ 如果Cookie禁用&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;用户密码加密算法的选取&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;怎么做登陆校验 ? 利用 Gin 的 middlewawre&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;刷新 Session 过期时间的集中克星方案&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;增强登陆的安全性&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;怎么保护 session_id ?主要还是启用 https协议，设置 cookie 的 secure&lt;/li&gt;
+&lt;li&gt;怎么做到 在session_id 和 jwt-token泄漏之后保护着客户 ？ 记录登陆的额外信息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;11&#34;&gt;
+&lt;li&gt;如何保护 Web 服务 ？ 针对 IP限流、整个集群限流&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Redis :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;你用 Redis 解决过什么问题？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;你知道 Redis 支持哪些数据结构 ？ 用过哪些 ？ 用来解决什么问题？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;各个数据结构的底层实现 ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;当你更新数数据的时候 先更新数据库还是先更新缓存，有没有一致性问题 (这在登陆与注册超纲了吧)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如何解决一致性问题&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;什么是依赖注入，如何在 Go 实现 依赖注入&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;什么是面向接口编程 ？ 为什么要面向接口编程 ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;什么是 Ioc 控制反转&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;亮点提升&#34;&gt;亮点提升
+&lt;/h2&gt;&lt;p&gt;Gin :&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Web治理 :&lt;/strong&gt; 熔断、限流、降级&lt;/p&gt;
+&lt;p&gt;限流实现 ：&lt;/p&gt;
+&lt;p&gt;单机限流 :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;令牌桶算法&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;漏桶算法&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;滑动窗口算法&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;固定窗口算法&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;基于 Redis 限流&lt;/p&gt;
+&lt;p&gt;基于 Redis IP 限流&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/ecodeclub/ginx&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Gin插件库&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Gorm :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;为 &lt;code&gt;Gorm&lt;/code&gt; 提供可观测性的插件实现&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;实现读写分离插件&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;提供 BeforeFind 函数&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;第三方服务治理 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;可以设置一个 同步转异步的 容错机制 。 当第三方不可用的时候，将当前请求存储到数据库中，后续再单独启动一个 gouroutine 异步的发送出去&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;// tbd 明天继续写&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>战略性调整</title>
         <link>https://ddlgitgzzhm.github.io/p/upgrade-study-0x01/</link>
         <pubDate>Wed, 22 Jul 2026 00:00:00 +0000</pubDate>

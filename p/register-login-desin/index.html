@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="以新的角度再续前缘">
-<title>[计算机网络] 应用层</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="我们项目实现了一个 xxxx">
+<title>登陆与注册的设计</title>
 
-<link rel='canonical' href='https://ddlgitgzzhm.github.io/p/net-work-0x02/'>
+<link rel='canonical' href='https://ddlgitgzzhm.github.io/p/register-login-desin/'>
 
 
-<link rel="stylesheet" href="/css/main.e6be911e19f348580e8feb6530553c5c37345cea42a77297eb8190a1f3245a55.css"><meta property='og:title' content="[计算机网络] 应用层">
-<meta property='og:description' content="以新的角度再续前缘">
-<meta property='og:url' content='https://ddlgitgzzhm.github.io/p/net-work-0x02/'>
+<link rel="stylesheet" href="/css/main.e6be911e19f348580e8feb6530553c5c37345cea42a77297eb8190a1f3245a55.css"><meta property='og:title' content="登陆与注册的设计">
+<meta property='og:description' content="我们项目实现了一个 xxxx">
+<meta property='og:url' content='https://ddlgitgzzhm.github.io/p/register-login-desin/'>
 <meta property='og:site_name' content='GzzhM'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-07-09T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-07-09T00:00:00&#43;00:00'/>
-<meta name="twitter:title" content="[计算机网络] 应用层">
-<meta name="twitter:description" content="以新的角度再续前缘">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='gold' /><meta property='article:published_time' content='2026-07-23T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-07-23T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="登陆与注册的设计">
+<meta name="twitter:description" content="我们项目实现了一个 xxxx">
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -319,14 +319,37 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#http">HTTP</a>
+    <li><a href="#简历-preview">简历 preview</a></li>
+    <li><a href="#跨域问题">跨域问题</a></li>
+    <li><a href="#加密">加密</a></li>
+    <li><a href="#cookie--session--jwt">Cookie &amp; Session &amp; JWT</a>
       <ol>
-        <li><a href="#常见错误码-">常见错误码 :</a></li>
-        <li><a href="#http-常见字段">HTTP 常见字段</a></li>
-        <li><a href="#get-和-post-的区别">GET 和 POST 的区别</a></li>
-        <li><a href="#http-特性">HTTP 特性</a></li>
+        <li><a href="#cookie">Cookie</a>
+          <ol>
+            <li><a href="#一些有意思的问题">一些有意思的问题</a></li>
+          </ol>
+        </li>
+        <li><a href="#session">Session</a></li>
+        <li><a href="#jwt">JWT</a></li>
       </ol>
     </li>
+    <li><a href="#安全性问题">安全性问题</a></li>
+    <li><a href="#性能问题">性能问题</a>
+      <ol>
+        <li><a href="#优化数据库查询">优化数据库查询</a>
+          <ol>
+            <li><a href="#场景问题决策">场景问题决策</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#第三方服务治理">第三方服务治理</a>
+      <ol>
+        <li><a href="#failover">failover</a></li>
+      </ol>
+    </li>
+    <li><a href="#面试题">面试题</a></li>
+    <li><a href="#亮点提升">亮点提升</a></li>
   </ol>
 </nav>
         </div>
@@ -345,8 +368,8 @@
     
     <header class="article-category">
         
-            <a href="/categories/net-work/" style="background-color: #3498db; color: #fff;">
-                计算机网络
+            <a href="/categories/golang/" >
+                Golang
             </a>
         
             <a href="/categories/time-line/" style="background-color: #6c5ce7; color: #fff;">
@@ -358,12 +381,12 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/net-work-0x02/">[计算机网络] 应用层</a>
+            <a href="/p/register-login-desin/">登陆与注册的设计</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            以新的角度再续前缘
+            我们项目实现了一个 xxxx
         </h3>
         
     </div>
@@ -384,7 +407,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2026-07-09</time>
+                <time class="article-time--published">2026-07-23</time>
             </div>
         
 
@@ -400,48 +423,357 @@
     <section class="article-content">
     
     
-    <h2 id="http">HTTP
-</h2><p>超文本传输协议 : HyperText Transfer Protocol</p>
-<h3 id="常见错误码-">常见错误码 :
-</h3><p><code>2xx</code> 成功状态码 :</p>
+    <h2 id="简历-preview">简历 preview
+</h2><p>简历上 :</p>
+<ol>
+<li>设计并实现了 完整的 高安全性,高可用,高扩展的 登陆与注册 服务</li>
+</ol>
+<p>面试中 :</p>
+<ol>
+<li>
+<p>系统支持 邮箱注册,短信验证登陆,系统扫码登陆的功能, 使用 JWT + Cookie 的形式维护登陆状态, 采用 长短Token 进行续期. 采用 Lua+滑动窗口 实现非访问登陆的限流</p>
+</li>
+<li>
+<p>短信验证登陆支持 阿里云和腾讯云的切换, 使用负载均衡算法进行处理切换 同时设计对应的降级策略 failover 保证服务崩溃也能使得部分功能正常</p>
+</li>
+<li>
+<p>对接微信开发平台 实现微信扫码登陆 处理2次回调内容</p>
+</li>
+</ol>
+<p>难点 :</p>
+<ol>
+<li>
+<p>一开始使用 cookie + session 实现的注册与登陆，在使用 wrk 压测的时候 发现 redis 有很大的压力. 决定牺牲一点性能 采用 JWT</p>
+</li>
+<li>
+<p>用户表设计的时候 由于密码是隐私内容 需要考虑加密, 在选择加密算法的时候进行了选择, 经历了xxx,最后选择 bcrypt</p>
+</li>
+<li>
+<p>使用 wrk 压测的时候发现，登陆接口并没有限制会引入大量异常流量，于是自己设计了一个限流中间件，利用 Redis 本身的单线程特性，采用滑动窗口实现</p>
+</li>
+<li>
+<p>在对接微信扫码登陆时, 因为需要本地测试，但是 微信api返回的是 注册域名的 跳转链接 。 最后改了本地的 hosts实现测试。 另外因为之前表设计缺陷，实现该功能后额外增加了一列微信，并且重新设计了唯一联合索引</p>
+</li>
+<li>
+<p>全部开发使用 DDD 模式架构进行整理，使用 TDD 业务开发 整个开发过程比较繁琐，另外引入装饰器模式 和 面向接口编程在牺牲开发效率的情况下 保证系统的高扩展性</p>
+</li>
+</ol>
+<h2 id="跨域问题">跨域问题
+</h2><p>跨域问题 是因为 : 发请求的域名 + 端口  和 接收请求的域名 + 端口 对不上 。 比如 前端 localost:3000 发到 localhost:8080 上</p>
+<p>对于跨域问题 : 浏览器会提前发送一个 <code>preflight</code> 询问自己愿意接受的请求</p>
+<p>解决的办法 :  <code>Gin</code> 提供了解决问题的 中间件来处理</p>
+<p>通过 <code>middle</code> 设置 :</p>
 <ul>
-<li><code>200 OK</code> 一切正常</li>
-<li><code>204 No Content</code> 与 200 OK基本相同，但相应没有 body 数据</li>
+<li>AllowCrendentials : 允许带上用户认证信息</li>
+<li>AllowHeader : 业务请求可以带上的头</li>
+<li>AllowOrigin : 哪些来源是可以被允许的</li>
 </ul>
-<p><code>3xx</code> 重定向状态码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">cors</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="nx">cors</span><span class="p">.</span><span class="nx">Config</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nx">AllowOrigins</span><span class="p">:</span><span class="w">     </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;http://localhost:3000&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;http://localhost:3001&#34;</span><span class="p">},</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nx">AllowHeaders</span><span class="p">:</span><span class="w">     </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;Content-Type&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;Authorization&#34;</span><span class="p">},</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nx">AllowCredentials</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nx">ExposeHeaders</span><span class="p">:</span><span class="w">    </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;x-jwt-token&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;x-refresh-token&#34;</span><span class="p">},</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="p">})</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="加密">加密
+</h2><p>选择加密算法的标准就一个, 难破解. 需要考虑以下的问题 :</p>
 <ul>
-<li><code>301 Moved Permanently</code> 永久重定向</li>
-<li><code>302 Found</code> 临时重定向</li>
+<li>
+<p>相同的密码</p>
+</li>
+<li>
+<p>难以通过碰撞来破解</p>
+</li>
 </ul>
-<p><code>4xx</code> 客户端发送的报文有误,服务器无法处理</p>
+<p>常见的加密算法 :</p>
+<ol>
+<li>
+<p>md5</p>
+</li>
+<li>
+<p>在 <code>1</code> 的基础上引入 <code>salt</code> 这里需要额外存储</p>
+</li>
+<li>
+<p>使用 <code>PBKDF2</code>,<code>BCrypt</code> 随机盐值的加密算法进行加密</p>
+</li>
+</ol>
+<h2 id="cookie--session--jwt">Cookie &amp; Session &amp; JWT
+</h2><h3 id="cookie">Cookie
+</h3><p>浏览器存储一些数据到本.</p>
+<p>不安全 : 可以通过 <code>cookie-editor</code>插件进行获取</p>
+<p>一些设置 :</p>
+<p><code>Domain</code>: cookie 可以用在什么域名下</p>
+<p><code>Path</code>: Cookie 可以用在什么 <code>path</code> 下</p>
+<p><code>max-Age</code>: 过期时间</p>
+<p><code>Http-only</code>: 如果设置为true, js代码无法使用这个 cookie</p>
+<p><code>Secure</code>: 只能使用于 <code>https</code> 协议</p>
+<h4 id="一些有意思的问题">一些有意思的问题
+</h4><p>Q : 为什么有一些网站喜欢禁用 Cookie</p>
+<p>A : 没看懂 说实话，安全相关的内容 难理解</p>
+<h3 id="session">Session
+</h3><p>我的理解 就是一个 key-string , 不过他是由后端存储</p>
+<p>但是他还是强依赖 cookie , 无非最重要的一点就是 <code>cookie如果存放敏感信息会被获取,所以引入session,传入 session_id 用于后端校验</code></p>
+<p><strong>如何让客户端懈怠 session_id :</strong></p>
+<ol>
+<li>最佳的方式就是放在 <code>cookie</code>中, 毕竟 <code>cookie</code>还可以设置 <code>secure</code></li>
+</ol>
+<p>如果禁用了 <code>cookie</code> 可以考虑放在 <code>header</code> 和 <code>sess_id</code> 中</p>
+<h3 id="jwt">JWT
+</h3><p>JWT 由 <code>header+playload+sign</code> 组成</p>
+<p>JWT 与 Session 比较 :</p>
+<p>优点 :</p>
 <ul>
-<li><code>400</code> : 客户端请求的报文有误</li>
-<li><code>403</code> : 服务器禁止访问资源</li>
-<li><code>404</code> : 服务器请求的资源不存在, 无法提供给客户端</li>
+<li>
+<p>不依赖第三方存储</p>
+</li>
+<li>
+<p>适用于分布式环境</p>
+</li>
+<li>
+<p>提高性能 (没有 Redis 访问)</p>
+</li>
 </ul>
-<p><code>5xx</code> 客户端请求报文正常,但是服务器内部处理发送了错误</p>
+<p>缺点 :</p>
 <ul>
-<li><code>500</code> 笼统的错误码,服务器发生了错误</li>
-<li><code>501</code> 客户端请求的功能还不支持</li>
-<li><code>502</code> 访问后端服务器错误, 网关错误</li>
-<li><code>503</code> 服务器繁忙,服务器可能正在升级</li>
+<li>
+<p>对加密依赖非常大</p>
+</li>
+<li>
+<p>最好不要在 JWT 放置敏感信息</p>
+</li>
 </ul>
-<h3 id="http-常见字段">HTTP 常见字段
-</h3><p><code>Content-Length</code> : 本次回应的数据长度</p>
-<p><code>Connection</code> : 客户端要求服务器使用 <code>HTTP</code> 长连接机制,以便其他请求复用</p>
-<p><code>Content-Type</code> : 告诉客户端 本次的数据是什么格式</p>
-<h3 id="get-和-post-的区别">GET 和 POST 的区别
-</h3><p>GET 的语义 : 从服务器获取指定的资源</p>
-<p>POST 的语义 : 根据请求负荷（报文body）对指定的资源做出处理</p>
-<p>我们开发的时候也是一样的 <code>GET 一般用于只读, POST 一般用于操作</code>, 但是 <code>GET</code> 可能会产生拼接的 <code>URL</code> 过长的情况,这时候需要改为<code>POST</code>进行请求</p>
-<h3 id="http-特性">HTTP 特性
-</h3><p>HTTP 常见的， 感觉好无聊，不如看几个面筋去，今天先td了</p>
+<h2 id="安全性问题">安全性问题
+</h2><p>Q : 我们实现登陆与注册系统之后 有一个最大的问题就是</p>
+<ol>
+<li>任何人都可以注册</li>
+<li>任何人都可以登陆</li>
+</ol>
+<p>因此我们需要考虑 <code>限流</code></p>
+<p>这里采用 <code>Redis</code>+lua 滑动 窗口限流</p>
+<hr>
+<p>Q : 如何保证 JWT 或者是 Session 泄漏 攻击者假冒你</p>
+<p>采用验证码二次验证，对比上一次的信息 例如 <code>user-agent</code></p>
+<h2 id="性能问题">性能问题
+</h2><p>使用 <code>wrk</code> 进行性能压测</p>
+<p><code>wrk -t1 -d1s -c2 -s ./script.lua urlpath/signup</code></p>
+<p>参数解释如下. :</p>
+<p><code>-t</code>: 线程数量</p>
+<p><code>-d</code>: 持续时间</p>
+<p><code>-c</code>: 并发数量</p>
+<p><code>-s</code>: 测试脚本</p>
+<p>压测下来预计会发现两个问题</p>
+<ol>
+<li>
+<p>加密算法 . JWT 在注册和登录后会进行加密和解密，预计相差 <code>10倍</code></p>
+</li>
+<li>
+<p>数据库查询</p>
+</li>
+</ol>
+<h3 id="优化数据库查询">优化数据库查询
+</h3><p>我们常见的一种写法是 <code>cache-db-cache</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="nf">FindById</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">cache</span><span class="p">.</span><span class="nf">Get</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">db</span><span class="p">.</span><span class="nf">Get</span><span class="p">()</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nf">SetDB</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="场景问题决策">场景问题决策
+</h4><p>Q : <code>Session</code> 的 过期时间如何刷新 ?</p>
+<ul>
+<li>
+<p>用户每次访问, 都刷新. 如果 session 部署在 redis 上，那么影响很大</p>
+</li>
+<li>
+<p>快要过期了我再刷新 。 有 gap</p>
+</li>
+<li>
+<p>固定时间刷新，引入 <code>updateAt</code> 参数 , 用户每次访问的时候 如果超过固定的时间 那么刷新</p>
+</li>
+</ul>
+<p>Q : 长短 <code>token</code></p>
+<h2 id="第三方服务治理">第三方服务治理
+</h2><p>整体思路 :</p>
+<ol>
+<li>
+<p>尽量不要搞崩第三方</p>
+</li>
+<li>
+<p>万一第三方崩了，你的系统还能够稳定运行</p>
+</li>
+</ol>
+<h3 id="failover">failover
+</h3><p>failover (失效转移)</p>
+<p>如果第三方崩了 那么就直接换一个服务商</p>
+<p>策略有 :</p>
+<ol>
+<li>
+<p>轮询</p>
+<ul>
+<li>缺点每次都从头开始，负载不均衡</li>
+<li>如果 sms svc 很多, 轮询很慢</li>
+</ul>
+</li>
+<li>
+<p>动态轮询</p>
+<ul>
+<li>每次使用 <code>i%length</code>的方式进行轮询</li>
+<li>不过这里需要注意并发问题 需要引入 <code>atomic</code></li>
+</ul>
+</li>
+<li>
+<p>动态判断第三方</p>
+<ul>
+<li>真的计算服务商是否还在运作正常 .</li>
+<li>可以从错误率</li>
+<li>响应时间判断</li>
+</ul>
+</li>
+</ol>
+<h2 id="面试题">面试题
+</h2><ol>
+<li>
+<p>什么是 <code>Gin</code> 的 <code>middle-ware</code> ？ 能解决什么问题 ？</p>
+</li>
+<li>
+<p>什么是跨域问题，怎么解决 ？</p>
+</li>
+<li>
+<p>跨域问题需要设置哪些头部 ？</p>
+</li>
+<li>
+<p>什么是 cookie，什么是 session ?</p>
+</li>
+<li>
+<p>cookie 和 session 比起来有什么缺点 ？</p>
+</li>
+<li>
+<p>Session ID 可以放在哪里？ 如果Cookie禁用</p>
+</li>
+<li>
+<p>用户密码加密算法的选取</p>
+</li>
+<li>
+<p>怎么做登陆校验 ? 利用 Gin 的 middlewawre</p>
+</li>
+<li>
+<p>刷新 Session 过期时间的集中克星方案</p>
+</li>
+<li>
+<p>增强登陆的安全性</p>
+</li>
+</ol>
+<ul>
+<li>怎么保护 session_id ?主要还是启用 https协议，设置 cookie 的 secure</li>
+<li>怎么做到 在session_id 和 jwt-token泄漏之后保护着客户 ？ 记录登陆的额外信息</li>
+</ul>
+<ol start="11">
+<li>如何保护 Web 服务 ？ 针对 IP限流、整个集群限流</li>
+</ol>
+<p>Redis :</p>
+<ol>
+<li>
+<p>你用 Redis 解决过什么问题？</p>
+</li>
+<li>
+<p>你知道 Redis 支持哪些数据结构 ？ 用过哪些 ？ 用来解决什么问题？</p>
+</li>
+<li>
+<p>各个数据结构的底层实现 ？</p>
+</li>
+<li>
+<p>当你更新数数据的时候 先更新数据库还是先更新缓存，有没有一致性问题 (这在登陆与注册超纲了吧)</p>
+</li>
+<li>
+<p>如何解决一致性问题</p>
+</li>
+<li>
+<p>什么是依赖注入，如何在 Go 实现 依赖注入</p>
+</li>
+<li>
+<p>什么是面向接口编程 ？ 为什么要面向接口编程 ？</p>
+</li>
+<li>
+<p>什么是 Ioc 控制反转</p>
+</li>
+</ol>
+<h2 id="亮点提升">亮点提升
+</h2><p>Gin :</p>
+<p><strong>Web治理 :</strong> 熔断、限流、降级</p>
+<p>限流实现 ：</p>
+<p>单机限流 :</p>
+<ul>
+<li>
+<p>令牌桶算法</p>
+</li>
+<li>
+<p>漏桶算法</p>
+</li>
+<li>
+<p>滑动窗口算法</p>
+</li>
+<li>
+<p>固定窗口算法</p>
+</li>
+</ul>
+<p>基于 Redis 限流</p>
+<p>基于 Redis IP 限流</p>
+<p><a class="link" href="https://github.com/ecodeclub/ginx"  target="_blank" rel="noopener"
+    >Gin插件库</a></p>
+<p>Gorm :</p>
+<ol>
+<li>
+<p>为 <code>Gorm</code> 提供可观测性的插件实现</p>
+</li>
+<li>
+<p>实现读写分离插件</p>
+</li>
+<li>
+<p>提供 BeforeFind 函数</p>
+</li>
+</ol>
+<p>第三方服务治理 :</p>
+<ol>
+<li>可以设置一个 同步转异步的 容错机制 。 当第三方不可用的时候，将当前请求存储到数据库中，后续再单独启动一个 gouroutine 异步的发送出去</li>
+</ol>
+<p>// tbd 明天继续写</p>
 
 </section>
 
 
     <footer class="article-footer">
     
+    <section class="article-tags">
+        
+            <a href="/tags/gold/">Gold</a>
+        
+    </section>
+
 
     </footer>
 
@@ -484,12 +816,12 @@
             
                 
 <article class="">
-    <a href="/p/net-work-0x01/">
+    <a href="/p/gouroutine_pool_0x01/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">[计算机网络] 基础篇</h2>
+            <h2 class="article-title">协程池</h2>
         </div>
     </a>
 </article>
@@ -497,12 +829,12 @@
             
                 
 <article class="">
-    <a href="/p/register-login-desin/">
+    <a href="/p/closure-0x01/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">登陆与注册的设计</h2>
+            <h2 class="article-title">闭包</h2>
         </div>
     </a>
 </article>
@@ -536,12 +868,12 @@
             
                 
 <article class="">
-    <a href="/p/gouroutine_pool_0x01/">
+    <a href="/p/ai-agent-0x04/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">协程池</h2>
+            <h2 class="article-title">[all_in_ai]  AI 名词扫盲 Tool</h2>
         </div>
     </a>
 </article>

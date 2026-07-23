@@ -7,7 +7,23 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>GzzhM</copyright>
-        <lastBuildDate>Wed, 22 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 23 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Golang</title>
+        <link>https://ddlgitgzzhm.github.io/categories/golang/</link>
+        <pubDate>Thu, 23 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/categories/golang/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Time Line</title>
+        <link>https://ddlgitgzzhm.github.io/categories/time-line/</link>
+        <pubDate>Thu, 23 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/categories/time-line/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>Real</title>
         <link>https://ddlgitgzzhm.github.io/categories/keep-real/</link>
         <pubDate>Wed, 22 Jul 2026 00:00:00 +0000</pubDate>
@@ -16,27 +32,11 @@
         <description></description>
         </item>
         <item>
-        <title>Time Line</title>
-        <link>https://ddlgitgzzhm.github.io/categories/time-line/</link>
-        <pubDate>Wed, 22 Jul 2026 00:00:00 +0000</pubDate>
-        
-        <guid>https://ddlgitgzzhm.github.io/categories/time-line/</guid>
-        <description></description>
-        </item>
-        <item>
         <title>面经</title>
         <link>https://ddlgitgzzhm.github.io/categories/interview/</link>
         <pubDate>Wed, 22 Jul 2026 00:00:00 +0000</pubDate>
         
         <guid>https://ddlgitgzzhm.github.io/categories/interview/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>Golang</title>
-        <link>https://ddlgitgzzhm.github.io/categories/golang/</link>
-        <pubDate>Mon, 20 Jul 2026 00:00:00 +0000</pubDate>
-        
-        <guid>https://ddlgitgzzhm.github.io/categories/golang/</guid>
         <description></description>
         </item>
         <item>
