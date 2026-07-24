@@ -2,17 +2,17 @@
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="我们项目实现了一个 xxxx">
-<title>登陆与注册的设计</title>
+<title>高可用 高扩展 高安全 的 登陆与注册的设计</title>
 
 <link rel='canonical' href='https://ddlgitgzzhm.github.io/p/register-login-desin/'>
 
 
-<link rel="stylesheet" href="/css/main.e6be911e19f348580e8feb6530553c5c37345cea42a77297eb8190a1f3245a55.css"><meta property='og:title' content="登陆与注册的设计">
+<link rel="stylesheet" href="/css/main.e6be911e19f348580e8feb6530553c5c37345cea42a77297eb8190a1f3245a55.css"><meta property='og:title' content="高可用 高扩展 高安全 的 登陆与注册的设计">
 <meta property='og:description' content="我们项目实现了一个 xxxx">
 <meta property='og:url' content='https://ddlgitgzzhm.github.io/p/register-login-desin/'>
 <meta property='og:site_name' content='GzzhM'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='gold' /><meta property='article:published_time' content='2026-07-23T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-07-23T00:00:00&#43;00:00'/>
-<meta name="twitter:title" content="登陆与注册的设计">
+<meta name="twitter:title" content="高可用 高扩展 高安全 的 登陆与注册的设计">
 <meta name="twitter:description" content="我们项目实现了一个 xxxx">
     <link rel="shortcut icon" href="/favicon.ico" />
 
@@ -331,6 +331,7 @@
         </li>
         <li><a href="#session">Session</a></li>
         <li><a href="#jwt">JWT</a></li>
+        <li><a href="#退出问题">退出问题</a></li>
       </ol>
     </li>
     <li><a href="#安全性问题">安全性问题</a></li>
@@ -348,6 +349,13 @@
         <li><a href="#failover">failover</a></li>
       </ol>
     </li>
+    <li><a href="#oauth2">OAuth2</a>
+      <ol>
+        <li><a href="#微信">微信</a></li>
+      </ol>
+    </li>
+    <li><a href="#配置">配置</a></li>
+    <li><a href="#日志">日志</a></li>
     <li><a href="#面试题">面试题</a></li>
     <li><a href="#亮点提升">亮点提升</a></li>
   </ol>
@@ -381,7 +389,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/register-login-desin/">登陆与注册的设计</a>
+            <a href="/p/register-login-desin/">高可用 高扩展 高安全 的 登陆与注册的设计</a>
         </h2>
     
         
@@ -553,6 +561,12 @@
 <p>最好不要在 JWT 放置敏感信息</p>
 </li>
 </ul>
+<h3 id="退出问题">退出问题
+</h3><p>Session 的退出，需要先把 cookie 删了 然后把 <code>session</code>本身删了</p>
+<p>但是 <code>JWT</code> 本身是无状态的，所以旧的<code>token</code>在没有过期 其实也是能用的</p>
+<p><code>JWT</code> 如果要实现退出登陆，只能够考虑使用 <code>redis</code> 黑名单的机制</p>
+<p>但是我们已经实现了 长短token, 如果记录黑名单需要在登陆校验的时候 也要传入黑名单 。这导致长token会被频繁调用</p>
+<p>所以考虑 <code>JWT</code> 中存放 <code>session-id</code> 使用 <code>session-id</code>进行黑名单控制</p>
 <h2 id="安全性问题">安全性问题
 </h2><p>Q : 我们实现登陆与注册系统之后 有一个最大的问题就是</p>
 <ol>
@@ -617,6 +631,10 @@
 </li>
 </ul>
 <p>Q : 长短 <code>token</code></p>
+<p>短 token : 用于访问资源</p>
+<p>长 token : 短 token 过期之后，生成一个新的短 token</p>
+<p>这里其实是依赖的前端，我们在登陆接口的时候返回两个 <code>token</code></p>
+<p>然后提供一个 <code>refresh</code> 接口,如果 短token 失效，让前端用长token请求刷新一下</p>
 <h2 id="第三方服务治理">第三方服务治理
 </h2><p>整体思路 :</p>
 <ol>
@@ -655,6 +673,77 @@
 </ul>
 </li>
 </ol>
+<h2 id="oauth2">OAuth2
+</h2><h3 id="微信">微信
+</h3><p>微信扫码登陆 看着更像是 TCP 链接的三次握手 分为</p>
+<ol>
+<li>请求登陆</li>
+<li>返回确认请求</li>
+<li>确认</li>
+<li>带上 uuid 进行请求</li>
+<li>返回 access token</li>
+</ol>
+<p><img src="/p/register-login-desin/wehchat.png"
+	width="1018"
+	height="514"
+	srcset="/p/register-login-desin/wehchat_hu_4ad83717897638d1.png 480w, /p/register-login-desin/wehchat_hu_b66a4f945c044d77.png 1024w"
+	loading="lazy"
+	
+		alt="wechat.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="198"
+		data-flex-basis="475px"
+	
+></p>
+<h2 id="配置">配置
+</h2><p>之前我们一开始使用的是 <code>build tag</code> 进行配置控制</p>
+<p>我们如果要优化配置可以从下面的方式进行考虑</p>
+<ol>
+<li>
+<p>启动参数 ，命令行工具传入的参数 。 例如 <code>mysqlroot:password</code></p>
+</li>
+<li>
+<p>环境变量</p>
+</li>
+<li>
+<p>配置文件。 使用 viper 制定 path 进行读取</p>
+</li>
+<li>
+<p>远程配置中心 。 etcd</p>
+</li>
+</ol>
+<p>配置文件的缺点 :</p>
+<ol>
+<li>不够灵活</li>
+<li>权限控制</li>
+<li>实时更新</li>
+</ol>
+<p><img src="/p/register-login-desin/remote_config.png"
+	width="1356"
+	height="534"
+	srcset="/p/register-login-desin/remote_config_hu_e4bed11837720c0f.png 480w, /p/register-login-desin/remote_config_hu_925b67f096840ca6.png 1024w"
+	loading="lazy"
+	
+		alt="remote_config.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="253"
+		data-flex-basis="609px"
+	
+></p>
+<h2 id="日志">日志
+</h2><p>使用 <code>zap</code> 进行日志处理, <code>zap</code> 本质上是维护了一个全局 <code>logger</code></p>
+<p>可以考虑使用 适配器模式封装一下 <code>zapper</code></p>
+<p>Gin 可以考虑使用 <code>middleware</code> 进行打印日志</p>
+<ol>
+<li>通过在 <code>ctx.Next()</code>前后处理对应的数据</li>
+<li>但是我们无法获取到 <code>resp</code>,我们需要自己重新实现一个 <code>respWriter</code></li>
+</ol>
+<p>Gorm 可以考虑使用 <code>config.Logger</code>实现</p>
+<p>其他的地方只能考虑从 Service 插入 logger 或者是维护全局 logger的形式进行输出</p>
 <h2 id="面试题">面试题
 </h2><ol>
 <li>
@@ -722,6 +811,42 @@
 <p>什么是 Ioc 控制反转</p>
 </li>
 </ol>
+<p>微信登陆</p>
+<ol>
+<li>
+<p>微信扫码登陆的流程</p>
+</li>
+<li>
+<p>为什么微信的回掉地址，域名必须是你预先注册的</p>
+</li>
+<li>
+<p>如果我的临时授权码(code)被黑客拿到了会怎么样</p>
+</li>
+<li>
+<p>state有什么作用 ？ 如何使用 state ?</p>
+</li>
+</ol>
+<hr>
+<ol>
+<li>
+<p>什么是长短 token ？ 为什么要用长短两个 token ？</p>
+</li>
+<li>
+<p>长短 token 的过期时间应该怎么设置 ？</p>
+</li>
+<li>
+<p>怎么保证长token的安全性，万一泄漏了怎么办 ？</p>
+</li>
+<li>
+<p>使用 JWT token 怎么退出登陆</p>
+</li>
+<li>
+<p>使用 长短 tooken 之后怎么退出登陆</p>
+</li>
+<li>
+<p>使用 JWT 还需要再使用 Session 吗</p>
+</li>
+</ol>
 <h2 id="亮点提升">亮点提升
 </h2><p>Gin :</p>
 <p><strong>Web治理 :</strong> 熔断、限流、降级</p>
@@ -761,7 +886,7 @@
 <ol>
 <li>可以设置一个 同步转异步的 容错机制 。 当第三方不可用的时候，将当前请求存储到数据库中，后续再单独启动一个 gouroutine 异步的发送出去</li>
 </ol>
-<p>// tbd 明天继续写</p>
+<p>考虑布隆过滤器进行黑名单过滤</p>
 
 </section>
 

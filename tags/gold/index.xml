@@ -8,7 +8,7 @@
         <language>en-us</language>
         <copyright>GzzhM</copyright>
         <lastBuildDate>Thu, 23 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/tags/gold/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>登陆与注册的设计</title>
+        <title>高可用 高扩展 高安全 的 登陆与注册的设计</title>
         <link>https://ddlgitgzzhm.github.io/p/register-login-desin/</link>
         <pubDate>Thu, 23 Jul 2026 00:00:00 +0000</pubDate>
         
@@ -143,6 +143,12 @@
 &lt;p&gt;最好不要在 JWT 放置敏感信息&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
+&lt;h3 id=&#34;退出问题&#34;&gt;退出问题
+&lt;/h3&gt;&lt;p&gt;Session 的退出，需要先把 cookie 删了 然后把 &lt;code&gt;session&lt;/code&gt;本身删了&lt;/p&gt;
+&lt;p&gt;但是 &lt;code&gt;JWT&lt;/code&gt; 本身是无状态的，所以旧的&lt;code&gt;token&lt;/code&gt;在没有过期 其实也是能用的&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;JWT&lt;/code&gt; 如果要实现退出登陆，只能够考虑使用 &lt;code&gt;redis&lt;/code&gt; 黑名单的机制&lt;/p&gt;
+&lt;p&gt;但是我们已经实现了 长短token, 如果记录黑名单需要在登陆校验的时候 也要传入黑名单 。这导致长token会被频繁调用&lt;/p&gt;
+&lt;p&gt;所以考虑 &lt;code&gt;JWT&lt;/code&gt; 中存放 &lt;code&gt;session-id&lt;/code&gt; 使用 &lt;code&gt;session-id&lt;/code&gt;进行黑名单控制&lt;/p&gt;
 &lt;h2 id=&#34;安全性问题&#34;&gt;安全性问题
 &lt;/h2&gt;&lt;p&gt;Q : 我们实现登陆与注册系统之后 有一个最大的问题就是&lt;/p&gt;
 &lt;ol&gt;
@@ -207,6 +213,10 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Q : 长短 &lt;code&gt;token&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;短 token : 用于访问资源&lt;/p&gt;
+&lt;p&gt;长 token : 短 token 过期之后，生成一个新的短 token&lt;/p&gt;
+&lt;p&gt;这里其实是依赖的前端，我们在登陆接口的时候返回两个 &lt;code&gt;token&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;然后提供一个 &lt;code&gt;refresh&lt;/code&gt; 接口,如果 短token 失效，让前端用长token请求刷新一下&lt;/p&gt;
 &lt;h2 id=&#34;第三方服务治理&#34;&gt;第三方服务治理
 &lt;/h2&gt;&lt;p&gt;整体思路 :&lt;/p&gt;
 &lt;ol&gt;
@@ -245,6 +255,77 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
+&lt;h2 id=&#34;oauth2&#34;&gt;OAuth2
+&lt;/h2&gt;&lt;h3 id=&#34;微信&#34;&gt;微信
+&lt;/h3&gt;&lt;p&gt;微信扫码登陆 看着更像是 TCP 链接的三次握手 分为&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;请求登陆&lt;/li&gt;
+&lt;li&gt;返回确认请求&lt;/li&gt;
+&lt;li&gt;确认&lt;/li&gt;
+&lt;li&gt;带上 uuid 进行请求&lt;/li&gt;
+&lt;li&gt;返回 access token&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/register-login-desin/wehchat.png&#34;
+	width=&#34;1018&#34;
+	height=&#34;514&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/register-login-desin/wehchat_hu_4ad83717897638d1.png 480w, https://ddlgitgzzhm.github.io/p/register-login-desin/wehchat_hu_b66a4f945c044d77.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;wechat.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;198&#34;
+		data-flex-basis=&#34;475px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;配置&#34;&gt;配置
+&lt;/h2&gt;&lt;p&gt;之前我们一开始使用的是 &lt;code&gt;build tag&lt;/code&gt; 进行配置控制&lt;/p&gt;
+&lt;p&gt;我们如果要优化配置可以从下面的方式进行考虑&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;启动参数 ，命令行工具传入的参数 。 例如 &lt;code&gt;mysqlroot:password&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;环境变量&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;配置文件。 使用 viper 制定 path 进行读取&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;远程配置中心 。 etcd&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;配置文件的缺点 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;不够灵活&lt;/li&gt;
+&lt;li&gt;权限控制&lt;/li&gt;
+&lt;li&gt;实时更新&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/register-login-desin/remote_config.png&#34;
+	width=&#34;1356&#34;
+	height=&#34;534&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/register-login-desin/remote_config_hu_e4bed11837720c0f.png 480w, https://ddlgitgzzhm.github.io/p/register-login-desin/remote_config_hu_925b67f096840ca6.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;remote_config.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;253&#34;
+		data-flex-basis=&#34;609px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;日志&#34;&gt;日志
+&lt;/h2&gt;&lt;p&gt;使用 &lt;code&gt;zap&lt;/code&gt; 进行日志处理, &lt;code&gt;zap&lt;/code&gt; 本质上是维护了一个全局 &lt;code&gt;logger&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;可以考虑使用 适配器模式封装一下 &lt;code&gt;zapper&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Gin 可以考虑使用 &lt;code&gt;middleware&lt;/code&gt; 进行打印日志&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;通过在 &lt;code&gt;ctx.Next()&lt;/code&gt;前后处理对应的数据&lt;/li&gt;
+&lt;li&gt;但是我们无法获取到 &lt;code&gt;resp&lt;/code&gt;,我们需要自己重新实现一个 &lt;code&gt;respWriter&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Gorm 可以考虑使用 &lt;code&gt;config.Logger&lt;/code&gt;实现&lt;/p&gt;
+&lt;p&gt;其他的地方只能考虑从 Service 插入 logger 或者是维护全局 logger的形式进行输出&lt;/p&gt;
 &lt;h2 id=&#34;面试题&#34;&gt;面试题
 &lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;
@@ -312,6 +393,42 @@
 &lt;p&gt;什么是 Ioc 控制反转&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
+&lt;p&gt;微信登陆&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;微信扫码登陆的流程&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;为什么微信的回掉地址，域名必须是你预先注册的&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果我的临时授权码(code)被黑客拿到了会怎么样&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;state有什么作用 ？ 如何使用 state ?&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;什么是长短 token ？ 为什么要用长短两个 token ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;长短 token 的过期时间应该怎么设置 ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;怎么保证长token的安全性，万一泄漏了怎么办 ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用 JWT token 怎么退出登陆&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用 长短 tooken 之后怎么退出登陆&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用 JWT 还需要再使用 Session 吗&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
 &lt;h2 id=&#34;亮点提升&#34;&gt;亮点提升
 &lt;/h2&gt;&lt;p&gt;Gin :&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Web治理 :&lt;/strong&gt; 熔断、限流、降级&lt;/p&gt;
@@ -351,7 +468,7 @@
 &lt;ol&gt;
 &lt;li&gt;可以设置一个 同步转异步的 容错机制 。 当第三方不可用的时候，将当前请求存储到数据库中，后续再单独启动一个 gouroutine 异步的发送出去&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;// tbd 明天继续写&lt;/p&gt;
+&lt;p&gt;考虑布隆过滤器进行黑名单过滤&lt;/p&gt;
 </description>
         </item>
         <item>
