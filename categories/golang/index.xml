@@ -690,6 +690,138 @@
 </description>
         </item>
         <item>
+        <title>阅读、点赞、收藏 one</title>
+        <link>https://ddlgitgzzhm.github.io/p/interactive-0x01/</link>
+        <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/p/interactive-0x01/</guid>
+        <description>&lt;h2 id=&#34;简历-preview&#34;&gt;简历 preview
+&lt;/h2&gt;&lt;p&gt;简历上 :&lt;/p&gt;
+&lt;p&gt;实现了一个通用的  阅读、点赞、收藏 服务。使用 Kafka 进行解耦&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;数据库表设计 :&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;通用表设计 :&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;id,biz,bizid,readCnt,CollectCnt,LikeCnt&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;为 &lt;code&gt;bizid 和 biz&lt;/code&gt; 创建一个联合唯一索引&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;点赞表设计 :&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;id,biz,bizid,uid,status&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;为 &lt;code&gt;bizid 和 biz&lt;/code&gt;和&lt;code&gt;uid&lt;/code&gt; 创建一个联合唯一索引, 用 &lt;code&gt;status&lt;/code&gt;进行软删除&lt;/p&gt;
+&lt;h3 id=&#34;数据库处理&#34;&gt;数据库处理
+&lt;/h3&gt;&lt;p&gt;对于 阅读、点赞、收藏 操作都会涉及到一个 &lt;code&gt;check-dothing&lt;/code&gt; 的并发问题&lt;/p&gt;
+&lt;p&gt;即 : 当用户点赞的时候 文章是否已经点赞过了，如果点赞过需要+1，否则创建 ，这里统一采用 &lt;code&gt;do on conflict update&lt;/code&gt; 处理&lt;/p&gt;
+&lt;p&gt;不过需要注意的是 : &lt;code&gt;update&lt;/code&gt; 的时候我们需要保证自增 所以需要使用 &lt;code&gt;gorm.Expr&lt;/code&gt; 来获取数据库运行的值，而不是直接 &lt;code&gt;select-update&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;缓存处理&#34;&gt;缓存处理
+&lt;/h3&gt;&lt;p&gt;对于写入方，优先写入数据库，后写入redis&lt;/p&gt;
+&lt;p&gt;对于查询方，优选查redis 然后再查数据库&lt;/p&gt;
+&lt;p&gt;对于写入的过程，因为我们使用的 redis key 是一次缓存了 3个 like,read,collect 三个字段&lt;/p&gt;
+&lt;p&gt;所以我们自增的时候使用的是 HINCRBY 指令，对于 key 不存在的情况下会有歧义 。所以使用 lua 控制了一下 仅只有 key 存在的时候才会自增&lt;/p&gt;
+&lt;h3 id=&#34;消息队列&#34;&gt;消息队列
+&lt;/h3&gt;&lt;p&gt;新增 统计事件 引入 kafka 给 阅读、点赞服务解耦&lt;/p&gt;
+&lt;p&gt;在阅读文章服务，使用 kafka 异步发送，设置 10次每批，1s超时进行聚合发送消息&lt;/p&gt;
+&lt;p&gt;消费端同样设置 10条每批，1s超时来进行组合消费&lt;/p&gt;
+&lt;p&gt;每次消费 使用一个 map 进行聚合 同个&lt;code&gt;biz+biz_id&lt;/code&gt;的内容，优化之前一次点赞就需要一次 &lt;code&gt;insert&lt;/code&gt; 的 操作&lt;/p&gt;
+&lt;p&gt;并且通过开启事务进行消费，防止 MVCC 中的 刷盘操作，将原先要进行10次的刷盘降低到1次。&lt;/p&gt;
+&lt;h3 id=&#34;问题&#34;&gt;问题
+&lt;/h3&gt;&lt;h4 id=&#34;一致性问题的处理&#34;&gt;一致性问题的处理
+&lt;/h4&gt;&lt;p&gt;不处理&lt;/p&gt;
+&lt;p&gt;从业务上来说，没有必要要求阅读数、点赞数或者收藏数量一定是严格准确的，因为即便不准确，也不会对用户
+产生什么不好的影响。&lt;/p&gt;
+&lt;p&gt;更进一步说，只有高并发的文章才会有并发问题。而高并发的文章，阅读数、点赞数或者收藏数本身就很多，你
+少一点点无所谓。&lt;/p&gt;
+&lt;h3 id=&#34;亮点&#34;&gt;亮点
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;大量使用了事务&lt;/strong&gt;，来保证在同时操作两个表的时候，保持住 ACID 语义。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;大量使用了 Upsert 语义&lt;/strong&gt; , 因为很多情况下我们都不知道数据库中是否已经存在数据&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;大量使用 lua 脚本来保证缓存中的数据是正确的&lt;/strong&gt;, 但是没有彻底解决缓存一致性的问题&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;在查询接口中，只缓存总数数据，&lt;/strong&gt;, 并不会缓存个人是否收藏或者点赞的数据。&lt;/p&gt;
+&lt;h2 id=&#34;总分62--100&#34;&gt;总分：&lt;strong&gt;62 / 100&lt;/strong&gt;
+&lt;/h2&gt;&lt;p&gt;按「2 年 Go 后端」面试标准看：方向对、有工程意识，但表达粗糙、关键点浅、经不起追问。面试里能撑 15–20 分钟开场，深入一追容易露怯。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;分项打分&#34;&gt;分项打分
+&lt;/h3&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;维度&lt;/th&gt;
+					&lt;th&gt;分数&lt;/th&gt;
+					&lt;th&gt;说明&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;业务建模与表设计&lt;/td&gt;
+					&lt;td&gt;14/20&lt;/td&gt;
+					&lt;td&gt;通用计数表 + 点赞明细表思路正确，索引方向对&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;并发与数据正确性&lt;/td&gt;
+					&lt;td&gt;12/20&lt;/td&gt;
+					&lt;td&gt;知道 Upsert / Expr，但 check-then-act、事务边界讲不清&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;缓存设计&lt;/td&gt;
+					&lt;td&gt;12/20&lt;/td&gt;
+					&lt;td&gt;Cache-Aside + Lua 防空 key 自增有亮点，一致性论证弱&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;消息队列与解耦&lt;/td&gt;
+					&lt;td&gt;13/20&lt;/td&gt;
+					&lt;td&gt;Kafka 批量、聚合、减刷盘有工程味道&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;表达与面试叙事&lt;/td&gt;
+					&lt;td&gt;6/10&lt;/td&gt;
+					&lt;td&gt;口语化、错别字多，「大量使用」空洞，像笔记不像口述稿&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;亮点与深度&lt;/td&gt;
+					&lt;td&gt;5/10&lt;/td&gt;
+					&lt;td&gt;亮点空泛，缺少权衡、失败场景、可观测性&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;优点&#34;&gt;优点
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;表设计合理&lt;/strong&gt;：&lt;code&gt;biz + biz_id&lt;/code&gt; 抽象通用互动能力，点赞用 &lt;code&gt;(biz, biz_id, uid)&lt;/code&gt; 唯一 + &lt;code&gt;status&lt;/code&gt; 软删除，符合常见业务。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;踩过真实坑&lt;/strong&gt;：&lt;code&gt;ON CONFLICT&lt;/code&gt; + &lt;code&gt;gorm.Expr&lt;/code&gt; 自增、Redis &lt;code&gt;HINCRBY&lt;/code&gt; 空 key 用 Lua 护栏，说明写过代码而不只是背概念。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;有吞吐意识&lt;/strong&gt;：Kafka 批量生产/消费、按 &lt;code&gt;biz+biz_id&lt;/code&gt; 聚合、事务合并刷盘，对 2 年经验来说是加分项。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;一致性取舍有业务理由&lt;/strong&gt;：承认最终一致、高热内容允许误差，比死磕「强一致」更成熟——前提是能讲清边界。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;缺点面试官会盯的&#34;&gt;缺点（面试官会盯的）
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;「不处理一致性」太绝对&lt;/strong&gt;：面试官会问：DB 成功 Redis 失败？Kafka 重复消费？取消点赞与计数对不上？需要有策略（补偿、对账、幂等），不能只说「少一点点无所谓」。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;亮点写法很伤&lt;/strong&gt;：连续「大量使用事务/Upsert/Lua」像模板，没有场景、没有代价。事务多 ≠ 好，还可能拖慢吞吐。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;技术细节易被打穿&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;写库再写缓存：失败怎么回滚/补偿？&lt;/li&gt;
+&lt;li&gt;Lua「仅 key 存在才 incr」：key 不存在时计数会丢吗？靠查询回源还是异步重建？&lt;/li&gt;
+&lt;li&gt;Kafka 聚合：幂等键、乱序、部分失败重试怎么做？&lt;/li&gt;
+&lt;li&gt;「防止 MVCC 刷盘」表述不严谨，容易被纠正。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;缺个人态查询设计&lt;/strong&gt;：只说不缓存「是否点赞」，但列表页如何批量查个人态？N+1？位图/本地缓存？没写。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;表达与文档质量差&lt;/strong&gt;：&lt;code&gt;优选/check-dothing&lt;/code&gt;、front matter 的 &lt;code&gt;xxxx&lt;/code&gt;、标点混乱，会降低「能讲清楚」的印象。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;建议按面试口述改&#34;&gt;建议（按面试口述改）
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;改成 STAR 口述结构&lt;/strong&gt;：背景（互动服务压力）→ 方案（表 + Kafka + Redis）→ 难点（空 key、重复消费）→ 结果（QPS/延迟/错误率，哪怕是压测数字）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;准备 3 个追问标准答&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;DB/Redis 不一致：异步对账 + 定时校准热点 key&lt;/li&gt;
+&lt;li&gt;Kafka 至少一次：消费幂等（唯一键 + Upsert）&lt;/li&gt;
+&lt;li&gt;取消点赞：&lt;code&gt;status&lt;/code&gt; 翻转 + 计数 &lt;code&gt;GREATEST(cnt-1,0)&lt;/code&gt;，防负值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;删掉「大量使用」&lt;/strong&gt;，改成「在点赞写明细+改计数时用事务；计数更新用 Upsert；缓存用 Lua 保证 key 存在才 HINCRBY」。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;补一张口述链路&lt;/strong&gt;：读请求 → Redis Hash → miss 回源 DB 回填；写请求 → DB Upsert →（可选）发 Kafka → 消费者聚合写计数 → 更新缓存。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;亮点换成可量化的 2–3 条&lt;/strong&gt;：例如「批量聚合把热点文章写放大降到约 1/N」「Lua 避免幽灵 key」「个人态与总数分离降低缓存体积」。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;面试官一句话结论&#34;&gt;面试官一句话结论
+&lt;/h3&gt;&lt;p&gt;材料有「做过互动域」的骨架，适合当提纲；按现在写法直接上面试，深度和表达大概卡在 &lt;strong&gt;及格偏上&lt;/strong&gt;。把一致性策略、幂等、失败路径和口述结构补齐，冲到 &lt;strong&gt;75–80&lt;/strong&gt; 比较现实。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>channel</title>
         <link>https://ddlgitgzzhm.github.io/p/channel_0x01/</link>
         <pubDate>Mon, 27 Jul 2026 00:00:00 +0000</pubDate>
