@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Sarma Kafka">
+<title>Sarma Kafka</title>
+
+<link rel='canonical' href='https://ddlgitgzzhm.github.io/p/sarma-kafka-0x01/'>
+
+
+<link rel="stylesheet" href="/css/main.e6be911e19f348580e8feb6530553c5c37345cea42a77297eb8190a1f3245a55.css"><meta property='og:title' content="Sarma Kafka">
+<meta property='og:description' content="Sarma Kafka">
+<meta property='og:url' content='https://ddlgitgzzhm.github.io/p/sarma-kafka-0x01/'>
+<meta property='og:site_name' content='GzzhM'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='gold' /><meta property='article:published_time' content='2026-07-29T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-07-29T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="Sarma Kafka">
+<meta name="twitter:description" content="Sarma Kafka">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_216528b252869864.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍟</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">GzzhM</a></h1>
+            <h2 class="site-description">应该怎么做？</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/DDLGitGzzhM'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        <li>
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>文章归档</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>查找</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href='/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友情链接</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href='/time-line/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                
+                <span>Time Line</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href='/memo/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-messages" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M21 14l-3 -3h-7a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1h9a1 1 0 0 1 1 1v10" />
+  <path d="M14 15v2a1 1 0 0 1 -1 1h-7l-3 3v-10a1 1 0 0 1 1 -1h2" />
+</svg>
+
+
+
+                
+                <span>Memo</span>
+            </a>
+        </li>
+        
+        <li class="menu-item-deprecated">
+            <a href='/roadmap/'  title="已废弃">
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                
+                <span>Road Map</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#saram-入门">Saram 入门</a>
+      <ol>
+        <li><a href="#saram-指定分区">saram 指定分区</a></li>
+        <li><a href="#异步发送">异步发送</a></li>
+        <li><a href="#指定-acks">指定 acks</a></li>
+        <li><a href="#consumergrouphandler">ConsumerGroupHandler</a></li>
+        <li><a href="#异步消费-批量提交">异步消费 批量提交</a></li>
+      </ol>
+    </li>
+    <li><a href="#面试题">面试题</a></li>
+    <li><a href="#总分58--100">总分：<strong>58 / 100</strong></a>
+      <ol>
+        <li><a href="#优点">优点</a></li>
+        <li><a href="#缺点">缺点</a></li>
+        <li><a href="#建议按优先级">建议（按优先级）</a></li>
+        <li><a href="#分项参考">分项参考</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/golang/" >
+                Golang
+            </a>
+        
+            <a href="/categories/time-line/" style="background-color: #6c5ce7; color: #fff;">
+                Time Line
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/sarma-kafka-0x01/">Sarma Kafka</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            Sarma Kafka
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2026-07-29</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="saram-入门">Saram 入门
+</h2><p>发送消息</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="nf">TestProducer</span><span class="p">(</span><span class="nx">t</span><span class="w"> </span><span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">cfg</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">sarama</span><span class="p">.</span><span class="nf">NewConfig</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">cfg</span><span class="p">.</span><span class="nx">Producer</span><span class="p">.</span><span class="nx">Return</span><span class="p">.</span><span class="nx">Successes</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">producer</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">sarama</span><span class="p">.</span><span class="nf">NewSyncProducer</span><span class="p">(</span><span class="nx">addrs</span><span class="p">,</span><span class="w"> </span><span class="nx">cfg</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">assert</span><span class="p">.</span><span class="nf">NoError</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">p</span><span class="p">,</span><span class="w"> </span><span class="nx">offset</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">producer</span><span class="p">.</span><span class="nf">SendMessage</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">sarama</span><span class="p">.</span><span class="nx">ProducerMessage</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">Topic</span><span class="p">:</span><span class="w"> </span><span class="s">&#34;test_topic&#34;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">Value</span><span class="p">:</span><span class="w"> </span><span class="nx">sarama</span><span class="p">.</span><span class="nf">StringEncoder</span><span class="p">(</span><span class="s">&#34;hello,这是一条消息&#34;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">Headers</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="nx">sarama</span><span class="p">.</span><span class="nx">RecordHeader</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="p">{</span><span class="nx">Key</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&#34;header1&#34;</span><span class="p">),</span><span class="w"> </span><span class="nx">Value</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&#34;header1_value&#34;</span><span class="p">)},</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="p">},</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">Metadata</span><span class="p">:</span><span class="w"> </span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">any</span><span class="p">{</span><span class="s">&#34;metadata1&#34;</span><span class="p">:</span><span class="w"> </span><span class="s">&#34;metadata_value1&#34;</span><span class="p">},</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">})</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">assert</span><span class="p">.</span><span class="nf">NoError</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">t</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="nx">p</span><span class="p">,</span><span class="w"> </span><span class="nx">offset</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/p/sarma-kafka-0x01/img.png"
+	width="1446"
+	height="454"
+	srcset="/p/sarma-kafka-0x01/img_hu_ea757ea59aa4a3b7.png 480w, /p/sarma-kafka-0x01/img_hu_602b455196d09e2a.png 1024w"
+	loading="lazy"
+	
+		alt="img.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="318"
+		data-flex-basis="764px"
+	
+></p>
+<h3 id="saram-指定分区">saram 指定分区
+</h3><p>我们观察上面的内容，发现消息发送在来  partition : 0 上面</p>
+<p>我们可以看到 <code>partitioner</code> 支持</p>
+<p>random : 随机挑一个</p>
+<p>RoundRobin : 轮询</p>
+<p>Hashkey : 根据 key 的哈希值塞选一个</p>
+<p>Manual : 根据 Message 中的 partition 来选择</p>
+<p><img src="/p/sarma-kafka-0x01/partition.png"
+	width="1382"
+	height="512"
+	srcset="/p/sarma-kafka-0x01/partition_hu_4c16ab26e9b94ded.png 480w, /p/sarma-kafka-0x01/partition_hu_d1f4e64067d43cf6.png 1024w"
+	loading="lazy"
+	
+		alt="partition.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="269"
+		data-flex-basis="647px"
+	
+></p>
+<h3 id="异步发送">异步发送
+</h3><p>saram 支持 <code>aysnc</code> 和 <code>sync</code> 两种发送 其中支持异步发送 <code>async</code></p>
+<p>初始化 producer 后，从 producer 获取 input 的 channel 并且发送一个消息 。 通过 select 监听 success 和 error</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="nf">TestAsyncProducer</span><span class="p">(</span><span class="nx">t</span><span class="w"> </span><span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">cfg</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">sarama</span><span class="p">.</span><span class="nf">NewConfig</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">cfg</span><span class="p">.</span><span class="nx">Producer</span><span class="p">.</span><span class="nx">Return</span><span class="p">.</span><span class="nx">Successes</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">cfg</span><span class="p">.</span><span class="nx">Producer</span><span class="p">.</span><span class="nx">Return</span><span class="p">.</span><span class="nx">Errors</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">producer</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">sarama</span><span class="p">.</span><span class="nf">NewAsyncProducer</span><span class="p">(</span><span class="nx">addrs</span><span class="p">,</span><span class="w"> </span><span class="nx">cfg</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">assert</span><span class="p">.</span><span class="nf">NoError</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">msgCh</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">producer</span><span class="p">.</span><span class="nf">Input</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">msgCh</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">sarama</span><span class="p">.</span><span class="nx">ProducerMessage</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">Topic</span><span class="p">:</span><span class="w"> </span><span class="s">&#34;test_topic&#34;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">Value</span><span class="p">:</span><span class="w"> </span><span class="nx">sarama</span><span class="p">.</span><span class="nf">StringEncoder</span><span class="p">(</span><span class="s">&#34;hello,这是一条异步消息&#34;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="c1">// 会在 producer 和 consumer 之间传递</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">Headers</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="nx">sarama</span><span class="p">.</span><span class="nx">RecordHeader</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="p">{</span><span class="nx">Key</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&#34;header1&#34;</span><span class="p">),</span><span class="w"> </span><span class="nx">Value</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&#34;header1_value&#34;</span><span class="p">)},</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="p">},</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">Metadata</span><span class="p">:</span><span class="w"> </span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">any</span><span class="p">{</span><span class="s">&#34;metadata1&#34;</span><span class="p">:</span><span class="w"> </span><span class="s">&#34;metadata_value1&#34;</span><span class="p">},</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// 在实践中，一般是开另外一个 goroutine 来处理结果的</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">select</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">case</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="o">&lt;-</span><span class="nx">producer</span><span class="p">.</span><span class="nf">Errors</span><span class="p">():</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="c1">// 这边是出错了</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">val</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">err</span><span class="p">.</span><span class="nx">Msg</span><span class="p">.</span><span class="nx">Value</span><span class="p">.</span><span class="nf">Encode</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">t</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nx">Err</span><span class="p">,</span><span class="w"> </span><span class="nb">string</span><span class="p">(</span><span class="nx">val</span><span class="p">))</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">case</span><span class="w"> </span><span class="nx">msg</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="o">&lt;-</span><span class="nx">producer</span><span class="p">.</span><span class="nf">Successes</span><span class="p">():</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="c1">// 这边是成功了</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">val</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">msg</span><span class="p">.</span><span class="nx">Value</span><span class="p">.</span><span class="nf">Encode</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">t</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">&#34;成功了&#34;</span><span class="p">,</span><span class="w"> </span><span class="nb">string</span><span class="p">(</span><span class="nx">val</span><span class="p">))</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="指定-acks">指定 acks
+</h3><p>生产者在发送数据的时候 需要设置一个关键参数 <code>ack</code></p>
+<ol>
+<li>
+<p>0 ; 客户端发送一次，不需要服务端的确认</p>
+</li>
+<li>
+<p>1 ; 客户端发送，并且服务端写入主分区</p>
+</li>
+<li>
+<p>-1 ; 客户端发送，并且需要服务端同步到所有的 ISR 上 。(ISR 即 所有跟上主分区的从分区)</p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span><span class="w"> </span><span class="nx">RequiredAcks</span><span class="w"> </span><span class="kt">int16</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">const</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// NoResponse doesn&#39;t send any response, the TCP ACK is all you get.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">NoResponse</span><span class="w"> </span><span class="nx">RequiredAcks</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// WaitForLocal waits for only the local commit to succeed before responding.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">WaitForLocal</span><span class="w"> </span><span class="nx">RequiredAcks</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// WaitForAll waits for all in-sync replicas to commit before responding.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// The minimum number of in-sync replicas is configured on the broker via</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// the `min.insync.replicas` configuration key.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">WaitForAll</span><span class="w"> </span><span class="nx">RequiredAcks</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="consumergrouphandler">ConsumerGroupHandler
+</h3><p>业务方通过指定 consumer_group 和 topic 进行消费处理。 消费 interface 需要实现 <code>setup, cleanup,consumeclaim</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="nf">TestConsumer</span><span class="p">(</span><span class="nx">t</span><span class="w"> </span><span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">cfg</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">sarama</span><span class="p">.</span><span class="nf">NewConfig</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">cg</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">sarama</span><span class="p">.</span><span class="nf">NewConsumerGroup</span><span class="p">(</span><span class="nx">addrs</span><span class="p">,</span><span class="s">&#34;test_group&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">cfg</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">assert</span><span class="p">.</span><span class="nf">NoError</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="cp">//...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">cancel</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nf">WithTimeout</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">(),</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="o">*</span><span class="mi">30</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">defer</span><span class="w"> </span><span class="nf">cancel</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="cp">//...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">err</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">cg</span><span class="p">.</span><span class="nf">Consume</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;test_topic&#34;</span><span class="p">},</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">ConsumerHandler</span><span class="p">{})</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">assert</span><span class="p">.</span><span class="nf">NoError</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// ... </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">type</span><span class="w"> </span><span class="nx">ConsumerGroupHandler</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// Setup is run at the beginning of a new session, before ConsumeClaim.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nf">Setup</span><span class="p">(</span><span class="nx">ConsumerGroupSession</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// Cleanup is run at the end of a session, once all ConsumeClaim goroutines have exited</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// but before the offsets are committed for the very last time.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nf">Cleanup</span><span class="p">(</span><span class="nx">ConsumerGroupSession</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// ConsumeClaim must start a consumer loop of ConsumerGroupClaim&#39;s Messages().</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// Once the Messages() channel is closed, the Handler must finish its processing</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// loop and exit. Handlers should also return when ConsumerGroupSession.Context()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// is done; Messages() alone can block while the partition consumer is retrying</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// (e.g. after a broker disconnect). See examples/consumergroup.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nf">ConsumeClaim</span><span class="p">(</span><span class="nx">ConsumerGroupSession</span><span class="p">,</span><span class="w"> </span><span class="nx">ConsumerGroupClaim</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="异步消费-批量提交">异步消费 批量提交
+</h3><p>kafka 要求消费后的数据必须提交 。如果不提交，在下一次重启之后 会出现重复提交的情况</p>
+<p>下面是一个异步消费的写法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">c</span><span class="w"> </span><span class="o">*</span><span class="nx">ConsumerHandler</span><span class="p">)</span><span class="w"> </span><span class="nf">ConsumeClaim</span><span class="p">(</span><span class="nx">session</span><span class="w"> </span><span class="nx">sarama</span><span class="p">.</span><span class="nx">ConsumerGroupSession</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">claim</span><span class="w"> </span><span class="nx">sarama</span><span class="p">.</span><span class="nx">ConsumerGroupClaim</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">ch</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">claim</span><span class="p">.</span><span class="nf">Messages</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">batchSize</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">10</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="kd">var</span><span class="w"> </span><span class="nx">eg</span><span class="w"> </span><span class="nx">errgroup</span><span class="p">.</span><span class="nx">Group</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">msgs</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">([]</span><span class="o">*</span><span class="nx">sarama</span><span class="p">.</span><span class="nx">ConsumerMessage</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nx">batchSize</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">cancel</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nf">WithTimeout</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">(),</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">done</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nx">batchSize</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">!</span><span class="nx">done</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="k">select</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="k">case</span><span class="w"> </span><span class="o">&lt;-</span><span class="nx">ctx</span><span class="p">.</span><span class="nf">Done</span><span class="p">():</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="c1">// 这一批次已经超时了，</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="c1">// 或者，整个 consumer 被关闭了</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="c1">// 不再尝试凑够一批了</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="nx">done</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="k">case</span><span class="w"> </span><span class="nx">msg</span><span class="p">,</span><span class="w"> </span><span class="nx">ok</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="o">&lt;-</span><span class="nx">ch</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="k">if</span><span class="w"> </span><span class="p">!</span><span class="nx">ok</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">					</span><span class="nf">cancel</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">					</span><span class="c1">// channel 被关闭了</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">					</span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="nx">msgs</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">append</span><span class="p">(</span><span class="nx">msgs</span><span class="p">,</span><span class="w"> </span><span class="nx">msg</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="nx">eg</span><span class="p">.</span><span class="nf">Go</span><span class="p">(</span><span class="kd">func</span><span class="p">()</span><span class="w"> </span><span class="kt">error</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">					</span><span class="nx">log</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;offset&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">msg</span><span class="p">.</span><span class="nx">Offset</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">					</span><span class="c1">// 标记为消费成功</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">					</span><span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">					</span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="p">})</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">eg</span><span class="p">.</span><span class="nf">Wait</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="c1">// 这边就要都提交了</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="k">for</span><span class="w"> </span><span class="nx">_</span><span class="p">,</span><span class="w"> </span><span class="nx">msg</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="nx">msgs</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="nx">session</span><span class="p">.</span><span class="nf">MarkMessage</span><span class="p">(</span><span class="nx">msg</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="c1">// 这里可以考虑重试，也可以在具体的业务逻辑里面重试</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="c1">// 也就是 eg.Go 里面重试</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nf">cancel</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="面试题">面试题
+</h2><ol>
+<li>kafka 中 producer 中的 ack 有哪些取值 ？ 分别是什么含义？你用了哪些</li>
+</ol>
+<p>0, -1, 1</p>
+<p>0 表示客户端发送之后 不需要服务端验证</p>
+<p>1 表示客户端发送之后 并且同步到服务端主分区</p>
+<p>-1 表示客户端发送之后 并且同步到所有 ISR 上</p>
+<ol start="2">
+<li>Kafka 中 ISR 是什么意思 ？</li>
+</ol>
+<p>所有跟得上主分区节奏的从分区</p>
+<h2 id="总分58--100">总分：<strong>58 / 100</strong>
+</h2><p>按「2 年经验、Golang + Kafka」面试标准看：能证明你用过 Sarama，覆盖了发送/分区/acks/消费组的入门面，但深度、完整度和可追问的生产经验都偏弱，深挖很容易露怯。</p>
+<hr>
+<h3 id="优点">优点
+</h3><ol>
+<li><strong>有可运行的 Sarama 代码</strong>：Sync / Async Producer、ConsumerGroupHandler，比纯背概念强，能证明动手过。</li>
+<li><strong>Producer 关键点抓得对</strong>：Partitioner（Random / RoundRobin / Hash / Manual）和 <code>acks</code>（0 / 1 / -1）是常考项。</li>
+<li><strong>消费侧有「批量 + 提交」意识</strong>：知道要 <code>MarkMessage</code>，也提到失败可重试，方向对。</li>
+<li><strong>结构适合当笔记骨架</strong>：从发消息 → 分区 → 异步 → acks → 消费，学习路径清晰。</li>
+</ol>
+<hr>
+<h3 id="缺点">缺点
+</h3><ol>
+<li><strong>面试题太薄</strong>：只有 2 道，且第二题「ISR」写成「解咒」，表述不严谨，面试官一追问就挂。</li>
+<li><strong>缺少语义与可靠性主线</strong>：至少一次 / 至多一次 / 精确一次、幂等 Producer、事务、重平衡、Consumer Lag、死信、重试，几乎没写。</li>
+<li><strong>示例代码有明显硬伤</strong>（面试官很爱抠）：
+<ul>
+<li><code>eg.Go</code> 里闭包捕获循环变量 <code>msg</code>，Go 经典坑；</li>
+<li>没用 <code>session.Context()</code>，rebalance / 关闭时可能卡死；</li>
+<li>只 <code>MarkMessage</code>、未说明 auto-commit / 手动 <code>Commit</code> 策略；</li>
+<li>批次超时 1s、业务 <code>Sleep 3s</code>，逻辑自相矛盾。</li>
+</ul>
+</li>
+<li><strong>「你用了哪些」没答完</strong>：acks 题只背取值，没结合业务说选了什么、为什么、出过什么问题。</li>
+<li><strong>表达与细节粗糙</strong>：Saram/Sarma、aysnc、塞选等；acks=-1 与 <code>min.insync.replicas</code> 的关系没讲清。</li>
+</ol>
+<hr>
+<h3 id="建议按优先级">建议（按优先级）
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>优先级</th>
+					<th>建议</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>P0</td>
+					<td>把面试题扩到 15～20 道：acks+ISR、分区与顺序、消费组重平衡、offset 提交、至少一次如何做幂等、Sync vs Async 选型、Lag 排查</td>
+			</tr>
+			<tr>
+					<td>P0</td>
+					<td>修掉消费示例：闭包、<code>session.Context()</code>、失败不提交/重试/死信策略写清楚</td>
+			</tr>
+			<tr>
+					<td>P1</td>
+					<td>每道题加「项目经历」：业务场景、选型原因、踩过的坑（重复消费、消息丢失、rebalance 卡住）</td>
+			</tr>
+			<tr>
+					<td>P1</td>
+					<td>补齐：幂等 Producer、<code>enable.idempotence</code>、批量参数（<code>linger</code>/<code>batch.size</code>）、压缩、监控指标</td>
+			</tr>
+			<tr>
+					<td>P2</td>
+					<td>对照官方注释精修术语；和 <code>kafka_0x01</code> 基础篇打通，形成「原理 → Sarama → 生产落地」一条线</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h3 id="分项参考">分项参考
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>维度</th>
+					<th>得分</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Producer 基础</td>
+					<td>70</td>
+					<td>acks / partitioner / sync·async 有，深度不够</td>
+			</tr>
+			<tr>
+					<td>Consumer 基础</td>
+					<td>55</td>
+					<td>知道接口，提交与生命周期不扎实</td>
+			</tr>
+			<tr>
+					<td>可靠性语义</td>
+					<td>35</td>
+					<td>面试高频区几乎空白</td>
+			</tr>
+			<tr>
+					<td>代码可追问性</td>
+					<td>45</td>
+					<td>能演示，但经不起抠细节</td>
+			</tr>
+			<tr>
+					<td>面试题准备</td>
+					<td>30</td>
+					<td>题量与质量都不足</td>
+			</tr>
+			<tr>
+					<td>表达与准确度</td>
+					<td>50</td>
+					<td>笔误和概念表述拖后腿</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<p><strong>面试官结论</strong>：当前水平大约是「跟过教程、能写 Demo」；以 2 年经验去面中级岗，过 HR/浅技术面有希望，过深挖 Kafka 生产问题的技术面风险较大。把可靠性语义 + 修代码坑 + 项目故事补上，目标可冲到 <strong>75～80</strong>。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/gold/">Gold</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/kafka-0x01/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MQ kafka</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/channel_0x01/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">channel</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/interactive-0x01/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">阅读、点赞、收藏 detail</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/web-control-0x01/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Web 治理</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/publish-service-0x01/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">发帖服务 detail</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="DDLGitGzzhM/ddlgitgzzhm.github.io"
+        issue-term="pathname"
+        
+        label="comments"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025 - 
+        
+        2026 GzzhM
+    </section>
+    
+    <section class="powerby">
+        使用 Golang 构建 <br />
+        
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script><script type="text/javascript" src="/ts/custom.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

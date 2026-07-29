@@ -339,7 +339,13 @@
         <li><a href="#缓存一致性">缓存一致性</a></li>
       </ol>
     </li>
-    <li><a href="#kafka">Kafka</a></li>
+    <li><a href="#kafka">Kafka</a>
+      <ol>
+        <li><a href="#点赞解耦">点赞解耦</a></li>
+      </ol>
+    </li>
+    <li><a href="#亮点">亮点</a></li>
+    <li><a href="#面试题">面试题</a></li>
   </ol>
 </nav>
         </div>
@@ -567,6 +573,91 @@
 		data-flex-basis="435px"
 	
 ></p>
+<h3 id="点赞解耦">点赞解耦
+</h3><p>我们上面设计的点赞系统是每次请求都进行一次点赞操作，每次都会访问我们的 DB</p>
+<p>因此我们需要引入 Kafka 来进行异步的解耦</p>
+<p><img src="/p/interactive-0x01/img1.png"
+	width="350"
+	height="420"
+	srcset="/p/interactive-0x01/img1_hu_aea5e51c6f275de8.png 480w, /p/interactive-0x01/img1_hu_d2a5dcebb189c259.png 1024w"
+	loading="lazy"
+	
+		alt="img1.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="83"
+		data-flex-basis="200px"
+	
+></p>
+<ol>
+<li>
+<p>在调用 调用获取文章相信的时候 发送对应的阅读事件</p>
+</li>
+<li>
+<p>mQ消费者端，使用 ctxTimeout + channel 控制批量消费</p>
+</li>
+<li>
+<p>消费插入数据库中使用map对biz进行一次聚合。 然后插入数据库 ，使用事务进行插入 。</p>
+</li>
+</ol>
+<p>主要优化</p>
+<ol>
+<li>
+<p>多个业务读取文章 是多行sql，现在改成 N 行 ,n &lt;= 多行sql</p>
+</li>
+<li>
+<p>开启事务，进行一次提交。 少了 MVCC 等操作。</p>
+</li>
+</ol>
+<h2 id="亮点">亮点
+</h2><ol>
+<li>批量消费 和 批量生产</li>
+</ol>
+<h2 id="面试题">面试题
+</h2><ol>
+<li>
+<p>有没有用过 kafka  ？ 用来解决什么问题</p>
+</li>
+<li>
+<p>你为什么要使用 MQ，使用MQ 等好处是什么 。 异步，解耦，消峰</p>
+</li>
+<li>
+<p>介绍一下 kafka :</p>
+<ul>
+<li>
+<p>什么是 broker , broker 和 分区的关系是什么</p>
+</li>
+<li>
+<p>什么是 topic , topic 和 分区的关系是什么</p>
+</li>
+</ul>
+</li>
+<li>
+<p>kafka 中 producer 中的 ack 有哪些取值 ？ 分别是什么含义？你用了哪些</p>
+</li>
+<li>
+<p>Kafka 中 ISR 是什么意思 ？</p>
+</li>
+<li>
+<p>Kafka 中一个分区可以有多个消费者吗</p>
+</li>
+<li>
+<p>消息积压了怎么半 ？</p>
+<ul>
+<li>增加 topic</li>
+<li>异步消费</li>
+<li>批量消费</li>
+</ul>
+</li>
+<li>
+<p>怎么保证消息的顺序 ？  怎么保证全局有序 ？ 怎么保证业务有序。？</p>
+<ul>
+<li>全局有序 : 只使用一个分区</li>
+<li>业务有序 : 使用 hash类的算法制定生产者发送消息的分区</li>
+</ul>
+</li>
+</ol>
 
 </section>
 
@@ -621,6 +712,32 @@
             
                 
 <article class="">
+    <a href="/p/kafka-0x01/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MQ kafka</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/sarma-kafka-0x01/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Sarma Kafka</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
     <a href="/p/channel_0x01/">
         
         
@@ -653,32 +770,6 @@
 
         <div class="article-details">
             <h2 class="article-title">发帖服务 detail</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/p/publish-service-0x01/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">发帖服务 one</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/p/register-login-desin-0x01/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">高可用 高扩展 高安全 的 登陆与注册的设计 one</h2>
         </div>
     </a>
 </article>
