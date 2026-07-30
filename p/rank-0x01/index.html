@@ -319,7 +319,31 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#简历-preview">简历 preview</a></li>
+    <li><a href="#简历-preview">简历 preview</a>
+      <ol>
+        <li><a href="#算法模型">算法模型</a></li>
+        <li><a href="#数据计算">数据计算</a>
+          <ol>
+            <li><a href="#实时计算的难点">实时计算的难点</a></li>
+            <li><a href="#异步计算">异步计算</a></li>
+          </ol>
+        </li>
+        <li><a href="#查询接口的处理">查询接口的处理</a></li>
+        <li><a href="#可用性问题">可用性问题</a></li>
+      </ol>
+    </li>
+    <li><a href="#极致的缓存方案">极致的缓存方案</a></li>
+    <li><a href="#当下的问题">当下的问题</a>
+      <ol>
+        <li><a href="#分布式锁方案">分布式锁方案</a></li>
+        <li><a href="#基于-mysql-的分布式任务调度">基于 mysql 的分布式任务调度</a>
+          <ol>
+            <li><a href="#抢占但是崩溃">抢占但是崩溃</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#tbd">tbd</a></li>
   </ol>
 </nav>
         </div>
@@ -412,7 +436,338 @@
 <p>如果热点功能崩溃了，怎么降低对整个系统的影响</p>
 </li>
 </ol>
-
+<h3 id="算法模型">算法模型
+</h3><p>Hacknews 模型 <code>Score = (p - 1) / (T + 2)^G</code></p>
+<p>模型认为 : 得票数最重要，而后热度随着时间衰减</p>
+<p>Reddit 模型</p>
+<p><img src="/p/rank-0x01/rank_model.png"
+	width="397"
+	height="388"
+	srcset="/p/rank-0x01/rank_model_hu_95f8df3bb4680b66.png 480w, /p/rank-0x01/rank_model_hu_5473b91a7ef21549.png 1024w"
+	loading="lazy"
+	
+		alt="rank_model.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="102"
+		data-flex-basis="245px"
+	
+></p>
+<h3 id="数据计算">数据计算
+</h3><p>考虑一点 : 是否需要 <strong>实时计算</strong></p>
+<h4 id="实时计算的难点">实时计算的难点
+</h4><ol>
+<li>
+<p>要扫描全表，找出所有帖子的点赞数和发表时间</p>
+</li>
+<li>
+<p>计算每个帖子的 score 并且全局排序</p>
+</li>
+</ol>
+<p>难点在于 : 全表扫描 + 全局排序</p>
+<p><img src="/p/rank-0x01/over_calc.png"
+	width="489"
+	height="251"
+	srcset="/p/rank-0x01/over_calc_hu_dc362c434b308ba5.png 480w, /p/rank-0x01/over_calc_hu_abc5c13ced5d0e56.png 1024w"
+	loading="lazy"
+	
+		alt="over_calc.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="194"
+		data-flex-basis="467px"
+	
+></p>
+<h4 id="异步计算">异步计算
+</h4><p>由于全表计算的困难，我们考虑使用异步定时计算</p>
+<p>解决方案包括 :</p>
+<ol>
+<li>
+<p>每隔一段时间就计算一次热榜</p>
+</li>
+<li>
+<p>在异步的情况下，计算的时间可以比较长，但是依旧不能太长</p>
+</li>
+</ol>
+<p>在这个基础上考虑</p>
+<ol>
+<li>
+<p>怎么设计缓存，保证有极好的查询性能</p>
+</li>
+<li>
+<p>怎么保证可用性，保证在任何情况下都能拿到热榜数据</p>
+</li>
+</ol>
+<h5 id="计算热榜的算法实现">计算热榜的算法实现
+</h5><ol>
+<li>
+<p>从数据库中拉取一批文章（batchSize），再找到对应的 点赞数，计算 score。</p>
+</li>
+<li>
+<p>使用一个数据结构来维持住 score 前 100 的数据。如果 该批次中有 score 比已有的前 100 的还要大，那么就从 数据结构中淘汰热度最低的。</p>
+</li>
+<li>
+<p>加入更高 score 的。</p>
+</li>
+<li>
+<p>全部数据计算完毕之后，数据结构中维护的就是热度前 100 的</p>
+</li>
+<li>
+<p>将这些数据装入 Redis 缓存</p>
+</li>
+</ol>
+<p>这里使用的数据结构可以使用已经封装好的优先队列 也就是小根堆</p>
+<p><img src="/p/rank-0x01/rank_calc.png"
+	width="348"
+	height="499"
+	srcset="/p/rank-0x01/rank_calc_hu_5988aae6f12e4895.png 480w, /p/rank-0x01/rank_calc_hu_339bffdeb28e23f9.png 1024w"
+	loading="lazy"
+	
+		alt="rank_calc.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="69"
+		data-flex-basis="167px"
+	
+></p>
+<p>放入缓存有两个关键点 :</p>
+<ol>
+<li>
+<p>热榜数据不需要保存在数据库中。 一些公司会把这些内容保存到数据库里面用于大数据分析</p>
+</li>
+<li>
+<p>在 Redis 的过期时间，要比计算间隔长，最好留有足够的重试时间 。</p>
+</li>
+</ol>
+<h3 id="查询接口的处理">查询接口的处理
+</h3><p>使用 <code>atomicx.Value</code> 进行本地缓存</p>
+<p>在操作的时候优先操作本地缓存，如果本地缓存找不到数据，再去查找 redis 缓存  。然后回写 本地缓存</p>
+<h3 id="可用性问题">可用性问题
+</h3><p>一个降级策略，对于 数据库和Redis 都崩崩溃的情况下 。 如果本地缓存也失败了</p>
+<p>那么可以增加一个 <code>ForceGet</code> 的流程，即 不管本地缓存是否已经过期 我们都获取数据 。</p>
+<h2 id="极致的缓存方案">极致的缓存方案
+</h2><p>在大多数时候，追求极致性能的缓存方案，差不多就是本地缓存 + Redis 缓存 + 数据库。</p>
+<p>那么：</p>
+<ul>
+<li>
+<p>查找的时候，就要先查找本地缓存，再查找 Redis，最后查找数据库</p>
+</li>
+<li>
+<p>更新的时候，就要先更新数据库，再更新本地缓存，最后更新（或者删除）Redis。核心在于一点，本地缓存的操作几乎不可能失败</p>
+</li>
+</ul>
+<p>高级的亮点在于：</p>
+<ul>
+<li>
+<p>本地缓存可以预加载。也就是在启动的时候预加载，或者在快过期的时候，提前加载</p>
+</li>
+<li>
+<p>本地缓存可以用于容错。也就是如果 Redis 崩溃，这时候依旧可以使用本地缓存。例如，正常过期时间是三分钟，但是本地缓存会设置五分钟。如果数据已经超过了三分钟，那么会尝试刷新缓存，如果刷新失败，那么就继续使用这个已经“过期”的本地缓存。在部分场景下，可以考虑让本地缓存永不过期，同时异步任务刷新本地缓存。好处是可以在 Redis 或者 MySQL 崩溃的时候，依旧提供缓存服务。</p>
+</li>
+</ul>
+<h2 id="当下的问题">当下的问题
+</h2><p>如果我们部署了多个实例，那么多个实例会同时执行这个计算热榜的任务。</p>
+<p>理论上来说 同一时刻计算的结果应该是一样的，但是大多数都不是同一时刻，这会导致 在实例1看上的 和 实例2看上的结果会有细微的差距</p>
+<p><img src="/p/rank-0x01/multi_calc.png"
+	width="386"
+	height="268"
+	srcset="/p/rank-0x01/multi_calc_hu_8857dd14af1ff4ce.png 480w, /p/rank-0x01/multi_calc_hu_1bea9d41d9c04462.png 1024w"
+	loading="lazy"
+	
+		alt="multi_calc.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="144"
+		data-flex-basis="345px"
+	
+></p>
+<p>因此我们需要考虑 控制任务只在一个节点上进行运行</p>
+<h3 id="分布式锁方案">分布式锁方案
+</h3><p>使用分布式锁来控制 goroutine 的计算方式</p>
+<ol>
+<li>
+<p>因为我们知道任务的运行 timeout 时间。 所以不需要开启续约</p>
+</li>
+<li>
+<p>另外解锁失败的话，最多 r.Timeout 就会自动释放 也不需要担心</p>
+</li>
+</ol>
+<p><img src="/p/rank-0x01/multi_lock.png"
+	width="416"
+	height="355"
+	srcset="/p/rank-0x01/multi_lock_hu_e16438b071704369.png 480w, /p/rank-0x01/multi_lock_hu_3497fa670ab766a1.png 1024w"
+	loading="lazy"
+	
+		alt="multi_lock.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="117"
+		data-flex-basis="281px"
+	
+></p>
+<p>但是上述方案会出现一个问题， 这个只能控制同一时刻 只有一个 goroutine 计算，但是控制不住 计算了一次之后别的机器就不要计算热榜了</p>
+<p>所以我们可以考虑</p>
+<ol>
+<li>在启动的时候拿到锁，而后不管几次都不会释放锁</li>
+</ol>
+<p><img src="/p/rank-0x01/lock_all_time.png"
+	width="417"
+	height="236"
+	srcset="/p/rank-0x01/lock_all_time_hu_cad385875d0ea466.png 480w, /p/rank-0x01/lock_all_time_hu_c97935f3cd417538.png 1024w"
+	loading="lazy"
+	
+		alt="lock_all_time.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="176"
+		data-flex-basis="424px"
+	
+></p>
+<p>分布式锁的具体实现如下</p>
+<ol>
+<li>
+<p>定时任务每次运行 ，尝试拿分布式锁</p>
+</li>
+<li>
+<p>如果拿到 异步开启自动续约</p>
+</li>
+<li>
+<p>下一次正常运行，不需要额外拿锁</p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">r</span><span class="w"> </span><span class="o">*</span><span class="nx">RankingJob</span><span class="p">)</span><span class="w"> </span><span class="nf">Run</span><span class="p">()</span><span class="w"> </span><span class="kt">error</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nx">r</span><span class="p">.</span><span class="nx">localLock</span><span class="p">.</span><span class="nf">Lock</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">defer</span><span class="w"> </span><span class="nx">r</span><span class="p">.</span><span class="nx">localLock</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="nx">r</span><span class="p">.</span><span class="nx">lock</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  	</span><span class="c1">// 说明你没拿到锁，你得试着拿锁</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  	</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">cancel</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nf">WithTimeout</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">(),</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  	</span><span class="k">defer</span><span class="w"> </span><span class="nf">cancel</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  	</span><span class="c1">// 我可以设置一个比较短的过期时间</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  	</span><span class="nx">lock</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">r</span><span class="p">.</span><span class="nx">client</span><span class="p">.</span><span class="nf">Lock</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">r</span><span class="p">.</span><span class="nx">key</span><span class="p">,</span><span class="w"> </span><span class="nx">r</span><span class="p">.</span><span class="nx">timeout</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">rlock</span><span class="p">.</span><span class="nx">FixIntervalRetry</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  		</span><span class="nx">Interval</span><span class="p">:</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nx">Millisecond</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  		</span><span class="nx">Max</span><span class="p">:</span><span class="w">      </span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  	</span><span class="p">},</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  	</span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  		</span><span class="c1">// 这边没拿到锁，极大概率是别人持有了锁</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  		</span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  	</span><span class="nx">r</span><span class="p">.</span><span class="nx">lock</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">lock</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  	</span><span class="c1">// 我怎么保证我这里，一直拿着这个锁？？？</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  	</span><span class="k">go</span><span class="w"> </span><span class="kd">func</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  		</span><span class="nx">r</span><span class="p">.</span><span class="nx">localLock</span><span class="p">.</span><span class="nf">Lock</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  		</span><span class="k">defer</span><span class="w"> </span><span class="nx">r</span><span class="p">.</span><span class="nx">localLock</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  		</span><span class="c1">// 自动续约机制</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  		</span><span class="nx">err1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">lock</span><span class="p">.</span><span class="nf">AutoRefresh</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">timeout</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  		</span><span class="c1">// 这里说明退出了续约机制</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  		</span><span class="c1">// 续约失败了怎么办？</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  		</span><span class="k">if</span><span class="w"> </span><span class="nx">err1</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  			</span><span class="c1">// 不怎么办</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  			</span><span class="c1">// 争取下一次，继续抢锁</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  			</span><span class="nx">r</span><span class="p">.</span><span class="nx">l</span><span class="p">.</span><span class="nf">Error</span><span class="p">(</span><span class="s">&#34;续约失败&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">logger</span><span class="p">.</span><span class="nf">Error</span><span class="p">(</span><span class="nx">err1</span><span class="p">.</span><span class="nf">Error</span><span class="p">()))</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  		</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  		</span><span class="nx">r</span><span class="p">.</span><span class="nx">lock</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">nil</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  		</span><span class="c1">// lock.Unlock(ctx)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  	</span><span class="p">}()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">cancel</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nf">WithTimeout</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">(),</span><span class="w"> </span><span class="nx">r</span><span class="p">.</span><span class="nx">timeout</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">defer</span><span class="w"> </span><span class="nf">cancel</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">r</span><span class="p">.</span><span class="nx">svc</span><span class="p">.</span><span class="nf">TopN</span><span class="p">(</span><span class="nx">ctx</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="基于-mysql-的分布式任务调度">基于 mysql 的分布式任务调度
+</h3><p>基本思路就是</p>
+<ol>
+<li>
+<p>在数据库中创建一张表， 里面是等待运行的定时任务</p>
+</li>
+<li>
+<p>所有的实例都试着从这个表里面 抢占 等待运行的任务 , 抢占到了就执行</p>
+</li>
+</ol>
+<p><img src="/p/rank-0x01/mysql_lock.png"
+	width="478"
+	height="302"
+	srcset="/p/rank-0x01/mysql_lock_hu_584238e36e8d11bc.png 480w, /p/rank-0x01/mysql_lock_hu_4917092a1431443b.png 1024w"
+	loading="lazy"
+	
+		alt="mysql_lock.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="158"
+		data-flex-basis="379px"
+	
+></p>
+<h4 id="抢占但是崩溃">抢占但是崩溃
+</h4><p>如果一个实例抢占了，但是还没执行完毕，直接崩溃了怎么办 ？</p>
+<p>引入 <strong>续约机制</strong> , 实例0 要不断更新数据库的更新时间证明自己还活着</p>
+<p><img src="/p/rank-0x01/mysql_resume.png"
+	width="486"
+	height="327"
+	srcset="/p/rank-0x01/mysql_resume_hu_14be4a9cf64572ae.png 480w, /p/rank-0x01/mysql_resume_hu_e5f2fcdbf6cc2b9f.png 1024w"
+	loading="lazy"
+	
+		alt="mysql_resume.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="148"
+		data-flex-basis="356px"
+	
+></p>
+<h2 id="tbd">tbd
+</h2>
 </section>
 
 
