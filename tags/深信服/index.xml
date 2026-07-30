@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>深信服 on GzzhM</title>
+        <link>https://ddlgitgzzhm.github.io/tags/%E6%B7%B1%E4%BF%A1%E6%9C%8D/</link>
+        <description>Recent content in 深信服 on GzzhM</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <copyright>GzzhM</copyright>
+        <lastBuildDate>Thu, 30 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/tags/%E6%B7%B1%E4%BF%A1%E6%9C%8D/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>[深信服] 面经每日一看</title>
+        <link>https://ddlgitgzzhm.github.io/p/interview_0x03/</link>
+        <pubDate>Thu, 30 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/p/interview_0x03/</guid>
+        <description>&lt;p&gt;本篇面经来自 : &lt;a class=&#34;link&#34; href=&#34;https://www.nowcoder.com/feed/main/detail/e28ee3b477754207a97a79516d7e7101?sourceSSR=search&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.nowcoder.com/feed/main/detail/e28ee3b477754207a97a79516d7e7101?sourceSSR=search&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;牛客上面最新的 golang 社招没有了，不确定是不是没有岗位面试 还是 工作了之后大家都不爱写面经导致的&lt;/p&gt;
+&lt;p&gt;随便找一个实习或者是校招的看看&lt;/p&gt;
+&lt;h2 id=&#34;开场基础&#34;&gt;开场基础
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;自我介绍 ( 我是xxx, 毕业 xxx, 曾经工作于 xxx 负责 xxx, 拥有 xxx 经验 )&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;当初为什么会选择做这两个核心项目？ (我这边预计一个是公司项目，一个手写的项目，一个AI项目)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;对于 AI 项目，AI发展是趋势，而且在公司的时候参加过黑客松，之前开过一个头，后面有空了之后就打算把他完善一下&lt;/li&gt;
+&lt;li&gt;由于在之前的公司 少了一部分 微服务,高并发相关的业务需求,所以单独写一个项目用于完善该部分的经验&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;项目1&#34;&gt;项目1
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;项目中用到了分片上传、断点续传，具体如何保证最终上传的文件是完整正确的？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如何保证所有分片拼接后绝对正确，不只是简单判断无缺片？&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这两个说实话不会，但是我记得我同事写过一个大文件上传的功能&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
