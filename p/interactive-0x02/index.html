@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="我们项目实现了一个 xxxx">
+<title>阅读、点赞、收藏 one</title>
+
+<link rel='canonical' href='https://ddlgitgzzhm.github.io/p/interactive-0x02/'>
+
+
+<link rel="stylesheet" href="/css/main.e6be911e19f348580e8feb6530553c5c37345cea42a77297eb8190a1f3245a55.css"><meta property='og:title' content="阅读、点赞、收藏 one">
+<meta property='og:description' content="我们项目实现了一个 xxxx">
+<meta property='og:url' content='https://ddlgitgzzhm.github.io/p/interactive-0x02/'>
+<meta property='og:site_name' content='GzzhM'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='gold' /><meta property='article:published_time' content='2026-07-29T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-07-29T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="阅读、点赞、收藏 one">
+<meta name="twitter:description" content="我们项目实现了一个 xxxx">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_216528b252869864.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍟</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">GzzhM</a></h1>
+            <h2 class="site-description">应该怎么做？</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/DDLGitGzzhM'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        <li>
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>文章归档</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>查找</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href='/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友情链接</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href='/time-line/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                
+                <span>Time Line</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href='/memo/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-messages" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M21 14l-3 -3h-7a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1h9a1 1 0 0 1 1 1v10" />
+  <path d="M14 15v2a1 1 0 0 1 -1 1h-7l-3 3v-10a1 1 0 0 1 1 -1h2" />
+</svg>
+
+
+
+                
+                <span>Memo</span>
+            </a>
+        </li>
+        
+        <li class="menu-item-deprecated">
+            <a href='/roadmap/'  title="已废弃">
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                
+                <span>Road Map</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#简历-preview">简历 preview</a>
+      <ol>
+        <li><a href="#数据库处理">数据库处理</a></li>
+        <li><a href="#缓存处理">缓存处理</a></li>
+        <li><a href="#消息队列">消息队列</a></li>
+        <li><a href="#问题">问题</a>
+          <ol>
+            <li><a href="#一致性问题的处理">一致性问题的处理</a></li>
+          </ol>
+        </li>
+        <li><a href="#亮点">亮点</a></li>
+      </ol>
+    </li>
+    <li><a href="#总分62--100">总分：<strong>62 / 100</strong></a>
+      <ol>
+        <li><a href="#分项打分">分项打分</a></li>
+        <li><a href="#优点">优点</a></li>
+        <li><a href="#缺点面试官会盯的">缺点（面试官会盯的）</a></li>
+        <li><a href="#建议按面试口述改">建议（按面试口述改）</a></li>
+        <li><a href="#面试官一句话结论">面试官一句话结论</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/golang/" >
+                Golang
+            </a>
+        
+            <a href="/categories/time-line/" style="background-color: #6c5ce7; color: #fff;">
+                Time Line
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/interactive-0x02/">阅读、点赞、收藏 one</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            我们项目实现了一个 xxxx
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2026-07-29</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="简历-preview">简历 preview
+</h2><p>简历上 :</p>
+<p>实现了一个通用的  阅读、点赞、收藏 服务。使用 Kafka 进行解耦</p>
+<p><strong>数据库表设计 :</strong></p>
+<p>通用表设计 :</p>
+<p><code>id,biz,bizid,readCnt,CollectCnt,LikeCnt</code></p>
+<p>为 <code>bizid 和 biz</code> 创建一个联合唯一索引</p>
+<p><strong>点赞表设计 :</strong></p>
+<p><code>id,biz,bizid,uid,status</code></p>
+<p>为 <code>bizid 和 biz</code>和<code>uid</code> 创建一个联合唯一索引, 用 <code>status</code>进行软删除</p>
+<h3 id="数据库处理">数据库处理
+</h3><p>对于 阅读、点赞、收藏 操作都会涉及到一个 <code>check-dothing</code> 的并发问题</p>
+<p>即 : 当用户点赞的时候 文章是否已经点赞过了，如果点赞过需要+1，否则创建 ，这里统一采用 <code>do on conflict update</code> 处理</p>
+<p>不过需要注意的是 : <code>update</code> 的时候我们需要保证自增 所以需要使用 <code>gorm.Expr</code> 来获取数据库运行的值，而不是直接 <code>select-update</code></p>
+<h3 id="缓存处理">缓存处理
+</h3><p>对于写入方，优先写入数据库，后写入redis</p>
+<p>对于查询方，优选查redis 然后再查数据库</p>
+<p>对于写入的过程，因为我们使用的 redis key 是一次缓存了 3个 like,read,collect 三个字段</p>
+<p>所以我们自增的时候使用的是 HINCRBY 指令，对于 key 不存在的情况下会有歧义 。所以使用 lua 控制了一下 仅只有 key 存在的时候才会自增</p>
+<h3 id="消息队列">消息队列
+</h3><p>新增 统计事件 引入 kafka 给 阅读、点赞服务解耦</p>
+<p>在阅读文章服务，使用 kafka 异步发送，设置 10次每批，1s超时进行聚合发送消息</p>
+<p>消费端同样设置 10条每批，1s超时来进行组合消费</p>
+<p>每次消费 使用一个 map 进行聚合 同个<code>biz+biz_id</code>的内容，优化之前一次点赞就需要一次 <code>insert</code> 的 操作</p>
+<p>并且通过开启事务进行消费，防止 MVCC 中的 刷盘操作，将原先要进行10次的刷盘降低到1次。</p>
+<h3 id="问题">问题
+</h3><h4 id="一致性问题的处理">一致性问题的处理
+</h4><p>不处理</p>
+<p>从业务上来说，没有必要要求阅读数、点赞数或者收藏数量一定是严格准确的，因为即便不准确，也不会对用户
+产生什么不好的影响。</p>
+<p>更进一步说，只有高并发的文章才会有并发问题。而高并发的文章，阅读数、点赞数或者收藏数本身就很多，你
+少一点点无所谓。</p>
+<h3 id="亮点">亮点
+</h3><p><strong>大量使用了事务</strong>，来保证在同时操作两个表的时候，保持住 ACID 语义。</p>
+<p><strong>大量使用了 Upsert 语义</strong> , 因为很多情况下我们都不知道数据库中是否已经存在数据</p>
+<p><strong>大量使用 lua 脚本来保证缓存中的数据是正确的</strong>, 但是没有彻底解决缓存一致性的问题</p>
+<p><strong>在查询接口中，只缓存总数数据，</strong>, 并不会缓存个人是否收藏或者点赞的数据。</p>
+<h2 id="总分62--100">总分：<strong>62 / 100</strong>
+</h2><p>按「2 年 Go 后端」面试标准看：方向对、有工程意识，但表达粗糙、关键点浅、经不起追问。面试里能撑 15–20 分钟开场，深入一追容易露怯。</p>
+<hr>
+<h3 id="分项打分">分项打分
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>维度</th>
+					<th>分数</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>业务建模与表设计</td>
+					<td>14/20</td>
+					<td>通用计数表 + 点赞明细表思路正确，索引方向对</td>
+			</tr>
+			<tr>
+					<td>并发与数据正确性</td>
+					<td>12/20</td>
+					<td>知道 Upsert / Expr，但 check-then-act、事务边界讲不清</td>
+			</tr>
+			<tr>
+					<td>缓存设计</td>
+					<td>12/20</td>
+					<td>Cache-Aside + Lua 防空 key 自增有亮点，一致性论证弱</td>
+			</tr>
+			<tr>
+					<td>消息队列与解耦</td>
+					<td>13/20</td>
+					<td>Kafka 批量、聚合、减刷盘有工程味道</td>
+			</tr>
+			<tr>
+					<td>表达与面试叙事</td>
+					<td>6/10</td>
+					<td>口语化、错别字多，「大量使用」空洞，像笔记不像口述稿</td>
+			</tr>
+			<tr>
+					<td>亮点与深度</td>
+					<td>5/10</td>
+					<td>亮点空泛，缺少权衡、失败场景、可观测性</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h3 id="优点">优点
+</h3><ol>
+<li><strong>表设计合理</strong>：<code>biz + biz_id</code> 抽象通用互动能力，点赞用 <code>(biz, biz_id, uid)</code> 唯一 + <code>status</code> 软删除，符合常见业务。</li>
+<li><strong>踩过真实坑</strong>：<code>ON CONFLICT</code> + <code>gorm.Expr</code> 自增、Redis <code>HINCRBY</code> 空 key 用 Lua 护栏，说明写过代码而不只是背概念。</li>
+<li><strong>有吞吐意识</strong>：Kafka 批量生产/消费、按 <code>biz+biz_id</code> 聚合、事务合并刷盘，对 2 年经验来说是加分项。</li>
+<li><strong>一致性取舍有业务理由</strong>：承认最终一致、高热内容允许误差，比死磕「强一致」更成熟——前提是能讲清边界。</li>
+</ol>
+<hr>
+<h3 id="缺点面试官会盯的">缺点（面试官会盯的）
+</h3><ol>
+<li><strong>「不处理一致性」太绝对</strong>：面试官会问：DB 成功 Redis 失败？Kafka 重复消费？取消点赞与计数对不上？需要有策略（补偿、对账、幂等），不能只说「少一点点无所谓」。</li>
+<li><strong>亮点写法很伤</strong>：连续「大量使用事务/Upsert/Lua」像模板，没有场景、没有代价。事务多 ≠ 好，还可能拖慢吞吐。</li>
+<li><strong>技术细节易被打穿</strong>：
+<ul>
+<li>写库再写缓存：失败怎么回滚/补偿？</li>
+<li>Lua「仅 key 存在才 incr」：key 不存在时计数会丢吗？靠查询回源还是异步重建？</li>
+<li>Kafka 聚合：幂等键、乱序、部分失败重试怎么做？</li>
+<li>「防止 MVCC 刷盘」表述不严谨，容易被纠正。</li>
+</ul>
+</li>
+<li><strong>缺个人态查询设计</strong>：只说不缓存「是否点赞」，但列表页如何批量查个人态？N+1？位图/本地缓存？没写。</li>
+<li><strong>表达与文档质量差</strong>：<code>优选/check-dothing</code>、front matter 的 <code>xxxx</code>、标点混乱，会降低「能讲清楚」的印象。</li>
+</ol>
+<hr>
+<h3 id="建议按面试口述改">建议（按面试口述改）
+</h3><ol>
+<li><strong>改成 STAR 口述结构</strong>：背景（互动服务压力）→ 方案（表 + Kafka + Redis）→ 难点（空 key、重复消费）→ 结果（QPS/延迟/错误率，哪怕是压测数字）。</li>
+<li><strong>准备 3 个追问标准答</strong>：
+<ul>
+<li>DB/Redis 不一致：异步对账 + 定时校准热点 key</li>
+<li>Kafka 至少一次：消费幂等（唯一键 + Upsert）</li>
+<li>取消点赞：<code>status</code> 翻转 + 计数 <code>GREATEST(cnt-1,0)</code>，防负值</li>
+</ul>
+</li>
+<li><strong>删掉「大量使用」</strong>，改成「在点赞写明细+改计数时用事务；计数更新用 Upsert；缓存用 Lua 保证 key 存在才 HINCRBY」。</li>
+<li><strong>补一张口述链路</strong>：读请求 → Redis Hash → miss 回源 DB 回填；写请求 → DB Upsert →（可选）发 Kafka → 消费者聚合写计数 → 更新缓存。</li>
+<li><strong>亮点换成可量化的 2–3 条</strong>：例如「批量聚合把热点文章写放大降到约 1/N」「Lua 避免幽灵 key」「个人态与总数分离降低缓存体积」。</li>
+</ol>
+<hr>
+<h3 id="面试官一句话结论">面试官一句话结论
+</h3><p>材料有「做过互动域」的骨架，适合当提纲；按现在写法直接上面试，深度和表达大概卡在 <strong>及格偏上</strong>。把一致性策略、幂等、失败路径和口述结构补齐，冲到 <strong>75–80</strong> 比较现实。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/gold/">Gold</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/kafka-0x01/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MQ kafka</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/sarma-kafka-0x01/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Sarma Kafka</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/rank-0x01/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">热榜 detail</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/channel_0x01/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">channel</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/interactive-0x01/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">阅读、点赞、收藏 detail</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="DDLGitGzzhM/ddlgitgzzhm.github.io"
+        issue-term="pathname"
+        
+        label="comments"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025 - 
+        
+        2026 GzzhM
+    </section>
+    
+    <section class="powerby">
+        使用 Golang 构建 <br />
+        
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script><script type="text/javascript" src="/ts/custom.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

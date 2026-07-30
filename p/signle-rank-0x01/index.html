@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="单机热榜的设计与实现">
+<title>单机热榜</title>
+
+<link rel='canonical' href='https://ddlgitgzzhm.github.io/p/signle-rank-0x01/'>
+
+
+<link rel="stylesheet" href="/css/main.e6be911e19f348580e8feb6530553c5c37345cea42a77297eb8190a1f3245a55.css"><meta property='og:title' content="单机热榜">
+<meta property='og:description' content="单机热榜的设计与实现">
+<meta property='og:url' content='https://ddlgitgzzhm.github.io/p/signle-rank-0x01/'>
+<meta property='og:site_name' content='GzzhM'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-07-30T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-07-30T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="单机热榜">
+<meta name="twitter:description" content="单机热榜的设计与实现">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_216528b252869864.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍟</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">GzzhM</a></h1>
+            <h2 class="site-description">应该怎么做？</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/DDLGitGzzhM'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        <li>
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>文章归档</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>查找</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href='/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友情链接</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href='/time-line/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                
+                <span>Time Line</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href='/memo/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-messages" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M21 14l-3 -3h-7a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1h9a1 1 0 0 1 1 1v10" />
+  <path d="M14 15v2a1 1 0 0 1 -1 1h-7l-3 3v-10a1 1 0 0 1 1 -1h2" />
+</svg>
+
+
+
+                
+                <span>Memo</span>
+            </a>
+        </li>
+        
+        <li class="menu-item-deprecated">
+            <a href='/roadmap/'  title="已废弃">
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                
+                <span>Road Map</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#zset-存储">ZSet 存储</a></li>
+    <li><a href="#读取">读取</a></li>
+    <li><a href="#问题">问题</a>
+      <ol>
+        <li><a href="#前-100-名的维护">前 100 名的维护</a></li>
+        <li><a href="#一亿个数据">一亿个数据</a></li>
+        <li><a href="#其他">其他</a></li>
+      </ol>
+    </li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#总分62--100按2-年-go-后端面试深度">总分：<strong>62 / 100</strong>（按「2 年 Go 后端」面试深度）</a>
+      <ol>
+        <li><a href="#分项供对照">分项（供对照）</a></li>
+        <li><a href="#优点">优点</a></li>
+        <li><a href="#缺点面试深挖会挂的点">缺点（面试深挖会挂的点）</a></li>
+        <li><a href="#建议按面试表述优先级改">建议（按面试表述优先级改）</a></li>
+        <li><a href="#面试官一句话结论">面试官一句话结论</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/golang/" >
+                Golang
+            </a>
+        
+            <a href="/categories/time-line/" style="background-color: #6c5ce7; color: #fff;">
+                Time Line
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/signle-rank-0x01/">单机热榜</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            单机热榜的设计与实现
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2026-07-30</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>高频面试题：如果要你找出按照点赞数量前 N 个数据，怎么做？</p>
+<p>设计一个高性能方案, 要求 :</p>
+<p><strong>综合考虑可以怎么利用缓存</strong>，包括 Redis 和本地缓存。要想清楚，你这个缓存方案拿出去面试究竟有没有竞争力，有没有让面试官眼前一亮的点</p>
+<p><strong>允许业务折中</strong>，但是你要说清楚你准备怎么折中</p>
+<h2 id="zset-存储">ZSet 存储
+</h2><p>我们在用户请求点赞 URL 之后, 使用 ZSET 进行维护一个点赞集合 。 使用 lua 脚本控制 <code>check-dothing</code> 的并发问题</p>
+<p>如果请求的 <code>key</code> 不存在, 则查找数据库将已有的 value 写入到 zset 中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">zsetName</span> <span class="o">=</span> <span class="n">KEYS</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1">-- 有序集合的名称</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">memberToIncrement</span> <span class="o">=</span> <span class="n">ARGV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>   <span class="c1">-- 要增加分数的元素</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- 获取指定元素的当前分数</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">currentScore</span> <span class="o">=</span> <span class="n">redis.call</span><span class="p">(</span><span class="s2">&#34;ZSCORE&#34;</span><span class="p">,</span> <span class="n">zsetName</span><span class="p">,</span> <span class="n">memberToIncrement</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">if</span> <span class="n">currentScore</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">-- 将分数加1</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">newScore</span> <span class="o">=</span> <span class="n">currentScore</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">-- 更新有序集合中指定元素的分数</span>
+</span></span><span class="line"><span class="cl">    <span class="n">redis.call</span><span class="p">(</span><span class="s2">&#34;ZADD&#34;</span><span class="p">,</span> <span class="n">zsetName</span><span class="p">,</span> <span class="n">newScore</span><span class="p">,</span> <span class="n">memberToIncrement</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">return</span> <span class="n">newScore</span>
+</span></span><span class="line"><span class="cl"><span class="kr">else</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">-- 指定元素不存在</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">return</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="kr">end</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果不存在那么需要把 value 写入到 zset 中</p>
+<ol>
+<li>
+<p>先判断 set-key 是否存在</p>
+</li>
+<li>
+<p>如果存在 判断 key 是否有统计，如果有则 +1 否则 设置 value</p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">zsetName</span> <span class="o">=</span> <span class="n">KEYS</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>                     <span class="c1">-- 有序集合的名称</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">memberToIncrement</span> <span class="o">=</span> <span class="n">ARGV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>            <span class="c1">-- 要增加分数的元素</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">specifiedScore</span> <span class="o">=</span> <span class="n">tonumber</span><span class="p">(</span><span class="n">ARGV</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>     <span class="c1">-- 指定的分数，如果未指定则默认为1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">-- 检查有序集合是否存在，如果不存在则创建并设置指定元素的分数</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">exists</span> <span class="o">=</span> <span class="n">redis.call</span><span class="p">(</span><span class="s2">&#34;EXISTS&#34;</span><span class="p">,</span> <span class="n">zsetName</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kr">if</span> <span class="n">exists</span> <span class="o">==</span> <span class="mi">0</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">    <span class="n">redis.call</span><span class="p">(</span><span class="s2">&#34;ZADD&#34;</span><span class="p">,</span> <span class="n">zsetName</span><span class="p">,</span> <span class="n">specifiedScore</span><span class="p">,</span> <span class="n">memberToIncrement</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">return</span> <span class="n">specifiedScore</span>
+</span></span><span class="line"><span class="cl"><span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">-- 获取指定元素的当前分数</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">currentScore</span> <span class="o">=</span> <span class="n">redis.call</span><span class="p">(</span><span class="s2">&#34;ZSCORE&#34;</span><span class="p">,</span> <span class="n">zsetName</span><span class="p">,</span> <span class="n">memberToIncrement</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">if</span> <span class="n">currentScore</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">-- 如果元素存在，将分数加1</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">newScore</span> <span class="o">=</span> <span class="n">currentScore</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">redis.call</span><span class="p">(</span><span class="s2">&#34;ZADD&#34;</span><span class="p">,</span> <span class="n">zsetName</span><span class="p">,</span> <span class="n">newScore</span><span class="p">,</span> <span class="n">memberToIncrement</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">return</span> <span class="n">newScore</span>
+</span></span><span class="line"><span class="cl"><span class="kr">else</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">-- 如果元素不存在，将分数设置为指定的分数</span>
+</span></span><span class="line"><span class="cl">    <span class="n">redis.call</span><span class="p">(</span><span class="s2">&#34;ZADD&#34;</span><span class="p">,</span> <span class="n">zsetName</span><span class="p">,</span> <span class="n">specifiedScore</span><span class="p">,</span> <span class="n">memberToIncrement</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">return</span> <span class="n">specifiedScore</span>
+</span></span><span class="line"><span class="cl"><span class="kr">end</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="读取">读取
+</h2><p>通过使用 <code>ZRevRangeWithScores</code> 来获取前 100 的数据进行获取 topN 的数据</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">r</span><span class="w"> </span><span class="o">*</span><span class="nx">RedisInteractiveCache</span><span class="p">)</span><span class="w"> </span><span class="nf">LikeTop</span><span class="p">(</span><span class="nx">ctx</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span><span class="w"> </span><span class="nx">biz</span><span class="w"> </span><span class="kt">string</span><span class="p">,)</span><span class="w"> </span><span class="p">([]</span><span class="nx">domain</span><span class="p">.</span><span class="nx">Interactive</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="kd">var</span><span class="w"> </span><span class="nx">start</span><span class="w"> </span><span class="kt">int64</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="kd">var</span><span class="w"> </span><span class="nx">end</span><span class="w"> </span><span class="kt">int64</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">99</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">key</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">r</span><span class="p">.</span><span class="nf">rankingKey</span><span class="p">(</span><span class="nx">biz</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">r</span><span class="p">.</span><span class="nx">client</span><span class="p">.</span><span class="nf">ZRevRangeWithScores</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">key</span><span class="p">,</span><span class="w"> </span><span class="nx">start</span><span class="p">,</span><span class="w"> </span><span class="nx">end</span><span class="p">).</span><span class="nf">Result</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">interactives</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">([]</span><span class="nx">domain</span><span class="p">.</span><span class="nx">Interactive</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">strconv</span><span class="p">.</span><span class="nf">ParseInt</span><span class="p">(</span><span class="nx">res</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">Member</span><span class="p">.(</span><span class="kt">string</span><span class="p">),</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">64</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">interactives</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">append</span><span class="p">(</span><span class="nx">interactives</span><span class="p">,</span><span class="w"> </span><span class="nx">domain</span><span class="p">.</span><span class="nx">Interactive</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nx">Biz</span><span class="p">:</span><span class="w">     </span><span class="nx">biz</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nx">BizId</span><span class="p">:</span><span class="w">   </span><span class="nx">id</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nx">LikeCnt</span><span class="p">:</span><span class="w"> </span><span class="nb">int64</span><span class="p">(</span><span class="nx">res</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">Score</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="p">})</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="nx">interactives</span><span class="p">,</span><span class="w"> </span><span class="kc">nil</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>优化 :</strong></p>
+<ol>
+<li>
+<p>我们业务上只需要  top100  可以考虑只维护 前1000的数据。 使用 <code>ZREMRANGEBYRANK</code> 删除 &gt; 1000的内容</p>
+</li>
+<li>
+<p>最坏情况下，无非就是冷门文章爆火，需要查一次数据库 。 但是爆火的冷门文章并发并不是很高</p>
+</li>
+</ol>
+<h2 id="问题">问题
+</h2><ol>
+<li>
+<p>前 100 名是一个高频数据</p>
+</li>
+<li>
+<p>如果有 一亿个 数据怎么维护 ？</p>
+</li>
+</ol>
+<p>我们假设 100b 一条数据， 100w 条就是 100mb , 1000w 条就是 1gb .  1亿条就是 10gb 这很夸张了</p>
+<h3 id="前-100-名的维护">前 100 名的维护
+</h3><p>可以结合一个本地缓存，使用定时任务更新本地缓存。 例如 每 5s 调用一次 <code>topN</code> 函数，放进本地缓存中</p>
+<p>本地缓存的实现</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span><span class="w"> </span><span class="nx">cacheImpl</span><span class="p">[</span><span class="nx">T</span><span class="w"> </span><span class="kt">any</span><span class="p">]</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">result</span><span class="w">         </span><span class="nx">sync</span><span class="p">.</span><span class="nx">Map</span><span class="w"> </span><span class="c1">// [string]cacheResult[T]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">successTimeout</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nx">Duration</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">failTimeout</span><span class="w">    </span><span class="nx">time</span><span class="p">.</span><span class="nx">Duration</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">lock</span><span class="w">           </span><span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">lockMap</span><span class="w">        </span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="一亿个数据">一亿个数据
+</h3><ol>
+<li>
+<p>分 key 写入 . 我们在写入数据的时候 按照每 100个元素一个。set 进行分 key 处理</p>
+</li>
+<li>
+<p>业务折中 。 并不是真的维护一亿，而是维护近期的点赞数据 例如 3天内的 。</p>
+<ul>
+<li>
+<p>这里可以考虑算法过期 例如  <code>likecnt / (age + 2) ^ gravity</code></p>
+</li>
+<li>
+<p>或者是考虑整个 key 过期</p>
+</li>
+</ul>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">r</span><span class="w"> </span><span class="o">*</span><span class="nx">RedisInteractiveCache</span><span class="p">)</span><span class="w"> </span><span class="nf">IncrRankingIfPresentV1</span><span class="p">(</span><span class="nx">ctx</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span><span class="w"> </span><span class="nx">biz</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">bizId</span><span class="w"> </span><span class="kt">int64</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">h</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">fnv</span><span class="p">.</span><span class="nf">New32a</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">_</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">h</span><span class="p">.</span><span class="nf">Write</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">bizId</span><span class="p">))</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">key</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;top_100_%d_%s&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">h</span><span class="p">.</span><span class="nf">Sum32</span><span class="p">()</span><span class="o">%</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="nx">biz</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">r</span><span class="p">.</span><span class="nx">client</span><span class="p">.</span><span class="nf">Eval</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">luaRankingIncr</span><span class="p">,</span><span class="w"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="nx">key</span><span class="p">},</span><span class="w"> </span><span class="nx">bizId</span><span class="p">).</span><span class="nf">Result</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="nx">err</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="nx">res</span><span class="p">.(</span><span class="kt">int64</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="nx">RankingUpdateErr</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>分key 版本的读取</p>
+<p>每次从同一个业务中的 100 个分key 中获取前100的数据，然后再合并出前100的数据</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">r</span><span class="w"> </span><span class="o">*</span><span class="nx">RedisInteractiveCache</span><span class="p">)</span><span class="w"> </span><span class="nf">LikeTopV1</span><span class="p">(</span><span class="nx">ctx</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span><span class="w"> </span><span class="nx">biz</span><span class="w"> </span><span class="kt">string</span><span class="p">,)</span><span class="w"> </span><span class="p">([]</span><span class="nx">domain</span><span class="p">.</span><span class="nx">Interactive</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// 我从 100 个 key 里面，各取前 100</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// 然后，合并再取前 100</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">interactives</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">([]</span><span class="nx">domain</span><span class="p">.</span><span class="nx">Interactive</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="kd">var</span><span class="w"> </span><span class="nx">start</span><span class="w"> </span><span class="kt">int64</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="kd">var</span><span class="w"> </span><span class="nx">end</span><span class="w"> </span><span class="kt">int64</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">99</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">key</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;top_100_%d_%s&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">i</span><span class="p">,</span><span class="w"> </span><span class="nx">biz</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">r</span><span class="p">.</span><span class="nx">client</span><span class="p">.</span><span class="nf">ZRevRangeWithScores</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">key</span><span class="p">,</span><span class="w"> </span><span class="nx">start</span><span class="p">,</span><span class="w"> </span><span class="nx">end</span><span class="p">).</span><span class="nf">Result</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">for</span><span class="w"> </span><span class="nx">j</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">j</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span><span class="w"> </span><span class="nx">j</span><span class="o">++</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">strconv</span><span class="p">.</span><span class="nf">ParseInt</span><span class="p">(</span><span class="nx">res</span><span class="p">[</span><span class="nx">j</span><span class="p">].</span><span class="nx">Member</span><span class="p">.(</span><span class="kt">string</span><span class="p">),</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">64</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nx">interactives</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">append</span><span class="p">(</span><span class="nx">interactives</span><span class="p">,</span><span class="w"> </span><span class="nx">domain</span><span class="p">.</span><span class="nx">Interactive</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="nx">Biz</span><span class="p">:</span><span class="w">     </span><span class="nx">biz</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="nx">BizId</span><span class="p">:</span><span class="w">   </span><span class="nx">id</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="nx">LikeCnt</span><span class="p">:</span><span class="w"> </span><span class="nb">int64</span><span class="p">(</span><span class="nx">res</span><span class="p">[</span><span class="nx">j</span><span class="p">].</span><span class="nx">Score</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="p">})</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// 进一步排序，然后取前 100</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="nx">interactives</span><span class="p">,</span><span class="w"> </span><span class="kc">nil</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="其他">其他
+</h3><p>借助定时计算，每次计算1000名，使用 Zset 来维护 1000 名的分数</p>
+<h2 id="总结">总结
+</h2><p>Q : 你是如何设计一个高性能的 排行榜服务</p>
+<p>我们使用 Zset 进行维护, 每次用户点赞的时候 会去操作一次 Zset 如果 Zset 不存在会获取数据库中的数据进行补充 。</p>
+<p>对外提供一个 TopN 的函数用于获取 topN 的数据。</p>
+<ol>
+<li>
+<p>使用 本地缓存 + 使用定时任务每5s 维护 Zset TopN 的任务 。</p>
+</li>
+<li>
+<p>对于大数据结构，我们采用了 分 key 的方案 , 并且考虑业务折中的方案 我们只维护最近3天的数据 。 对于超过 3 天的数据，我们会进行整 key 过期 。 如果有业务需求，可以考虑使用算法过期</p>
+</li>
+<li>
+<p>对于数据的读取，每次获取同一个业务中 100 个key内的 前100的数据，合并后再去前 100 的数据</p>
+</li>
+<li>
+<p>由于我们业务只需要前 100 的数据。 所以我们对于每一个 topN 维护一个 1000 数量的 Zset 。通过使用。ZREMRANGEBYRANK 进行裁剪优化</p>
+</li>
+</ol>
+<h2 id="总分62--100按2-年-go-后端面试深度">总分：<strong>62 / 100</strong>（按「2 年 Go 后端」面试深度）
+</h2><p>能讲清 ZSet + 本地缓存 + 业务折中，达到中级入门；但并发正确性、分片收益、读路径细节经不起追问，离「眼前一亮」还有距离。</p>
+<hr>
+<h3 id="分项供对照">分项（供对照）
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>维度</th>
+					<th>分</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>问题建模</td>
+					<td>14/20</td>
+					<td>点到高频读、亿级内存，缺一致性与降级</td>
+			</tr>
+			<tr>
+					<td>方案设计</td>
+					<td>16/25</td>
+					<td>ZSet / 本地缓存 / 分片方向对，收益与边界说不清</td>
+			</tr>
+			<tr>
+					<td>正确性与并发</td>
+					<td>10/20</td>
+					<td>Lua / 冷启动 / 裁剪与回写有明显漏洞</td>
+			</tr>
+			<tr>
+					<td>缓存竞争力</td>
+					<td>12/20</td>
+					<td>有本地缓存+定时刷新，缺亮点与可落地细节</td>
+			</tr>
+			<tr>
+					<td>表达与代码</td>
+					<td>10/15</td>
+					<td>结构尚可，代码未完成、笔误多</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h3 id="优点">优点
+</h3><ol>
+<li><strong>选型合理</strong>：点赞排行用 Redis ZSet + <code>ZRevRangeWithScores</code>，是面试官期望的标准答案。</li>
+<li><strong>有业务折中意识</strong>：只维护 Top1000、近 3 天、时间衰减公式，比死磕「全量精确」更像有线上经验。</li>
+<li><strong>意识到读热点</strong>：Top100 用本地缓存 + 定时刷新，方向正确。</li>
+<li><strong>有规模感</strong>：用「100B × 条数 ≈ 内存」估算，说明想过容量，而不是只背 API。</li>
+<li><strong>分片合并思路</strong>：每分片取 TopK 再归并，全局 Top100 在理论上是成立的（全局 Top100 一定落在各分片 Top100 里）。</li>
+</ol>
+<hr>
+<h3 id="缺点面试深挖会挂的点">缺点（面试深挖会挂的点）
+</h3><p><strong>1. 写路径 / Lua 正确性不足</strong></p>
+<ul>
+<li>第一段脚本：member 不存在就 <code>return 0</code>，和「key 不存在回源 DB」混在一起，边界说不清。</li>
+<li><code>EXISTS</code> + 回源 + <code>ZADD</code> 有典型竞态：多请求同时发现 key 不存在，会重复回源、互相覆盖。</li>
+<li>直接 <code>ZINCRBY</code> 通常更简单；自己做 <code>ZSCORE</code> + <code>ZADD</code> 却没讲清为何不用原子自增。</li>
+<li>冷门突爆「并发不高」不能当结论，面试官会问：缓存击穿 / 单飞 / 互斥回源怎么做？</li>
+</ul>
+<p><strong>2. 分 Key 没有真正解决「10GB」问题</strong></p>
+<ul>
+<li>分 100 个 key 只是<strong>摊内存到多实例/多槽</strong>，总量仍约 10GB，除非配合「每分片只留 Top1000 + 时间窗」。</li>
+<li>文档里「分 key」和「裁剪 1000 / 只保 3 天」缠在一起，容易被问成：分片到底解决什么？裁剪丢了的 member 再点赞怎么回写？</li>
+</ul>
+<p><strong>3. 读路径代码与叙述不一致</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-166:189:content/post/golang/webook/rank_signle/index.zh-cn.md" data-lang="166:189:content/post/golang/webook/rank_signle/index.zh-cn.md"><span class="line"><span class="cl">// ... 注释写合并再取前 100
+</span></span><span class="line"><span class="cl">return interactives, nil  // 实际未排序、未截断
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>100 次串行 <code>ZRevRange</code>，没提 Pipeline / 并发，高 QPS 下这是减分项。</li>
+<li><code>h.Write([]byte(bizId))</code>：<code>bizId</code> 是 <code>int64</code>，这样写编译都过不了，暴露准备粗糙。</li>
+</ul>
+<p><strong>4. 「眼前一亮」的缓存方案偏薄</strong></p>
+<ul>
+<li>本地缓存只给了结构体字段，没有：过期策略、失败降级、单飞、多实例一致性、Redis 挂了怎么办。</li>
+<li>5s 定时刷新可以，但要主动说清楚：<strong>最多 5s 脏读</strong>、是否可接受、写后是否主动失效。</li>
+</ul>
+<p><strong>5. 总结段有自相矛盾</strong></p>
+<ul>
+<li>一边「只维护近 3 天」，一边「每个 topN 维护 1000 的 ZSet 裁剪」——没串成一条清晰主路径（写什么、裁什么、读什么、何时过期）。</li>
+</ul>
+<hr>
+<h3 id="建议按面试表述优先级改">建议（按面试表述优先级改）
+</h3><p><strong>先定一条主链路（30 秒版本）</strong></p>
+<blockquote>
+<p>点赞写：<code>ZINCRBY</code>（或 Lua 原子自增）→ 可选裁剪到 TopK → 读：本地缓存 Top100（定时/主动刷新）→ Redis 兜底 → 业务只保证近 N 天、允许秒级延迟。</p>
+</blockquote>
+<p><strong>补齐会被追问的 5 个点</strong></p>
+<ol>
+<li><strong>冷启动</strong>：key 不存在时 singleflight / 分布式锁回源，防止击穿。</li>
+<li><strong>与点赞主链路一致性</strong>：双写失败怎么补偿（异步对账 / 消息队列重放）。</li>
+<li><strong>分片收益</strong>：说清是「内存分散 + 裁剪」还是「近似排行」；读用 Pipeline。</li>
+<li><strong>本地缓存</strong>：成功/失败 TTL、刷新抖动、降级返回旧数据。</li>
+<li><strong>降级</strong>：排行挂了不影响点赞主流程（熔断、开关、返回空或历史快照）。</li>
+</ol>
+<p><strong>代码准备</strong></p>
+<ul>
+<li>把 <code>LikeTopV1</code> 补完：归并堆 / <code>sort</code> + 截断 Top100。</li>
+<li>分片 key 用 <code>strconv.FormatInt</code>；Lua 收敛成一种语义讲透。</li>
+<li>修标题笔误 <code>signle</code> → <code>single</code>，避免细节减分。</li>
+</ul>
+<p><strong>想加分的「亮点」（选 1～2 个讲深）</strong></p>
+<ul>
+<li>读写分离：写只碰分片 ZSet，读只碰「聚合后的 Top100 专用 key」（定时任务算好写入），线上读路径 O(1)。</li>
+<li>或：消息异步更新排行，点赞接口不直连大 ZSet，用最终一致性换写吞吐。</li>
+</ul>
+<hr>
+<h3 id="面试官一句话结论">面试官一句话结论
+</h3><p>作为 2 年经验的准备稿：<strong>骨架有了（约及格偏上），深度和正确性不够</strong>。把「并发回源、分片真实收益、读合并实现、一致性与降级」补成能闭环口述的一条故事，分数可以到 <strong>75～80</strong>；再补上「聚合 Top key / 异步更新」一类可落地亮点，才接近「眼前一亮」。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/kafka-0x01/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MQ kafka</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/sarma-kafka-0x01/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Sarma Kafka</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/rank-0x01/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">热榜 detail</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/interactive-0x02/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">阅读、点赞、收藏 one</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/channel_0x01/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">channel</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="DDLGitGzzhM/ddlgitgzzhm.github.io"
+        issue-term="pathname"
+        
+        label="comments"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025 - 
+        
+        2026 GzzhM
+    </section>
+    
+    <section class="powerby">
+        使用 Golang 构建 <br />
+        
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script><script type="text/javascript" src="/ts/custom.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

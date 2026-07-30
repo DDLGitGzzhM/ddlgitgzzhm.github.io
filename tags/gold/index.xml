@@ -690,11 +690,38 @@
 </description>
         </item>
         <item>
-        <title>阅读、点赞、收藏 one</title>
-        <link>https://ddlgitgzzhm.github.io/p/interactive-0x01/</link>
+        <title>热榜 detail</title>
+        <link>https://ddlgitgzzhm.github.io/p/rank-0x01/</link>
         <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
         
-        <guid>https://ddlgitgzzhm.github.io/p/interactive-0x01/</guid>
+        <guid>https://ddlgitgzzhm.github.io/p/rank-0x01/</guid>
+        <description>&lt;h2 id=&#34;简历-preview&#34;&gt;简历 preview
+&lt;/h2&gt;&lt;p&gt;简历上 :&lt;/p&gt;
+&lt;p&gt;设计了一个 热榜&lt;/p&gt;
+&lt;p&gt;需求分析 :&lt;/p&gt;
+&lt;p&gt;一些问题 ：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;什么样的才算是热点 ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如何计算热点 ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;热点必然带来高并发，怎么保证性能&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果热点功能崩溃了，怎么降低对整个系统的影响&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        <item>
+        <title>阅读、点赞、收藏 one</title>
+        <link>https://ddlgitgzzhm.github.io/p/interactive-0x02/</link>
+        <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/p/interactive-0x02/</guid>
         <description>&lt;h2 id=&#34;简历-preview&#34;&gt;简历 preview
 &lt;/h2&gt;&lt;p&gt;简历上 :&lt;/p&gt;
 &lt;p&gt;实现了一个通用的  阅读、点赞、收藏 服务。使用 Kafka 进行解耦&lt;/p&gt;
