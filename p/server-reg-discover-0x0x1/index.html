@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="我们项目实现了一个 xxxx">
+<title>服务注册与发现 detail</title>
+
+<link rel='canonical' href='https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/'>
+
+
+<link rel="stylesheet" href="/css/main.e6be911e19f348580e8feb6530553c5c37345cea42a77297eb8190a1f3245a55.css"><meta property='og:title' content="服务注册与发现 detail">
+<meta property='og:description' content="我们项目实现了一个 xxxx">
+<meta property='og:url' content='https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/'>
+<meta property='og:site_name' content='GzzhM'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='gold' /><meta property='article:published_time' content='2026-08-01T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-08-01T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="服务注册与发现 detail">
+<meta name="twitter:description" content="我们项目实现了一个 xxxx">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_216528b252869864.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍟</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">GzzhM</a></h1>
+            <h2 class="site-description">应该怎么做？</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/DDLGitGzzhM'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        <li>
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>文章归档</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>查找</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href='/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友情链接</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href='/time-line/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                
+                <span>Time Line</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href='/memo/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-messages" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M21 14l-3 -3h-7a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1h9a1 1 0 0 1 1 1v10" />
+  <path d="M14 15v2a1 1 0 0 1 -1 1h-7l-3 3v-10a1 1 0 0 1 1 -1h2" />
+</svg>
+
+
+
+                
+                <span>Memo</span>
+            </a>
+        </li>
+        
+        <li class="menu-item-deprecated">
+            <a href='/roadmap/'  title="已废弃">
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                
+                <span>Road Map</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#简历-preview">简历 preview</a></li>
+    <li><a href="#服务注册与发现">服务注册与发现</a>
+      <ol>
+        <li><a href="#服务注册">服务注册</a></li>
+        <li><a href="#服务端和注册中心保持心跳">服务端和注册中心保持心跳</a></li>
+        <li><a href="#服务下线">服务下线</a></li>
+      </ol>
+    </li>
+    <li><a href="#接入服务注册与发现">接入服务注册与发现</a></li>
+    <li><a href="#服务注册与发现的高可用">服务注册与发现的高可用</a>
+      <ol>
+        <li><a href="#高可用">高可用</a></li>
+      </ol>
+    </li>
+    <li><a href="#面试">面试</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/golang/" >
+                Golang
+            </a>
+        
+            <a href="/categories/time-line/" style="background-color: #6c5ce7; color: #fff;">
+                Time Line
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/server-reg-discover-0x0x1/">服务注册与发现 detail</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            我们项目实现了一个 xxxx
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2026-08-01</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="简历-preview">简历 preview
+</h2><p>简历上 :</p>
+<ol>
+<li>使用 xxx 进行了服务的注册与框架</li>
+</ol>
+<h2 id="服务注册与发现">服务注册与发现
+</h2><p>在微服务架构里面，我怎么知道哪些机器上部署了我需要的服务</p>
+<p>最原始的形态就是 : <code>IP+端口</code>  . 不过这个不能称为 服务注册与发现 ， 因为既没有注册 也没有发现</p>
+<p>缺点 :</p>
+<ol>
+<li>IP 是会变的 不好维护</li>
+</ol>
+<p><img src="/p/server-reg-discover-0x0x1/find.png"
+	width="675"
+	height="429"
+	srcset="/p/server-reg-discover-0x0x1/find_hu_a6f2cc4b161c083e.png 480w, /p/server-reg-discover-0x0x1/find_hu_efaf53766c14ddcf.png 1024w"
+	loading="lazy"
+	
+		alt="find.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="157"
+		data-flex-basis="377px"
+	
+></p>
+<p>另外一个思路 : 使用域名 + DNS . 因为 IP 经常变动 所以考虑使用域名代替</p>
+<p>考虑解析域名的开销，所以 一般在客户端这边缓存解析域名的结果</p>
+<p>优点 :</p>
+<ul>
+<li>简单好用 ，不需要额外的组建</li>
+</ul>
+<p>缺点 :</p>
+<ul>
+<li>
+<p>如果客户端不缓存 DNS 结果，每次调用都会多一次调用</p>
+</li>
+<li>
+<p>如果客户端缓存 DNS 结果，那么就可能无法及时更新本地可用节点列表</p>
+</li>
+</ul>
+<p><img src="/p/server-reg-discover-0x0x1/dns_find.png"
+	width="740"
+	height="323"
+	srcset="/p/server-reg-discover-0x0x1/dns_find_hu_cb4d1e55cfd910c9.png 480w, /p/server-reg-discover-0x0x1/dns_find_hu_a1225296b7346ed0.png 1024w"
+	loading="lazy"
+	
+		alt="dns_find.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="229"
+		data-flex-basis="549px"
+	
+></p>
+<p>域名解析的问题是不能及时得到通知，那么能不能让域名服务器主动通知一下节点变化</p>
+<p>注册中心的原理就是 ：</p>
+<ol>
+<li>
+<p>服务端在启动的时候 主动在主持中心注册一下</p>
+</li>
+<li>
+<p>客户端在第一次发起调用之前，先查询注册中心，而后缓存住可用节点</p>
+</li>
+<li>
+<p>注册中心在服务端节点发生变动的时候 ,<code>主动通知</code> 客户端</p>
+</li>
+</ol>
+<p>缺点 :</p>
+<ol>
+<li>注册中心在大规模集群下，会成为瓶颈</li>
+</ol>
+<p><img src="/p/server-reg-discover-0x0x1/register_middle.png"
+	width="708"
+	height="325"
+	srcset="/p/server-reg-discover-0x0x1/register_middle_hu_7718039428b93bdd.png 480w, /p/server-reg-discover-0x0x1/register_middle_hu_91d78fbea98fd909.png 1024w"
+	loading="lazy"
+	
+		alt="register_middle.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="217"
+		data-flex-basis="522px"
+	
+></p>
+<h3 id="服务注册">服务注册
+</h3><p>问题 :</p>
+<ol>
+<li>什么时候进行服务注册 ？</li>
+</ol>
+<ul>
+<li>
+<p>暴露端口的时候注册 ？</p>
+</li>
+<li>
+<p>健康检查通过就注册 ？</p>
+</li>
+<li>
+<p>所有前置计算完成之后再注册</p>
+</li>
+</ul>
+<p><img src="/p/server-reg-discover-0x0x1/server_reg.png"
+	width="706"
+	height="380"
+	srcset="/p/server-reg-discover-0x0x1/server_reg_hu_475a93aba64da35e.png 480w, /p/server-reg-discover-0x0x1/server_reg_hu_80c800b03fa95dd3.png 1024w"
+	loading="lazy"
+	
+		alt="server_reg.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="185"
+		data-flex-basis="445px"
+	
+></p>
+<ol start="2">
+<li>注册什么数据 ？</li>
+</ol>
+<ul>
+<li>
+<p>定位信息 : IP + 端口</p>
+</li>
+<li>
+<p>其他信息. 一般和微服务框架等具体功能有关系</p>
+</li>
+</ul>
+<h3 id="服务端和注册中心保持心跳">服务端和注册中心保持心跳
+</h3><ol>
+<li>
+<p>服务端主动保持心跳，服务端每隔一段时间就朝着注册中心发送一个心跳</p>
+</li>
+<li>
+<p>注册中心主动 。 注册中心主动朝着所有服务端节点发送心跳</p>
+</li>
+</ol>
+<p>主要讨论 ：</p>
+<ul>
+<li>心跳间隔多长</li>
+<li>如何判定节点连不上 ？ 一次心跳连不上还是多次心跳连不上 ？</li>
+</ul>
+<p><img src="/p/server-reg-discover-0x0x1/service_keep_live.png"
+	width="634"
+	height="568"
+	srcset="/p/server-reg-discover-0x0x1/service_keep_live_hu_73774fdcc36aee9f.png 480w, /p/server-reg-discover-0x0x1/service_keep_live_hu_84f97a1d01f7831b.png 1024w"
+	loading="lazy"
+	
+		alt="service_keep_live.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="111"
+		data-flex-basis="267px"
+	
+></p>
+<h3 id="服务下线">服务下线
+</h3><p>如果服务端关闭了，就需要通知注册中心，而后注册中心通知客户端</p>
+<p>客户端就会把该节点从可用列表里面挪走</p>
+<p><img src="/p/server-reg-discover-0x0x1/service_delisted.png"
+	width="729"
+	height="354"
+	srcset="/p/server-reg-discover-0x0x1/service_delisted_hu_5b80815c05ca4cb4.png 480w, /p/server-reg-discover-0x0x1/service_delisted_hu_d046d1dc7f7a4f2e.png 1024w"
+	loading="lazy"
+	
+		alt="service_delisted.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="205"
+		data-flex-basis="494px"
+	
+></p>
+<p>服务端优雅下线 :</p>
+<p>问题 : 服务端 A 不能告诉注册中心自己下线了之后就立刻退出</p>
+<ol>
+<li>
+<p>需要先通知注册中心，下线</p>
+</li>
+<li>
+<p>而后 服务端不在接受新请求。（在网络中读取一般的请求，也会直接拒绝）</p>
+<ul>
+<li>中间件类似的机制</li>
+</ul>
+</li>
+<li>
+<p>服务端需要等待正在处理的请求结束</p>
+</li>
+<li>
+<p>等服务端已经接受的请求处理完毕，服务端结束运行</p>
+</li>
+<li>
+<p>还需要额外考虑 定时任务，分布式事务，数据库事务</p>
+</li>
+</ol>
+<p><img src="/p/server-reg-discover-0x0x1/service_prefect_down.png"
+	width="728"
+	height="316"
+	srcset="/p/server-reg-discover-0x0x1/service_prefect_down_hu_ab761365147608fb.png 480w, /p/server-reg-discover-0x0x1/service_prefect_down_hu_88b89e71f075aeed.png 1024w"
+	loading="lazy"
+	
+		alt="service_prefect_down.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="230"
+		data-flex-basis="552px"
+	
+></p>
+<h2 id="接入服务注册与发现">接入服务注册与发现
+</h2><h2 id="服务注册与发现的高可用">服务注册与发现的高可用
+</h2><h3 id="高可用">高可用
+</h3><p>高可用围绕三个点三条边来思考 :</p>
+<ul>
+<li>
+<p>服务端崩溃怎么办？</p>
+</li>
+<li>
+<p>注册中心崩溃怎么办 ？</p>
+</li>
+<li>
+<p>客户端崩溃 ？。不需要处理</p>
+</li>
+</ul>
+<p>三条边 :</p>
+<ul>
+<li>
+<p>注册中心和服务端之间无法通信怎么办 ？</p>
+</li>
+<li>
+<p>注册中心和客户端之间无法通信怎么办？</p>
+</li>
+<li>
+<p>客户端和服务端之间无法通信怎么办？</p>
+<ul>
+<li>failover</li>
+</ul>
+</li>
+</ul>
+<p><img src="/p/server-reg-discover-0x0x1/register_middle.png"
+	width="708"
+	height="325"
+	srcset="/p/server-reg-discover-0x0x1/register_middle_hu_7718039428b93bdd.png 480w, /p/server-reg-discover-0x0x1/register_middle_hu_91d78fbea98fd909.png 1024w"
+	loading="lazy"
+	
+		alt="register_middle.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="217"
+		data-flex-basis="522px"
+	
+></p>
+<p><strong>服务端崩溃 :</strong></p>
+<p>服务端崩溃 -&gt; 注册中心发现 -&gt; 通知客户端, 中间有时间间隔</p>
+<p>简单来说 如果服务端崩溃，那么我们就要切换一个节点来重试 也就是 <code>failover</code></p>
+<p><strong>注册中心崩溃了怎么办 :</strong></p>
+<p>先描述很难崩溃</p>
+<ul>
+<li>
+<p>启用注册中心高可用方案, 例如部署一个集群，多活方案</p>
+</li>
+<li>
+<p>双注册中心方案, 注册的时候同时注册两个注册中心，在一个注册中心崩溃之后可用使用离国内外i啊一个注册中心</p>
+</li>
+<li>
+<p>按照业务拆分多个注册中心</p>
+</li>
+</ul>
+<p>然后在解决真的崩溃的问题</p>
+<p>如果真的崩溃了，客户端怎么办</p>
+<ul>
+<li>使用本地缓存的可用节点信息</li>
+</ul>
+<p>如果真的崩溃了，服务端怎么办</p>
+<ul>
+<li>如果是新节点，注册失败直接退出服务，如果是老节点继续提供服务</li>
+</ul>
+<p><strong>注册中心与服务端无法通信:</strong></p>
+<ol>
+<li>继续保持服务，并且告警，并且考虑是否要退出</li>
+</ol>
+<h2 id="面试">面试
+</h2><ol>
+<li>
+<p>服务注册与发现，有哪些组件</p>
+<ul>
+<li>客户端、服务端、注册中心</li>
+<li>监控平台</li>
+</ul>
+</li>
+<li>
+<p>什么是注册中心 ？ 为什么要使用注册中心 ？ 直接使用 IP 或域名行不行？</p>
+<ul>
+<li>一种中间件 用于注册支持的服务的内容</li>
+</ul>
+</li>
+<li>
+<p>注册的时候，注册了什么数据</p>
+<ul>
+<li>定位信息 和 其他信息 （分组信息，权重信息）</li>
+</ul>
+</li>
+<li>
+<p>在使用注册中心的整个流程是什么</p>
+</li>
+<li>
+<p>注册中心怎么知道服务端已经崩溃</p>
+</li>
+<li>
+<p>注册中心和服务端怎么保持心跳</p>
+</li>
+<li>
+<p>心跳的间隔怎么设置 ？ 有什么影响</p>
+</li>
+<li>
+<p>服怎么避免偶发性心跳失败</p>
+</li>
+<li>
+<p>服务端在下线的时候需要注意什么？ 具体的步骤是什么</p>
+</li>
+<li>
+<p>客户端和注册中心需要保持心跳吗</p>
+</li>
+</ol>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/gold/">Gold</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/migrate-0x01/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">不停机数据迁移 detail</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/migrate-0x01/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">微服务 detail</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/kafka-0x01/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MQ kafka</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/sarma-kafka-0x01/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Sarma Kafka</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/rank-0x01/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">热榜 detail</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="DDLGitGzzhM/ddlgitgzzhm.github.io"
+        issue-term="pathname"
+        
+        label="comments"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025 - 
+        
+        2026 GzzhM
+    </section>
+    
+    <section class="powerby">
+        使用 Golang 构建 <br />
+        
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script><script type="text/javascript" src="/ts/custom.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

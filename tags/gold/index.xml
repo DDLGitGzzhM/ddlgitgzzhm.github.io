@@ -7,7 +7,339 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>GzzhM</copyright>
-        <lastBuildDate>Fri, 31 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/tags/gold/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 01 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/tags/gold/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>服务注册与发现 detail</title>
+        <link>https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/</link>
+        <pubDate>Sat, 01 Aug 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/</guid>
+        <description>&lt;h2 id=&#34;简历-preview&#34;&gt;简历 preview
+&lt;/h2&gt;&lt;p&gt;简历上 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;使用 xxx 进行了服务的注册与框架&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;服务注册与发现&#34;&gt;服务注册与发现
+&lt;/h2&gt;&lt;p&gt;在微服务架构里面，我怎么知道哪些机器上部署了我需要的服务&lt;/p&gt;
+&lt;p&gt;最原始的形态就是 : &lt;code&gt;IP+端口&lt;/code&gt;  . 不过这个不能称为 服务注册与发现 ， 因为既没有注册 也没有发现&lt;/p&gt;
+&lt;p&gt;缺点 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;IP 是会变的 不好维护&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/find.png&#34;
+	width=&#34;675&#34;
+	height=&#34;429&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/find_hu_a6f2cc4b161c083e.png 480w, https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/find_hu_efaf53766c14ddcf.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;find.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;157&#34;
+		data-flex-basis=&#34;377px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;另外一个思路 : 使用域名 + DNS . 因为 IP 经常变动 所以考虑使用域名代替&lt;/p&gt;
+&lt;p&gt;考虑解析域名的开销，所以 一般在客户端这边缓存解析域名的结果&lt;/p&gt;
+&lt;p&gt;优点 :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;简单好用 ，不需要额外的组建&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;缺点 :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;如果客户端不缓存 DNS 结果，每次调用都会多一次调用&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果客户端缓存 DNS 结果，那么就可能无法及时更新本地可用节点列表&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/dns_find.png&#34;
+	width=&#34;740&#34;
+	height=&#34;323&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/dns_find_hu_cb4d1e55cfd910c9.png 480w, https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/dns_find_hu_a1225296b7346ed0.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;dns_find.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;229&#34;
+		data-flex-basis=&#34;549px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;域名解析的问题是不能及时得到通知，那么能不能让域名服务器主动通知一下节点变化&lt;/p&gt;
+&lt;p&gt;注册中心的原理就是 ：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;服务端在启动的时候 主动在主持中心注册一下&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;客户端在第一次发起调用之前，先查询注册中心，而后缓存住可用节点&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;注册中心在服务端节点发生变动的时候 ,&lt;code&gt;主动通知&lt;/code&gt; 客户端&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;缺点 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;注册中心在大规模集群下，会成为瓶颈&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/register_middle.png&#34;
+	width=&#34;708&#34;
+	height=&#34;325&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/register_middle_hu_7718039428b93bdd.png 480w, https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/register_middle_hu_91d78fbea98fd909.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;register_middle.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;217&#34;
+		data-flex-basis=&#34;522px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;服务注册&#34;&gt;服务注册
+&lt;/h3&gt;&lt;p&gt;问题 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;什么时候进行服务注册 ？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;暴露端口的时候注册 ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;健康检查通过就注册 ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;所有前置计算完成之后再注册&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/server_reg.png&#34;
+	width=&#34;706&#34;
+	height=&#34;380&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/server_reg_hu_475a93aba64da35e.png 480w, https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/server_reg_hu_80c800b03fa95dd3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;server_reg.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;185&#34;
+		data-flex-basis=&#34;445px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;注册什么数据 ？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;定位信息 : IP + 端口&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;其他信息. 一般和微服务框架等具体功能有关系&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;服务端和注册中心保持心跳&#34;&gt;服务端和注册中心保持心跳
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;服务端主动保持心跳，服务端每隔一段时间就朝着注册中心发送一个心跳&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;注册中心主动 。 注册中心主动朝着所有服务端节点发送心跳&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;主要讨论 ：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;心跳间隔多长&lt;/li&gt;
+&lt;li&gt;如何判定节点连不上 ？ 一次心跳连不上还是多次心跳连不上 ？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/service_keep_live.png&#34;
+	width=&#34;634&#34;
+	height=&#34;568&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/service_keep_live_hu_73774fdcc36aee9f.png 480w, https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/service_keep_live_hu_84f97a1d01f7831b.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;service_keep_live.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;111&#34;
+		data-flex-basis=&#34;267px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;服务下线&#34;&gt;服务下线
+&lt;/h3&gt;&lt;p&gt;如果服务端关闭了，就需要通知注册中心，而后注册中心通知客户端&lt;/p&gt;
+&lt;p&gt;客户端就会把该节点从可用列表里面挪走&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/service_delisted.png&#34;
+	width=&#34;729&#34;
+	height=&#34;354&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/service_delisted_hu_5b80815c05ca4cb4.png 480w, https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/service_delisted_hu_d046d1dc7f7a4f2e.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;service_delisted.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;205&#34;
+		data-flex-basis=&#34;494px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;服务端优雅下线 :&lt;/p&gt;
+&lt;p&gt;问题 : 服务端 A 不能告诉注册中心自己下线了之后就立刻退出&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;需要先通知注册中心，下线&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;而后 服务端不在接受新请求。（在网络中读取一般的请求，也会直接拒绝）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;中间件类似的机制&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;服务端需要等待正在处理的请求结束&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;等服务端已经接受的请求处理完毕，服务端结束运行&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;还需要额外考虑 定时任务，分布式事务，数据库事务&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/service_prefect_down.png&#34;
+	width=&#34;728&#34;
+	height=&#34;316&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/service_prefect_down_hu_ab761365147608fb.png 480w, https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/service_prefect_down_hu_88b89e71f075aeed.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;service_prefect_down.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;230&#34;
+		data-flex-basis=&#34;552px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;接入服务注册与发现&#34;&gt;接入服务注册与发现
+&lt;/h2&gt;&lt;h2 id=&#34;服务注册与发现的高可用&#34;&gt;服务注册与发现的高可用
+&lt;/h2&gt;&lt;h3 id=&#34;高可用&#34;&gt;高可用
+&lt;/h3&gt;&lt;p&gt;高可用围绕三个点三条边来思考 :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;服务端崩溃怎么办？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;注册中心崩溃怎么办 ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;客户端崩溃 ？。不需要处理&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;三条边 :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;注册中心和服务端之间无法通信怎么办 ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;注册中心和客户端之间无法通信怎么办？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;客户端和服务端之间无法通信怎么办？&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;failover&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/register_middle.png&#34;
+	width=&#34;708&#34;
+	height=&#34;325&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/register_middle_hu_7718039428b93bdd.png 480w, https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/register_middle_hu_91d78fbea98fd909.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;register_middle.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;217&#34;
+		data-flex-basis=&#34;522px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;服务端崩溃 :&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;服务端崩溃 -&amp;gt; 注册中心发现 -&amp;gt; 通知客户端, 中间有时间间隔&lt;/p&gt;
+&lt;p&gt;简单来说 如果服务端崩溃，那么我们就要切换一个节点来重试 也就是 &lt;code&gt;failover&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注册中心崩溃了怎么办 :&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;先描述很难崩溃&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;启用注册中心高可用方案, 例如部署一个集群，多活方案&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;双注册中心方案, 注册的时候同时注册两个注册中心，在一个注册中心崩溃之后可用使用离国内外i啊一个注册中心&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;按照业务拆分多个注册中心&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;然后在解决真的崩溃的问题&lt;/p&gt;
+&lt;p&gt;如果真的崩溃了，客户端怎么办&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用本地缓存的可用节点信息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果真的崩溃了，服务端怎么办&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;如果是新节点，注册失败直接退出服务，如果是老节点继续提供服务&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;注册中心与服务端无法通信:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;继续保持服务，并且告警，并且考虑是否要退出&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;面试&#34;&gt;面试
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;服务注册与发现，有哪些组件&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;客户端、服务端、注册中心&lt;/li&gt;
+&lt;li&gt;监控平台&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;什么是注册中心 ？ 为什么要使用注册中心 ？ 直接使用 IP 或域名行不行？&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一种中间件 用于注册支持的服务的内容&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;注册的时候，注册了什么数据&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;定位信息 和 其他信息 （分组信息，权重信息）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在使用注册中心的整个流程是什么&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;注册中心怎么知道服务端已经崩溃&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;注册中心和服务端怎么保持心跳&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;心跳的间隔怎么设置 ？ 有什么影响&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;服怎么避免偶发性心跳失败&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;服务端在下线的时候需要注意什么？ 具体的步骤是什么&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;客户端和注册中心需要保持心跳吗&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        <item>
         <title>不停机数据迁移 detail</title>
         <link>https://ddlgitgzzhm.github.io/p/migrate-0x01/</link>
         <pubDate>Fri, 31 Jul 2026 00:00:00 +0000</pubDate>
