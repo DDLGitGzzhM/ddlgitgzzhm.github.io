@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="我们项目实现了一个 xxxx">
+<title>不停机数据迁移 one</title>
+
+<link rel='canonical' href='https://ddlgitgzzhm.github.io/p/migrate-0x02/'>
+
+
+<link rel="stylesheet" href="/css/main.e6be911e19f348580e8feb6530553c5c37345cea42a77297eb8190a1f3245a55.css"><meta property='og:title' content="不停机数据迁移 one">
+<meta property='og:description' content="我们项目实现了一个 xxxx">
+<meta property='og:url' content='https://ddlgitgzzhm.github.io/p/migrate-0x02/'>
+<meta property='og:site_name' content='GzzhM'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='gold' /><meta property='article:tag' content='one-detail' /><meta property='article:published_time' content='2026-08-03T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-08-03T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="不停机数据迁移 one">
+<meta name="twitter:description" content="我们项目实现了一个 xxxx">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_216528b252869864.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍟</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">GzzhM</a></h1>
+            <h2 class="site-description">应该怎么做？</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/DDLGitGzzhM'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        <li>
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>文章归档</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>查找</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href='/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友情链接</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href='/time-line/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                
+                <span>Time Line</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href='/memo/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-messages" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M21 14l-3 -3h-7a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1h9a1 1 0 0 1 1 1v10" />
+  <path d="M14 15v2a1 1 0 0 1 -1 1h-7l-3 3v-10a1 1 0 0 1 1 -1h2" />
+</svg>
+
+
+
+                
+                <span>Memo</span>
+            </a>
+        </li>
+        
+        <li class="menu-item-deprecated">
+            <a href='/roadmap/'  title="已废弃">
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                
+                <span>Road Map</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#简历-preview">简历 preview</a>
+      <ol>
+        <li><a href="#不停机迁移数据">不停机迁移数据</a></li>
+        <li><a href="#数据校验">数据校验</a></li>
+        <li><a href="#流量控制-和-性能优化">流量控制 和 性能优化</a></li>
+      </ol>
+    </li>
+    <li><a href="#面试题">面试题</a></li>
+    <li><a href="#总分62--100">总分：<strong>62 / 100</strong></a>
+      <ol>
+        <li><a href="#评分拆解">评分拆解</a></li>
+        <li><a href="#优点">优点</a></li>
+        <li><a href="#缺点面试里会被打穿的点">缺点（面试里会被打穿的点）</a></li>
+        <li><a href="#建议按优先级">建议（按优先级）</a></li>
+        <li><a href="#面试官结论">面试官结论</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/golang/" >
+                Golang
+            </a>
+        
+            <a href="/categories/time-line/" style="background-color: #6c5ce7; color: #fff;">
+                Time Line
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/migrate-0x02/">不停机数据迁移 one</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            我们项目实现了一个 xxxx
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2026-08-03</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="简历-preview">简历 preview
+</h2><p>简历上 : 支持一套通用的同构数据不停机迁移方案, 支持全量和增量校验 使用 kafka 进行减轻数据库压力 并且动态的根据数据库状态进行切换挂载和运行</p>
+<p>方案描述 :</p>
+<p>由于我在拆分了 点赞、阅读、收藏相关的微服务, 考虑 微服务中 一个服务一个数据库进行数据隔离。从而实现了一套数据迁移方案 。 因为不修改原有数据存储架构，所以采用同构的方案 , 并且考虑这个服务属于关键服务，因此选用不停机迁移方案</p>
+<p>考虑在 100w条数据的情况下,如果进行 校验后立即进行修复会给数据库带来很大的负担因此使用 kafka 进行削峰的处理</p>
+<p>另外通过额外重写 gorm 中 connPool 的exec、prepare、query Func 实现 双写</p>
+<p>并且通过重写 Commit 和 Rollback 实现双写的事务控制</p>
+<p>困难点和改进 :</p>
+<ol>
+<li>
+<p>引入 kafka 进行异步的优化 全量校验与修复的过程 。</p>
+</li>
+<li>
+<p>优化单条校验的逻辑 采用批量校验的逻辑。 并且考虑 硬删除 的业务场景，在校验 原表和目标表的 条件下，同步进行 目标表和原表的 差异校验 防止硬删除产生的不一致问题</p>
+</li>
+<li>
+<p>支持使用者动态切换 数据迁移 <code>原表only,读原表写目标表，读目标表写原表，目标表only</code> 的配置</p>
+</li>
+<li>
+<p>支持根据数据库状态，判断是否高负载从而判断是否要挂载校验任务 。 并且通过 context cancel() 实现，尽可能只有同一个 全量/增量 校验程序在运行</p>
+</li>
+</ol>
+<p>缺点 :</p>
+<ol>
+<li>
+<p>因为 ConnPool 返回值 sql.Result 并不暴露 Error 的设置，所以对于双写的错误并不能很好的暴露出来，只能进行打log和监控</p>
+</li>
+<li>
+<p>事务控制的实现并不能保证一致性，只能做到主表最大可控，但是对于目标表如果失败了 只能等待全量校验与修复</p>
+</li>
+</ol>
+<h3 id="不停机迁移数据">不停机迁移数据
+</h3><p>相比较于 停机迁移数据， 主要的困难点在于 一边迁移 一边有新数据产生</p>
+<p>并且因为我们切换 原表和目标表 的时候，如果运气不好会导致出现一些数据不一致。 不停机数据迁移很难做到 最终数据一致性</p>
+<h3 id="数据校验">数据校验
+</h3><p>为了防止重复写一些 dirty code, 放弃在 dao层维护两个数据库的思路</p>
+<p>重建了一套通用的双写逻辑。 由业务方提供 equal 的方法 ， 对于某些校验不严格的业务方可以考虑</p>
+<p>不需要 time 就可以认为 equal 以及自定义精度误差等等</p>
+<h3 id="流量控制-和-性能优化">流量控制 和 性能优化
+</h3><ol>
+<li>
+<p>在数据库高负载的情况下会自动挂起全量校验 只有当数据库低负载的时候才会进行</p>
+</li>
+<li>
+<p>尽可能多的进行 异步处理 和 并发处理 。 对于全量数据与校验 采用异步处理， 对于 目标表和原表的校验 以及 目标表和原表的差异校验 采用异步处理的方式进行</p>
+</li>
+</ol>
+<h2 id="面试题">面试题
+</h2><p>Q: 不停机迁移的基本步骤是什么</p>
+<ol>
+<li>
+<p>数据初始化，完成首轮数据的同步 和 数据库表的建立 。 对于 mysql 可以使用 mysqldump 进行同步，如果是异构数据的话，可以考虑内部批量轮询的方式进行首次同步</p>
+</li>
+<li>
+<p>这时候可以考虑启用全量校验进行一次数据的校验与修复</p>
+</li>
+<li>
+<p>读取并写入原表 同时 写入目标表 。 同时进行 全量校验与修复</p>
+</li>
+<li>
+<p>写入并读取目标表 同时写入原表 。 同时进行全量校验与修复 如果业务稳定可以考虑只运行增量校验</p>
+</li>
+<li>
+<p>完全使用目标表</p>
+</li>
+</ol>
+<hr>
+<p>Q : 你的数据校验方案是什么</p>
+<ol>
+<li>
+<p>支持 全量的数据校验和增量的数据方案 。 通过用户是否传递 utime + sleepTime 考虑走的是全量校验还是增强校验</p>
+</li>
+<li>
+<p>同步的进行 原表和目标表的校验 以及 目标表和原表的差异 检查 。 批量获取原表的数据 并且批量的获取目标表的数据，使用业务方提供的 equal method 进行比对 ，如果存在不想等的 在轮询完成之后批量通过 kafka 发送给下游修复 。   批量获取目标表的数据，并且检查是否在原表存在，如果不存在同时发送对应的 event 给下游</p>
+</li>
+</ol>
+<hr>
+<p>Q : 你的数据修复方案是什么 ？ 如何保证数据正确性？ 怎么解决并发问题 ？</p>
+<ol>
+<li>
+<p>使用 kafka 进行异步的通知修复 。 kafka 仅仅只是做触发器，并不存放detail信息用于实际修复 。</p>
+</li>
+<li>
+<p>对于数据修复情况只会有3种场景，target 不存在 那么需要insert，not equal 需要进行 update, base_missing 则需要删除 。 考虑 insert &amp; update 的并发问题，使用 upsert 进行控制</p>
+</li>
+<li>
+<p>并不能够在单词修复保证数据的正确性，数据的正确性最终交由多次校验与修复来控制</p>
+</li>
+</ol>
+<hr>
+<p>Q : 在数据迁移的每个阶段，你是怎么考虑保护着数据库的</p>
+<ol>
+<li>
+<p>尽可能的进行 批量操作 。 批量的查询数据库，本地机器进行比对</p>
+</li>
+<li>
+<p>使用 kafka 进行异步的校验与修复</p>
+</li>
+<li>
+<p>考虑 调度时机进行 校验任务的运行 ， 对于数据库高负载的情况 挂载正在运行的任务</p>
+</li>
+</ol>
+<hr>
+<p>Q : 如果 kafka 瓶颈了怎么办，消息积压了怎么办？</p>
+<ol>
+<li>
+<p>优化消费者。 尽可能改成批量消费</p>
+</li>
+<li>
+<p>并行处理数据库修复流程</p>
+</li>
+</ol>
+<hr>
+<p>Q : 为什么 你要使用 Kafka 直接校验之后修复数据不行吗</p>
+<ol>
+<li>直接进行修复数据 , 会给数据库带来很大的负担 。 Mysql 单库的 读写有瓶颈，尽可能保证 大量的读和写操作不同时进行</li>
+</ol>
+<hr>
+<p>Q: 增量校验和修复、业务写数据、全量校验和修复同时进行，有什么并发问题 ？ 怎么解决？</p>
+<ol>
+<li>
+<p>同时进行会带来更多的数据库操作，带来负担 。 并且我们在事务以及双写操作上必然会有并发问题，在我们切换 目标表和原表的时候 最终总会有不一致的情况 。</p>
+</li>
+<li>
+<p>采用超时控制, 优化任务调度时间 。所有的不一致问题，最终都是由反复校验反复修复解决的</p>
+</li>
+</ol>
+<hr>
+<p>Q :  怎么保证在数据迁移的时候 不影响业务</p>
+<ol>
+<li>
+<p>调度时间的控制 。 在低负载的情况下进行</p>
+</li>
+<li>
+<p>可以考虑在内部数据跑完几次全量校验之后 只开启增量校验，每次仅校验一周之内的数据</p>
+</li>
+</ol>
+<h2 id="总分62--100">总分：<strong>62 / 100</strong>
+</h2><p>按「2 年经验、能讲清一个核心项目」来评：能过初筛，但扛不住深挖。</p>
+<hr>
+<h3 id="评分拆解">评分拆解
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>维度</th>
+					<th>分数</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>项目背景与动机</td>
+					<td>12/15</td>
+					<td>微服务拆库、同构不停机，动机清楚</td>
+			</tr>
+			<tr>
+					<td>方案完整性</td>
+					<td>14/25</td>
+					<td>四阶段迁移有框架，关键细节和边界含糊</td>
+			</tr>
+			<tr>
+					<td>技术深度</td>
+					<td>10/20</td>
+					<td>提到 ConnPool 双写、Kafka 削峰，但原理讲不透</td>
+			</tr>
+			<tr>
+					<td>问题意识与权衡</td>
+					<td>12/15</td>
+					<td>能主动说缺点，这点加分</td>
+			</tr>
+			<tr>
+					<td>面试表达与结构化</td>
+					<td>8/15</td>
+					<td>有 Q&amp;A，但表述乱、有笔误、答不到位</td>
+			</tr>
+			<tr>
+					<td>与 2 年经验匹配度</td>
+					<td>6/10</td>
+					<td>选题够大，但「最终靠反复校验」像在回避设计</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h3 id="优点">优点
+</h3><ol>
+<li><strong>选题合适</strong>：不停机迁移 + 双写 + 校验修复，是面试官愿意追问的「有难度」项目。</li>
+<li><strong>有诚实的缺点</strong>：ConnPool 错误难暴露、事务只能保主表——比空谈「强一致」强很多。</li>
+<li><strong>有业务抽象意识</strong>：业务方提供 <code>Equal</code>，比硬编码字段对比更像工程实践。</li>
+<li><strong>有保护库的意识</strong>：批量、Kafka 削峰、高负载挂起任务，方向对。</li>
+<li><strong>准备了面试题清单</strong>：说明有意识在「被问什么」。</li>
+</ol>
+<hr>
+<h3 id="缺点面试里会被打穿的点">缺点（面试里会被打穿的点）
+</h3><ol>
+<li>
+<p><strong>核心一致性说不清</strong><br>
+「切换时总会不一致」「最终靠反复校验」可以当结论，但不能当唯一答案。面试官会问：双写失败怎么回滚？阶段切换的窗口期如何缩小？源表为准 / 目标表为准时，修复方向怎么定？</p>
+</li>
+<li>
+<p><strong>Kafka 用法站不住脚</strong><br>
+「只做触发器、不带 detail」——那消费者靠什么修？再查一次库？查到的是哪一侧？积压时只说「批量消费 / 并行」，没有分区键、幂等、重试、死信、顺序。</p>
+</li>
+<li>
+<p><strong>并发问题答得空</strong><br>
+业务写、全量校验、增量修复同时跑，只提「超时 + 调度」不够。应有：同一主键的冲突策略、upsert 的版本/utime 条件、校验批次与写路径的可见性。</p>
+</li>
+<li>
+<p><strong>双写实现太薄</strong><br>
+重写 ConnPool / Commit / Rollback 是亮点，但文档几乎没展开：嵌套事务？只读语句？Prepare 缓存？目标库延迟？失败是「打日志继续」还是「业务失败」？</p>
+</li>
+<li>
+<p><strong>表达与严谨性差</strong><br>
+「挂载」应为「挂起」；「增强校验」应为「增量」；步骤编号重复；句子碎、逻辑跳。面试口述时会显得准备乱。</p>
+</li>
+<li>
+<p><strong>缺可量化结果</strong><br>
+100 万量级提了，但没有：迁移耗时、校验一轮多久、峰值 QPS、不一致率下降、切换窗口多长。2 年经验项目，数据是加分项。</p>
+</li>
+</ol>
+<hr>
+<h3 id="建议按优先级">建议（按优先级）
+</h3><p><strong>1. 把故事讲成一条线（30 秒版）</strong><br>
+背景（拆库）→ 约束（不停机、同构）→ 四阶段 → 双写怎么做 → 校验/修复怎么兜底 → 已知局限。每阶段说清「读谁、写谁、以谁为准」。</p>
+<p><strong>2. 补齐 5 个必追问答案（写到能口述）</strong></p>
+<ul>
+<li>双写失败：主成功副失败怎么办？是否影响接口返回？</li>
+<li>事务：主提交、目标失败时数据状态与补偿路径</li>
+<li>Kafka：消息体设计、幂等键、消费失败重试、为何不直接同步修</li>
+<li>硬删除：双向 diff 的具体算法（按主键批量 in-query）</li>
+<li>切换：如何判断可以进下一阶段（不一致率、连续 N 轮全量通过）</li>
+</ul>
+<p><strong>3. 准备一组数字</strong><br>
+例如：数据量、双写延迟、全量一轮时间、Kafka 吞吐、挂起阈值、最终不一致量级。</p>
+<p><strong>4. 把「反复校验」升级成「有界收敛」</strong><br>
+说明：在「源为准」阶段修复方向固定；切换前要求不一致 &lt; 阈值；切换后短窗口只开增量；为何认为会收敛而不是越修越乱。</p>
+<p><strong>5. 润色简历与口述</strong></p>
+<ul>
+<li>简历：一句话写清「四阶段双写 + 全量/增量校验 + Kafka 异步修复 + 负载感知调度」</li>
+<li>去掉口语和错别字；每个 Q 控制在「结论 → 做法 → 权衡」三层</li>
+</ul>
+<p><strong>6. 区分「你做了什么」和「方案通用知识」</strong><br>
+mysqldump 初始化、四阶段迁移是通识；面试官更想听你改 ConnPool、Equal 抽象、双向校验、挂起任务这些「你亲手做的」。</p>
+<hr>
+<h3 id="面试官结论">面试官结论
+</h3><p>材料证明你做过这件事，也知道难点在一致性和库压力，<strong>作为 2 年经验的项目素材够用</strong>。但当前深度停在「知道概念 + 知道会有问题」，<strong>还不足以在中高级追问里稳住</strong>。</p>
+<p>把一致性边界、Kafka 契约、双写失败语义、切换判定补全后，这份准备可以冲到 <strong>75–80</strong>；再加可量化结果和一次完整口述演练，才更接近「能让面试官点头」的水平。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/gold/">Gold</a>
+        
+            <a href="/tags/one-detail/">One-Detail</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/server-reg-discover-0x0x1/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">服务注册与发现 detail</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/migrate-0x01/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">不停机数据迁移 detail</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/migrate-0x01/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">微服务 detail</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/rank-0x01/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">热榜 detail</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/interactive-0x02/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">阅读、点赞、收藏 one</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="DDLGitGzzhM/ddlgitgzzhm.github.io"
+        issue-term="pathname"
+        
+        label="comments"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025 - 
+        
+        2026 GzzhM
+    </section>
+    
+    <section class="powerby">
+        使用 Golang 构建 <br />
+        
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script><script type="text/javascript" src="/ts/custom.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
