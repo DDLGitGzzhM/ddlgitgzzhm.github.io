@@ -1,0 +1,3016 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>One-Detail on GzzhM</title>
+        <link>https://ddlgitgzzhm.github.io/tags/one-detail/</link>
+        <description>Recent content in One-Detail on GzzhM</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <copyright>GzzhM</copyright>
+        <lastBuildDate>Sat, 01 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/tags/one-detail/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>服务注册与发现 detail</title>
+        <link>https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/</link>
+        <pubDate>Sat, 01 Aug 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/</guid>
+        <description>&lt;h2 id=&#34;简历-preview&#34;&gt;简历 preview
+&lt;/h2&gt;&lt;p&gt;简历上 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;使用 xxx 进行了服务的注册与框架&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;服务注册与发现&#34;&gt;服务注册与发现
+&lt;/h2&gt;&lt;p&gt;在微服务架构里面，我怎么知道哪些机器上部署了我需要的服务&lt;/p&gt;
+&lt;p&gt;最原始的形态就是 : &lt;code&gt;IP+端口&lt;/code&gt;  . 不过这个不能称为 服务注册与发现 ， 因为既没有注册 也没有发现&lt;/p&gt;
+&lt;p&gt;缺点 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;IP 是会变的 不好维护&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/find.png&#34;
+	width=&#34;675&#34;
+	height=&#34;429&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/find_hu_a6f2cc4b161c083e.png 480w, https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/find_hu_efaf53766c14ddcf.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;find.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;157&#34;
+		data-flex-basis=&#34;377px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;另外一个思路 : 使用域名 + DNS . 因为 IP 经常变动 所以考虑使用域名代替&lt;/p&gt;
+&lt;p&gt;考虑解析域名的开销，所以 一般在客户端这边缓存解析域名的结果&lt;/p&gt;
+&lt;p&gt;优点 :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;简单好用 ，不需要额外的组建&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;缺点 :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;如果客户端不缓存 DNS 结果，每次调用都会多一次调用&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果客户端缓存 DNS 结果，那么就可能无法及时更新本地可用节点列表&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/dns_find.png&#34;
+	width=&#34;740&#34;
+	height=&#34;323&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/dns_find_hu_cb4d1e55cfd910c9.png 480w, https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/dns_find_hu_a1225296b7346ed0.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;dns_find.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;229&#34;
+		data-flex-basis=&#34;549px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;域名解析的问题是不能及时得到通知，那么能不能让域名服务器主动通知一下节点变化&lt;/p&gt;
+&lt;p&gt;注册中心的原理就是 ：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;服务端在启动的时候 主动在主持中心注册一下&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;客户端在第一次发起调用之前，先查询注册中心，而后缓存住可用节点&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;注册中心在服务端节点发生变动的时候 ,&lt;code&gt;主动通知&lt;/code&gt; 客户端&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;缺点 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;注册中心在大规模集群下，会成为瓶颈&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/register_middle.png&#34;
+	width=&#34;708&#34;
+	height=&#34;325&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/register_middle_hu_7718039428b93bdd.png 480w, https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/register_middle_hu_91d78fbea98fd909.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;register_middle.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;217&#34;
+		data-flex-basis=&#34;522px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;服务注册&#34;&gt;服务注册
+&lt;/h3&gt;&lt;p&gt;问题 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;什么时候进行服务注册 ？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;暴露端口的时候注册 ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;健康检查通过就注册 ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;所有前置计算完成之后再注册&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/server_reg.png&#34;
+	width=&#34;706&#34;
+	height=&#34;380&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/server_reg_hu_475a93aba64da35e.png 480w, https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/server_reg_hu_80c800b03fa95dd3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;server_reg.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;185&#34;
+		data-flex-basis=&#34;445px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;注册什么数据 ？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;定位信息 : IP + 端口&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;其他信息. 一般和微服务框架等具体功能有关系&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;服务端和注册中心保持心跳&#34;&gt;服务端和注册中心保持心跳
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;服务端主动保持心跳，服务端每隔一段时间就朝着注册中心发送一个心跳&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;注册中心主动 。 注册中心主动朝着所有服务端节点发送心跳&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;主要讨论 ：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;心跳间隔多长&lt;/li&gt;
+&lt;li&gt;如何判定节点连不上 ？ 一次心跳连不上还是多次心跳连不上 ？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/service_keep_live.png&#34;
+	width=&#34;634&#34;
+	height=&#34;568&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/service_keep_live_hu_73774fdcc36aee9f.png 480w, https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/service_keep_live_hu_84f97a1d01f7831b.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;service_keep_live.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;111&#34;
+		data-flex-basis=&#34;267px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;服务下线&#34;&gt;服务下线
+&lt;/h3&gt;&lt;p&gt;如果服务端关闭了，就需要通知注册中心，而后注册中心通知客户端&lt;/p&gt;
+&lt;p&gt;客户端就会把该节点从可用列表里面挪走&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/service_delisted.png&#34;
+	width=&#34;729&#34;
+	height=&#34;354&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/service_delisted_hu_5b80815c05ca4cb4.png 480w, https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/service_delisted_hu_d046d1dc7f7a4f2e.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;service_delisted.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;205&#34;
+		data-flex-basis=&#34;494px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;服务端优雅下线 :&lt;/p&gt;
+&lt;p&gt;问题 : 服务端 A 不能告诉注册中心自己下线了之后就立刻退出&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;需要先通知注册中心，下线&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;而后 服务端不在接受新请求。（在网络中读取一般的请求，也会直接拒绝）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;中间件类似的机制&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;服务端需要等待正在处理的请求结束&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;等服务端已经接受的请求处理完毕，服务端结束运行&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;还需要额外考虑 定时任务，分布式事务，数据库事务&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/service_prefect_down.png&#34;
+	width=&#34;728&#34;
+	height=&#34;316&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/service_prefect_down_hu_ab761365147608fb.png 480w, https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/service_prefect_down_hu_88b89e71f075aeed.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;service_prefect_down.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;230&#34;
+		data-flex-basis=&#34;552px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;接入服务注册与发现&#34;&gt;接入服务注册与发现
+&lt;/h2&gt;&lt;h3 id=&#34;gprc-时候注册中心&#34;&gt;gprc 时候注册中心
+&lt;/h3&gt;&lt;p&gt;gpc 在客户端提供 Resolver 进行对服务的解析&lt;/p&gt;
+&lt;p&gt;但是他并没有在 服务端提供 &lt;code&gt;register&lt;/code&gt; 的功能， grpc 根本不知道你使用的是不是注册中心&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/grpc_find.png&#34;
+	width=&#34;723&#34;
+	height=&#34;417&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/grpc_find_hu_48b59e019bbe8643.png 480w, https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/grpc_find_hu_9e2ed5f15f5de8f7.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;grpc_find.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;173&#34;
+		data-flex-basis=&#34;416px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;grpc-使用注册中心-etcd&#34;&gt;grpc 使用注册中心 etcd
+&lt;/h3&gt;&lt;h2 id=&#34;服务注册与发现的高可用&#34;&gt;服务注册与发现的高可用
+&lt;/h2&gt;&lt;h3 id=&#34;高可用&#34;&gt;高可用
+&lt;/h3&gt;&lt;p&gt;高可用围绕三个点三条边来思考 :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;服务端崩溃怎么办？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;注册中心崩溃怎么办 ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;客户端崩溃 ？。不需要处理&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;三条边 :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;注册中心和服务端之间无法通信怎么办 ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;注册中心和客户端之间无法通信怎么办？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;客户端和服务端之间无法通信怎么办？&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;failover&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/register_middle.png&#34;
+	width=&#34;708&#34;
+	height=&#34;325&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/register_middle_hu_7718039428b93bdd.png 480w, https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/register_middle_hu_91d78fbea98fd909.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;register_middle.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;217&#34;
+		data-flex-basis=&#34;522px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;服务端崩溃 :&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;服务端崩溃 -&amp;gt; 注册中心发现 -&amp;gt; 通知客户端, 中间有时间间隔&lt;/p&gt;
+&lt;p&gt;简单来说 如果服务端崩溃，那么我们就要切换一个节点来重试 也就是 &lt;code&gt;failover&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注册中心崩溃了怎么办 :&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;先描述很难崩溃&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;启用注册中心高可用方案, 例如部署一个集群，多活方案&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;双注册中心方案, 注册的时候同时注册两个注册中心，在一个注册中心崩溃之后可用使用离国内外i啊一个注册中心&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;按照业务拆分多个注册中心&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;然后在解决真的崩溃的问题&lt;/p&gt;
+&lt;p&gt;如果真的崩溃了，客户端怎么办&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用本地缓存的可用节点信息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果真的崩溃了，服务端怎么办&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;如果是新节点，注册失败直接退出服务，如果是老节点继续提供服务&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;注册中心与服务端无法通信:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;继续保持服务，并且告警，并且考虑是否要退出&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;面试&#34;&gt;面试
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;服务注册与发现，有哪些组件&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;客户端、服务端、注册中心&lt;/li&gt;
+&lt;li&gt;监控平台&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;什么是注册中心 ？ 为什么要使用注册中心 ？ 直接使用 IP 或域名行不行？&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一种中间件 用于注册支持的服务的内容&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;注册的时候，注册了什么数据&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;定位信息 和 其他信息 （分组信息，权重信息）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在使用注册中心的整个流程是什么&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;注册中心怎么知道服务端已经崩溃&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;注册中心和服务端怎么保持心跳&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;心跳的间隔怎么设置 ？ 有什么影响&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;服怎么避免偶发性心跳失败&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;服务端在下线的时候需要注意什么？ 具体的步骤是什么&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;客户端和注册中心需要保持心跳吗&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        <item>
+        <title>不停机数据迁移 detail</title>
+        <link>https://ddlgitgzzhm.github.io/p/migrate-0x01/</link>
+        <pubDate>Fri, 31 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/p/migrate-0x01/</guid>
+        <description>&lt;h2 id=&#34;简历-preview&#34;&gt;简历 preview
+&lt;/h2&gt;&lt;p&gt;简历上 :&lt;/p&gt;
+&lt;h4 id=&#34;数据修复的基本逻辑&#34;&gt;数据修复的基本逻辑
+&lt;/h4&gt;&lt;p&gt;target_missiong : 那么就是 insert。 获取原表数据进行插入&lt;/p&gt;
+&lt;p&gt;neq : 那么就是更新，使用原表数据来覆盖&lt;/p&gt;
+&lt;p&gt;base_missiong : 代表目标表多了数据应该删除目标表数据&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/migrate-0x01/fix_logic.png&#34;
+	width=&#34;645&#34;
+	height=&#34;358&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/migrate-0x01/fix_logic_hu_1fc3bf53b0fdbca2.png 480w, https://ddlgitgzzhm.github.io/p/migrate-0x01/fix_logic_hu_4c1fc35d065d181a.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;fix_logic.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;180&#34;
+		data-flex-basis=&#34;432px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;并发问题 :&lt;/p&gt;
+&lt;p&gt;Q : base找到了数据， 但是更新的时候 base 删除了数据  。 target 的更改会失败&lt;/p&gt;
+&lt;p&gt;A : 重新开启一轮修复&lt;/p&gt;
+&lt;h3 id=&#34;双写&#34;&gt;双写
+&lt;/h3&gt;&lt;p&gt;由于是两个数据库 开启不了 数据库本地事务&lt;/p&gt;
+&lt;p&gt;分布式事务 : 性能很差&lt;/p&gt;
+&lt;p&gt;需要考虑 双写 + 流量切换。 即 考虑读写哪个数据源&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/migrate-0x01/double_write.png&#34;
+	width=&#34;624&#34;
+	height=&#34;416&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/migrate-0x01/double_write_hu_136a9ad097bb6602.png 480w, https://ddlgitgzzhm.github.io/p/migrate-0x01/double_write_hu_132a2864c2e55c3a.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;double_write.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;150&#34;
+		data-flex-basis=&#34;360px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;方案-1&#34;&gt;方案 1
+&lt;/h4&gt;&lt;p&gt;引入原子类进行并发控制, 监听配置变更进行切换 数据源&lt;/p&gt;
+&lt;p&gt;双写两张表，如果源表失败则退出，如果目标表失败 等待 校验与修复&lt;/p&gt;
+&lt;p&gt;问题是&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;增删改都需要写一份代码&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;方案-2-connpool&#34;&gt;方案 2 ConnPool
+&lt;/h4&gt;&lt;p&gt;Prepare : 预编译语句&lt;/p&gt;
+&lt;p&gt;Select 都用于 Query&lt;/p&gt;
+&lt;p&gt;增删改用于 Exec&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Query返回的结构体，error并没有暴露出来，所以处理 error 的话，只能 panic&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/migrate-0x01/connPool.png&#34;
+	width=&#34;983&#34;
+	height=&#34;263&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/migrate-0x01/connPool_hu_78ff56d552a8235b.png 480w, https://ddlgitgzzhm.github.io/p/migrate-0x01/connPool_hu_c6b37b1f641e41ac.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;connPool.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;373&#34;
+		data-flex-basis=&#34;897px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;面试要点&#34;&gt;面试要点
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;不停机迁移的基本步骤&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;你的数据校验方案是什么&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;你的数据修复方案是什么 ？ 如何保证数据正确性 ？  怎么解决并发问题 ？&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;不使用 MQ 来进行数据的更新只当作触发器&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在数据迁移的每个阶段，你是怎么考虑保护着数据库的&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;调度时机考虑&lt;/li&gt;
+&lt;li&gt;查询改成批量，修复改成批量。
+&lt;ul&gt;
+&lt;li&gt;修复的批量该成 kafka 批量消费&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果 kafka 瓶颈了怎么办，消息积压了怎么办？&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        <item>
+        <title>微服务 detail</title>
+        <link>https://ddlgitgzzhm.github.io/p/migrate-0x01/</link>
+        <pubDate>Fri, 31 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/p/migrate-0x01/</guid>
+        <description>&lt;h2 id=&#34;简历-preview&#34;&gt;简历 preview
+&lt;/h2&gt;&lt;p&gt;简历上 : 将单体业务中的点赞服务拆出一个微服务 并且使用 grpc 进行通行管理&lt;/p&gt;
+&lt;h2 id=&#34;微服务&#34;&gt;微服务
+&lt;/h2&gt;&lt;p&gt;微服务架构 : 将功能分解到各个离散的服务中实现对解决方案的解耦。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;每个服务可独立进行 &lt;code&gt;开发，管理 和 迭代&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/migrate-0x01/micros.png&#34;
+	width=&#34;424&#34;
+	height=&#34;313&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/migrate-0x01/micros_hu_7fd19e91710a7074.png 480w, https://ddlgitgzzhm.github.io/p/migrate-0x01/micros_hu_a9adfa036d99d4d1.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;micros.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;135&#34;
+		data-flex-basis=&#34;325px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;为什么要使用微服务&#34;&gt;为什么要使用微服务
+&lt;/h3&gt;&lt;p&gt;为了 &lt;strong&gt;分而治之&lt;/strong&gt; :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;降低复杂度&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;易于开发、测试、部署 和 扩容&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;模块化-对比-微服务&#34;&gt;模块化 对比 微服务
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;整合全部模块于一个单体应用，这个过程比较复杂&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;从运维角度看，&lt;strong&gt;实例才是基本单位&lt;/strong&gt;，微服务化的管理力度更细 。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;微服务独立性更强&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;这里说一下我的理解 :&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;我前司大概有 6-8个业务组 。 按照 &lt;code&gt;模块化单体+进程角色部署&lt;/code&gt; 进行开发&lt;/p&gt;
+&lt;p&gt;不过单独拆出了两个业务， 一个 &lt;code&gt;qass&lt;/code&gt; 跨环境的行情中心 和 配置中心 , 一个 &lt;code&gt;apitest&lt;/code&gt; 用于进行维护项目的&lt;code&gt;api&lt;/code&gt;稳定&lt;/p&gt;
+&lt;p&gt;为什么我们不全部拆成微服务&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;一次下单 会串着 账户、仓位、ledger、风控。 这一套流程 强事务、强一致&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果拆成微服务 需要考虑 事务 和 最终一致&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;那么拆微服务能给企业带来什么收益 :&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;发版时间&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;我们知道单体的发版需要依赖整体发版 ， 例如 如果我账户模块改动，想要提前发版，这不可能。 只能发在上一个版本 然后发一次全局的重构&lt;/p&gt;
+&lt;p&gt;但是如果拆成微服务，我们可以每个服务 自己控制发版时间&lt;/p&gt;
+&lt;p&gt;官方话就是 ，需要考虑  团队边界、发布节奏、技术异构&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;成本&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;我们现在单体是 &lt;code&gt;文字+用户+登陆+点赞&lt;/code&gt; , 但是如果我们点赞的性能跟不上, 在单体阶段我们只能考虑增加&lt;strong&gt;全部机器&lt;/strong&gt;的性能&lt;/p&gt;
+&lt;p&gt;如果我们部署一台 &lt;code&gt;文字+用户+登陆+点赞&lt;/code&gt; 的服务 需要 1w ，那么如果我们想要单独增加点赞的性能 需要重新部署一台完整的服务 也需要 1w&lt;/p&gt;
+&lt;p&gt;但是如果我们把点赞拆出来，单独部署一个点赞服务只需要 2k, 那么 1w 可以部署 5 台&lt;/p&gt;
+&lt;h2 id=&#34;rpc&#34;&gt;RPC
+&lt;/h2&gt;&lt;p&gt;PRC : 远程过程调用， 允许程序在本地计算机上 调用远程计算机上的字程序，而无需程序员额外变成&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/migrate-0x01/rpc.png&#34;
+	width=&#34;466&#34;
+	height=&#34;210&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/migrate-0x01/rpc_hu_c71842097b828f4c.png 480w, https://ddlgitgzzhm.github.io/p/migrate-0x01/rpc_hu_d0ad6b3e9670544c.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;rpc.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;221&#34;
+		data-flex-basis=&#34;532px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;RPC 协议可以简历在很多协议基础之上&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;基于 TCP 的 RPC 协议，典型的国内大厂自研的协议， 比如说 Dubbo 协议。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;基于 HTTP 的 RPC 协议，比如说 gRPC 协议。而 HTTP 本身又是可以基于 TCP 协议或者 UDP 协议的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/migrate-0x01/grpc_type.png&#34;
+	width=&#34;449&#34;
+	height=&#34;275&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/migrate-0x01/grpc_type_hu_6e384dc5544a8c11.png 480w, https://ddlgitgzzhm.github.io/p/migrate-0x01/grpc_type_hu_3c63b65a1b9671b2.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;grpc_type.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;163&#34;
+		data-flex-basis=&#34;391px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;为什么要引入 rpc&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;我们可以看一些接口的文档，他们暴露了一些接口可以让我们使用，我们带上对应的 apikey + apisecret 即可&lt;/p&gt;
+&lt;p&gt;但是为什么我们还需要使用 rpc&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;&lt;/th&gt;
+					&lt;th&gt;口语里的 HTTP（REST）&lt;/th&gt;
+					&lt;th&gt;口语里的 RPC（如 gRPC）&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;你怎么写代码&lt;/td&gt;
+					&lt;td&gt;拼 URL、method、body&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;client.Like(ctx, req)&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;契约&lt;/td&gt;
+					&lt;td&gt;OpenAPI / 约定 JSON 字段&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;.proto&lt;/code&gt; / 接口定义，强类型生成&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;载荷&lt;/td&gt;
+					&lt;td&gt;多为 JSON 文本&lt;/td&gt;
+					&lt;td&gt;多为 Protobuf 二进制&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;传输&lt;/td&gt;
+					&lt;td&gt;HTTP/1.1 或 HTTP/2&lt;/td&gt;
+					&lt;td&gt;常见 HTTP/2（多路复用）&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;风格&lt;/td&gt;
+					&lt;td&gt;资源导向（&lt;code&gt;/users/1&lt;/code&gt;）&lt;/td&gt;
+					&lt;td&gt;方法导向（&lt;code&gt;UserService.GetUser&lt;/code&gt;）&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;调试&lt;/td&gt;
+					&lt;td&gt;浏览器、curl 极友好&lt;/td&gt;
+					&lt;td&gt;要 grpcurl 等工具，稍麻烦&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;流式&lt;/td&gt;
+					&lt;td&gt;有限（SSE/WebSocket 另说）&lt;/td&gt;
+					&lt;td&gt;双向流较自然&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;对开发者的体感：RPC 更像「远程函数调用」；HTTP/REST 更像「发一次 Web 请求」。&lt;/p&gt;
+&lt;h3 id=&#34;grpc&#34;&gt;GRPC
+&lt;/h3&gt;&lt;p&gt;特点 :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;高性能 :&lt;/strong&gt; 基于 &lt;code&gt;QUIC&lt;/code&gt; 协议，利用 HTTP2 的双向流特性&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;跨语言 :&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;开源 :&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Grpc 使用 &lt;code&gt;protobuf&lt;/code&gt; 来作为自己的 IDL 语言&lt;/p&gt;
+&lt;p&gt;IDL : 接口描述语言&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;protobuf&lt;/code&gt; 基本原理 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;使用二进制格式进行序列话和反序列化&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;定义一种标准的消息格式 。 用于表示结构化数据&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;每个字段都有唯一的标签和类型&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/migrate-0x01/protobuf.png&#34;
+	width=&#34;406&#34;
+	height=&#34;219&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/migrate-0x01/protobuf_hu_5a5005c789f5d12f.png 480w, https://ddlgitgzzhm.github.io/p/migrate-0x01/protobuf_hu_d1fbc674e54b0535.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;protobuf.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;185&#34;
+		data-flex-basis=&#34;444px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;grpc-服务端与客户端&#34;&gt;GRPC 服务端与客户端
+&lt;/h4&gt;&lt;p&gt;服务端 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;通过 Server Listen 启动服务&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;通过 Register 注册对应的服务&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;TestServer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;testing&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;grpc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;NewServer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 这个是生成的代码&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;RegisterUserServiceServer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Server&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{})&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;l&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;net&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Listen&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;tcp&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;:8090&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;assert&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;NoError&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 启动&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Serve&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;l&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;		&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 启动失败，或者退出了服务器&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;		&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;退出 gRPC 服务&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;客户端 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;通过 Dial 来进行通信连接&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用 NewClient 创建客户端&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;过程调用直接调用 &lt;code&gt;GetById&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;TestClient&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;testing&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;conn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;grpc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Dial&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;:8090&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;grpc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;WithTransportCredentials&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;insecure&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;NewCredentials&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()))&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;assert&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;NoError&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;client&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;NewUserServiceClient&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;conn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ctx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;cancel&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;context&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;WithTimeout&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;context&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Background&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Second&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;defer&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;cancel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;resp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;client&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;GetById&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ctx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;GetByIdReq&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;		&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Id&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;123&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;})&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;assert&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;NoError&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;resp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;User&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;ddd-基本理论&#34;&gt;DDD 基本理论
+&lt;/h2&gt;&lt;p&gt;• 限界上下文（Bounded Context）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;描述 我们所要解决的问题上下文&lt;/li&gt;
+&lt;li&gt;描述微服务的边界&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;• 实体（Entity）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;标记业务的唯一 ID&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;• 值对象（Value Object）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一堆属性的集合&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;• 聚合体（Aggregate）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一个实体 + N个值对象的 集合&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;• 工厂（Factory)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;普通工厂方法在 DDD 中的应用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;• 仓库（Repository）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;数据存储的抽象&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;• 事件（Domain Event)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;就是我们说的 MQ event&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;• 服务（Domain Service）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/migrate-0x01/DDD.png&#34;
+	width=&#34;502&#34;
+	height=&#34;352&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/migrate-0x01/DDD_hu_f7351ca8e0b840b6.png 480w, https://ddlgitgzzhm.github.io/p/migrate-0x01/DDD_hu_971b902284ab203c.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;DDD.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;142&#34;
+		data-flex-basis=&#34;342px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;微服务拆分&#34;&gt;微服务拆分
+&lt;/h2&gt;&lt;p&gt;按照 DDD 的理论拆分微服务， 一个领域就是一个微服务&lt;/p&gt;
+&lt;p&gt;微服务拆分路线 :&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/migrate-0x01/server_split.png&#34;
+	width=&#34;886&#34;
+	height=&#34;98&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/migrate-0x01/server_split_hu_442d32c5bfc38e0f.png 480w, https://ddlgitgzzhm.github.io/p/migrate-0x01/server_split_hu_98dd2e9fd3ba01c.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;server_split.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;904&#34;
+		data-flex-basis=&#34;2169px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;单体应用 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;完善单元测试。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;先抽取公共部分，如utils、helper 等。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;引入聚合层解除模块间循环依赖。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;按照业务对象划分模块，分到不同的包里。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;模块化 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;创建不同的代码仓库，将公共部分、业务模块逐个挪到别的代码仓库。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;开始准备微服务环境和服务框架选型。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;搭建好 CI 和集成测试环境。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;模块依赖化 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;业务模块逐个服务化，解决微服务开发、测试、部署中所遇到的问题。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;搭建自动部署和回滚平台。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;调研服务治理和网关。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;引入消息队列。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;引入分布式事务解决方案。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;引入分布式任务调度。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;搭建可观测性平台：logging、tracing、metrics，以及对应的告警系统&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;微服务化：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;引入服务治理&lt;/li&gt;
+&lt;li&gt;引入网关&lt;/li&gt;
+&lt;li&gt;引入回归测试&lt;/li&gt;
+&lt;li&gt;按照业务分库&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;拆分&#34;&gt;拆分
+&lt;/h3&gt;&lt;p&gt;拆分方案 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;选定模块
+&lt;ul&gt;
+&lt;li&gt;原则 : 先易后难&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;检测覆盖率&lt;/li&gt;
+&lt;li&gt;代码拆分&lt;/li&gt;
+&lt;li&gt;确定技术选型&lt;/li&gt;
+&lt;li&gt;改造微服务&lt;/li&gt;
+&lt;li&gt;在原先的应用中 同时使用 本地调用 和微服务调用 。 使用&lt;code&gt;开关控制流量&lt;/code&gt; 并且&lt;code&gt;允许回滚&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;逐步调整流量&lt;/li&gt;
+&lt;li&gt;抹除原先的本地调用&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h5 id=&#34;流量控制&#34;&gt;流量控制
+&lt;/h5&gt;&lt;p&gt;我们将原先的本地服务 使用 装饰器 重新抽象成一个接口&lt;/p&gt;
+&lt;p&gt;这个接口支持使用 &lt;code&gt;threshold&lt;/code&gt; 控制流量，通过随机数控制 。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;GreyScaleInteractiveServiceClient&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;GetByIds&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ctx&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;context&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Context&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;in&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;intrv1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;GetByIdsRequest&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;opts&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;...&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;grpc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;CallOption&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;intrv1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;GetByIdsResponse&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;error&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;client&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;().&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;GetByIds&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ctx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;in&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;opts&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;...&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;GreyScaleInteractiveServiceClient&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;UpdateThreshold&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;newThreshold&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int32&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;threshold&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Store&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;newThreshold&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;GreyScaleInteractiveServiceClient&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;client&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;intrv1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;InteractiveServiceClient&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;threshold&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;threshold&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Load&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// [0-100) 的随机数&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;num&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;rand&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Int31n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 举例来说，如果要是 threshold 是 100，&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 可以预见的是，所有的 num 都会进去，返回 remote&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;num&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;threshold&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;		&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;remote&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 假如说我的 threshold 是 0，那么就会永远用本地的&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;local&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/migrate-0x01/rate_control.png&#34;
+	width=&#34;452&#34;
+	height=&#34;217&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/migrate-0x01/rate_control_hu_b842d0c5d9c09b78.png 480w, https://ddlgitgzzhm.github.io/p/migrate-0x01/rate_control_hu_4a9c1098f0e3ebfc.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;rate_control.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;208&#34;
+		data-flex-basis=&#34;499px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;面试&#34;&gt;面试
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;什么是微服务架构 ？ 为什么要使用微服务架构。？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;模块化后为什么要微服务化 ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Restful 和  微服务架构是什么关系 ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;可以用 HTTP 协议来说实现 微服务架构吗 ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;什么是 RPC ？ RPC 和 HTTP 是什么关系&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;什么是 DDD ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;微服务拆分，怎么拆 ，拆分的具体步骤&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;微服务拆分有哪些难点&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;怎么保证微服务拆分没有引入 bug&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;怎么在线上做灰度发布 ？&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;阈值+随机数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        <item>
+        <title>热榜 detail</title>
+        <link>https://ddlgitgzzhm.github.io/p/rank-0x01/</link>
+        <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/p/rank-0x01/</guid>
+        <description>&lt;h2 id=&#34;简历-preview&#34;&gt;简历 preview
+&lt;/h2&gt;&lt;p&gt;简历上 :&lt;/p&gt;
+&lt;p&gt;设计了一个 热榜&lt;/p&gt;
+&lt;p&gt;需求分析 :&lt;/p&gt;
+&lt;p&gt;一些问题 ：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;什么样的才算是热点 ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如何计算热点 ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;热点必然带来高并发，怎么保证性能&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果热点功能崩溃了，怎么降低对整个系统的影响&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;算法模型&#34;&gt;算法模型
+&lt;/h3&gt;&lt;p&gt;Hacknews 模型 &lt;code&gt;Score = (p - 1) / (T + 2)^G&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;模型认为 : 得票数最重要，而后热度随着时间衰减&lt;/p&gt;
+&lt;p&gt;Reddit 模型&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/rank-0x01/rank_model.png&#34;
+	width=&#34;397&#34;
+	height=&#34;388&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/rank-0x01/rank_model_hu_95f8df3bb4680b66.png 480w, https://ddlgitgzzhm.github.io/p/rank-0x01/rank_model_hu_5473b91a7ef21549.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;rank_model.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;102&#34;
+		data-flex-basis=&#34;245px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;数据计算&#34;&gt;数据计算
+&lt;/h3&gt;&lt;p&gt;考虑一点 : 是否需要 &lt;strong&gt;实时计算&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&#34;实时计算的难点&#34;&gt;实时计算的难点
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;要扫描全表，找出所有帖子的点赞数和发表时间&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;计算每个帖子的 score 并且全局排序&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;难点在于 : 全表扫描 + 全局排序&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/rank-0x01/over_calc.png&#34;
+	width=&#34;489&#34;
+	height=&#34;251&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/rank-0x01/over_calc_hu_dc362c434b308ba5.png 480w, https://ddlgitgzzhm.github.io/p/rank-0x01/over_calc_hu_abc5c13ced5d0e56.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;over_calc.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;194&#34;
+		data-flex-basis=&#34;467px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;异步计算&#34;&gt;异步计算
+&lt;/h4&gt;&lt;p&gt;由于全表计算的困难，我们考虑使用异步定时计算&lt;/p&gt;
+&lt;p&gt;解决方案包括 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;每隔一段时间就计算一次热榜&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在异步的情况下，计算的时间可以比较长，但是依旧不能太长&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;在这个基础上考虑&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;怎么设计缓存，保证有极好的查询性能&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;怎么保证可用性，保证在任何情况下都能拿到热榜数据&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h5 id=&#34;计算热榜的算法实现&#34;&gt;计算热榜的算法实现
+&lt;/h5&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;从数据库中拉取一批文章（batchSize），再找到对应的 点赞数，计算 score。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用一个数据结构来维持住 score 前 100 的数据。如果 该批次中有 score 比已有的前 100 的还要大，那么就从 数据结构中淘汰热度最低的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;加入更高 score 的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;全部数据计算完毕之后，数据结构中维护的就是热度前 100 的&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;将这些数据装入 Redis 缓存&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这里使用的数据结构可以使用已经封装好的优先队列 也就是小根堆&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/rank-0x01/rank_calc.png&#34;
+	width=&#34;348&#34;
+	height=&#34;499&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/rank-0x01/rank_calc_hu_5988aae6f12e4895.png 480w, https://ddlgitgzzhm.github.io/p/rank-0x01/rank_calc_hu_339bffdeb28e23f9.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;rank_calc.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;69&#34;
+		data-flex-basis=&#34;167px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;放入缓存有两个关键点 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;热榜数据不需要保存在数据库中。 一些公司会把这些内容保存到数据库里面用于大数据分析&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在 Redis 的过期时间，要比计算间隔长，最好留有足够的重试时间 。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;查询接口的处理&#34;&gt;查询接口的处理
+&lt;/h3&gt;&lt;p&gt;使用 &lt;code&gt;atomicx.Value&lt;/code&gt; 进行本地缓存&lt;/p&gt;
+&lt;p&gt;在操作的时候优先操作本地缓存，如果本地缓存找不到数据，再去查找 redis 缓存  。然后回写 本地缓存&lt;/p&gt;
+&lt;h3 id=&#34;可用性问题&#34;&gt;可用性问题
+&lt;/h3&gt;&lt;p&gt;一个降级策略，对于 数据库和Redis 都崩崩溃的情况下 。 如果本地缓存也失败了&lt;/p&gt;
+&lt;p&gt;那么可以增加一个 &lt;code&gt;ForceGet&lt;/code&gt; 的流程，即 不管本地缓存是否已经过期 我们都获取数据 。&lt;/p&gt;
+&lt;h2 id=&#34;极致的缓存方案&#34;&gt;极致的缓存方案
+&lt;/h2&gt;&lt;p&gt;在大多数时候，追求极致性能的缓存方案，差不多就是本地缓存 + Redis 缓存 + 数据库。&lt;/p&gt;
+&lt;p&gt;那么：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;查找的时候，就要先查找本地缓存，再查找 Redis，最后查找数据库&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;更新的时候，就要先更新数据库，再更新本地缓存，最后更新（或者删除）Redis。核心在于一点，本地缓存的操作几乎不可能失败&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;高级的亮点在于：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;本地缓存可以预加载。也就是在启动的时候预加载，或者在快过期的时候，提前加载&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;本地缓存可以用于容错。也就是如果 Redis 崩溃，这时候依旧可以使用本地缓存。例如，正常过期时间是三分钟，但是本地缓存会设置五分钟。如果数据已经超过了三分钟，那么会尝试刷新缓存，如果刷新失败，那么就继续使用这个已经“过期”的本地缓存。在部分场景下，可以考虑让本地缓存永不过期，同时异步任务刷新本地缓存。好处是可以在 Redis 或者 MySQL 崩溃的时候，依旧提供缓存服务。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;当下的问题&#34;&gt;当下的问题
+&lt;/h2&gt;&lt;p&gt;如果我们部署了多个实例，那么多个实例会同时执行这个计算热榜的任务。&lt;/p&gt;
+&lt;p&gt;理论上来说 同一时刻计算的结果应该是一样的，但是大多数都不是同一时刻，这会导致 在实例1看上的 和 实例2看上的结果会有细微的差距&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/rank-0x01/multi_calc.png&#34;
+	width=&#34;386&#34;
+	height=&#34;268&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/rank-0x01/multi_calc_hu_8857dd14af1ff4ce.png 480w, https://ddlgitgzzhm.github.io/p/rank-0x01/multi_calc_hu_1bea9d41d9c04462.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;multi_calc.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;144&#34;
+		data-flex-basis=&#34;345px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;因此我们需要考虑 控制任务只在一个节点上进行运行&lt;/p&gt;
+&lt;h3 id=&#34;分布式锁方案&#34;&gt;分布式锁方案
+&lt;/h3&gt;&lt;p&gt;使用分布式锁来控制 goroutine 的计算方式&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;因为我们知道任务的运行 timeout 时间。 所以不需要开启续约&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;另外解锁失败的话，最多 r.Timeout 就会自动释放 也不需要担心&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/rank-0x01/multi_lock.png&#34;
+	width=&#34;416&#34;
+	height=&#34;355&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/rank-0x01/multi_lock_hu_e16438b071704369.png 480w, https://ddlgitgzzhm.github.io/p/rank-0x01/multi_lock_hu_3497fa670ab766a1.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;multi_lock.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;117&#34;
+		data-flex-basis=&#34;281px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;但是上述方案会出现一个问题， 这个只能控制同一时刻 只有一个 goroutine 计算，但是控制不住 计算了一次之后别的机器就不要计算热榜了&lt;/p&gt;
+&lt;p&gt;所以我们可以考虑&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在启动的时候拿到锁，而后不管几次都不会释放锁&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/rank-0x01/lock_all_time.png&#34;
+	width=&#34;417&#34;
+	height=&#34;236&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/rank-0x01/lock_all_time_hu_cad385875d0ea466.png 480w, https://ddlgitgzzhm.github.io/p/rank-0x01/lock_all_time_hu_c97935f3cd417538.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;lock_all_time.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;176&#34;
+		data-flex-basis=&#34;424px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;分布式锁的具体实现如下&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;定时任务每次运行 ，尝试拿分布式锁&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果拿到 异步开启自动续约&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;下一次正常运行，不需要额外拿锁&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;RankingJob&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Run&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;error&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;localLock&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Lock&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;defer&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;localLock&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Unlock&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;lock&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  	&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 说明你没拿到锁，你得试着拿锁&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  	&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ctx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;cancel&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;context&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;WithTimeout&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;context&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Background&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Second&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  	&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;defer&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;cancel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  	&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 我可以设置一个比较短的过期时间&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  	&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;lock&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;client&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Lock&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ctx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;key&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;timeout&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;rlock&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;FixIntervalRetry&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  		&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Interval&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Millisecond&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  		&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Max&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  	&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Second&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  	&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  		&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 这边没拿到锁，极大概率是别人持有了锁&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  		&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  	&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  	&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;lock&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;lock&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  	&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 我怎么保证我这里，一直拿着这个锁？？？&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  	&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;go&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  		&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;localLock&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Lock&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  		&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;defer&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;localLock&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Unlock&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  		&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 自动续约机制&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  		&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;err1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;lock&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;AutoRefresh&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;timeout&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Second&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  		&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 这里说明退出了续约机制&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  		&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 续约失败了怎么办？&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  		&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;err1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  			&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 不怎么办&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  			&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 争取下一次，继续抢锁&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  			&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;l&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Error&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;续约失败&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;logger&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Error&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;err1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Error&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()))&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  		&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  		&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;lock&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  		&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// lock.Unlock(ctx)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  	&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}()&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ctx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;cancel&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;context&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;WithTimeout&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;context&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Background&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;timeout&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;defer&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;cancel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;svc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;TopN&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ctx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;基于-mysql-的分布式任务调度&#34;&gt;基于 mysql 的分布式任务调度
+&lt;/h3&gt;&lt;p&gt;基本思路就是&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;在数据库中创建一张表， 里面是等待运行的定时任务&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;所有的实例都试着从这个表里面 抢占 等待运行的任务 , 抢占到了就执行&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/rank-0x01/mysql_lock.png&#34;
+	width=&#34;478&#34;
+	height=&#34;302&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/rank-0x01/mysql_lock_hu_584238e36e8d11bc.png 480w, https://ddlgitgzzhm.github.io/p/rank-0x01/mysql_lock_hu_4917092a1431443b.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;mysql_lock.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;158&#34;
+		data-flex-basis=&#34;379px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;抢占但是崩溃&#34;&gt;抢占但是崩溃
+&lt;/h4&gt;&lt;p&gt;如果一个实例抢占了，但是还没执行完毕，直接崩溃了怎么办 ？&lt;/p&gt;
+&lt;p&gt;引入 &lt;strong&gt;续约机制&lt;/strong&gt; , 实例0 要不断更新数据库的更新时间证明自己还活着&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/rank-0x01/mysql_resume.png&#34;
+	width=&#34;486&#34;
+	height=&#34;327&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/rank-0x01/mysql_resume_hu_14be4a9cf64572ae.png 480w, https://ddlgitgzzhm.github.io/p/rank-0x01/mysql_resume_hu_e5f2fcdbf6cc2b9f.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;mysql_resume.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;148&#34;
+		data-flex-basis=&#34;356px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;tbd&#34;&gt;tbd
+&lt;/h2&gt;</description>
+        </item>
+        <item>
+        <title>阅读、点赞、收藏 one</title>
+        <link>https://ddlgitgzzhm.github.io/p/interactive-0x02/</link>
+        <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/p/interactive-0x02/</guid>
+        <description>&lt;h2 id=&#34;简历-preview&#34;&gt;简历 preview
+&lt;/h2&gt;&lt;p&gt;简历上 :&lt;/p&gt;
+&lt;p&gt;实现了一个通用的  阅读、点赞、收藏 服务。使用 Kafka 进行解耦&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;数据库表设计 :&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;通用表设计 :&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;id,biz,bizid,readCnt,CollectCnt,LikeCnt&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;为 &lt;code&gt;bizid 和 biz&lt;/code&gt; 创建一个联合唯一索引&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;点赞表设计 :&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;id,biz,bizid,uid,status&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;为 &lt;code&gt;bizid 和 biz&lt;/code&gt;和&lt;code&gt;uid&lt;/code&gt; 创建一个联合唯一索引, 用 &lt;code&gt;status&lt;/code&gt;进行软删除&lt;/p&gt;
+&lt;h3 id=&#34;数据库处理&#34;&gt;数据库处理
+&lt;/h3&gt;&lt;p&gt;对于 阅读、点赞、收藏 操作都会涉及到一个 &lt;code&gt;check-dothing&lt;/code&gt; 的并发问题&lt;/p&gt;
+&lt;p&gt;即 : 当用户点赞的时候 文章是否已经点赞过了，如果点赞过需要+1，否则创建 ，这里统一采用 &lt;code&gt;do on conflict update&lt;/code&gt; 处理&lt;/p&gt;
+&lt;p&gt;不过需要注意的是 : &lt;code&gt;update&lt;/code&gt; 的时候我们需要保证自增 所以需要使用 &lt;code&gt;gorm.Expr&lt;/code&gt; 来获取数据库运行的值，而不是直接 &lt;code&gt;select-update&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;缓存处理&#34;&gt;缓存处理
+&lt;/h3&gt;&lt;p&gt;对于写入方，优先写入数据库，后写入redis&lt;/p&gt;
+&lt;p&gt;对于查询方，优选查redis 然后再查数据库&lt;/p&gt;
+&lt;p&gt;对于写入的过程，因为我们使用的 redis key 是一次缓存了 3个 like,read,collect 三个字段&lt;/p&gt;
+&lt;p&gt;所以我们自增的时候使用的是 HINCRBY 指令，对于 key 不存在的情况下会有歧义 。所以使用 lua 控制了一下 仅只有 key 存在的时候才会自增&lt;/p&gt;
+&lt;h3 id=&#34;消息队列&#34;&gt;消息队列
+&lt;/h3&gt;&lt;p&gt;新增 统计事件 引入 kafka 给 阅读、点赞服务解耦&lt;/p&gt;
+&lt;p&gt;在阅读文章服务，使用 kafka 异步发送，设置 10次每批，1s超时进行聚合发送消息&lt;/p&gt;
+&lt;p&gt;消费端同样设置 10条每批，1s超时来进行组合消费&lt;/p&gt;
+&lt;p&gt;每次消费 使用一个 map 进行聚合 同个&lt;code&gt;biz+biz_id&lt;/code&gt;的内容，优化之前一次点赞就需要一次 &lt;code&gt;insert&lt;/code&gt; 的 操作&lt;/p&gt;
+&lt;p&gt;并且通过开启事务进行消费，防止 MVCC 中的 刷盘操作，将原先要进行10次的刷盘降低到1次。&lt;/p&gt;
+&lt;h3 id=&#34;问题&#34;&gt;问题
+&lt;/h3&gt;&lt;h4 id=&#34;一致性问题的处理&#34;&gt;一致性问题的处理
+&lt;/h4&gt;&lt;p&gt;不处理&lt;/p&gt;
+&lt;p&gt;从业务上来说，没有必要要求阅读数、点赞数或者收藏数量一定是严格准确的，因为即便不准确，也不会对用户
+产生什么不好的影响。&lt;/p&gt;
+&lt;p&gt;更进一步说，只有高并发的文章才会有并发问题。而高并发的文章，阅读数、点赞数或者收藏数本身就很多，你
+少一点点无所谓。&lt;/p&gt;
+&lt;h3 id=&#34;亮点&#34;&gt;亮点
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;大量使用了事务&lt;/strong&gt;，来保证在同时操作两个表的时候，保持住 ACID 语义。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;大量使用了 Upsert 语义&lt;/strong&gt; , 因为很多情况下我们都不知道数据库中是否已经存在数据&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;大量使用 lua 脚本来保证缓存中的数据是正确的&lt;/strong&gt;, 但是没有彻底解决缓存一致性的问题&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;在查询接口中，只缓存总数数据，&lt;/strong&gt;, 并不会缓存个人是否收藏或者点赞的数据。&lt;/p&gt;
+&lt;h2 id=&#34;总分62--100&#34;&gt;总分：&lt;strong&gt;62 / 100&lt;/strong&gt;
+&lt;/h2&gt;&lt;p&gt;按「2 年 Go 后端」面试标准看：方向对、有工程意识，但表达粗糙、关键点浅、经不起追问。面试里能撑 15–20 分钟开场，深入一追容易露怯。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;分项打分&#34;&gt;分项打分
+&lt;/h3&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;维度&lt;/th&gt;
+					&lt;th&gt;分数&lt;/th&gt;
+					&lt;th&gt;说明&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;业务建模与表设计&lt;/td&gt;
+					&lt;td&gt;14/20&lt;/td&gt;
+					&lt;td&gt;通用计数表 + 点赞明细表思路正确，索引方向对&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;并发与数据正确性&lt;/td&gt;
+					&lt;td&gt;12/20&lt;/td&gt;
+					&lt;td&gt;知道 Upsert / Expr，但 check-then-act、事务边界讲不清&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;缓存设计&lt;/td&gt;
+					&lt;td&gt;12/20&lt;/td&gt;
+					&lt;td&gt;Cache-Aside + Lua 防空 key 自增有亮点，一致性论证弱&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;消息队列与解耦&lt;/td&gt;
+					&lt;td&gt;13/20&lt;/td&gt;
+					&lt;td&gt;Kafka 批量、聚合、减刷盘有工程味道&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;表达与面试叙事&lt;/td&gt;
+					&lt;td&gt;6/10&lt;/td&gt;
+					&lt;td&gt;口语化、错别字多，「大量使用」空洞，像笔记不像口述稿&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;亮点与深度&lt;/td&gt;
+					&lt;td&gt;5/10&lt;/td&gt;
+					&lt;td&gt;亮点空泛，缺少权衡、失败场景、可观测性&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;优点&#34;&gt;优点
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;表设计合理&lt;/strong&gt;：&lt;code&gt;biz + biz_id&lt;/code&gt; 抽象通用互动能力，点赞用 &lt;code&gt;(biz, biz_id, uid)&lt;/code&gt; 唯一 + &lt;code&gt;status&lt;/code&gt; 软删除，符合常见业务。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;踩过真实坑&lt;/strong&gt;：&lt;code&gt;ON CONFLICT&lt;/code&gt; + &lt;code&gt;gorm.Expr&lt;/code&gt; 自增、Redis &lt;code&gt;HINCRBY&lt;/code&gt; 空 key 用 Lua 护栏，说明写过代码而不只是背概念。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;有吞吐意识&lt;/strong&gt;：Kafka 批量生产/消费、按 &lt;code&gt;biz+biz_id&lt;/code&gt; 聚合、事务合并刷盘，对 2 年经验来说是加分项。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;一致性取舍有业务理由&lt;/strong&gt;：承认最终一致、高热内容允许误差，比死磕「强一致」更成熟——前提是能讲清边界。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;缺点面试官会盯的&#34;&gt;缺点（面试官会盯的）
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;「不处理一致性」太绝对&lt;/strong&gt;：面试官会问：DB 成功 Redis 失败？Kafka 重复消费？取消点赞与计数对不上？需要有策略（补偿、对账、幂等），不能只说「少一点点无所谓」。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;亮点写法很伤&lt;/strong&gt;：连续「大量使用事务/Upsert/Lua」像模板，没有场景、没有代价。事务多 ≠ 好，还可能拖慢吞吐。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;技术细节易被打穿&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;写库再写缓存：失败怎么回滚/补偿？&lt;/li&gt;
+&lt;li&gt;Lua「仅 key 存在才 incr」：key 不存在时计数会丢吗？靠查询回源还是异步重建？&lt;/li&gt;
+&lt;li&gt;Kafka 聚合：幂等键、乱序、部分失败重试怎么做？&lt;/li&gt;
+&lt;li&gt;「防止 MVCC 刷盘」表述不严谨，容易被纠正。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;缺个人态查询设计&lt;/strong&gt;：只说不缓存「是否点赞」，但列表页如何批量查个人态？N+1？位图/本地缓存？没写。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;表达与文档质量差&lt;/strong&gt;：&lt;code&gt;优选/check-dothing&lt;/code&gt;、front matter 的 &lt;code&gt;xxxx&lt;/code&gt;、标点混乱，会降低「能讲清楚」的印象。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;建议按面试口述改&#34;&gt;建议（按面试口述改）
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;改成 STAR 口述结构&lt;/strong&gt;：背景（互动服务压力）→ 方案（表 + Kafka + Redis）→ 难点（空 key、重复消费）→ 结果（QPS/延迟/错误率，哪怕是压测数字）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;准备 3 个追问标准答&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;DB/Redis 不一致：异步对账 + 定时校准热点 key&lt;/li&gt;
+&lt;li&gt;Kafka 至少一次：消费幂等（唯一键 + Upsert）&lt;/li&gt;
+&lt;li&gt;取消点赞：&lt;code&gt;status&lt;/code&gt; 翻转 + 计数 &lt;code&gt;GREATEST(cnt-1,0)&lt;/code&gt;，防负值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;删掉「大量使用」&lt;/strong&gt;，改成「在点赞写明细+改计数时用事务；计数更新用 Upsert；缓存用 Lua 保证 key 存在才 HINCRBY」。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;补一张口述链路&lt;/strong&gt;：读请求 → Redis Hash → miss 回源 DB 回填；写请求 → DB Upsert →（可选）发 Kafka → 消费者聚合写计数 → 更新缓存。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;亮点换成可量化的 2–3 条&lt;/strong&gt;：例如「批量聚合把热点文章写放大降到约 1/N」「Lua 避免幽灵 key」「个人态与总数分离降低缓存体积」。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;面试官一句话结论&#34;&gt;面试官一句话结论
+&lt;/h3&gt;&lt;p&gt;材料有「做过互动域」的骨架，适合当提纲；按现在写法直接上面试，深度和表达大概卡在 &lt;strong&gt;及格偏上&lt;/strong&gt;。把一致性策略、幂等、失败路径和口述结构补齐，冲到 &lt;strong&gt;75–80&lt;/strong&gt; 比较现实。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>阅读、点赞、收藏 detail</title>
+        <link>https://ddlgitgzzhm.github.io/p/interactive-0x01/</link>
+        <pubDate>Mon, 27 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/p/interactive-0x01/</guid>
+        <description>&lt;h2 id=&#34;简历-preview&#34;&gt;简历 preview
+&lt;/h2&gt;&lt;p&gt;简历上 :&lt;/p&gt;
+&lt;p&gt;设计并实现了一个高并发的 阅读、点赞、收藏服务&lt;/p&gt;
+&lt;p&gt;需求分析 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;阅读数，每次打开都会加1，但是关掉不会 -1&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;点赞和收藏都有取消功能&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;技术分析 :&lt;/p&gt;
+&lt;p&gt;从使用场景考虑 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;当我们点开一篇文章的时候，会看到这篇文章的阅读、点赞和收藏数量 。 从这里考虑 全部都写在一个服务上会更好处理&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;用户可以单独查看自己收藏的文章 。 这个角度考虑 收藏单独做成一个服务更合适&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;从性能的角度考虑 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;拆分成三个服务，三个服务可以独立治理，对于分散读写压力有好处&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;从研发效率角度来看 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;拆分三个服务对应代码就有三套，研发效率不高&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;因此最终选择研发合并在一起&lt;/p&gt;
+&lt;h2 id=&#34;阅读计数&#34;&gt;阅读计数
+&lt;/h2&gt;&lt;h3 id=&#34;业务处理-&#34;&gt;业务处理 :
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;当点击文章服务的 &lt;code&gt;GetPubslishId&lt;/code&gt; 的时候 进行增加阅读计数&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;先操作数据库 再更新缓存&lt;/li&gt;
+&lt;li&gt;如果更新缓存失败会导致不一致，但是其实不用管他，因为阅读数不准确从业务角度考虑没什么问题&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;数据库操作-&#34;&gt;数据库操作 :
+&lt;/h3&gt;&lt;p&gt;同样需要考虑是否一个情况&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;如果新帖子没计数，那么应该 create&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;否则的话 update&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;因此这边也是 &lt;code&gt;upsert&lt;/code&gt; 的语义 . 另外我们不能给使用取出计数然后+1 的做法会有并发问题 。 因此使用 &lt;code&gt;gorm.Expr(&lt;/code&gt;read_cnt&lt;code&gt;+1)&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;缓存处理&#34;&gt;缓存处理
+&lt;/h3&gt;&lt;p&gt;缓存的设计也会有和数据库一样的问题&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;如果 Redis key 不存在  和 redis 存在 的情况&lt;/li&gt;
+&lt;li&gt;因此需要引入 LUA 脚本解决这种情况&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;点赞&#34;&gt;点赞
+&lt;/h2&gt;&lt;h3 id=&#34;业务处理&#34;&gt;业务处理
+&lt;/h3&gt;&lt;p&gt;需要支持&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;点赞&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;统计点赞数量&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;某个用户是否点赞过，并且用户可以取消点赞&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;对于点赞计数，同样和阅读处理一样 。&lt;/p&gt;
+&lt;p&gt;点赞和阅读不同，需要支持取消点赞， 因此需要额外维护一张用户点赞表，聚合 &lt;code&gt;user_id&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;考虑软删除策略，因此需要额外加入一个 &lt;code&gt;status&lt;/code&gt; 字段 。 因为取消点赞和点赞是一个很频繁的业务，如果使用硬删除，数据库会有很多 &lt;code&gt;gap&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;收藏&#34;&gt;收藏
+&lt;/h2&gt;&lt;p&gt;收藏的处理同上述问题&lt;/p&gt;
+&lt;h2 id=&#34;其他&#34;&gt;其他
+&lt;/h2&gt;&lt;h3 id=&#34;查询接口&#34;&gt;查询接口
+&lt;/h3&gt;&lt;p&gt;对于 &lt;code&gt;阅读、点赞和收藏&lt;/code&gt; 的查询接口 这三个是互相独立的，所以可以考虑使用 &lt;code&gt;goroutine&lt;/code&gt; 进行异步的获取，使用 &lt;code&gt;error_group&lt;/code&gt; 进行等待&lt;/p&gt;
+&lt;h3 id=&#34;缓存一致性&#34;&gt;缓存一致性
+&lt;/h3&gt;&lt;p&gt;对于 更新 DB 和 数据库操作会存在 缓存一致性问题  如下&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/interactive-0x01/img.png&#34;
+	width=&#34;993&#34;
+	height=&#34;353&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/interactive-0x01/img_hu_9fd076b9f986af4f.png 480w, https://ddlgitgzzhm.github.io/p/interactive-0x01/img_hu_645c96ce2b81620e.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;281&#34;
+		data-flex-basis=&#34;675px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;考虑业务情况&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;阅读数、点赞数 或者是 收藏数 并不一定要严格准确，即使不准确也不会对用户产生什么不好的影响&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;只有高并发的文章才会有并发问题，而高并发的文章，阅读数、收藏数、点赞数本来就很多，少一点也无所谓&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;kafka&#34;&gt;Kafka
+&lt;/h2&gt;&lt;p&gt;kafka 的基本概念&lt;/p&gt;
+&lt;p&gt;生产者 、消费者、broker、topic 、partition&lt;/p&gt;
+&lt;p&gt;broker 可以认为是中间人，是一个逻辑概念 。  broker 可以认为是一个消息队列进程 。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/interactive-0x01/kafka.png&#34;
+	width=&#34;467&#34;
+	height=&#34;287&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/interactive-0x01/kafka_hu_3405e7ccc65fe67c.png 480w, https://ddlgitgzzhm.github.io/p/interactive-0x01/kafka_hu_a5658cd9bae9f508.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;kafka.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;162&#34;
+		data-flex-basis=&#34;390px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;可以简单的认为 一个 业务就是一个 topic . 一个 topic 有多个分区 。&lt;/p&gt;
+&lt;p&gt;当我们讨论 topic 有多少个分区的时候，我们主要讨论的是有多少个主分区&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/interactive-0x01/topic.png&#34;
+	width=&#34;483&#34;
+	height=&#34;351&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/interactive-0x01/topic_hu_aaf4f436a0dc2049.png 480w, https://ddlgitgzzhm.github.io/p/interactive-0x01/topic_hu_ec230863ca5d2ae4.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;topic.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;137&#34;
+		data-flex-basis=&#34;330px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/interactive-0x01/partion.png&#34;
+	width=&#34;523&#34;
+	height=&#34;288&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/interactive-0x01/partion_hu_dd38b7a7dcbcde5a.png 480w, https://ddlgitgzzhm.github.io/p/interactive-0x01/partion_hu_cca7e38d02fbaf50.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;partion.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;181&#34;
+		data-flex-basis=&#34;435px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;点赞解耦&#34;&gt;点赞解耦
+&lt;/h3&gt;&lt;p&gt;我们上面设计的点赞系统是每次请求都进行一次点赞操作，每次都会访问我们的 DB&lt;/p&gt;
+&lt;p&gt;因此我们需要引入 Kafka 来进行异步的解耦&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/interactive-0x01/img1.png&#34;
+	width=&#34;350&#34;
+	height=&#34;420&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/interactive-0x01/img1_hu_aea5e51c6f275de8.png 480w, https://ddlgitgzzhm.github.io/p/interactive-0x01/img1_hu_d2a5dcebb189c259.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img1.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;83&#34;
+		data-flex-basis=&#34;200px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;在调用 调用获取文章相信的时候 发送对应的阅读事件&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;mQ消费者端，使用 ctxTimeout + channel 控制批量消费&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;消费插入数据库中使用map对biz进行一次聚合。 然后插入数据库 ，使用事务进行插入 。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;主要优化&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;多个业务读取文章 是多行sql，现在改成 N 行 ,n &amp;lt;= 多行sql&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;开启事务，进行一次提交。 少了 MVCC 等操作。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;亮点&#34;&gt;亮点
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;批量消费 和 批量生产&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;面试题&#34;&gt;面试题
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;有没有用过 kafka  ？ 用来解决什么问题&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;你为什么要使用 MQ，使用MQ 等好处是什么 。 异步，解耦，消峰&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;介绍一下 kafka :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;什么是 broker , broker 和 分区的关系是什么&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;什么是 topic , topic 和 分区的关系是什么&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;kafka 中 producer 中的 ack 有哪些取值 ？ 分别是什么含义？你用了哪些&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Kafka 中 ISR 是什么意思 ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Kafka 中一个分区可以有多个消费者吗&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;消息积压了怎么半 ？&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;增加 topic&lt;/li&gt;
+&lt;li&gt;异步消费&lt;/li&gt;
+&lt;li&gt;批量消费&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;怎么保证消息的顺序 ？  怎么保证全局有序 ？ 怎么保证业务有序。？&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;全局有序 : 只使用一个分区&lt;/li&gt;
+&lt;li&gt;业务有序 : 使用 hash类的算法制定生产者发送消息的分区&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        <item>
+        <title>发帖服务 detail</title>
+        <link>https://ddlgitgzzhm.github.io/p/publish-service-0x01/</link>
+        <pubDate>Sat, 25 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/p/publish-service-0x01/</guid>
+        <description>&lt;h2 id=&#34;简历-preview&#34;&gt;简历 preview
+&lt;/h2&gt;&lt;p&gt;简历上 :&lt;/p&gt;
+&lt;p&gt;设计并实现了一个 发帖 服务&lt;/p&gt;
+&lt;p&gt;需求分析 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;帖子状态分析 :  未发表 -&amp;gt; 发表 -&amp;gt; 被删除&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;如果做到一边修改一边可查看&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;分开存储, 设计一个制作库 一个线上库&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/publish-service-0x01/img.png&#34;
+	width=&#34;352&#34;
+	height=&#34;275&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/publish-service-0x01/img_hu_aac3da734ef76f24.png 480w, https://ddlgitgzzhm.github.io/p/publish-service-0x01/img_hu_f370ee4cf79a8ccc.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;128&#34;
+		data-flex-basis=&#34;307px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;制作库和线上库的事务问题&#34;&gt;制作库和线上库的事务问题
+&lt;/h2&gt;&lt;p&gt;我们从 &lt;code&gt;service&lt;/code&gt; 的角度考虑，其实并不知道 &lt;code&gt;repository&lt;/code&gt; 层面存储的是什么数据 。 所以就别谈开启事务了&lt;/p&gt;
+&lt;p&gt;因此我们能做的最好的一点就是 &lt;code&gt;重试&lt;/code&gt;  . 对于创作者来说就算线上库失败了其实影响也不大&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;如果看到发表失败，他可以考虑重试&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;读者完全看不到这个帖子&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;如果是站在 &lt;code&gt;repository&lt;/code&gt; 的角度考虑 就要分 &lt;code&gt;同库不同表&lt;/code&gt; 和 &lt;code&gt;不同库&lt;/code&gt; 的问题&lt;/p&gt;
+&lt;p&gt;对于 &lt;code&gt;不同库&lt;/code&gt; 的情况， 可以考虑 分步更新 &lt;code&gt;find - update -&amp;gt; upsert&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;对于 &lt;code&gt;同库不同表&lt;/code&gt; 可以采用数据库事务进行处理&lt;/p&gt;
+&lt;p&gt;建表&lt;/p&gt;
+&lt;h2 id=&#34;mongodb&#34;&gt;Mongodb
+&lt;/h2&gt;&lt;h3 id=&#34;雪花算法&#34;&gt;雪花算法
+&lt;/h3&gt;&lt;p&gt;因为 系统内增加了 MongoDB 但是我们在 repo 层定义的是 int64 的 ID，因此需要使用雪花算法&lt;/p&gt;
+&lt;h2 id=&#34;oss&#34;&gt;OSS
+&lt;/h2&gt;&lt;p&gt;通过 OSS 来维护 content&lt;/p&gt;
+&lt;h2 id=&#34;查询接口&#34;&gt;查询接口
+&lt;/h2&gt;&lt;p&gt;作者的查询接口 :&lt;/p&gt;
+&lt;p&gt;列表接口 : 看到自己发表的所有文章, 这是一个分页接口&lt;/p&gt;
+&lt;p&gt;详情接口 : 当作者选中了某篇文章的时候，能看到文章的全部内容&lt;/p&gt;
+&lt;p&gt;读者的查询接口 :&lt;/p&gt;
+&lt;p&gt;搜索接口 : 接入搜索模块之后设计&lt;/p&gt;
+&lt;p&gt;推荐接口 : 再设计&lt;/p&gt;
+&lt;p&gt;阅读文章接口 : 当选中某篇文章的时候, 可以看到文章的全部内容&lt;/p&gt;
+&lt;h3 id=&#34;分页接口处理&#34;&gt;分页接口处理
+&lt;/h3&gt;&lt;p&gt;分页接口的三种形态 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Offset + Limit 的形式&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;之直接定义一个 Page 的形式 。 前端传递了 page 之后需要后端计算出对应的 offset 和 limit&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;直接定义一个 Cursor 的形式 。 每次查询后，后端控制返回一个 Cursor,让前端使用 。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;缓存设计&#34;&gt;缓存设计
+&lt;/h3&gt;&lt;h4 id=&#34;precache&#34;&gt;PreCache
+&lt;/h4&gt;&lt;h5 id=&#34;缓存第一页&#34;&gt;缓存第一页
+&lt;/h5&gt;&lt;p&gt;大部分没有什么人会缓存分页结果 。 但是很多业务场景，用户只看列表内容的第一页，很少会往后翻 。 因此可以考虑 &lt;strong&gt;只缓存第一页&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;实现逻辑 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;查询接口的时候。优先查缓存 然后再查数据库。 判断 &lt;code&gt;offset == 0&lt;/code&gt; 和 &lt;code&gt;limit &amp;lt; 100&lt;/code&gt; 则走缓存&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;更新/新增操作 : 在对于新写文章、编辑文字、发表文章都要清楚相关的 首页缓存&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h5 id=&#34;缓存第第一条数据&#34;&gt;缓存第第一条数据
+&lt;/h5&gt;&lt;p&gt;对于创作者查看文章详情接口，很大概率。创作者在拿到列表之后，只会访问第一条数据 。 所以我们可以考虑进行缓存预加载 。只缓存第一条数据&lt;/p&gt;
+&lt;p&gt;特点 ：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;因为伴随着预测性质，所以这个过期时间设置的很短 。避免内存的开销&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/publish-service-0x01/artclie_publish.png&#34;
+	width=&#34;574&#34;
+	height=&#34;293&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/publish-service-0x01/artclie_publish_hu_3c98b2b06cee5069.png 480w, https://ddlgitgzzhm.github.io/p/publish-service-0x01/artclie_publish_hu_e8e264ec47876974.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;artclie_publish.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;195&#34;
+		data-flex-basis=&#34;470px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;改进点 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;不缓存大文档 。 避免浪费内存&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;面试&#34;&gt;面试
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;什么是 TDD&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;TDD 和 DDD 的关系&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;DDD 适合战略规划，TDD 适合落地具体功能。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;TDD 有什么好处&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;理清思路、查漏补缺、方便重构、测试完善。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;有没有用过 MongoDB ？ 用来解决什么问题 ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;为什么要用 Mongodb 用 mysql 行不行&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;解释一下 mongodb 中集合和文档的关系&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如何设计 Mongobd 上的索引 ESR 原则&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如何数据存储在 MongoDB上 怎么生成 ID&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;MongoDB 是否支持事务，是否支持跨文档事务，是否支持 ACID&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;缓存方案 : 淘汰策略&lt;/p&gt;
+&lt;p&gt;LRU(最近最少使用) , LFU (最近不频繁使用)&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;优先淘汰普通创作者的数据，尽可能保留大 V 的数据。 LFU 能够达到近似效果 ，LRU 效果会差一些&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;优先淘汰大对象&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;优先淘汰小对象&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        <item>
+        <title>发帖服务 one</title>
+        <link>https://ddlgitgzzhm.github.io/p/publish-service-0x01/</link>
+        <pubDate>Sat, 25 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/p/publish-service-0x01/</guid>
+        <description>&lt;h2 id=&#34;简历-preview&#34;&gt;简历 preview
+&lt;/h2&gt;&lt;p&gt;简历上 : 设计并实现了一个 &lt;strong&gt;文章&lt;/strong&gt; 服务&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;考虑文章的业务属性, 创作者支持保存草稿和发布文章。 设计了 线上库 和 制作库 两个库表设计 。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;采用 ESR 原则，考虑会有 用户查看自己的文章，用户查看某篇文章详情,以及热榜查看对应时间的文章 。设定过了 _create,auth_id . 这两个索引&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;文章服务支持&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;制作库 保存草稿, 设置隐私文章, 发布制作库内容, 按照 ID 查看文章,或许作者文章列表, 获取发布文章列表&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;支持 MongoDB 和 OSS 的扩展&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;设计合理的缓存服务&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;考虑并发场景&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;细节&#34;&gt;细节
+&lt;/h2&gt;&lt;h3 id=&#34;数据库索引设计&#34;&gt;数据库索引设计
+&lt;/h3&gt;&lt;p&gt;主要涉及到的业务有 : 作者查看当前文章，和最近一周的热榜设计&lt;/p&gt;
+&lt;p&gt;对于作者查看当前文章预计查询是 &lt;code&gt;select from where auth_id = &#39;&#39; and statuts = &#39;&#39;&lt;/code&gt; 因此设计了 &lt;code&gt;auth_id&lt;/code&gt; 的索引&lt;/p&gt;
+&lt;p&gt;对于最近一周的热榜设计，因为热榜计算是一个频繁的操作，预计查询是 &lt;code&gt;select from where _create &amp;gt;= now-7week&lt;/code&gt; 因此设计了 &lt;code&gt;_create&lt;/code&gt; 的索引&lt;/p&gt;
+&lt;h3 id=&#34;数据库并发处理&#34;&gt;数据库并发处理
+&lt;/h3&gt;&lt;p&gt;隐私文章功能 :&lt;/p&gt;
+&lt;p&gt;需要同步改动 制作库和 线上库的 状态 。&lt;/p&gt;
+&lt;p&gt;系统设计的时候选择的是同库不同表的流程因此采用数据库事务进行一致性处理，对于更新失败的操作进行回滚 。从业务角度考虑，就算更新失败了也只是让用户多重试几次。&lt;/p&gt;
+&lt;p&gt;如果是不同库的情况，可以考虑在接口层面增加多次重试。&lt;/p&gt;
+&lt;p&gt;发布功能 :&lt;/p&gt;
+&lt;p&gt;对于发布功能, 线上库存在两个状态,线上没有文章需要create,线上有文章需要 update&lt;/p&gt;
+&lt;p&gt;防止数据库层面的同一篇文章多次竞态问题使用&lt;code&gt;upsert&lt;/code&gt;进行操作。&lt;/p&gt;
+&lt;h3 id=&#34;缓存设计&#34;&gt;缓存设计
+&lt;/h3&gt;&lt;p&gt;对于列表接口 :&lt;/p&gt;
+&lt;p&gt;根据习惯习惯缓存第一页内容,大部分用户只会访问第一页的内容。 细节: 缓存之前需要清空文章的content 节省内存资源。&lt;/p&gt;
+&lt;p&gt;在更新，删除，隐私的接口增加对应的删除缓存的操作 。&lt;/p&gt;
+&lt;p&gt;对于查看detail接口 :&lt;/p&gt;
+&lt;p&gt;根据用户习惯，往往只会查看列表第一篇文章的内容。 因此考虑在拉取列表后，缓存第一篇文章的内容。 仅在 content &amp;lt; 1M 的时候进行缓存。 缓存设置了一个很短的过期时间，防止浪费。&lt;/p&gt;
+&lt;p&gt;对于发布接口 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;考虑作者发布文章后就会有人阅读，因此在发布的时候就设置缓存。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;其他细节&#34;&gt;其他细节
+&lt;/h2&gt;&lt;h3 id=&#34;mongodb&#34;&gt;MongoDB
+&lt;/h3&gt;&lt;p&gt;尝试接入 MongoDB 进行存储文章数据。 接入 MongoDB 之后发现，MongoDB 返回的 ID 是 String 类型 。破坏了原先接口的定义。 因此引入了 雪花算法 进行对其接口&lt;/p&gt;
+&lt;h3 id=&#34;oss&#34;&gt;OSS
+&lt;/h3&gt;&lt;p&gt;接入 OSS，在发布文章之后，对于线上库的文章内容进行优化。线上库不保存文章内容，文章内容全部存储在 OSS 中&lt;/p&gt;
+&lt;h3 id=&#34;对接阅读统计服务&#34;&gt;对接阅读统计服务
+&lt;/h3&gt;&lt;p&gt;使用 channel + ctxWithTimeout 进行批量发送阅读统计给 MQ。 供下游消费&lt;/p&gt;
+&lt;p&gt;作为 Golang 面试官，我按「2 年经验、能独立负责一个业务模块」的标准，对这份 &lt;strong&gt;发帖/文章服务&lt;/strong&gt; 面试准备稿打分如下。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;综合评分68--100&#34;&gt;综合评分：&lt;strong&gt;68 / 100&lt;/strong&gt;
+&lt;/h2&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;维度&lt;/th&gt;
+					&lt;th&gt;得分&lt;/th&gt;
+					&lt;th&gt;说明&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;业务理解与架构设计&lt;/td&gt;
+					&lt;td&gt;18/25&lt;/td&gt;
+					&lt;td&gt;制作库/线上库分离思路正确，有业务驱动意识&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;数据库与索引&lt;/td&gt;
+					&lt;td&gt;12/20&lt;/td&gt;
+					&lt;td&gt;有索引意识，但 ESR 理解偏浅，热榜查询设计不完整&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;并发与一致性&lt;/td&gt;
+					&lt;td&gt;13/20&lt;/td&gt;
+					&lt;td&gt;提到事务、upsert、重试，但缺少边界与失败场景&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;缓存设计&lt;/td&gt;
+					&lt;td&gt;14/20&lt;/td&gt;
+					&lt;td&gt;第一页缓存、去 content、失效策略有亮点，缺 key 设计与一致性细节&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;工程化与 Golang 表达&lt;/td&gt;
+					&lt;td&gt;6/15&lt;/td&gt;
+					&lt;td&gt;几乎无 Go 实现细节，MQ 只一笔带过&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;面试表达与完整性&lt;/td&gt;
+					&lt;td&gt;5/10&lt;/td&gt;
+					&lt;td&gt;结构尚可，错别字多，placeholder 未填，缺 Q&amp;amp;A 演练&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;结论&lt;/strong&gt;：作为 2 年经验候选人，&lt;strong&gt;项目经历是真实的、方向也对&lt;/strong&gt;，但这份准备稿更像「项目笔记摘要」，还不足以支撑 45–60 分钟的深度技术面。能过初筛，若在索引、一致性、缓存、Go 并发等点被追问，容易失分。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;优点&#34;&gt;优点
+&lt;/h2&gt;&lt;h3 id=&#34;1-业务建模有思考&#34;&gt;1. 业务建模有思考
+&lt;/h3&gt;&lt;p&gt;「制作库 + 线上库」分离是内容类系统的常见做法，能解释：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;草稿编辑 vs 线上可读&lt;/li&gt;
+&lt;li&gt;发布时从制作库同步到线上库&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这比只会说「CRUD 增删改查」高一档。&lt;/p&gt;
+&lt;h3 id=&#34;2-缓存策略贴近真实访问&#34;&gt;2. 缓存策略贴近真实访问
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;只缓存第一页 —— 符合大部分用户行为&lt;/li&gt;
+&lt;li&gt;列表缓存去掉 &lt;code&gt;content&lt;/code&gt; —— 说明考虑过内存成本&lt;/li&gt;
+&lt;li&gt;写操作删缓存 —— 知道 Cache Aside 的基本思路&lt;/li&gt;
+&lt;li&gt;详情预缓存第一条 + 短 TTL + &lt;code&gt;&amp;lt; 1M&lt;/code&gt; 限制 —— 有「预测性缓存」意识&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;3-并发场景有触点&#34;&gt;3. 并发场景有触点
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;发布用 &lt;code&gt;upsert&lt;/code&gt; 防竞态&lt;/li&gt;
+&lt;li&gt;隐私状态双库同步用事务&lt;/li&gt;
+&lt;li&gt;不同库场景考虑接口层重试&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;说明不是只写 happy path。&lt;/p&gt;
+&lt;h3 id=&#34;4-扩展能力有落地&#34;&gt;4. 扩展能力有落地
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;MongoDB 接入 + 雪花 ID 对齐 &lt;code&gt;int64&lt;/code&gt; 接口&lt;/li&gt;
+&lt;li&gt;OSS 存正文、DB 存元数据&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;channel + ctxWithTimeout&lt;/code&gt; 批量发 MQ&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;有「存储分层 + 异步解耦」的工程感。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;缺点&#34;&gt;缺点
+&lt;/h2&gt;&lt;h3 id=&#34;1-esr-原则理解不准确高风险扣分点&#34;&gt;1. ESR 原则理解不准确（高风险扣分点）
+&lt;/h3&gt;&lt;p&gt;文档写「采用 ESR 原则，设计了 &lt;code&gt;_create&lt;/code&gt; 和 &lt;code&gt;auth_id&lt;/code&gt; 两个索引」。&lt;/p&gt;
+&lt;p&gt;ESR（Equality / Sort / Range）说的是 &lt;strong&gt;复合索引字段顺序&lt;/strong&gt;，不是两个单列索引。面试官很可能追问：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;作者查文章：&lt;code&gt;auth_id = ? AND status = ?&lt;/code&gt; → 更合理的是 &lt;code&gt;(auth_id, status)&lt;/code&gt; 或 &lt;code&gt;(auth_id, status, ctime DESC)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;热榜：&lt;code&gt;ctime &amp;gt;= now-7d&lt;/code&gt; 且可能要 &lt;code&gt;status = published&lt;/code&gt; → 单列 &lt;code&gt;_create&lt;/code&gt; 往往不够，还要考虑排序字段（阅读量、score）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;若被问到「为什么不用复合索引」，目前文档撑不住。&lt;/p&gt;
+&lt;h3 id=&#34;2-热榜设计过于粗糙&#34;&gt;2. 热榜设计过于粗糙
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;now-7week&lt;/code&gt; 应为 7 天（笔误会减印象分）&lt;/li&gt;
+&lt;li&gt;没说明热榜指标（UV、阅读量、点赞、时间衰减）&lt;/li&gt;
+&lt;li&gt;没说明是实时算还是定时任务 + 缓存&lt;/li&gt;
+&lt;li&gt;频繁计算却只提 &lt;code&gt;_create&lt;/code&gt; 索引，逻辑链不完整&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;3-一致性问题讲不深&#34;&gt;3. 一致性问题讲不深
+&lt;/h3&gt;&lt;p&gt;隐私文章「制作库 + 线上库同步」只说了事务和重试，缺：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;同库不同表 vs 跨库：最终一致性怎么做&lt;/li&gt;
+&lt;li&gt;事务失败后用户看到什么状态&lt;/li&gt;
+&lt;li&gt;OSS 与 DB 不一致怎么办（DB 更新了，OSS 上传失败）&lt;/li&gt;
+&lt;li&gt;是否需要 Saga / 补偿 / 幂等键&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;2 年经验不要求精通分布式事务，但要能讲清 &lt;strong&gt;自己的方案边界&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;4-几乎没有-golang-相关内容&#34;&gt;4. 几乎没有 Golang 相关内容
+&lt;/h3&gt;&lt;p&gt;这是 &lt;strong&gt;Golang 面试准备&lt;/strong&gt;，但全文没有：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;context&lt;/code&gt; 怎么用、超时怎么传&lt;/li&gt;
+&lt;li&gt;goroutine 泄漏怎么防&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;errgroup&lt;/code&gt; / worker pool 怎么做批量 MQ&lt;/li&gt;
+&lt;li&gt;接口设计、依赖注入、分层（handler/service/repo）&lt;/li&gt;
+&lt;li&gt;单元测试、压测数据&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;channel + ctxWithTimeout&lt;/code&gt; 只一句，深度不够。&lt;/p&gt;
+&lt;h3 id=&#34;5-表达与细节问题&#34;&gt;5. 表达与细节问题
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;statuts&lt;/code&gt;、&lt;code&gt;auth_id&lt;/code&gt;/&lt;code&gt;author_id&lt;/code&gt; 混用、&lt;code&gt;_create&lt;/code&gt; 命名不规范&lt;/li&gt;
+&lt;li&gt;「习惯习惯」重复&lt;/li&gt;
+&lt;li&gt;description 仍是 &lt;code&gt;xxxx&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;相比同系列的 &lt;code&gt;register_login tidy&lt;/code&gt;，这篇 &lt;strong&gt;没有 Q&amp;amp;A 脱稿演练&lt;/strong&gt;，面试时容易散&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;6-缺少可量化的结果&#34;&gt;6. 缺少可量化的结果
+&lt;/h3&gt;&lt;p&gt;没有 QPS、P99 延迟、缓存命中率、发布失败率等，「设计合理」缺少说服力。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;改进建议&#34;&gt;改进建议
+&lt;/h2&gt;&lt;h3 id=&#34;一把每个技术点补成star--追问应答&#34;&gt;一、把每个技术点补成「STAR + 追问应答」
+&lt;/h3&gt;&lt;p&gt;建议每个模块固定四句话：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;背景&lt;/strong&gt;：为什么这么做&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;方案&lt;/strong&gt;：具体怎么实现&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;取舍&lt;/strong&gt;：为什么不用别的方案&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;结果&lt;/strong&gt;：数据或线上表现&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;示例（索引）&lt;/strong&gt;：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;作者列表查询是 &lt;code&gt;author_id + status + 按创建时间倒序分页&lt;/code&gt;。我用复合索引 &lt;code&gt;(author_id, status, ctime DESC)&lt;/code&gt;，遵循 ESR：等值条件在前，排序字段在中间。热榜是近 7 天已发布文章按 score 排序，定时任务每 5 分钟算一次，结果放 Redis ZSet，读路径不走 DB。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;二重点补强-5-个高频追问&#34;&gt;二、重点补强 5 个高频追问
+&lt;/h3&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;追问&lt;/th&gt;
+					&lt;th&gt;建议准备内容&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;为什么制作库/线上库要分开？&lt;/td&gt;
+					&lt;td&gt;读写隔离、草稿不影响线上、发布可审核&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;发布接口如何保证幂等？&lt;/td&gt;
+					&lt;td&gt;幂等键、upsert 条件、版本号 / status 机&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;缓存一致性怎么保证？&lt;/td&gt;
+					&lt;td&gt;key 设计、先更 DB 再删缓存、延迟双删要不要&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;为什么用 MongoDB？MySQL 行不行？&lt;/td&gt;
+					&lt;td&gt;文档结构、字段变化、大正文；MySQL 可以但 OSS 后 MySQL 更合适&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;MQ 批量发送失败怎么办？&lt;/td&gt;
+					&lt;td&gt;batch 大小、重试、dead letter、ctx 超时&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;三补-golang-实现细节至少-3-点&#34;&gt;三、补 Golang 实现细节（至少 3 点）
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;发布流程&lt;/strong&gt;：&lt;code&gt;ctx&lt;/code&gt; 超时、&lt;code&gt;errgroup&lt;/code&gt; 并行写 DB + 上传 OSS&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;阅读统计&lt;/strong&gt;：带 buffer 的 worker，&lt;code&gt;select&lt;/code&gt; + &lt;code&gt;ctx.Done()&lt;/code&gt; 优雅退出&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;接口层&lt;/strong&gt;：统一错误码、&lt;code&gt;middleware&lt;/code&gt; 鉴权、作者只能改自己的文章&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;能画一张流程图或贴 20 行核心代码，比纯文字强很多。&lt;/p&gt;
+&lt;h3 id=&#34;四oss--db-一致性单独成段&#34;&gt;四、OSS + DB 一致性单独成段
+&lt;/h3&gt;&lt;p&gt;建议明确：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;先发 OSS 还是先写 DB？&lt;/li&gt;
+&lt;li&gt;发布失败如何回滚 / 清理孤儿文件？&lt;/li&gt;
+&lt;li&gt;读路径：DB 存 &lt;code&gt;content_url&lt;/code&gt;，CDN /cache 怎么处理？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;五参考-register_login-tidy-的结构改版&#34;&gt;五、参考 &lt;code&gt;register_login tidy&lt;/code&gt; 的结构改版
+&lt;/h3&gt;&lt;p&gt;那篇有「脱讲稿 + 问题列表 + 标准答法」，这篇建议对齐：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gu&#34;&gt;## 30 秒 elevator pitch
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gu&#34;&gt;## 架构图（制作库/线上库/OSS/缓存/MQ）
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gu&#34;&gt;## 核心接口（Publish / SaveDraft / SetPrivate / List / Detail）
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gu&#34;&gt;## 5 个技术亮点（每个 1 分钟）
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gu&#34;&gt;## 10 个高频面试题 + 参考答案
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gu&#34;&gt;## 踩坑（MongoDB ObjectId、缓存大对象、双库不一致）
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;六修正文档硬伤&#34;&gt;六、修正文档硬伤
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;统一术语：&lt;code&gt;author_id&lt;/code&gt;、&lt;code&gt;status&lt;/code&gt;、&lt;code&gt;ctime&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;修正「7 week」→「7 day」&lt;/li&gt;
+&lt;li&gt;填满 front matter 的 &lt;code&gt;description&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;通读去掉错别字&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;面试官视角的一句话评价&#34;&gt;面试官视角的一句话评价
+&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;「候选人做过真实的文章发布模块，有制作库/线上库、缓存、OSS、MQ 等完整链路意识；但对索引、一致性、Go 并发和面试表达深度不足。若能在 ESR、发布幂等、缓存 key 设计、双库一致性边界上准备充分，可从『大概做过』提升到『能独立负责』，分数有望到 80+。」&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;p&gt;如果你愿意，我可以按面试官口吻，直接把这篇 &lt;code&gt;tidy&lt;/code&gt; 文档改成「可背诵版」（含 10 道追问 + 参考答案），或对照 &lt;code&gt;register_login tidy&lt;/code&gt; 的结构帮你重写一版。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>高可用 高扩展 高安全 的 登陆与注册的设计 one</title>
+        <link>https://ddlgitgzzhm.github.io/p/register-login-desin-0x01/</link>
+        <pubDate>Fri, 24 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/p/register-login-desin-0x01/</guid>
+        <description>&lt;h2 id=&#34;脱讲稿&#34;&gt;脱讲稿
+&lt;/h2&gt;&lt;p&gt;简介 : 设计并实现了 完整的 高安全性,高可用,高扩展的 登陆与注册 服务&lt;/p&gt;
+&lt;p&gt;自述 :&lt;/p&gt;
+&lt;p&gt;我给系统设计了一个支持 手机号码、微信登陆、邮箱注册 的登陆与注册服务。 使用 长短JWT + Session 控制用户的登陆登出。 处理了跨域和限流问题,并且对于手机登陆支持切换云服务商 支持 failover 策略。功能拥有完整的链路控制，并且使用 wrk 进行压测。&lt;/p&gt;
+&lt;p&gt;高安全性 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;做了限流, 手机验证, 设备验证&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;高可用 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;支持切换多个云服务商&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;高扩展的 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;基于面向接口编程. 并且采用 DDD 设计 支持 repo 层切换多个存储方案，支持 SMS 和 微信登陆切换各种服务&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;问题-1&#34;&gt;问题 1
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;什么是 &lt;code&gt;Gin&lt;/code&gt; 的 &lt;code&gt;middle-ware&lt;/code&gt; ？ 能解决什么问题 ？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Gin 框架提供的一种 AOP 编程机制, 支持实际业务逻辑前后进行插入额外处理 。 能够解决以下几类问题&lt;/p&gt;
+&lt;p&gt;Web治理 : 实现 http 层面的熔断、限流、降级&lt;/p&gt;
+&lt;p&gt;可观测性 : 可以聚合日志，metrics，tracing&lt;/p&gt;
+&lt;p&gt;身份的认证与鉴权&lt;/p&gt;
+&lt;hr&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;什么是跨域问题，怎么解决 ？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;跨域的问题本质是 请求发送方和接收方 host 和 端口不匹配的问题 。 对于跨域问题，浏览器会预先发送一个 preflight option方法，询问允许访问的范围 。&lt;/p&gt;
+&lt;p&gt;Gin 框架支持使用 Cros 中间件进行处理跨域问题，设置对应的 &lt;code&gt;allow-origins,allow-headers,allow-method&lt;/code&gt;即可&lt;/p&gt;
+&lt;hr&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;跨域问题需要设置哪些头部 ？  上面的已经回答&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;什么是 cookie，什么是 session ?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;http 本身是无状态协议，为了保护用户的登陆状态，浏览器支持本地存储一个 kv 数据, 这个数据可以理解为 cookie&lt;/p&gt;
+&lt;p&gt;由于 cookie 的安全性问题，隐私信息一般不存放在 cookie中，因此引入 session 机制&lt;/p&gt;
+&lt;p&gt;session 机制允许 绑定一个 session_id 给前端，具体身份校验逻辑可以存放在后端避免隐私信息泄漏&lt;/p&gt;
+&lt;hr&gt;
+&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;cookie 和 session 比起来有什么缺点 ？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;cookie 不依赖后端存储，并且本身可以设置一些安全性配置 例如 &lt;code&gt;domain&lt;/code&gt;,&lt;code&gt;expires&lt;/code&gt;,&lt;code&gt;secure&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;缺点的话就是 不允许存放敏感信息，容易丢失&lt;/p&gt;
+&lt;p&gt;&amp;ndash;&lt;/p&gt;
+&lt;ol start=&#34;6&#34;&gt;
+&lt;li&gt;Session ID 可以放在哪里？ 如果Cookie禁用&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;cookie, header, redis,本地缓存,sql 等各种地方&lt;/p&gt;
+&lt;hr&gt;
+&lt;ol start=&#34;7&#34;&gt;
+&lt;li&gt;用户密码加密算法的选取&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;尽可能选择高安全系数的,不宜破解的 。 技术选型的时候考虑过 md5,pbkdf2,bcrypt&lt;/p&gt;
+&lt;p&gt;因为 md5 需要在数据库中额外存储盐值的原因最终选择 bcrypt&lt;/p&gt;
+&lt;p&gt;使用 wrk 压测的时候，发现 密码加密和不加密的情况下 性能相差10倍, 但是这是不可避免的&lt;/p&gt;
+&lt;hr&gt;
+&lt;ol start=&#34;8&#34;&gt;
+&lt;li&gt;怎么做登陆校验 ?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;正确性校验 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在登陆的时候 获取对应的账号和密码，去数据库中查找，并且使用 bcrypt 进行比对 正确的话 则返回对应的 jwt 用于保护用户状体啊&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;状态维护:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;每次获取对应的 短token进行 jwt解析，解析失败则登陆失败&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;安全性处理:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;在 JWT 中维护一个 user-agent字段，每次比对该字段是否相同&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用 Redis 限流控制 每次的登陆&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;ol start=&#34;9&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;刷新 Session 过期时间的几种方案&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;快要过期的时候刷新 ; 这个可能会有 gap&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;每次访问都刷新 。会频繁的读redis&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;固定时间刷新 ， 增加 updateAt字段&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;怎么保护 session_id ?主要还是启用 https协议，设置 cookie 的 secure&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;怎么做到 在session_id 和 jwt-token泄漏之后保护着客户 ？ 记录登陆的额外信息&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如何保护 Web 服务 ？ 针对 IP限流、整个集群限流&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这几个问题主要在问题 8 会引申&lt;/p&gt;
+&lt;h2 id=&#34;问题-2&#34;&gt;问题 2
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;你用 Redis 解决过什么问题？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;业务上 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;用来标记某些 handle 是否完成。 例如某些需要在全环境修复的任务&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;分布式锁 控制针对于 IP 限流的一些账户创建&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Stream 实现的轻量化 mq 队列 用于实现异步的消费&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;存储一些实时性不高的 例如快照的信息&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用 Zset 进行热榜功能的排序&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用 Redis 单机 线程安全的特性 实现限流&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;你知道 Redis 支持哪些数据结构，用过哪些 ？ 用来解决什么问题？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;string,list,hash,set,zset . 问题 1 的扩展&lt;/p&gt;
+&lt;hr&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;各个数据结构的底层实现 ？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;不知道 ，有对应的 memo 。 预计会单独开辟一个文章&lt;/p&gt;
+&lt;hr&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;当你更新数数据的时候 先更新数据库还是先更新缓存，有没有一致性问题&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;先更新数据库，然后删除缓存。 对于更新操作 采用 Cahce-Aside 的方式 会有一致性问题&lt;/p&gt;
+&lt;p&gt;我们只有在 Get 操作的时候才会重新写入缓存&lt;/p&gt;
+&lt;p&gt;(这里说实话，忘记了开发的时候的想法了，创建一个memo处理一下)&lt;/p&gt;
+&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;如何解决一致性问题&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这里主要是 check-do thing 的模型吧 。 尽可能使用原子操作 ，例如 lua 或者是 atomic&lt;/p&gt;
+&lt;h2 id=&#34;同样单独使用-memo-进行处理&#34;&gt;（同样单独使用 memo 进行处理）
+&lt;/h2&gt;&lt;h2 id=&#34;问题-3&#34;&gt;问题 3
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;什么是依赖注入，如何在 Go 实现 依赖注入&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;依赖注入，就是 A 要调用 B 上面的方法, A 在构造的时候要求传入构造好的 B 而不是自己初始化一个 B 。&lt;/p&gt;
+&lt;p&gt;通过引入 &lt;code&gt;wire&lt;/code&gt;包进行依赖注入&lt;/p&gt;
+&lt;hr&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;什么是面向接口编程 ？ 为什么要面向接口编程 ？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;业务之间 组件和组件的通信必须依赖接口 。 即 如果 A 调用 B，那么 B 必须是一个接口 。&lt;/p&gt;
+&lt;p&gt;面向接口编程最主要的一点就是提升扩展性，避免代码堆积 。&lt;/p&gt;
+&lt;hr&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;什么是长短 token ？ 为什么要用长短两个 token ？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;长 token 用于控制 短 token 的刷新&lt;/p&gt;
+&lt;p&gt;短 token 用于进行登陆的校验&lt;/p&gt;
+&lt;p&gt;长短token的设计是为了安全性， 如果只有一个 token 有效期设置的很短 用户频繁登陆，很长的话会有安全问题&lt;/p&gt;
+&lt;hr&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;长短 token 的过期时间应该怎么设置 ？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;根据业务需求和产品经理来判断，长 token 一般会很长 例如半年，一个月 。 短token 可以是 2小时 或者是 1天&lt;/p&gt;
+&lt;hr&gt;
+&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;怎么保证长token的安全性，万一泄漏了怎么办 ？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;携带一些设备信息，例如 &lt;code&gt;user-agent&lt;/code&gt; &lt;code&gt;手机设备号&lt;/code&gt;，在对于敏感操作的时候，增加手机号验证&lt;/p&gt;
+&lt;hr&gt;
+&lt;ol start=&#34;6&#34;&gt;
+&lt;li&gt;使用 JWT token 怎么退出登陆,使用 长短 token 之后怎么退出登陆&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;增加一个 session_id 进行维护，在 Redis 中维护一个黑名单&lt;/p&gt;
+&lt;h2 id=&#34;扩展问题&#34;&gt;扩展问题
+&lt;/h2&gt;&lt;p&gt;Q : 对于系统支持 微信、手机号、邮箱注册，数据库表是怎么设计的&lt;/p&gt;
+&lt;p&gt;A : 对于这三个字段单独设计了唯一索引,我们认为任意一个渠道注册进来就是单独的一个账号&lt;/p&gt;
+&lt;p&gt;Q : 那么如果我后续想要实现 手机号和微信和邮箱 是一个账号怎么办&lt;/p&gt;
+&lt;p&gt;A :&lt;/p&gt;
+&lt;p&gt;看一下业务层面是否要迁移历史数据&lt;/p&gt;
+&lt;p&gt;如果不迁移历史数据的话 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;创建部分联合索引 加上 _create 限制，保证就新的数据需要遵守该索引&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;业务层面强制 这三类业务注册的时候 就一起绑定 手机号 或者是 邮箱&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;如果要迁移历史数据的话&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;优先保证内部数据迁移跑完&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;并且合并多个账户之间的数据。 这里可能复杂点 预计需要强制用户绑定手机号才可以进行功能操作 xxx&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;创建索引&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;改善业务层面的登陆与注册服务&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;p&gt;Q : Gin 实现了哪些限流 降级 熔断&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;遗留&#34;&gt;遗留
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;尝试把 SMS 服务单独在拆一个场景出来，增加异步的内容&lt;/p&gt;
+&lt;p&gt;可以设置一个 同步转异步的 容错机制 。 当第三方不可用的时候，将当前请求存储到数据库中，后续再单独启动一个 gouroutine 异步的发送出去&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;ai-judge&#34;&gt;AI Judge
+&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;你现在是 Golang 面试官，下面是一个拥有2年经验的求职者的一个面试准备 。 请你结合现有系统实现 和 xxx.md 给其中的内容进行打分 满分100分，给出 优缺点和建议 。 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;对照 &lt;code&gt;webook&lt;/code&gt; 实现后，这份准备材料按 &lt;strong&gt;2 年经验后端面试&lt;/strong&gt; 标准评分如下。&lt;/p&gt;
+&lt;h2 id=&#34;总分62--100&#34;&gt;总分：&lt;strong&gt;62 / 100&lt;/strong&gt;
+&lt;/h2&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;维度&lt;/th&gt;
+					&lt;th&gt;分数&lt;/th&gt;
+					&lt;th&gt;说明&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;项目叙事与亮点提炼&lt;/td&gt;
+					&lt;td&gt;14/20&lt;/td&gt;
+					&lt;td&gt;有多通道登录、长短 Token、限流、failover，但「三高」略夸大&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;与代码一致性&lt;/td&gt;
+					&lt;td&gt;10/15&lt;/td&gt;
+					&lt;td&gt;大方向对，细节与代码不一致，易被追问穿帮&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;安全与鉴权深度&lt;/td&gt;
+					&lt;td&gt;12/20&lt;/td&gt;
+					&lt;td&gt;知道 bcrypt / JWT / ssid，但机制说不清、有概念混用&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Go 工程能力（DI/接口/分层）&lt;/td&gt;
+					&lt;td&gt;12/15&lt;/td&gt;
+					&lt;td&gt;这块相对扎实，和代码匹配&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Redis / 中间件深度&lt;/td&gt;
+					&lt;td&gt;7/15&lt;/td&gt;
+					&lt;td&gt;用过什么能说，底层与一致性大量空白&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;表达与完整度&lt;/td&gt;
+					&lt;td&gt;7/15&lt;/td&gt;
+					&lt;td&gt;错别字多、多题空答、遗留太多&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;优点&#34;&gt;优点
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;项目选型对得上代码&lt;/strong&gt;：邮箱密码、短信、微信；长短 JWT + &lt;code&gt;ssid&lt;/code&gt; 黑名单；&lt;code&gt;User-Agent&lt;/code&gt; 校验；SMS failover；Wire + 接口；Redis 滑动窗口限流；CORS；&lt;code&gt;wrk&lt;/code&gt; 压测——这些在仓库里都能找到对应实现。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;能讲清楚「为什么做」&lt;/strong&gt;：长短 Token 的安全/体验权衡、接口便于换 SMS/Repo、bcrypt 有压测体感——比只会背概念强。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;扩展题有业务意识&lt;/strong&gt;：多渠道账号合并、历史数据迁移，这是面试官爱听的「产品 + 工程」题。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;工程分层叙事清晰&lt;/strong&gt;：依赖注入、面向接口，和 &lt;code&gt;wire.go&lt;/code&gt;、&lt;code&gt;UserCache&lt;/code&gt; 注释里的约束一致。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;缺点面试里会扣分的点&#34;&gt;缺点（面试里会扣分的点）
+&lt;/h2&gt;&lt;h3 id=&#34;1-概念混用容易被打穿&#34;&gt;1. 概念混用，容易被打穿
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;实际是 &lt;strong&gt;JWT 放 Header&lt;/strong&gt;（&lt;code&gt;x-jwt-token&lt;/code&gt; / &lt;code&gt;x-refresh-token&lt;/code&gt;）+ Redis &lt;code&gt;users:ssid&lt;/code&gt; 黑名单，不是经典 Cookie Session。&lt;/li&gt;
+&lt;li&gt;Cookie / Session 答得偏教材，和项目实现脱节；面试官一问「你们项目 Session 存在哪」，容易答乱。&lt;/li&gt;
+&lt;li&gt;「Session ID 可放 redis/本地缓存/sql」把 &lt;strong&gt;服务端存储&lt;/strong&gt; 和 &lt;strong&gt;客户端携带位置&lt;/strong&gt; 混在一起了。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;2-与代码不一致&#34;&gt;2. 与代码不一致
+&lt;/h3&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;讲稿说法&lt;/th&gt;
+					&lt;th&gt;代码现实&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;短 Token 2h / 1 天，长 Token 月/半年&lt;/td&gt;
+					&lt;td&gt;短 &lt;strong&gt;30 分钟&lt;/strong&gt;，长 &lt;strong&gt;7 天&lt;/strong&gt;（&lt;code&gt;redis_jwt.go&lt;/code&gt;）&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;设备验证&lt;/td&gt;
+					&lt;td&gt;仅比对 &lt;code&gt;User-Agent&lt;/code&gt;，不是设备指纹&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;完整高可用 SMS&lt;/td&gt;
+					&lt;td&gt;有 failover，但 &lt;code&gt;SendV1&lt;/code&gt; 有逻辑问题；真实多厂商未必接好&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;DDD&lt;/td&gt;
+					&lt;td&gt;更接近分层 + 接口，不是完整 DDD&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;短信登录流程本身也不完整：&lt;code&gt;LoginSMS&lt;/code&gt; 校验成功后&lt;strong&gt;没发 Token&lt;/strong&gt;，Token 却在 &lt;code&gt;SendLoginSMSCode&lt;/code&gt; 里设置——若被问「短信登录时序」，会很难圆。&lt;/p&gt;
+&lt;h3 id=&#34;3-关键答案有硬伤&#34;&gt;3. 关键答案有硬伤
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;bcrypt vs md5&lt;/strong&gt;：选 bcrypt 主要因为自适应哈希/抗暴力破解，不是「md5 要额外存盐」。bcrypt 自带盐，理由说偏了。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;跨域&lt;/strong&gt;：不只是 host/port，还有 &lt;strong&gt;scheme&lt;/strong&gt;；还缺 &lt;code&gt;Credentials&lt;/code&gt;、&lt;code&gt;ExposeHeaders&lt;/code&gt;（你们代码里刚好有 &lt;code&gt;ExposeHeaders&lt;/code&gt; 暴露 JWT Header）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;缓存一致性&lt;/strong&gt;：写了「忘了」——2 年经验被问 Cache-Aside / 双写，这是硬伤。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Gin 限流/降级/熔断&lt;/strong&gt;：空题；项目有限流，没有完整熔断降级，却标题写了「高可用」。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;4-准备完整度不够&#34;&gt;4. 准备完整度不够
+&lt;/h3&gt;&lt;p&gt;Redis 底层、一致性、Gin 治理、遗留 SMS 异步都标了 memo/空答。面试不是写博客进度，空题 = 扣分。&lt;/p&gt;
+&lt;h3 id=&#34;5-自我包装过满&#34;&gt;5. 自我包装过满
+&lt;/h3&gt;&lt;p&gt;「完整的高安全性、高可用、高扩展」对学习项目偏重。2 年经验更稳妥的说法是：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;练手项目，覆盖多登录方式、长短 Token、限流与 SMS 容错，重点验证接口化扩展。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;建议按优先级&#34;&gt;建议（按优先级）
+&lt;/h2&gt;&lt;h3 id=&#34;立刻改讲稿&#34;&gt;立刻改讲稿
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;用代码里的真实数字讲&lt;/strong&gt;：AT 30min、RT 7 天；退出时 &lt;code&gt;ssid&lt;/code&gt; 写入 Redis，TTL 与 RT 对齐。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;统一术语&lt;/strong&gt;：说「JWT + 会话标识（ssid）黑名单」，少说「Session 存在 Cookie」。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;删掉或降级「设备验证」&lt;/strong&gt;：改成「绑定 User-Agent，防简单 Token 盗用，不能防 UA 伪造」。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;补齐空题&lt;/strong&gt;，至少能答 2 分钟：
+&lt;ul&gt;
+&lt;li&gt;Cache-Aside：先写 DB 再删缓存；并发下的短暂不一致&lt;/li&gt;
+&lt;li&gt;Redis String/Hash/ZSet 各举一个本项目例子（验证码、用户信息、热榜）&lt;/li&gt;
+&lt;li&gt;限流：滑动窗口；熔断降级诚实说「项目未做，可讲思路」&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;对着代码能画一张时序图&#34;&gt;对着代码能画一张时序图
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;邮箱登录 → 发 AT/RT → 中间件校验 AT + UA + ssid&lt;/li&gt;
+&lt;li&gt;Refresh：校验 RT → 查黑名单 → 发新 AT&lt;/li&gt;
+&lt;li&gt;Logout：ssid 入黑名单&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;面试官最爱顺着这条链路追问。&lt;/p&gt;
+&lt;h3 id=&#34;主动暴露已知坑加分&#34;&gt;主动暴露已知坑（加分）
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;短信登录时序问题&lt;/li&gt;
+&lt;li&gt;Failover 主备不均 / &lt;code&gt;SendV1&lt;/code&gt; 错误处理&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;FindOrCreate&lt;/code&gt; 主从延迟注释&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;「我知道问题在哪、怎么改」比「系统很完美」更像有 2 年经验。&lt;/p&gt;
+&lt;h3 id=&#34;表达&#34;&gt;表达
+&lt;/h3&gt;&lt;p&gt;错别字（Cros、状体啊、Cahce）和口语化「不知道有 memo」直接改掉；面试可以诚实说「这块我回去补过」，但讲稿里不该留白。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;面试官视角的一句话&#34;&gt;面试官视角的一句话
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;项目素材够用（约 70 分的料），讲解与掌握大约 55–60 分；合在一起 62。&lt;/strong&gt;&lt;br&gt;
+能过初筛讲项目，但深挖安全、缓存一致性、短信登录细节时风险大。把术语对齐代码、补空题、主动讲缺陷，冲到 &lt;strong&gt;75+&lt;/strong&gt; 比较现实。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>高可用 高扩展 高安全 的 登陆与注册的设计 detail</title>
+        <link>https://ddlgitgzzhm.github.io/p/register-login-desin/</link>
+        <pubDate>Thu, 23 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/p/register-login-desin/</guid>
+        <description>&lt;h2 id=&#34;简历-preview&#34;&gt;简历 preview
+&lt;/h2&gt;&lt;p&gt;简历上 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;设计并实现了 完整的 高安全性,高可用,高扩展的 登陆与注册 服务&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;面试中 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;系统支持 邮箱注册,短信验证登陆,系统扫码登陆的功能, 使用 JWT + Cookie 的形式维护登陆状态, 采用 长短Token 进行续期. 采用 Lua+滑动窗口 实现非访问登陆的限流&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;短信验证登陆支持 阿里云和腾讯云的切换, 使用负载均衡算法进行处理切换 同时设计对应的降级策略 failover 保证服务崩溃也能使得部分功能正常&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;对接微信开发平台 实现微信扫码登陆 处理2次回调内容&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;难点 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;一开始使用 cookie + session 实现的注册与登陆，在使用 wrk 压测的时候 发现 redis 有很大的压力. 决定牺牲一点性能 采用 JWT&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;用户表设计的时候 由于密码是隐私内容 需要考虑加密, 在选择加密算法的时候进行了选择, 经历了xxx,最后选择 bcrypt&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用 wrk 压测的时候发现，登陆接口并没有限制会引入大量异常流量，于是自己设计了一个限流中间件，利用 Redis 本身的单线程特性，采用滑动窗口实现&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在对接微信扫码登陆时, 因为需要本地测试，但是 微信api返回的是 注册域名的 跳转链接 。 最后改了本地的 hosts实现测试。 另外因为之前表设计缺陷，实现该功能后额外增加了一列微信，并且重新设计了唯一联合索引&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;全部开发使用 DDD 模式架构进行整理，使用 TDD 业务开发 整个开发过程比较繁琐，另外引入装饰器模式 和 面向接口编程在牺牲开发效率的情况下 保证系统的高扩展性&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;跨域问题&#34;&gt;跨域问题
+&lt;/h2&gt;&lt;p&gt;跨域问题 是因为 : 发请求的域名 + 端口  和 接收请求的域名 + 端口 对不上 。 比如 前端 localost:3000 发到 localhost:8080 上&lt;/p&gt;
+&lt;p&gt;对于跨域问题 : 浏览器会提前发送一个 &lt;code&gt;preflight&lt;/code&gt; 询问自己愿意接受的请求&lt;/p&gt;
+&lt;p&gt;解决的办法 :  &lt;code&gt;Gin&lt;/code&gt; 提供了解决问题的 中间件来处理&lt;/p&gt;
+&lt;p&gt;通过 &lt;code&gt;middle&lt;/code&gt; 设置 :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;AllowCrendentials : 允许带上用户认证信息&lt;/li&gt;
+&lt;li&gt;AllowHeader : 业务请求可以带上的头&lt;/li&gt;
+&lt;li&gt;AllowOrigin : 哪些来源是可以被允许的&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;cors&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;New&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;cors&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Config&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;			&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;AllowOrigins&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;     &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;http://localhost:3000&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;http://localhost:3001&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;			&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;AllowHeaders&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;     &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Content-Type&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Authorization&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;			&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;AllowCredentials&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;			&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ExposeHeaders&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;x-jwt-token&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;x-refresh-token&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;		&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;})&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;加密&#34;&gt;加密
+&lt;/h2&gt;&lt;p&gt;选择加密算法的标准就一个, 难破解. 需要考虑以下的问题 :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;相同的密码&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;难以通过碰撞来破解&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;常见的加密算法 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;md5&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在 &lt;code&gt;1&lt;/code&gt; 的基础上引入 &lt;code&gt;salt&lt;/code&gt; 这里需要额外存储&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用 &lt;code&gt;PBKDF2&lt;/code&gt;,&lt;code&gt;BCrypt&lt;/code&gt; 随机盐值的加密算法进行加密&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;cookie--session--jwt&#34;&gt;Cookie &amp;amp; Session &amp;amp; JWT
+&lt;/h2&gt;&lt;h3 id=&#34;cookie&#34;&gt;Cookie
+&lt;/h3&gt;&lt;p&gt;浏览器存储一些数据到本.&lt;/p&gt;
+&lt;p&gt;不安全 : 可以通过 &lt;code&gt;cookie-editor&lt;/code&gt;插件进行获取&lt;/p&gt;
+&lt;p&gt;一些设置 :&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Domain&lt;/code&gt;: cookie 可以用在什么域名下&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Path&lt;/code&gt;: Cookie 可以用在什么 &lt;code&gt;path&lt;/code&gt; 下&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;max-Age&lt;/code&gt;: 过期时间&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Http-only&lt;/code&gt;: 如果设置为true, js代码无法使用这个 cookie&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Secure&lt;/code&gt;: 只能使用于 &lt;code&gt;https&lt;/code&gt; 协议&lt;/p&gt;
+&lt;h4 id=&#34;一些有意思的问题&#34;&gt;一些有意思的问题
+&lt;/h4&gt;&lt;p&gt;Q : 为什么有一些网站喜欢禁用 Cookie&lt;/p&gt;
+&lt;p&gt;A : 没看懂 说实话，安全相关的内容 难理解&lt;/p&gt;
+&lt;h3 id=&#34;session&#34;&gt;Session
+&lt;/h3&gt;&lt;p&gt;我的理解 就是一个 key-string , 不过他是由后端存储&lt;/p&gt;
+&lt;p&gt;但是他还是强依赖 cookie , 无非最重要的一点就是 &lt;code&gt;cookie如果存放敏感信息会被获取,所以引入session,传入 session_id 用于后端校验&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;如何让客户端懈怠 session_id :&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;最佳的方式就是放在 &lt;code&gt;cookie&lt;/code&gt;中, 毕竟 &lt;code&gt;cookie&lt;/code&gt;还可以设置 &lt;code&gt;secure&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;如果禁用了 &lt;code&gt;cookie&lt;/code&gt; 可以考虑放在 &lt;code&gt;header&lt;/code&gt; 和 &lt;code&gt;sess_id&lt;/code&gt; 中&lt;/p&gt;
+&lt;h3 id=&#34;jwt&#34;&gt;JWT
+&lt;/h3&gt;&lt;p&gt;JWT 由 &lt;code&gt;header+playload+sign&lt;/code&gt; 组成&lt;/p&gt;
+&lt;p&gt;JWT 与 Session 比较 :&lt;/p&gt;
+&lt;p&gt;优点 :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;不依赖第三方存储&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;适用于分布式环境&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;提高性能 (没有 Redis 访问)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;缺点 :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;对加密依赖非常大&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;最好不要在 JWT 放置敏感信息&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;退出问题&#34;&gt;退出问题
+&lt;/h3&gt;&lt;p&gt;Session 的退出，需要先把 cookie 删了 然后把 &lt;code&gt;session&lt;/code&gt;本身删了&lt;/p&gt;
+&lt;p&gt;但是 &lt;code&gt;JWT&lt;/code&gt; 本身是无状态的，所以旧的&lt;code&gt;token&lt;/code&gt;在没有过期 其实也是能用的&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;JWT&lt;/code&gt; 如果要实现退出登陆，只能够考虑使用 &lt;code&gt;redis&lt;/code&gt; 黑名单的机制&lt;/p&gt;
+&lt;p&gt;但是我们已经实现了 长短token, 如果记录黑名单需要在登陆校验的时候 也要传入黑名单 。这导致长token会被频繁调用&lt;/p&gt;
+&lt;p&gt;所以考虑 &lt;code&gt;JWT&lt;/code&gt; 中存放 &lt;code&gt;session-id&lt;/code&gt; 使用 &lt;code&gt;session-id&lt;/code&gt;进行黑名单控制&lt;/p&gt;
+&lt;h2 id=&#34;安全性问题&#34;&gt;安全性问题
+&lt;/h2&gt;&lt;p&gt;Q : 我们实现登陆与注册系统之后 有一个最大的问题就是&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;任何人都可以注册&lt;/li&gt;
+&lt;li&gt;任何人都可以登陆&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;因此我们需要考虑 &lt;code&gt;限流&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;这里采用 &lt;code&gt;Redis&lt;/code&gt;+lua 滑动 窗口限流&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Q : 如何保证 JWT 或者是 Session 泄漏 攻击者假冒你&lt;/p&gt;
+&lt;p&gt;采用验证码二次验证，对比上一次的信息 例如 &lt;code&gt;user-agent&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;性能问题&#34;&gt;性能问题
+&lt;/h2&gt;&lt;p&gt;使用 &lt;code&gt;wrk&lt;/code&gt; 进行性能压测&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;wrk -t1 -d1s -c2 -s ./script.lua urlpath/signup&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;参数解释如下. :&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;-t&lt;/code&gt;: 线程数量&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;-d&lt;/code&gt;: 持续时间&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;-c&lt;/code&gt;: 并发数量&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;-s&lt;/code&gt;: 测试脚本&lt;/p&gt;
+&lt;p&gt;压测下来预计会发现两个问题&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;加密算法 . JWT 在注册和登录后会进行加密和解密，预计相差 &lt;code&gt;10倍&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;数据库查询&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;优化数据库查询&#34;&gt;优化数据库查询
+&lt;/h3&gt;&lt;p&gt;我们常见的一种写法是 &lt;code&gt;cache-db-cache&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;FindById&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;cache&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;_&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;SetDB&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;场景问题决策&#34;&gt;场景问题决策
+&lt;/h4&gt;&lt;p&gt;Q : &lt;code&gt;Session&lt;/code&gt; 的 过期时间如何刷新 ?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;用户每次访问, 都刷新. 如果 session 部署在 redis 上，那么影响很大&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;快要过期了我再刷新 。 有 gap&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;固定时间刷新，引入 &lt;code&gt;updateAt&lt;/code&gt; 参数 , 用户每次访问的时候 如果超过固定的时间 那么刷新&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Q : 长短 &lt;code&gt;token&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;短 token : 用于访问资源&lt;/p&gt;
+&lt;p&gt;长 token : 短 token 过期之后，生成一个新的短 token&lt;/p&gt;
+&lt;p&gt;这里其实是依赖的前端，我们在登陆接口的时候返回两个 &lt;code&gt;token&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;然后提供一个 &lt;code&gt;refresh&lt;/code&gt; 接口,如果 短token 失效，让前端用长token请求刷新一下&lt;/p&gt;
+&lt;h2 id=&#34;第三方服务治理&#34;&gt;第三方服务治理
+&lt;/h2&gt;&lt;p&gt;整体思路 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;尽量不要搞崩第三方&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;万一第三方崩了，你的系统还能够稳定运行&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;failover&#34;&gt;failover
+&lt;/h3&gt;&lt;p&gt;failover (失效转移)&lt;/p&gt;
+&lt;p&gt;如果第三方崩了 那么就直接换一个服务商&lt;/p&gt;
+&lt;p&gt;策略有 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;轮询&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;缺点每次都从头开始，负载不均衡&lt;/li&gt;
+&lt;li&gt;如果 sms svc 很多, 轮询很慢&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;动态轮询&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;每次使用 &lt;code&gt;i%length&lt;/code&gt;的方式进行轮询&lt;/li&gt;
+&lt;li&gt;不过这里需要注意并发问题 需要引入 &lt;code&gt;atomic&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;动态判断第三方&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;真的计算服务商是否还在运作正常 .&lt;/li&gt;
+&lt;li&gt;可以从错误率&lt;/li&gt;
+&lt;li&gt;响应时间判断&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;oauth2&#34;&gt;OAuth2
+&lt;/h2&gt;&lt;h3 id=&#34;微信&#34;&gt;微信
+&lt;/h3&gt;&lt;p&gt;微信扫码登陆 看着更像是 TCP 链接的三次握手 分为&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;请求登陆&lt;/li&gt;
+&lt;li&gt;返回确认请求&lt;/li&gt;
+&lt;li&gt;确认&lt;/li&gt;
+&lt;li&gt;带上 uuid 进行请求&lt;/li&gt;
+&lt;li&gt;返回 access token&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/register-login-desin/wehchat.png&#34;
+	width=&#34;1018&#34;
+	height=&#34;514&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/register-login-desin/wehchat_hu_4ad83717897638d1.png 480w, https://ddlgitgzzhm.github.io/p/register-login-desin/wehchat_hu_b66a4f945c044d77.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;wechat.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;198&#34;
+		data-flex-basis=&#34;475px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;配置&#34;&gt;配置
+&lt;/h2&gt;&lt;p&gt;之前我们一开始使用的是 &lt;code&gt;build tag&lt;/code&gt; 进行配置控制&lt;/p&gt;
+&lt;p&gt;我们如果要优化配置可以从下面的方式进行考虑&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;启动参数 ，命令行工具传入的参数 。 例如 &lt;code&gt;mysqlroot:password&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;环境变量&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;配置文件。 使用 viper 制定 path 进行读取&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;远程配置中心 。 etcd&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;配置文件的缺点 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;不够灵活&lt;/li&gt;
+&lt;li&gt;权限控制&lt;/li&gt;
+&lt;li&gt;实时更新&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/register-login-desin/remote_config.png&#34;
+	width=&#34;1356&#34;
+	height=&#34;534&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/register-login-desin/remote_config_hu_e4bed11837720c0f.png 480w, https://ddlgitgzzhm.github.io/p/register-login-desin/remote_config_hu_925b67f096840ca6.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;remote_config.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;253&#34;
+		data-flex-basis=&#34;609px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;日志&#34;&gt;日志
+&lt;/h2&gt;&lt;p&gt;使用 &lt;code&gt;zap&lt;/code&gt; 进行日志处理, &lt;code&gt;zap&lt;/code&gt; 本质上是维护了一个全局 &lt;code&gt;logger&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;可以考虑使用 适配器模式封装一下 &lt;code&gt;zapper&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Gin 可以考虑使用 &lt;code&gt;middleware&lt;/code&gt; 进行打印日志&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;通过在 &lt;code&gt;ctx.Next()&lt;/code&gt;前后处理对应的数据&lt;/li&gt;
+&lt;li&gt;但是我们无法获取到 &lt;code&gt;resp&lt;/code&gt;,我们需要自己重新实现一个 &lt;code&gt;respWriter&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Gorm 可以考虑使用 &lt;code&gt;config.Logger&lt;/code&gt;实现&lt;/p&gt;
+&lt;p&gt;其他的地方只能考虑从 Service 插入 logger 或者是维护全局 logger的形式进行输出com&lt;/p&gt;
+&lt;h2 id=&#34;面试题&#34;&gt;面试题
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;什么是 &lt;code&gt;Gin&lt;/code&gt; 的 &lt;code&gt;middle-ware&lt;/code&gt; ？ 能解决什么问题 ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;什么是跨域问题，怎么解决 ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;跨域问题需要设置哪些头部 ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;什么是 cookie，什么是 session ?&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;cookie 和 session 比起来有什么缺点 ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Session ID 可以放在哪里？ 如果Cookie禁用&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;用户密码加密算法的选取&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;怎么做登陆校验 ? 利用 Gin 的 middleware&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;刷新 Session 过期时间的几种方案&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;增强登陆的安全性&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;怎么保护 session_id ?主要还是启用 https协议，设置 cookie 的 secure&lt;/li&gt;
+&lt;li&gt;怎么做到 在session_id 和 jwt-token泄漏之后保护着客户 ？ 记录登陆的额外信息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;11&#34;&gt;
+&lt;li&gt;如何保护 Web 服务 ？ 针对 IP限流、整个集群限流&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Redis :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;你用 Redis 解决过什么问题？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;你知道 Redis 支持哪些数据结构 ？ 用过哪些 ？ 用来解决什么问题？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;各个数据结构的底层实现 ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;当你更新数数据的时候 先更新数据库还是先更新缓存，有没有一致性问题 (这在登陆与注册超纲了吧)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如何解决一致性问题&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;什么是依赖注入，如何在 Go 实现 依赖注入&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;什么是面向接口编程 ？ 为什么要面向接口编程 ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;什么是 Ioc 控制反转&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;微信登陆 (TBD)&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;微信扫码登陆的流程&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;为什么微信的回掉地址，域名必须是你预先注册的&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果我的临时授权码(code)被黑客拿到了会怎么样&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;state有什么作用 ？ 如何使用 state ?&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;什么是长短 token ？ 为什么要用长短两个 token ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;长短 token 的过期时间应该怎么设置 ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;怎么保证长token的安全性，万一泄漏了怎么办 ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用 JWT token 怎么退出登陆&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用 长短 token 之后怎么退出登陆&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用 JWT 还需要再使用 Session 吗&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;亮点提升&#34;&gt;亮点提升
+&lt;/h2&gt;&lt;p&gt;Gin :&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Web治理 :&lt;/strong&gt; 熔断、限流、降级&lt;/p&gt;
+&lt;p&gt;限流实现 ：&lt;/p&gt;
+&lt;p&gt;单机限流 :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;令牌桶算法&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;漏桶算法&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;滑动窗口算法&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;固定窗口算法&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;基于 Redis 限流&lt;/p&gt;
+&lt;p&gt;基于 Redis IP 限流&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/ecodeclub/ginx&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Gin插件库&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Gorm :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;为 &lt;code&gt;Gorm&lt;/code&gt; 提供可观测性的插件实现&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;实现读写分离插件&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;提供 BeforeFind 函数&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;第三方服务治理 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;可以设置一个 同步转异步的 容错机制 。 当第三方不可用的时候，将当前请求存储到数据库中，后续再单独启动一个 gouroutine 异步的发送出去&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;考虑布隆过滤器进行黑名单过滤&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

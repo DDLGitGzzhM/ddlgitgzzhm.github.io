@@ -222,7 +222,25 @@
 	
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;接入服务注册与发现&#34;&gt;接入服务注册与发现
-&lt;/h2&gt;&lt;h2 id=&#34;服务注册与发现的高可用&#34;&gt;服务注册与发现的高可用
+&lt;/h2&gt;&lt;h3 id=&#34;gprc-时候注册中心&#34;&gt;gprc 时候注册中心
+&lt;/h3&gt;&lt;p&gt;gpc 在客户端提供 Resolver 进行对服务的解析&lt;/p&gt;
+&lt;p&gt;但是他并没有在 服务端提供 &lt;code&gt;register&lt;/code&gt; 的功能， grpc 根本不知道你使用的是不是注册中心&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/grpc_find.png&#34;
+	width=&#34;723&#34;
+	height=&#34;417&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/grpc_find_hu_48b59e019bbe8643.png 480w, https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/grpc_find_hu_9e2ed5f15f5de8f7.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;grpc_find.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;173&#34;
+		data-flex-basis=&#34;416px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;grpc-使用注册中心-etcd&#34;&gt;grpc 使用注册中心 etcd
+&lt;/h3&gt;&lt;h2 id=&#34;服务注册与发现的高可用&#34;&gt;服务注册与发现的高可用
 &lt;/h2&gt;&lt;h3 id=&#34;高可用&#34;&gt;高可用
 &lt;/h3&gt;&lt;p&gt;高可用围绕三个点三条边来思考 :&lt;/p&gt;
 &lt;ul&gt;

@@ -11,7 +11,7 @@
 <meta property='og:description' content="我们项目实现了一个 xxxx">
 <meta property='og:url' content='https://ddlgitgzzhm.github.io/p/server-reg-discover-0x0x1/'>
 <meta property='og:site_name' content='GzzhM'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='gold' /><meta property='article:published_time' content='2026-08-01T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-08-01T00:00:00&#43;00:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='gold' /><meta property='article:tag' content='one-detail' /><meta property='article:published_time' content='2026-08-01T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-08-01T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="服务注册与发现 detail">
 <meta name="twitter:description" content="我们项目实现了一个 xxxx">
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -327,7 +327,12 @@
         <li><a href="#服务下线">服务下线</a></li>
       </ol>
     </li>
-    <li><a href="#接入服务注册与发现">接入服务注册与发现</a></li>
+    <li><a href="#接入服务注册与发现">接入服务注册与发现</a>
+      <ol>
+        <li><a href="#gprc-时候注册中心">gprc 时候注册中心</a></li>
+        <li><a href="#grpc-使用注册中心-etcd">grpc 使用注册中心 etcd</a></li>
+      </ol>
+    </li>
     <li><a href="#服务注册与发现的高可用">服务注册与发现的高可用</a>
       <ol>
         <li><a href="#高可用">高可用</a></li>
@@ -616,7 +621,25 @@
 	
 ></p>
 <h2 id="接入服务注册与发现">接入服务注册与发现
-</h2><h2 id="服务注册与发现的高可用">服务注册与发现的高可用
+</h2><h3 id="gprc-时候注册中心">gprc 时候注册中心
+</h3><p>gpc 在客户端提供 Resolver 进行对服务的解析</p>
+<p>但是他并没有在 服务端提供 <code>register</code> 的功能， grpc 根本不知道你使用的是不是注册中心</p>
+<p><img src="/p/server-reg-discover-0x0x1/grpc_find.png"
+	width="723"
+	height="417"
+	srcset="/p/server-reg-discover-0x0x1/grpc_find_hu_48b59e019bbe8643.png 480w, /p/server-reg-discover-0x0x1/grpc_find_hu_9e2ed5f15f5de8f7.png 1024w"
+	loading="lazy"
+	
+		alt="grpc_find.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="173"
+		data-flex-basis="416px"
+	
+></p>
+<h3 id="grpc-使用注册中心-etcd">grpc 使用注册中心 etcd
+</h3><h2 id="服务注册与发现的高可用">服务注册与发现的高可用
 </h2><h3 id="高可用">高可用
 </h3><p>高可用围绕三个点三条边来思考 :</p>
 <ul>
@@ -741,6 +764,8 @@
         
             <a href="/tags/gold/">Gold</a>
         
+            <a href="/tags/one-detail/">One-Detail</a>
+        
     </section>
 
 
@@ -811,38 +836,38 @@
             
                 
 <article class="">
-    <a href="/p/kafka-0x01/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">MQ kafka</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/p/sarma-kafka-0x01/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Sarma Kafka</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
     <a href="/p/rank-0x01/">
         
         
 
         <div class="article-details">
             <h2 class="article-title">热榜 detail</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/interactive-0x02/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">阅读、点赞、收藏 one</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/interactive-0x01/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">阅读、点赞、收藏 detail</h2>
         </div>
     </a>
 </article>
