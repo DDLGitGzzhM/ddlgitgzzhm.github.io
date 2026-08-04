@@ -1003,63 +1003,31 @@
 	</tbody>
 </table></div>
 <p>流程如下 :</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sequenceDiagram
-</span></span><span class="line"><span class="cl">  participant 主站
-</span></span><span class="line"><span class="cl">  participant Reward
-</span></span><span class="line"><span class="cl">  participant Redis
-</span></span><span class="line"><span class="cl">  participant Payment
-</span></span><span class="line"><span class="cl">  participant Kafka
-</span></span><span class="line"><span class="cl">  participant Account
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  Note over 主站,Account: 线1：用户点打赏
-</span></span><span class="line"><span class="cl">  主站-&gt;&gt;Reward: PreReward
-</span></span><span class="line"><span class="cl">  Reward-&gt;&gt;Redis: 有没有缓存的二维码？
-</span></span><span class="line"><span class="cl">  alt 有缓存
-</span></span><span class="line"><span class="cl">    Redis--&gt;&gt;Reward: code_url
-</span></span><span class="line"><span class="cl">  else 没有
-</span></span><span class="line"><span class="cl">    Reward-&gt;&gt;Reward: 写打赏单 Init
-</span></span><span class="line"><span class="cl">    Reward-&gt;&gt;Payment: NativePrePay(reward-{rid})
-</span></span><span class="line"><span class="cl">    Payment--&gt;&gt;Reward: code_url
-</span></span><span class="line"><span class="cl">    Reward-&gt;&gt;Redis: 缓存二维码 29分钟
-</span></span><span class="line"><span class="cl">  end
-</span></span><span class="line"><span class="cl">  Reward--&gt;&gt;主站: codeURL + rid
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  Note over 主站,Account: 线2：支付有结果了（异步）
-</span></span><span class="line"><span class="cl">  Kafka-&gt;&gt;Reward: payment_events
-</span></span><span class="line"><span class="cl">  Reward-&gt;&gt;Reward: UpdateReward
-</span></span><span class="line"><span class="cl">  Reward-&gt;&gt;Account: Credit（成功才入账）
-</span></span></code></pre></td></tr></table>
-</div>
-</div><hr>
+<pre class="mermaid">sequenceDiagram
+  participant 主站
+  participant Reward
+  participant Redis
+  participant Payment
+  participant Kafka
+  participant Account
+
+  Note over 主站,Account: 线1：用户点打赏
+  主站-&gt;&gt;Reward: PreReward
+  Reward-&gt;&gt;Redis: 有没有缓存的二维码？
+  alt 有缓存
+    Redis--&gt;&gt;Reward: code_url
+  else 没有
+    Reward-&gt;&gt;Reward: 写打赏单 Init
+    Reward-&gt;&gt;Payment: NativePrePay(reward-{rid})
+    Payment--&gt;&gt;Reward: code_url
+    Reward-&gt;&gt;Redis: 缓存二维码 29分钟
+  end
+  Reward--&gt;&gt;主站: codeURL + rid
+
+  Note over 主站,Account: 线2：支付有结果了（异步）
+  Kafka-&gt;&gt;Reward: payment_events
+  Reward-&gt;&gt;Reward: UpdateReward
+  Reward-&gt;&gt;Account: Credit（成功才入账）</pre><hr>
 <h2 id="面试">面试
 </h2><ol>
 <li>
@@ -1121,7 +1089,40 @@
         });})
 </script>
     
+
+    
+        <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+
+    const getTheme = () => {
+        const scheme = document.documentElement.getAttribute("data-scheme");
+        if (scheme === "dark") {
+            return "dark";
+        }
+        if (scheme === "light") {
+            return "default";
+        }
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "default";
+    };
+
+    mermaid.initialize({
+        startOnLoad: false,
+        theme: getTheme(),
+        securityLevel: "loose",
+        flowchart: {
+            useMaxWidth: true,
+            htmlLabels: true,
+        },
+    });
+
+    await mermaid.run({ querySelector: ".mermaid" });
+</script>
+
+    
 </article>
+
 
     
 
