@@ -322,6 +322,9 @@
     <li><a href="#简历-preview">简历 preview</a></li>
     <li><a href="#服务注册与发现">服务注册与发现</a>
       <ol>
+        <li><a href="#ip--端口">IP + 端口</a></li>
+        <li><a href="#域名--dns">域名 + DNS</a></li>
+        <li><a href="#注册中心">注册中心</a></li>
         <li><a href="#服务注册">服务注册</a></li>
         <li><a href="#服务端和注册中心保持心跳">服务端和注册中心保持心跳</a></li>
         <li><a href="#服务下线">服务下线</a></li>
@@ -419,7 +422,8 @@
 </ol>
 <h2 id="服务注册与发现">服务注册与发现
 </h2><p>在微服务架构里面，我怎么知道哪些机器上部署了我需要的服务</p>
-<p>最原始的形态就是 : <code>IP+端口</code>  . 不过这个不能称为 服务注册与发现 ， 因为既没有注册 也没有发现</p>
+<h3 id="ip--端口">IP + 端口
+</h3><p>最原始的形态就是 : <code>IP+端口</code>  . 不过这个不能称为 服务注册与发现 ， 因为既没有注册 也没有发现</p>
 <p>缺点 :</p>
 <ol>
 <li>IP 是会变的 不好维护</li>
@@ -438,7 +442,8 @@
 		data-flex-basis="377px"
 	
 ></p>
-<p>另外一个思路 : 使用域名 + DNS . 因为 IP 经常变动 所以考虑使用域名代替</p>
+<h3 id="域名--dns">域名 + DNS
+</h3><p>另外一个思路 : 使用域名 + DNS . 因为 IP 经常变动 所以考虑使用域名代替</p>
 <p>考虑解析域名的开销，所以 一般在客户端这边缓存解析域名的结果</p>
 <p>优点 :</p>
 <ul>
@@ -468,10 +473,15 @@
 	
 ></p>
 <p>域名解析的问题是不能及时得到通知，那么能不能让域名服务器主动通知一下节点变化</p>
-<p>注册中心的原理就是 ：</p>
+<hr>
+<p>一个域名 可以有多个 IP 地址 。 域名可以认为是一个 连锁品牌 而 每一个 IP 可以认为是一家分店</p>
+<p>看来眼代码，我们 Gin 写的 HTTP 内容其实并没有牵扯到域名注册的逻辑 。</p>
+<p>而且我工作的代码，域名注册也是由运维负责的</p>
+<h3 id="注册中心">注册中心
+</h3><p>注册中心的原理就是 ：</p>
 <ol>
 <li>
-<p>服务端在启动的时候 主动在主持中心注册一下</p>
+<p>服务端在启动的时候 主动在注册中心注册一下</p>
 </li>
 <li>
 <p>客户端在第一次发起调用之前，先查询注册中心，而后缓存住可用节点</p>
@@ -496,6 +506,34 @@
 		class="gallery-image" 
 		data-flex-grow="217"
 		data-flex-basis="522px"
+	
+></p>
+<p><strong>注册中心自省 :</strong></p>
+<p>dubbo 提出来的概念， 随着集群规模增长 加上 微服务框架复杂度上升，</p>
+<ol>
+<li>导致注册中心的 <strong>数据越来越多</strong>, <strong>更新越来越频繁</strong></li>
+</ol>
+<p>于是有了服务自省</p>
+<ol>
+<li>
+<p>保留注册中心, 但是注册中心里面只有最小化的数据</p>
+</li>
+<li>
+<p>剩余跟服务有关的元数据，通过一个元数据服务来暴露</p>
+</li>
+</ol>
+<p><img src="/p/server-reg-discover-0x0x1/reg_self.png"
+	width="637"
+	height="260"
+	srcset="/p/server-reg-discover-0x0x1/reg_self_hu_e3620a4dbc6e5765.png 480w, /p/server-reg-discover-0x0x1/reg_self_hu_7cf8592245ef28c4.png 1024w"
+	loading="lazy"
+	
+		alt="reg_self.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="245"
+		data-flex-basis="588px"
 	
 ></p>
 <h3 id="服务注册">服务注册
@@ -810,6 +848,19 @@
             
                 
 <article class="">
+    <a href="/p/payment-0x01/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">热榜 detail</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
     <a href="/p/migrate-0x02/">
         
         
@@ -855,19 +906,6 @@
 
         <div class="article-details">
             <h2 class="article-title">热榜 detail</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/p/interactive-0x02/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">阅读、点赞、收藏 one</h2>
         </div>
     </a>
 </article>
