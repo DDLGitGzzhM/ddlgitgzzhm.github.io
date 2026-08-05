@@ -337,12 +337,15 @@
             <li><a href="#处理回调失败的问题">处理回调失败的问题</a></li>
           </ol>
         </li>
-        <li><a href="#打赏设计过程">打赏设计过程</a>
+        <li><a href="#打赏设计过程">打赏设计过程</a></li>
+        <li><a href="#需求分析--功能设计">需求分析 &amp; 功能设计</a>
           <ol>
             <li><a href="#表结构设计-1">表结构设计</a></li>
+            <li><a href="#状态更新">状态更新</a></li>
           </ol>
         </li>
-        <li><a href="#功能设计">功能设计</a></li>
+        <li><a href="#对账模块设计">对账模块设计</a></li>
+        <li><a href="#表结构设计-2">表结构设计</a></li>
       </ol>
     </li>
     <li><a href="#面试">面试</a></li>
@@ -928,7 +931,17 @@
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="打赏设计过程">打赏设计过程
-</h3><h4 id="表结构设计-1">表结构设计
+</h3><h3 id="需求分析--功能设计">需求分析 &amp; 功能设计
+</h3><ol>
+<li>
+<p>用户希望能够在某篇文章的最后，有一个打赏按钮按钮</p>
+<p>用户点击这个按钮，就会弹出微信的支付二维码，即 <code>prepay</code> 的过程</p>
+</li>
+<li>
+<p>可以查看支付的结果和状态 <code>getStatus</code></p>
+</li>
+</ol>
+<h4 id="表结构设计-1">表结构设计
 </h4><ol>
 <li>文章模块 和 文章 id</li>
 </ol>
@@ -970,65 +983,285 @@
 </span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="功能设计">功能设计
-</h3><ol>
-<li>创建/查询打赏请求</li>
-<li>缓存二维码结果</li>
-<li>监听支付结果,更新打赏状态</li>
+</div><h4 id="状态更新">状态更新
+</h4><p>状态更新有两个流程</p>
+<ol>
+<li>
+<p>异步的消费 kafka 进行更新</p>
+</li>
+<li>
+<p>获取detail的时候进行更新</p>
+<ul>
+<li>这里在限流的时候，就不进行慢路径的查询。等待 kafaka 进行补充</li>
+</ul>
+</li>
 </ol>
-<div class="table-wrapper"><table>
-	<thead>
-			<tr>
-					<th>reward 负责</th>
-					<th>reward 不负责（交给别人）</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>创建/查询打赏单</td>
-					<td>跟微信下单、验签回调 → <strong>payment</strong></td>
-			</tr>
-			<tr>
-					<td>缓存二维码</td>
-					<td>真正加余额 → <strong>account</strong></td>
-			</tr>
-			<tr>
-					<td>听支付结果，更新打赏状态</td>
-					<td>用户登录、文章内容 → <strong>主站 webook</strong></td>
-			</tr>
-			<tr>
-					<td>支付成功后触发入账</td>
-					<td></td>
-			</tr>
-	</tbody>
-</table></div>
-<p>流程如下 :</p>
-<pre class="mermaid">sequenceDiagram
-  participant 主站
-  participant Reward
-  participant Redis
-  participant Payment
-  participant Kafka
-  participant Account
-
-  Note over 主站,Account: 线1：用户点打赏
-  主站-&gt;&gt;Reward: PreReward
-  Reward-&gt;&gt;Redis: 有没有缓存的二维码？
-  alt 有缓存
-    Redis--&gt;&gt;Reward: code_url
-  else 没有
-    Reward-&gt;&gt;Reward: 写打赏单 Init
-    Reward-&gt;&gt;Payment: NativePrePay(reward-{rid})
-    Payment--&gt;&gt;Reward: code_url
-    Reward-&gt;&gt;Redis: 缓存二维码 29分钟
-  end
-  Reward--&gt;&gt;主站: codeURL + rid
-
-  Note over 主站,Account: 线2：支付有结果了（异步）
-  Kafka-&gt;&gt;Reward: payment_events
-  Reward-&gt;&gt;Reward: UpdateReward
-  Reward-&gt;&gt;Account: Credit（成功才入账）</pre><hr>
-<h2 id="面试">面试
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">s</span><span class="w"> </span><span class="o">*</span><span class="nx">WechatNativeRewardService</span><span class="p">)</span><span class="w"> </span><span class="nf">GetReward</span><span class="p">(</span><span class="nx">ctx</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span><span class="w"> </span><span class="nx">rid</span><span class="p">,</span><span class="w"> </span><span class="nx">uid</span><span class="w"> </span><span class="kt">int64</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nx">domain</span><span class="p">.</span><span class="nx">Reward</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// 快路径</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">r</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nx">repo</span><span class="p">.</span><span class="nf">GetReward</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">rid</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="nx">domain</span><span class="p">.</span><span class="nx">Reward</span><span class="p">{},</span><span class="w"> </span><span class="nx">err</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="nx">r</span><span class="p">.</span><span class="nx">Uid</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nx">uid</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="c1">// 说明是非法查询</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="nx">domain</span><span class="p">.</span><span class="nx">Reward</span><span class="p">{},</span><span class="w"> </span><span class="nx">errors</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="s">&#34;查询的打赏记录和打赏人对不上&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// 有可能，我的打赏记录，还是 Init 状态</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// 已经是完结状态</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="nx">r</span><span class="p">.</span><span class="nf">Completed</span><span class="p">()</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">ctx</span><span class="p">.</span><span class="nf">Value</span><span class="p">(</span><span class="s">&#34;limited&#34;</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&#34;true&#34;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="c1">// 我已经知道你的支付结果了</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="nx">r</span><span class="p">,</span><span class="w"> </span><span class="kc">nil</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// 这个时候，考虑到支付到查询结果，我们搞一个慢路径</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// 你有可能支付了，但是我 reward 本身没有收到通知</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// 我直接查询 payment，</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// 只能解决，支付收到了，但是 reward 没收到</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// 降级状态，限流状态，熔断状态，不要走慢路径</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">resp</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nx">client</span><span class="p">.</span><span class="nf">GetPayment</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">pmtv1</span><span class="p">.</span><span class="nx">GetPaymentRequest</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">BizTradeNo</span><span class="p">:</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nf">bizTradeNO</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">Id</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">})</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="c1">// 这边我们直接返回从数据库查询的数据</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">s</span><span class="p">.</span><span class="nx">l</span><span class="p">.</span><span class="nf">Error</span><span class="p">(</span><span class="s">&#34;慢路径查询支付结果失败&#34;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nx">logger</span><span class="p">.</span><span class="nf">Int64</span><span class="p">(</span><span class="s">&#34;rid&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">r</span><span class="p">.</span><span class="nx">Id</span><span class="p">),</span><span class="w"> </span><span class="nx">logger</span><span class="p">.</span><span class="nf">Error</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nf">Error</span><span class="p">()))</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="nx">r</span><span class="p">,</span><span class="w"> </span><span class="kc">nil</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// 更新状态</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">switch</span><span class="w"> </span><span class="nx">resp</span><span class="p">.</span><span class="nx">Status</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">case</span><span class="w"> </span><span class="nx">pmtv1</span><span class="p">.</span><span class="nx">PaymentStatus_PaymentStatusFailed</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">r</span><span class="p">.</span><span class="nx">Status</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">domain</span><span class="p">.</span><span class="nx">RewardStatusFailed</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">case</span><span class="w"> </span><span class="nx">pmtv1</span><span class="p">.</span><span class="nx">PaymentStatus_PaymentStatusInit</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">r</span><span class="p">.</span><span class="nx">Status</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">domain</span><span class="p">.</span><span class="nx">RewardStatusInit</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">case</span><span class="w"> </span><span class="nx">pmtv1</span><span class="p">.</span><span class="nx">PaymentStatus_PaymentStatusSuccess</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">r</span><span class="p">.</span><span class="nx">Status</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">domain</span><span class="p">.</span><span class="nx">RewardStatusPayed</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">case</span><span class="w"> </span><span class="nx">pmtv1</span><span class="p">.</span><span class="nx">PaymentStatus_PaymentStatusRefund</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="c1">// 理论上来说不可能出现这个，直接设置为失败</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">r</span><span class="p">.</span><span class="nx">Status</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">domain</span><span class="p">.</span><span class="nx">RewardStatusFailed</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">err</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nx">repo</span><span class="p">.</span><span class="nf">UpdateStatus</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">rid</span><span class="p">,</span><span class="w"> </span><span class="nx">r</span><span class="p">.</span><span class="nx">Status</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">s</span><span class="p">.</span><span class="nx">l</span><span class="p">.</span><span class="nf">Error</span><span class="p">(</span><span class="s">&#34;更新本地打赏状态失败&#34;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nx">logger</span><span class="p">.</span><span class="nf">Int64</span><span class="p">(</span><span class="s">&#34;rid&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">r</span><span class="p">.</span><span class="nx">Id</span><span class="p">),</span><span class="w"> </span><span class="nx">logger</span><span class="p">.</span><span class="nf">Error</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nf">Error</span><span class="p">()))</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="nx">r</span><span class="p">,</span><span class="w"> </span><span class="kc">nil</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="nx">r</span><span class="p">,</span><span class="w"> </span><span class="kc">nil</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="对账模块设计">对账模块设计
+</h3><ol>
+<li>对于每一条付款记录，我们都维护到 用户余额里面并且记录一笔流水</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">s</span><span class="w"> </span><span class="o">*</span><span class="nx">WechatNativeRewardService</span><span class="p">)</span><span class="w"> </span><span class="nf">UpdateReward</span><span class="p">(</span><span class="nx">ctx</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">bizTradeNO</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">status</span><span class="w"> </span><span class="nx">domain</span><span class="p">.</span><span class="nx">RewardStatus</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">rid</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nf">toRid</span><span class="p">(</span><span class="nx">bizTradeNO</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nx">repo</span><span class="p">.</span><span class="nf">UpdateStatus</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">rid</span><span class="p">,</span><span class="w"> </span><span class="nx">status</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="nx">err</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// 完成了支付，准备入账</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="nx">status</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nx">domain</span><span class="p">.</span><span class="nx">RewardStatusPayed</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">r</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nx">repo</span><span class="p">.</span><span class="nf">GetReward</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">rid</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="k">return</span><span class="w"> </span><span class="nx">err</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="c1">// webook 抽成</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">weAmt</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">int64</span><span class="p">(</span><span class="nb">float64</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">Amt</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.1</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">_</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nx">acli</span><span class="p">.</span><span class="nf">Credit</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">accountv1</span><span class="p">.</span><span class="nx">CreditRequest</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nx">Biz</span><span class="p">:</span><span class="w">   </span><span class="s">&#34;reward&#34;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nx">BizId</span><span class="p">:</span><span class="w"> </span><span class="nx">rid</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nx">Items</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="o">*</span><span class="nx">accountv1</span><span class="p">.</span><span class="nx">CreditItem</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">					</span><span class="nx">AccountType</span><span class="p">:</span><span class="w"> </span><span class="nx">accountv1</span><span class="p">.</span><span class="nx">AccountType_AccountTypeReward</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">					</span><span class="c1">// 虽然可能为 0，但是也要记录出来</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">					</span><span class="nx">Amt</span><span class="p">:</span><span class="w">      </span><span class="nx">weAmt</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">					</span><span class="nx">Currency</span><span class="p">:</span><span class="w"> </span><span class="s">&#34;CNY&#34;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="p">},</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">					</span><span class="nx">Account</span><span class="p">:</span><span class="w">     </span><span class="nx">r</span><span class="p">.</span><span class="nx">Uid</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">					</span><span class="nx">Uid</span><span class="p">:</span><span class="w">         </span><span class="nx">r</span><span class="p">.</span><span class="nx">Uid</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">					</span><span class="nx">AccountType</span><span class="p">:</span><span class="w"> </span><span class="nx">accountv1</span><span class="p">.</span><span class="nx">AccountType_AccountTypeReward</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">					</span><span class="nx">Amt</span><span class="p">:</span><span class="w">         </span><span class="nx">r</span><span class="p">.</span><span class="nx">Amt</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">weAmt</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">					</span><span class="nx">Currency</span><span class="p">:</span><span class="w">    </span><span class="s">&#34;CNY&#34;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="p">},</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="p">},</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="p">})</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nx">s</span><span class="p">.</span><span class="nx">l</span><span class="p">.</span><span class="nf">Error</span><span class="p">(</span><span class="s">&#34;入账失败了，快来修数据啊！！！&#34;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="nx">logger</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="s">&#34;biz_trade_no&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">bizTradeNO</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="nx">logger</span><span class="p">.</span><span class="nf">Error</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nf">Error</span><span class="p">()))</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="c1">// 做好监控和告警，这里</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="k">return</span><span class="w"> </span><span class="nx">err</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="表结构设计-2">表结构设计
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">// Account 账号本体
+</span></span><span class="line"><span class="cl">type Account struct {
+</span></span><span class="line"><span class="cl">	Id int64 `gorm:&#34;primaryKey,autoIncrement&#34; bson:&#34;id,omitempty&#34;`
+</span></span><span class="line"><span class="cl">	// 对应的用户的 ID，如果是系统账号
+</span></span><span class="line"><span class="cl">	Uid int64 `gorm:&#34;uniqueIndex:account_uid&#34;`
+</span></span><span class="line"><span class="cl">	// 账号 ID，这个才是对外使用的
+</span></span><span class="line"><span class="cl">	Account int64 `gorm:&#34;uniqueIndex:account_uid&#34;`
+</span></span><span class="line"><span class="cl">	// 一个人可能有很多账号，你在这里可以用于区分
+</span></span><span class="line"><span class="cl">	Type uint8 `gorm:&#34;uniqueIndex:account_uid&#34;`
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	// 账号本身可以有很多额外的字段
+</span></span><span class="line"><span class="cl">	// 例如跟会计有关的，跟税务有关的，跟洗钱有关的
+</span></span><span class="line"><span class="cl">	// 跟审计有关的，跟安全有关的
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	// 可用余额
+</span></span><span class="line"><span class="cl">	// 一般来说，一种货币就一个账号，比较好处理（个人认为）
+</span></span><span class="line"><span class="cl">	// 有些一个账号，但是支持多种货币，那么就需要关联另外一张表。
+</span></span><span class="line"><span class="cl">	// 记录每一个币种的余额
+</span></span><span class="line"><span class="cl">	Balance  int64
+</span></span><span class="line"><span class="cl">	Currency string
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	Ctime int64
+</span></span><span class="line"><span class="cl">	Utime int64
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="面试">面试
 </h2><ol>
 <li>
 <p>微信的支付流程 ， prepay 和 处理回调</p>
@@ -1044,6 +1277,34 @@
 </li>
 <li>
 <p>如果微信支付的回调处理失败怎么办 ？</p>
+</li>
+</ol>
+<hr>
+<ol>
+<li>
+<p>如何保证消息一定发出去？ 怎么确保一定发送了数据？如何确保消息不丢失 ？</p>
+</li>
+<li>
+<p>怎么保证消息丢有序性 ？？</p>
+<ul>
+<li>如果 topic 增加分区，怎么保证有序性？</li>
+<li>如果保证消息有序性，消息积压了，怎么半？
+<ul>
+<li>开goroutine 批量提交</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>如果在自己业务里面，有明显的部分失败的场景，怎么补偿</p>
+</li>
+<li>
+<p>怎么保证幂等？ 你有什么方案 ？  能不能撑住高并发</p>
+<ul>
+<li>唯一索引处理</li>
+<li>二话不说先插入一个数据，保证坐在一个本地事务里面，如果有冲突那么就说明做过了</li>
+<li>不拢过滤器去重</li>
+</ul>
 </li>
 </ol>
 
@@ -1091,36 +1352,6 @@
     
 
     
-        <script type="module">
-    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
-
-    const getTheme = () => {
-        const scheme = document.documentElement.getAttribute("data-scheme");
-        if (scheme === "dark") {
-            return "dark";
-        }
-        if (scheme === "light") {
-            return "default";
-        }
-        return window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "default";
-    };
-
-    mermaid.initialize({
-        startOnLoad: false,
-        theme: getTheme(),
-        securityLevel: "loose",
-        flowchart: {
-            useMaxWidth: true,
-            htmlLabels: true,
-        },
-    });
-
-    await mermaid.run({ querySelector: ".mermaid" });
-</script>
-
-    
 </article>
 
 
@@ -1132,6 +1363,45 @@
     <h2 class="section-title">相关文章</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/payment-0x02/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">打赏 one</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/comment-0x01/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">评论 detail</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/comment-0x01/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">评论 detail</h2>
+        </div>
+    </a>
+</article>
+
             
                 
 <article class="">
@@ -1154,45 +1424,6 @@
 
         <div class="article-details">
             <h2 class="article-title">服务注册与发现 detail</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/p/migrate-0x01/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">不停机数据迁移 detail</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/p/migrate-0x01/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">微服务 detail</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/p/rank-0x01/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">热榜 detail</h2>
         </div>
     </a>
 </article>
