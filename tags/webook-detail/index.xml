@@ -7,7 +7,88 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>GzzhM</copyright>
-        <lastBuildDate>Wed, 05 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/tags/webook-detail/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 06 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/tags/webook-detail/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>搜索 detail</title>
+        <link>https://ddlgitgzzhm.github.io/p/select-0x01/</link>
+        <pubDate>Thu, 06 Aug 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/p/select-0x01/</guid>
+        <description>&lt;h2 id=&#34;简历-preview&#34;&gt;简历 preview
+&lt;/h2&gt;&lt;p&gt;简历上 : 设计并实现了 搜索&lt;/p&gt;
+&lt;h3 id=&#34;需求分析&#34;&gt;需求分析
+&lt;/h3&gt;&lt;p&gt;平台里面都会有一个搜索栏 大体上的目的是 :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;方便用户快速找到所需的内容&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;增加广告收入&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;支持搜索主要是支持 :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;搜索具体的用户&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;搜索某篇文章&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;因为需要考虑使用使用 ES 进行实现, 所以需要把这两个服务原有的数据 额外的 写入到 ES 中 。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ddlgitgzzhm.github.io/p/select-0x01/find_struct.png&#34;
+	width=&#34;670&#34;
+	height=&#34;438&#34;
+	srcset=&#34;https://ddlgitgzzhm.github.io/p/select-0x01/find_struct_hu_cfca149e2500e861.png 480w, https://ddlgitgzzhm.github.io/p/select-0x01/find_struct_hu_555fc8aea299534c.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;find_struct.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;152&#34;
+		data-flex-basis=&#34;367px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Q : 为什么 不是用户直接写入到 ES&lt;/p&gt;
+&lt;p&gt;A : 从 DDD 的角度来说 , es 并不考虑 user 的索引怎么确定 也不处理一些业务相关的内容 。 所以只能通过 search 服务&lt;/p&gt;
+&lt;h3 id=&#34;表结构设计&#34;&gt;表结构设计
+&lt;/h3&gt;&lt;h4 id=&#34;文章表结构&#34;&gt;文章表结构
+&lt;/h4&gt;&lt;p&gt;mapping :&lt;/p&gt;
+&lt;p&gt;title : type : text&lt;/p&gt;
+&lt;p&gt;content : type : text&lt;/p&gt;
+&lt;p&gt;id : type long ; (贯穿业务的id)&lt;/p&gt;
+&lt;p&gt;status : type : interger&lt;/p&gt;
+&lt;h4 id=&#34;用户表结构&#34;&gt;用户表结构
+&lt;/h4&gt;&lt;p&gt;mapping :&lt;/p&gt;
+&lt;p&gt;nickname : type : text&lt;/p&gt;
+&lt;p&gt;email : type : text (不使用keyword，正常人很难记住邮箱)&lt;/p&gt;
+&lt;p&gt;phone : type : keyword&lt;/p&gt;
+&lt;p&gt;id : tyoe long&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;(这里要不要处理,理论上来说前端是不支持的 。 用户层面应该是看不到的，但是客服预计能看到)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;面试&#34;&gt;面试
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;你有没有用过 ES ？ 用它来解决什么问题？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ES 中的倒排索引是什么？ 为什么叫做倒排索引 ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ES 是如何组织倒排索引的 ？ 核心是利用了 FST 结构&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ES 的节点类型有哪些？ 他们的作用是什么 ？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ES 的写入过程是怎么样的 ？ 为什么说他是近实时的&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        <item>
         <title>评论 detail</title>
         <link>https://ddlgitgzzhm.github.io/p/comment-0x01/</link>
         <pubDate>Wed, 05 Aug 2026 00:00:00 +0000</pubDate>
@@ -3159,6 +3240,20 @@ Delete * from comments where pid = 4&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;tbd&#34;&gt;tbd
+&lt;/h2&gt;</description>
+        </item>
+        <item>
+        <title>热榜 one</title>
+        <link>https://ddlgitgzzhm.github.io/p/rank-0x01/</link>
+        <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/p/rank-0x01/</guid>
+        <description>&lt;h2 id=&#34;简历-preview&#34;&gt;简历 preview
+&lt;/h2&gt;&lt;p&gt;简历上 : 实现多实例部署下的 热榜 异步计算和查询&lt;/p&gt;
+&lt;h2 id=&#34;流程设计&#34;&gt;流程设计
+&lt;/h2&gt;&lt;h2 id=&#34;难点--亮点&#34;&gt;难点 &amp;amp; 亮点
+&lt;/h2&gt;&lt;h2 id=&#34;缺点&#34;&gt;缺点
+&lt;/h2&gt;&lt;h2 id=&#34;其他细节&#34;&gt;其他细节
 &lt;/h2&gt;</description>
         </item>
         <item>
