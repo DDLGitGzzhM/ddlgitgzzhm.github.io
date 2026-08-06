@@ -2,7 +2,7 @@
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="我们项目实现了一个 xxxx">
-<title>不停机数据迁移 detail</title>
+<title>微服务 detail</title>
 
 <link rel='canonical' href='https://ddlgitgzzhm.github.io/p/migrate-0x01/'>
 
@@ -320,26 +320,35 @@
             <nav id="TableOfContents">
   <ol>
     <li><a href="#简历-preview">简历 preview</a></li>
-    <li><a href="#迁移">迁移</a>
+    <li><a href="#微服务">微服务</a>
       <ol>
-        <li><a href="#不停机迁移">不停机迁移</a></li>
-        <li><a href="#数据初始化">数据初始化</a></li>
-        <li><a href="#校验与修复">校验与修复</a>
+        <li><a href="#为什么要使用微服务">为什么要使用微服务</a>
           <ol>
-            <li><a href="#数据校验">数据校验</a></li>
-            <li><a href="#数据修复">数据修复</a></li>
-            <li><a href="#数据修复的基本逻辑">数据修复的基本逻辑</a></li>
-          </ol>
-        </li>
-        <li><a href="#双写">双写</a>
-          <ol>
-            <li><a href="#方案-1">方案 1</a></li>
-            <li><a href="#方案-2-connpool">方案 2 ConnPool</a></li>
+            <li><a href="#模块化-对比-微服务">模块化 对比 微服务</a></li>
           </ol>
         </li>
       </ol>
     </li>
-    <li><a href="#面试要点">面试要点</a></li>
+    <li><a href="#rpc">RPC</a>
+      <ol>
+        <li><a href="#grpc">GRPC</a>
+          <ol>
+            <li><a href="#grpc-服务端与客户端">GRPC 服务端与客户端</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#ddd-基本理论">DDD 基本理论</a></li>
+    <li><a href="#微服务拆分">微服务拆分</a>
+      <ol>
+        <li><a href="#拆分">拆分</a>
+          <ol>
+            <li></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#面试">面试</a></li>
   </ol>
 </nav>
         </div>
@@ -414,194 +423,423 @@
     
     
     <h2 id="简历-preview">简历 preview
-</h2><p>简历上 : 点赞、阅读、收藏模块拆分成微服务之后 进行了数据库迁移实现微服务的单独存储</p>
-<p>为什么要做数据迁移 :</p>
-<ol>
-<li>经过微服务化之后，我们的代码已经拆除去了，但是实际上还是共享一个数据库 。 我们认为 <code>某个微服务的数据也是单独存储的</code> 因此还需要做 数据分离</li>
-</ol>
-<h2 id="迁移">迁移
-</h2><p>分类 :</p>
+</h2><p>简历上 : 将单体业务中的点赞服务拆出一个微服务 并且使用 grpc 进行通行管理</p>
+<h2 id="微服务">微服务
+</h2><p>微服务架构 : 将功能分解到各个离散的服务中实现对解决方案的解耦。</p>
 <ul>
-<li>
-<p>异构数据迁移</p>
-<ul>
-<li>原表和目标表的结构不一样</li>
-<li>如果数据库都不一样，也算异构数据迁移</li>
+<li>每个服务可独立进行 <code>开发，管理 和 迭代</code></li>
 </ul>
-<p>问题 :</p>
-<ul>
-<li>数据转换 :  不同数据类型可能转出不同的兼容问题，如果是数字会有精度问题</li>
-<li>完整性校验 : 数据之间的业务关系很难校验</li>
-</ul>
-</li>
-<li>
-<p>同构数据迁移</p>
-</li>
-</ul>
-<p>方式 :</p>
-<ul>
-<li>
-<p>停机迁移</p>
-<ul>
-<li>数据迁移比较困难的就是，我们在迁移过程中会有新的数据插入，老的数据更新/删除，导致一致性问题</li>
-<li>停机迁移可以很好的规避这部分内容，但是缺点就是应用停了下来</li>
-</ul>
-</li>
-<li>
-<p>不停机迁移</p>
-<ul>
-<li>需要考虑 新老数据的更新</li>
-<li>需要考虑不能对数据库造成太大的压力</li>
-</ul>
-</li>
-</ul>
-<h3 id="不停机迁移">不停机迁移
-</h3><p>难点 :  <code>数据始终是变动的</code></p>
-<p>不停机迁移的方案 :</p>
-<p>整个不停机迁移可以分成四个阶段：</p>
-<p>• <strong>第一阶段：业务读写源表</strong>。在这个阶段，你要完成目标表的数据初始化过程。</p>
-<p>• <strong>第二阶段：双写阶段，以源表为准</strong>。在这个阶段，数据会被双写到源表和目标表中，并且读是读源表，如果数据不一致，也是以源表的数据为准。</p>
-<p>• <strong>第三阶段：双写阶段，以目标表为准</strong>。在这个阶段，数据也是保持双写，但是读以目标表为准，并且修复数据的时候，是以目标表为准。</p>
-<p>• <strong>第四阶段：业务读写目标表</strong>。</p>
-<p><img src="/p/migrate-0x01/double_write.png"
-	width="624"
-	height="416"
-	srcset="/p/migrate-0x01/double_write_hu_136a9ad097bb6602.png 480w, /p/migrate-0x01/double_write_hu_132a2864c2e55c3a.png 1024w"
+<p><img src="/p/migrate-0x01/micros.png"
+	width="424"
+	height="313"
+	srcset="/p/migrate-0x01/micros_hu_7fd19e91710a7074.png 480w, /p/migrate-0x01/micros_hu_a9adfa036d99d4d1.png 1024w"
 	loading="lazy"
 	
-		alt="double_write.png"
+		alt="micros.png"
 	
 	
 		class="gallery-image" 
-		data-flex-grow="150"
-		data-flex-basis="360px"
+		data-flex-grow="135"
+		data-flex-basis="325px"
 	
 ></p>
-<h3 id="数据初始化">数据初始化
-</h3><p>对于同构迁移</p>
-<p>我们可以使用 <code>mysqldunmp</code> 进行导出数据库数据，然后使用 <code>source</code>命令执行 sql 进行数据的插入</p>
-<p>对于异构数据的话</p>
-<p>我们只能够</p>
-<ol>
-<li>批量读取原数据库的数据</li>
-<li>转换为 SQL</li>
-<li>在代码中利用 ORM 进行插入</li>
-</ol>
-<p><img src="/p/migrate-0x01/diff_init.png"
-	width="390"
-	height="360"
-	srcset="/p/migrate-0x01/diff_init_hu_7e3a19ff02817859.png 480w, /p/migrate-0x01/diff_init_hu_9618fc33d02488e6.png 1024w"
-	loading="lazy"
-	
-		alt="diff_init.png"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="108"
-		data-flex-basis="260px"
-	
-></p>
-<h3 id="校验与修复">校验与修复
-</h3><p>不停机数据迁移没办法做到完全保证一致性，所以需要引入数据的校验 从而尽可能大概率的保证一致性</p>
-<p>因为在切换目标表或者是原表的过程，总会有一些时间空隙</p>
-<p><img src="/p/migrate-0x01/validate.png"
-	width="413"
-	height="492"
-	srcset="/p/migrate-0x01/validate_hu_ade728df6570b60d.png 480w, /p/migrate-0x01/validate_hu_b71af987ff1af281.png 1024w"
-	loading="lazy"
-	
-		alt="validate.png"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="83"
-		data-flex-basis="201px"
-	
-></p>
-<h4 id="数据校验">数据校验
-</h4><p>全量校验从方案来说, 就是 <strong>一条一条去比对</strong></p>
-<p>但是如果 <strong>数据量特别大，怎么尽快完成校验与修复</strong></p>
-<p>场景题 :</p>
-<ol>
-<li>在一些大厂的核心业务，一个表可能会有数十亿条数据，如何要求在一天内完成数据同步</li>
-</ol>
-<p>答案就是 <strong>并发</strong></p>
-<p>整个全量校验和修复可以看作两个步骤 : 校验 , 如果发现不一致 则修复</p>
-<p>能够想到的做法有下面几个</p>
-<ol>
-<li>
-<p>立刻修复</p>
-</li>
-<li>
-<p>使用 channel 通知 goroutine 去修复</p>
-</li>
-<li>
-<p>使用 消息队列 进行异步修复</p>
-</li>
-</ol>
-<p><img src="/p/migrate-0x01/validate_process.png"
-	width="382"
-	height="476"
-	srcset="/p/migrate-0x01/validate_process_hu_4a2d8ea21ee5d903.png 480w, /p/migrate-0x01/validate_process_hu_9727f4d8955bef9f.png 1024w"
-	loading="lazy"
-	
-		alt="validate_process.png"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="80"
-		data-flex-basis="192px"
-	
-></p>
-<p>考虑需要保护住目标表,因此这里引入 <code>kafka</code></p>
-<h5 id="校验基本思路">校验基本思路
-</h5><p>校验的基本思路就是</p>
-<ol>
-<li>
-<p>从原表获取数据</p>
-</li>
-<li>
-<p>根据主键去目标着找出对应数据</p>
-</li>
-<li>
-<p>比较字段是否相等</p>
+<h3 id="为什么要使用微服务">为什么要使用微服务
+</h3><p>为了 <strong>分而治之</strong> :</p>
 <ul>
-<li>这里根据业务折中进行处理是否相等的过滤</li>
+<li>
+<p>降低复杂度</p>
+</li>
+<li>
+<p>易于开发、测试、部署 和 扩容</p>
+</li>
+</ul>
+<h4 id="模块化-对比-微服务">模块化 对比 微服务
+</h4><ol>
+<li>
+<p>整合全部模块于一个单体应用，这个过程比较复杂</p>
+</li>
+<li>
+<p>从运维角度看，<strong>实例才是基本单位</strong>，微服务化的管理力度更细 。</p>
+</li>
+<li>
+<p>微服务独立性更强</p>
+</li>
+</ol>
+<p><strong>这里说一下我的理解 :</strong></p>
+<p>我前司大概有 6-8个业务组 。 按照 <code>模块化单体+进程角色部署</code> 进行开发</p>
+<p>不过单独拆出了两个业务， 一个 <code>qass</code> 跨环境的行情中心 和 配置中心 , 一个 <code>apitest</code> 用于进行维护项目的<code>api</code>稳定</p>
+<p>为什么我们不全部拆成微服务</p>
+<ol>
+<li>
+<p>一次下单 会串着 账户、仓位、ledger、风控。 这一套流程 强事务、强一致</p>
+</li>
+<li>
+<p>如果拆成微服务 需要考虑 事务 和 最终一致</p>
+</li>
+</ol>
+<p><strong>那么拆微服务能给企业带来什么收益 :</strong></p>
+<p><strong>发版时间</strong></p>
+<p>我们知道单体的发版需要依赖整体发版 ， 例如 如果我账户模块改动，想要提前发版，这不可能。 只能发在上一个版本 然后发一次全局的重构</p>
+<p>但是如果拆成微服务，我们可以每个服务 自己控制发版时间</p>
+<p>官方话就是 ，需要考虑  团队边界、发布节奏、技术异构</p>
+<p><strong>成本</strong></p>
+<p>我们现在单体是 <code>文字+用户+登陆+点赞</code> , 但是如果我们点赞的性能跟不上, 在单体阶段我们只能考虑增加<strong>全部机器</strong>的性能</p>
+<p>如果我们部署一台 <code>文字+用户+登陆+点赞</code> 的服务 需要 1w ，那么如果我们想要单独增加点赞的性能 需要重新部署一台完整的服务 也需要 1w</p>
+<p>但是如果我们把点赞拆出来，单独部署一个点赞服务只需要 2k, 那么 1w 可以部署 5 台</p>
+<h2 id="rpc">RPC
+</h2><p>PRC : 远程过程调用， 允许程序在本地计算机上 调用远程计算机上的字程序，而无需程序员额外变成</p>
+<p><img src="/p/migrate-0x01/rpc.png"
+	width="466"
+	height="210"
+	srcset="/p/migrate-0x01/rpc_hu_c71842097b828f4c.png 480w, /p/migrate-0x01/rpc_hu_d0ad6b3e9670544c.png 1024w"
+	loading="lazy"
+	
+		alt="rpc.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="221"
+		data-flex-basis="532px"
+	
+></p>
+<p>RPC 协议可以简历在很多协议基础之上</p>
+<ul>
+<li>
+<p>基于 TCP 的 RPC 协议，典型的国内大厂自研的协议， 比如说 Dubbo 协议。</p>
+</li>
+<li>
+<p>基于 HTTP 的 RPC 协议，比如说 gRPC 协议。而 HTTP 本身又是可以基于 TCP 协议或者 UDP 协议的。</p>
+</li>
+</ul>
+<p><img src="/p/migrate-0x01/grpc_type.png"
+	width="449"
+	height="275"
+	srcset="/p/migrate-0x01/grpc_type_hu_6e384dc5544a8c11.png 480w, /p/migrate-0x01/grpc_type_hu_3c63b65a1b9671b2.png 1024w"
+	loading="lazy"
+	
+		alt="grpc_type.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="163"
+		data-flex-basis="391px"
+	
+></p>
+<hr>
+<p><strong>为什么要引入 rpc</strong></p>
+<p>我们可以看一些接口的文档，他们暴露了一些接口可以让我们使用，我们带上对应的 apikey + apisecret 即可</p>
+<p>但是为什么我们还需要使用 rpc</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th></th>
+					<th>口语里的 HTTP（REST）</th>
+					<th>口语里的 RPC（如 gRPC）</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>你怎么写代码</td>
+					<td>拼 URL、method、body</td>
+					<td><code>client.Like(ctx, req)</code></td>
+			</tr>
+			<tr>
+					<td>契约</td>
+					<td>OpenAPI / 约定 JSON 字段</td>
+					<td><code>.proto</code> / 接口定义，强类型生成</td>
+			</tr>
+			<tr>
+					<td>载荷</td>
+					<td>多为 JSON 文本</td>
+					<td>多为 Protobuf 二进制</td>
+			</tr>
+			<tr>
+					<td>传输</td>
+					<td>HTTP/1.1 或 HTTP/2</td>
+					<td>常见 HTTP/2（多路复用）</td>
+			</tr>
+			<tr>
+					<td>风格</td>
+					<td>资源导向（<code>/users/1</code>）</td>
+					<td>方法导向（<code>UserService.GetUser</code>）</td>
+			</tr>
+			<tr>
+					<td>调试</td>
+					<td>浏览器、curl 极友好</td>
+					<td>要 grpcurl 等工具，稍麻烦</td>
+			</tr>
+			<tr>
+					<td>流式</td>
+					<td>有限（SSE/WebSocket 另说）</td>
+					<td>双向流较自然</td>
+			</tr>
+	</tbody>
+</table></div>
+<p>对开发者的体感：RPC 更像「远程函数调用」；HTTP/REST 更像「发一次 Web 请求」。</p>
+<h3 id="grpc">GRPC
+</h3><p>特点 :</p>
+<ul>
+<li>
+<p><strong>高性能 :</strong> 基于 <code>QUIC</code> 协议，利用 HTTP2 的双向流特性</p>
+</li>
+<li>
+<p><strong>跨语言 :</strong></p>
+</li>
+<li>
+<p><strong>开源 :</strong></p>
+</li>
+</ul>
+<p>Grpc 使用 <code>protobuf</code> 来作为自己的 IDL 语言</p>
+<p>IDL : 接口描述语言</p>
+<p><code>protobuf</code> 基本原理 :</p>
+<ol>
+<li>
+<p>使用二进制格式进行序列话和反序列化</p>
+</li>
+<li>
+<p>定义一种标准的消息格式 。 用于表示结构化数据</p>
+</li>
+<li>
+<p>每个字段都有唯一的标签和类型</p>
+</li>
+</ol>
+<p><img src="/p/migrate-0x01/protobuf.png"
+	width="406"
+	height="219"
+	srcset="/p/migrate-0x01/protobuf_hu_5a5005c789f5d12f.png 480w, /p/migrate-0x01/protobuf_hu_d1fbc674e54b0535.png 1024w"
+	loading="lazy"
+	
+		alt="protobuf.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="185"
+		data-flex-basis="444px"
+	
+></p>
+<h4 id="grpc-服务端与客户端">GRPC 服务端与客户端
+</h4><p>服务端 :</p>
+<ol>
+<li>
+<p>通过 Server Listen 启动服务</p>
+</li>
+<li>
+<p>通过 Register 注册对应的服务</p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="nf">TestServer</span><span class="p">(</span><span class="nx">t</span><span class="w"> </span><span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">s</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">grpc</span><span class="p">.</span><span class="nf">NewServer</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// 这个是生成的代码</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nf">RegisterUserServiceServer</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">Server</span><span class="p">{})</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">l</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">net</span><span class="p">.</span><span class="nf">Listen</span><span class="p">(</span><span class="s">&#34;tcp&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;:8090&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">assert</span><span class="p">.</span><span class="nf">NoError</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// 启动</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nf">Serve</span><span class="p">(</span><span class="nx">l</span><span class="p">);</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="c1">// 启动失败，或者退出了服务器</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">t</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">&#34;退出 gRPC 服务&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>客户端 :</p>
+<ol>
+<li>
+<p>通过 Dial 来进行通信连接</p>
+</li>
+<li>
+<p>使用 NewClient 创建客户端</p>
+</li>
+<li>
+<p>过程调用直接调用 <code>GetById</code></p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="nf">TestClient</span><span class="p">(</span><span class="nx">t</span><span class="w"> </span><span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">conn</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">grpc</span><span class="p">.</span><span class="nf">Dial</span><span class="p">(</span><span class="s">&#34;:8090&#34;</span><span class="p">,</span><span class="nx">grpc</span><span class="p">.</span><span class="nf">WithTransportCredentials</span><span class="p">(</span><span class="nx">insecure</span><span class="p">.</span><span class="nf">NewCredentials</span><span class="p">()))</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">assert</span><span class="p">.</span><span class="nf">NoError</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">client</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nf">NewUserServiceClient</span><span class="p">(</span><span class="nx">conn</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">cancel</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nf">WithTimeout</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">(),</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">defer</span><span class="w"> </span><span class="nf">cancel</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">resp</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nf">GetById</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">GetByIdReq</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">Id</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">})</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">assert</span><span class="p">.</span><span class="nf">NoError</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">t</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">User</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="ddd-基本理论">DDD 基本理论
+</h2><p>• 限界上下文（Bounded Context）</p>
+<ul>
+<li>描述 我们所要解决的问题上下文</li>
+<li>描述微服务的边界</li>
+</ul>
+<p>• 实体（Entity）</p>
+<ul>
+<li>标记业务的唯一 ID</li>
+</ul>
+<p>• 值对象（Value Object）</p>
+<ul>
+<li>一堆属性的集合</li>
+</ul>
+<p>• 聚合体（Aggregate）</p>
+<ul>
+<li>一个实体 + N个值对象的 集合</li>
+</ul>
+<p>• 工厂（Factory)</p>
+<ul>
+<li>普通工厂方法在 DDD 中的应用</li>
+</ul>
+<p>• 仓库（Repository）</p>
+<ul>
+<li>数据存储的抽象</li>
+</ul>
+<p>• 事件（Domain Event)</p>
+<ul>
+<li>就是我们说的 MQ event</li>
+</ul>
+<p>• 服务（Domain Service）</p>
+<p><img src="/p/migrate-0x01/DDD.png"
+	width="502"
+	height="352"
+	srcset="/p/migrate-0x01/DDD_hu_f7351ca8e0b840b6.png 480w, /p/migrate-0x01/DDD_hu_971b902284ab203c.png 1024w"
+	loading="lazy"
+	
+		alt="DDD.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="142"
+		data-flex-basis="342px"
+	
+></p>
+<h2 id="微服务拆分">微服务拆分
+</h2><p>按照 DDD 的理论拆分微服务， 一个领域就是一个微服务</p>
+<p>微服务拆分路线 :</p>
+<p><img src="/p/migrate-0x01/server_split.png"
+	width="886"
+	height="98"
+	srcset="/p/migrate-0x01/server_split_hu_442d32c5bfc38e0f.png 480w, /p/migrate-0x01/server_split_hu_98dd2e9fd3ba01c.png 1024w"
+	loading="lazy"
+	
+		alt="server_split.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="904"
+		data-flex-basis="2169px"
+	
+></p>
+<p>单体应用 :</p>
+<ol>
+<li>
+<p>完善单元测试。</p>
+</li>
+<li>
+<p>先抽取公共部分，如utils、helper 等。</p>
+</li>
+<li>
+<p>引入聚合层解除模块间循环依赖。</p>
+</li>
+<li>
+<p>按照业务对象划分模块，分到不同的包里。</p>
+</li>
+</ol>
+<p>模块化 :</p>
+<ol>
+<li>
+<p>创建不同的代码仓库，将公共部分、业务模块逐个挪到别的代码仓库。</p>
+</li>
+<li>
+<p>开始准备微服务环境和服务框架选型。</p>
+</li>
+<li>
+<p>搭建好 CI 和集成测试环境。</p>
+</li>
+</ol>
+<p>模块依赖化 :</p>
+<ol>
+<li>
+<p>业务模块逐个服务化，解决微服务开发、测试、部署中所遇到的问题。</p>
+</li>
+<li>
+<p>搭建自动部署和回滚平台。</p>
+</li>
+<li>
+<p>调研服务治理和网关。</p>
+</li>
+<li>
+<p>引入消息队列。</p>
+</li>
+<li>
+<p>引入分布式事务解决方案。</p>
+</li>
+<li>
+<p>引入分布式任务调度。</p>
+</li>
+<li>
+<p>搭建可观测性平台：logging、tracing、metrics，以及对应的告警系统</p>
+</li>
+</ol>
+<p>微服务化：</p>
+<ol>
+<li>引入服务治理</li>
+<li>引入网关</li>
+<li>引入回归测试</li>
+<li>按照业务分库</li>
+</ol>
+<h3 id="拆分">拆分
+</h3><p>拆分方案 :</p>
+<ol>
+<li>选定模块
+<ul>
+<li>原则 : 先易后难</li>
 </ul>
 </li>
+<li>检测覆盖率</li>
+<li>代码拆分</li>
+<li>确定技术选型</li>
+<li>改造微服务</li>
+<li>在原先的应用中 同时使用 本地调用 和微服务调用 。 使用<code>开关控制流量</code> 并且<code>允许回滚</code></li>
+<li>逐步调整流量</li>
+<li>抹除原先的本地调用</li>
 </ol>
-<p><img src="/p/migrate-0x01/validate_method.png"
-	width="465"
-	height="308"
-	srcset="/p/migrate-0x01/validate_method_hu_2cd6de8661002d6f.png 480w, /p/migrate-0x01/validate_method_hu_cb4d17ba84f0d9dd.png 1024w"
-	loading="lazy"
-	
-		alt="validate_method.png"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="150"
-		data-flex-basis="362px"
-	
-></p>
-<h5 id="校验逻辑">校验逻辑
-</h5><ol>
-<li>
-<p>我们通过 <code>offset</code> 获取 <code>base</code> 中的第一条数据</p>
-</li>
-<li>
-<p>然后去 <code>target</code> 找对应 <code>id</code> 的数据，如果没有找到 那么通知修复，如果找到了那么比较，否则通知修复</p>
-</li>
-</ol>
-<p>需要额外考虑的点 :</p>
-<ol>
-<li>超时控制，手动取消</li>
-<li>数据库连接错误</li>
-</ol>
-<p>剩余问题 :</p>
-<ol>
-<li>我们可以批量获取一部分数据进行处理</li>
-</ol>
+<h5 id="流量控制">流量控制
+</h5><p>我们将原先的本地服务 使用 装饰器 重新抽象成一个接口</p>
+<p>这个接口支持使用 <code>threshold</code> 控制流量，通过随机数控制 。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -626,525 +864,83 @@
 </span><span class="lnt">20
 </span><span class="lnt">21
 </span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span><span class="lnt">51
-</span><span class="lnt">52
-</span><span class="lnt">53
-</span><span class="lnt">54
-</span><span class="lnt">55
-</span><span class="lnt">56
-</span><span class="lnt">57
-</span><span class="lnt">58
-</span><span class="lnt">59
-</span><span class="lnt">60
-</span><span class="lnt">61
-</span><span class="lnt">62
-</span><span class="lnt">63
-</span><span class="lnt">64
-</span><span class="lnt">65
-</span><span class="lnt">66
-</span><span class="lnt">67
-</span><span class="lnt">68
-</span><span class="lnt">69
-</span><span class="lnt">70
-</span><span class="lnt">71
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">v</span><span class="w"> </span><span class="o">*</span><span class="nx">Validator</span><span class="p">[</span><span class="nx">T</span><span class="p">])</span><span class="w"> </span><span class="nf">validateBaseToTarget</span><span class="p">(</span><span class="nx">ctx</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">offset</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="nx">v</span><span class="p">.</span><span class="nx">highLoad</span><span class="p">.</span><span class="nf">Load</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="c1">// 挂起</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="p">}</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">g</span><span class="w"> </span><span class="o">*</span><span class="nx">GreyScaleInteractiveServiceClient</span><span class="p">)</span><span class="w"> </span><span class="nf">GetByIds</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">ctx</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span><span class="w"> </span><span class="nx">in</span><span class="w"> </span><span class="o">*</span><span class="nx">intrv1</span><span class="p">.</span><span class="nx">GetByIdsRequest</span><span class="p">,</span><span class="w"> </span><span class="nx">opts</span><span class="w"> </span><span class="o">...</span><span class="nx">grpc</span><span class="p">.</span><span class="nx">CallOption</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="nx">intrv1</span><span class="p">.</span><span class="nx">GetByIdsResponse</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="nx">g</span><span class="p">.</span><span class="nf">client</span><span class="p">().</span><span class="nf">GetByIds</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">in</span><span class="p">,</span><span class="w"> </span><span class="nx">opts</span><span class="o">...</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="c1">// 找到了 base 中的数据</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="c1">// 例如 .Order(&#34;id DESC&#34;)，每次插入数据，就会导致你的 offset 不准了</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="c1">// 如果我的表没有 id 这个列怎么办？</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="c1">// 找一个类似的列，比如说 ctime (创建时间）</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="c1">// todo 改成批量，性能要好很多</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">src</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">v</span><span class="p">.</span><span class="nf">fromBase</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">offset</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">switch</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">case</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Canceled</span><span class="p">,</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">DeadlineExceeded</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="c1">// 超时或者被人取消了</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="k">return</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">case</span><span class="w"> </span><span class="kc">nil</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="c1">// 你真的查到了数据</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="c1">// 要去 target 里面找对应的数据</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="kd">var</span><span class="w"> </span><span class="nx">dst</span><span class="w"> </span><span class="nx">T</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nx">err</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">v</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nf">Where</span><span class="p">(</span><span class="s">&#34;id = ?&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">src</span><span class="p">.</span><span class="nf">ID</span><span class="p">()).</span><span class="nf">First</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">dst</span><span class="p">).</span><span class="nx">Error</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="k">switch</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="k">case</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Canceled</span><span class="p">,</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">DeadlineExceeded</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="c1">// 超时或者被人取消了</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="k">return</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="k">case</span><span class="w"> </span><span class="kc">nil</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="k">if</span><span class="w"> </span><span class="p">!</span><span class="nx">src</span><span class="p">.</span><span class="nf">CompareTo</span><span class="p">(</span><span class="nx">dst</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">					</span><span class="c1">// 不相等</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">					</span><span class="c1">// 这时候，我要干嘛？上报给 Kafka，就是告知数据不一致</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">					</span><span class="nx">v</span><span class="p">.</span><span class="nf">notify</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">src</span><span class="p">.</span><span class="nf">ID</span><span class="p">(),</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">						</span><span class="nx">events</span><span class="p">.</span><span class="nx">InconsistentEventTypeNEQ</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">g</span><span class="w"> </span><span class="o">*</span><span class="nx">GreyScaleInteractiveServiceClient</span><span class="p">)</span><span class="w"> </span><span class="nf">UpdateThreshold</span><span class="p">(</span><span class="nx">newThreshold</span><span class="w"> </span><span class="kt">int32</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">g</span><span class="p">.</span><span class="nx">threshold</span><span class="p">.</span><span class="nf">Store</span><span class="p">(</span><span class="nx">newThreshold</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="k">case</span><span class="w"> </span><span class="nx">gorm</span><span class="p">.</span><span class="nx">ErrRecordNotFound</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="c1">// 这意味着，target 里面少了数据</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="nx">v</span><span class="p">.</span><span class="nf">notify</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">src</span><span class="p">.</span><span class="nf">ID</span><span class="p">(),</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">					</span><span class="nx">events</span><span class="p">.</span><span class="nx">InconsistentEventTypeTargetMissing</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="k">default</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="c1">// 这里，要不要汇报，数据不一致？</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="c1">// 你有两种做法：</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="c1">// 1. 我认为，大概率数据是一致的，我记录一下日志，下一条</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="nx">v</span><span class="p">.</span><span class="nx">l</span><span class="p">.</span><span class="nf">Error</span><span class="p">(</span><span class="s">&#34;查询 target 数据失败&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">logger</span><span class="p">.</span><span class="nf">Error</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nf">Error</span><span class="p">()))</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="c1">// 2. 我认为，出于保险起见，我应该报数据不一致，试着去修一下</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="c1">// 如果真的不一致了，没事，修它</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="c1">// 如果假的不一致（也就是数据一致），也没事，就是多余修了一次</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="c1">// 不好用哪个 InconsistentType</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">case</span><span class="w"> </span><span class="nx">gorm</span><span class="p">.</span><span class="nx">ErrRecordNotFound</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="c1">// 比完了。没数据了，全量校验结束了</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="c1">// 同时支持全量校验和增量校验，你这里就不能直接返回</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="c1">// 在这里，你要考虑：有些情况下，用户希望退出，有些情况下。用户希望继续</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="c1">// 当用户希望继续的时候，你要 sleep 一下</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="k">if</span><span class="w"> </span><span class="nx">v</span><span class="p">.</span><span class="nx">sleepInterval</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="k">return</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">sleepInterval</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="k">continue</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">default</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="c1">// 数据库错误</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nx">v</span><span class="p">.</span><span class="nx">l</span><span class="p">.</span><span class="nf">Error</span><span class="p">(</span><span class="s">&#34;校验数据，查询 base 出错&#34;</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="nx">logger</span><span class="p">.</span><span class="nf">Error</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nf">Error</span><span class="p">()))</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="c1">// 课堂演示方便，你可以删掉</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="c1">// offset 最好是挪一下</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="c1">// 这里要不要挪</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">offset</span><span class="o">++</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">g</span><span class="w"> </span><span class="o">*</span><span class="nx">GreyScaleInteractiveServiceClient</span><span class="p">)</span><span class="w"> </span><span class="nf">client</span><span class="p">()</span><span class="w"> </span><span class="nx">intrv1</span><span class="p">.</span><span class="nx">InteractiveServiceClient</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">threshold</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">g</span><span class="p">.</span><span class="nx">threshold</span><span class="p">.</span><span class="nf">Load</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// [0-100) 的随机数</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">num</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">rand</span><span class="p">.</span><span class="nf">Int31n</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// 举例来说，如果要是 threshold 是 100，</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// 可以预见的是，所有的 num 都会进去，返回 remote</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nx">threshold</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="nx">g</span><span class="p">.</span><span class="nx">remote</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// 假如说我的 threshold 是 0，那么就会永远用本地的</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="nx">g</span><span class="p">.</span><span class="nx">local</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p>同时我们还需要反向考虑一个点，如果 <code>target</code> 表存在，但是<code>base</code>表没有怎么办</p>
-<p>因为可能存在硬删除操作</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span><span class="lnt">51
-</span><span class="lnt">52
-</span><span class="lnt">53
-</span><span class="lnt">54
-</span><span class="lnt">55
-</span><span class="lnt">56
-</span><span class="lnt">57
-</span><span class="lnt">58
-</span><span class="lnt">59
-</span><span class="lnt">60
-</span><span class="lnt">61
-</span><span class="lnt">62
-</span><span class="lnt">63
-</span><span class="lnt">64
-</span><span class="lnt">65
-</span><span class="lnt">66
-</span><span class="lnt">67
-</span><span class="lnt">68
-</span><span class="lnt">69
-</span><span class="lnt">70
-</span><span class="lnt">71
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">v</span><span class="w"> </span><span class="o">*</span><span class="nx">Validator</span><span class="p">[</span><span class="nx">T</span><span class="p">])</span><span class="w"> </span><span class="nf">validateTargetToBase</span><span class="p">(</span><span class="nx">ctx</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// 先找 target，再找 base，找出 base 中已经被删除的</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// 理论上来说，就是 target 里面一条条找</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">offset</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">dbCtx</span><span class="p">,</span><span class="w"> </span><span class="nx">cancel</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nf">WithTimeout</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="kd">var</span><span class="w"> </span><span class="nx">dstTs</span><span class="w"> </span><span class="p">[]</span><span class="nx">T</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">v</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nf">WithContext</span><span class="p">(</span><span class="nx">dbCtx</span><span class="p">).</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nf">Where</span><span class="p">(</span><span class="s">&#34;utime &gt; ?&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">v</span><span class="p">.</span><span class="nx">utime</span><span class="p">).</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nf">Select</span><span class="p">(</span><span class="s">&#34;id&#34;</span><span class="p">).</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nf">Offset</span><span class="p">(</span><span class="nx">offset</span><span class="p">).</span><span class="nf">Limit</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">batchSize</span><span class="p">).</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nf">Order</span><span class="p">(</span><span class="s">&#34;utime&#34;</span><span class="p">).</span><span class="nf">Find</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">dstTs</span><span class="p">).</span><span class="nx">Error</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nf">cancel</span><span class="p">()</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="nx">dstTs</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="c1">// 没数据了。直接返回</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="k">if</span><span class="w"> </span><span class="nx">v</span><span class="p">.</span><span class="nx">sleepInterval</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="k">return</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">sleepInterval</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="k">continue</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">switch</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">case</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Canceled</span><span class="p">,</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">DeadlineExceeded</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="c1">// 超时或者被人取消了</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="k">return</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="c1">// 正常来说，gorm 在 Find 方法接收的是切片的时候，不会返回 gorm.ErrRecordNotFound</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">case</span><span class="w"> </span><span class="nx">gorm</span><span class="p">.</span><span class="nx">ErrRecordNotFound</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="c1">// 没数据了。直接返回</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="k">if</span><span class="w"> </span><span class="nx">v</span><span class="p">.</span><span class="nx">sleepInterval</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="k">return</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">sleepInterval</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="k">continue</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">case</span><span class="w"> </span><span class="kc">nil</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nx">ids</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">slice</span><span class="p">.</span><span class="nf">Map</span><span class="p">(</span><span class="nx">dstTs</span><span class="p">,</span><span class="w"> </span><span class="kd">func</span><span class="p">(</span><span class="nx">idx</span><span class="w"> </span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="nx">t</span><span class="w"> </span><span class="nx">T</span><span class="p">)</span><span class="w"> </span><span class="kt">int64</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="k">return</span><span class="w"> </span><span class="nx">t</span><span class="p">.</span><span class="nf">ID</span><span class="p">()</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="p">})</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="c1">// 可以直接用 NOT IN</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="kd">var</span><span class="w"> </span><span class="nx">srcTs</span><span class="w"> </span><span class="p">[]</span><span class="nx">T</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nx">err</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">v</span><span class="p">.</span><span class="nx">base</span><span class="p">.</span><span class="nf">Where</span><span class="p">(</span><span class="s">&#34;id IN ?&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">ids</span><span class="p">).</span><span class="nf">Find</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">srcTs</span><span class="p">).</span><span class="nx">Error</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="k">switch</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="k">case</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Canceled</span><span class="p">,</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">DeadlineExceeded</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="c1">// 超时或者被人取消了</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="k">return</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="k">case</span><span class="w"> </span><span class="nx">gorm</span><span class="p">.</span><span class="nx">ErrRecordNotFound</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="nx">v</span><span class="p">.</span><span class="nf">notifyBaseMissing</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">ids</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="k">case</span><span class="w"> </span><span class="kc">nil</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="nx">srcIds</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">slice</span><span class="p">.</span><span class="nf">Map</span><span class="p">(</span><span class="nx">srcTs</span><span class="p">,</span><span class="w"> </span><span class="kd">func</span><span class="p">(</span><span class="nx">idx</span><span class="w"> </span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="nx">t</span><span class="w"> </span><span class="nx">T</span><span class="p">)</span><span class="w"> </span><span class="kt">int64</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">					</span><span class="k">return</span><span class="w"> </span><span class="nx">t</span><span class="p">.</span><span class="nf">ID</span><span class="p">()</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="p">})</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="c1">// 计算差集</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="c1">// 也就是，src 里面的咩有的</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="nx">diff</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">slice</span><span class="p">.</span><span class="nf">DiffSet</span><span class="p">(</span><span class="nx">ids</span><span class="p">,</span><span class="w"> </span><span class="nx">srcIds</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="nx">v</span><span class="p">.</span><span class="nf">notifyBaseMissing</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">diff</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="k">default</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="c1">// 记录日志</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">default</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="c1">// 记录日志，continue 掉</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nx">v</span><span class="p">.</span><span class="nx">l</span><span class="p">.</span><span class="nf">Error</span><span class="p">(</span><span class="s">&#34;查询target 失败&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">logger</span><span class="p">.</span><span class="nf">Error</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nf">Error</span><span class="p">()))</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">offset</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="nx">dstTs</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="nx">dstTs</span><span class="p">)</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nx">v</span><span class="p">.</span><span class="nx">batchSize</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="k">if</span><span class="w"> </span><span class="nx">v</span><span class="p">.</span><span class="nx">sleepInterval</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="k">return</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">sleepInterval</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p><strong>异构数据的校验:</strong></p>
-<p>对于异构数据，我们没办法使用 <code>id</code> 进行查找，所以只能考虑其他 唯一键去寻找相同数据</p>
-<h4 id="数据修复">数据修复
-</h4><h4 id="数据修复的基本逻辑">数据修复的基本逻辑
-</h4><p>target_missiong : 那么就是 insert。 获取原表数据进行插入</p>
-<p>neq : 那么就是更新，使用原表数据来覆盖</p>
-<p>base_missiong : 代表目标表多了数据应该删除目标表数据</p>
-<p><img src="/p/migrate-0x01/fix_logic.png"
-	width="645"
-	height="358"
-	srcset="/p/migrate-0x01/fix_logic_hu_1fc3bf53b0fdbca2.png 480w, /p/migrate-0x01/fix_logic_hu_4c1fc35d065d181a.png 1024w"
+</div><p><img src="/p/migrate-0x01/rate_control.png"
+	width="452"
+	height="217"
+	srcset="/p/migrate-0x01/rate_control_hu_b842d0c5d9c09b78.png 480w, /p/migrate-0x01/rate_control_hu_4a9c1098f0e3ebfc.png 1024w"
 	loading="lazy"
 	
-		alt="fix_logic.png"
+		alt="rate_control.png"
 	
 	
 		class="gallery-image" 
-		data-flex-grow="180"
-		data-flex-basis="432px"
+		data-flex-grow="208"
+		data-flex-basis="499px"
 	
 ></p>
-<p>并发问题 :</p>
-<p>Q : base找到了数据， 但是更新的时候 base 删除了数据  。 target 的更改会失败</p>
-<p>A : 重新开启一轮修复</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">o</span><span class="w"> </span><span class="o">*</span><span class="nx">OverrideFixer</span><span class="p">[</span><span class="nx">T</span><span class="p">])</span><span class="w"> </span><span class="nf">Fix</span><span class="p">(</span><span class="nx">ctx</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="kt">int64</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="kd">var</span><span class="w"> </span><span class="nx">src</span><span class="w"> </span><span class="nx">T</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// 找出数据</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">o</span><span class="p">.</span><span class="nx">base</span><span class="p">.</span><span class="nf">WithContext</span><span class="p">(</span><span class="nx">ctx</span><span class="p">).</span><span class="nf">Where</span><span class="p">(</span><span class="s">&#34;id = ?&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">id</span><span class="p">).</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nf">First</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">src</span><span class="p">).</span><span class="nx">Error</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">switch</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// 找到了数据</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">case</span><span class="w"> </span><span class="kc">nil</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="nx">o</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nf">Clauses</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">clause</span><span class="p">.</span><span class="nx">OnConflict</span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="c1">// 我们需要 Entity 告诉我们，修复哪些数据</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nx">DoUpdates</span><span class="p">:</span><span class="w"> </span><span class="nx">clause</span><span class="p">.</span><span class="nf">AssignmentColumns</span><span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">columns</span><span class="p">),</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="p">}).</span><span class="nf">Create</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">src</span><span class="p">).</span><span class="nx">Error</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">case</span><span class="w"> </span><span class="nx">gorm</span><span class="p">.</span><span class="nx">ErrRecordNotFound</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="nx">o</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nf">WithContext</span><span class="p">(</span><span class="nx">ctx</span><span class="p">).</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nf">Where</span><span class="p">(</span><span class="s">&#34;id = ?&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">id</span><span class="p">).</span><span class="nf">Delete</span><span class="p">(</span><span class="nb">new</span><span class="p">(</span><span class="nx">T</span><span class="p">)).</span><span class="nx">Error</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">default</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="nx">err</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="双写">双写
-</h3><p>我们经历了全量的校验与修复之后就可以考虑进行双写了</p>
-<p>由于是两个数据库 开启不了 数据库本地事务</p>
-<p>分布式事务 : 性能很差</p>
-<p>需要考虑 双写 + 流量切换。 即 考虑读写哪个数据源</p>
-<p><img src="/p/migrate-0x01/double_write.png"
-	width="624"
-	height="416"
-	srcset="/p/migrate-0x01/double_write_hu_136a9ad097bb6602.png 480w, /p/migrate-0x01/double_write_hu_132a2864c2e55c3a.png 1024w"
-	loading="lazy"
-	
-		alt="double_write.png"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="150"
-		data-flex-basis="360px"
-	
-></p>
-<h4 id="方案-1">方案 1
-</h4><p>引入原子类进行并发控制, 监听配置变更进行切换 数据源</p>
-<p>dao层面，双写两张表，如果源表失败则退出，如果目标表失败 等待 校验与修复</p>
-<p>问题是</p>
-<ol>
-<li>增删改都需要写一份代码</li>
-</ol>
-<h4 id="方案-2-connpool">方案 2 ConnPool
-</h4><p>Prepare : 预编译语句</p>
-<p>Select 都用于 Query</p>
-<p>增删改用于 Exec</p>
-<ol>
-<li>Query返回的结构体，error并没有暴露出来，所以处理 error 的话，只能 panic</li>
-</ol>
-<p><img src="/p/migrate-0x01/connPool.png"
-	width="983"
-	height="263"
-	srcset="/p/migrate-0x01/connPool_hu_78ff56d552a8235b.png 480w, /p/migrate-0x01/connPool_hu_c6b37b1f641e41ac.png 1024w"
-	loading="lazy"
-	
-		alt="connPool.png"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="373"
-		data-flex-basis="897px"
-	
-></p>
-<p>额外在增加一个双写的 DAO</p>
-<ol>
-<li>然后根据 pattern 进行控制</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span><span class="w"> </span><span class="nx">DoubleWriteDAO</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">src</span><span class="w">     </span><span class="nx">InteractiveDAO</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">dst</span><span class="w">     </span><span class="nx">InteractiveDAO</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">pattern</span><span class="w"> </span><span class="o">*</span><span class="nx">atomicx</span><span class="p">.</span><span class="nx">Value</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="nf">NewDoubleWriteDAOV1</span><span class="p">(</span><span class="nx">src</span><span class="w"> </span><span class="o">*</span><span class="nx">gorm</span><span class="p">.</span><span class="nx">DB</span><span class="p">,</span><span class="w"> </span><span class="nx">dst</span><span class="w"> </span><span class="o">*</span><span class="nx">gorm</span><span class="p">.</span><span class="nx">DB</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="nx">DoubleWriteDAO</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">DoubleWriteDAO</span><span class="p">{</span><span class="nx">src</span><span class="p">:</span><span class="w"> </span><span class="nf">NewGORMInteractiveDAO</span><span class="p">(</span><span class="nx">src</span><span class="p">),</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">pattern</span><span class="p">:</span><span class="w"> </span><span class="nx">atomicx</span><span class="p">.</span><span class="nf">NewValueOf</span><span class="p">(</span><span class="nx">patternSrcOnly</span><span class="p">),</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">dst</span><span class="p">:</span><span class="w">     </span><span class="nf">NewGORMInteractiveDAO</span><span class="p">(</span><span class="nx">dst</span><span class="p">)}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p>通过实现以下几个接口进行实现双写的操作</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c1">// ConnPool db conns pool interface</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="kd">type</span><span class="w"> </span><span class="nx">ConnPool</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nf">PrepareContext</span><span class="p">(</span><span class="nx">ctx</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span><span class="w"> </span><span class="nx">query</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="nx">sql</span><span class="p">.</span><span class="nx">Stmt</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nf">ExecContext</span><span class="p">(</span><span class="nx">ctx</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span><span class="w"> </span><span class="nx">query</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">args</span><span class="w"> </span><span class="o">...</span><span class="kd">interface</span><span class="p">{})</span><span class="w"> </span><span class="p">(</span><span class="nx">sql</span><span class="p">.</span><span class="nx">Result</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nf">QueryContext</span><span class="p">(</span><span class="nx">ctx</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span><span class="w"> </span><span class="nx">query</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">args</span><span class="w"> </span><span class="o">...</span><span class="kd">interface</span><span class="p">{})</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="nx">sql</span><span class="p">.</span><span class="nx">Rows</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nf">QueryRowContext</span><span class="p">(</span><span class="nx">ctx</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span><span class="w"> </span><span class="nx">query</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">args</span><span class="w"> </span><span class="o">...</span><span class="kd">interface</span><span class="p">{})</span><span class="w"> </span><span class="o">*</span><span class="nx">sql</span><span class="p">.</span><span class="nx">Row</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="kd">type</span><span class="w"> </span><span class="nx">TxBeginner</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nf">BeginTx</span><span class="p">(</span><span class="nx">ctx</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span><span class="w"> </span><span class="nx">opts</span><span class="w"> </span><span class="o">*</span><span class="nx">sql</span><span class="p">.</span><span class="nx">TxOptions</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="nx">sql</span><span class="p">.</span><span class="nx">Tx</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c1">// ConnPoolBeginner conn pool beginner</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="kd">type</span><span class="w"> </span><span class="nx">ConnPoolBeginner</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nf">BeginTx</span><span class="p">(</span><span class="nx">ctx</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span><span class="w"> </span><span class="nx">opts</span><span class="w"> </span><span class="o">*</span><span class="nx">sql</span><span class="p">.</span><span class="nx">TxOptions</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nx">ConnPool</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c1">// TxCommitter tx committer</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="kd">type</span><span class="w"> </span><span class="nx">TxCommitter</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nf">Commit</span><span class="p">()</span><span class="w"> </span><span class="kt">error</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nf">Rollback</span><span class="p">()</span><span class="w"> </span><span class="kt">error</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="面试要点">面试要点
+<h2 id="面试">面试
 </h2><ol>
 <li>
-<p>不停机迁移的基本步骤</p>
+<p>什么是微服务架构 ？ 为什么要使用微服务架构。？</p>
 </li>
 <li>
-<p>你的数据校验方案是什么</p>
+<p>模块化后为什么要微服务化 ？</p>
 </li>
 <li>
-<p>你的数据修复方案是什么 ？ 如何保证数据正确性 ？  怎么解决并发问题 ？</p>
-<ul>
-<li>不使用 MQ 来进行数据的更新只当作触发器</li>
-</ul>
+<p>Restful 和  微服务架构是什么关系 ？</p>
 </li>
 <li>
-<p>在数据迁移的每个阶段，你是怎么考虑保护着数据库的</p>
-<ul>
-<li>调度时机考虑</li>
-<li>查询改成批量，修复改成批量。
-<ul>
-<li>修复的批量该成 kafka 批量消费</li>
-</ul>
-</li>
-</ul>
+<p>可以用 HTTP 协议来说实现 微服务架构吗 ？</p>
 </li>
 <li>
-<p>如果 kafka 瓶颈了怎么办，消息积压了怎么办？</p>
+<p>什么是 RPC ？ RPC 和 HTTP 是什么关系</p>
+</li>
+<li>
+<p>什么是 DDD ？</p>
 </li>
 </ol>
 <hr>
 <ol>
 <li>
-<p>为什么 你要使用 Kafka 直接校验之后修复数据不行吗</p>
+<p>微服务拆分，怎么拆 ，拆分的具体步骤</p>
 </li>
 <li>
-<p>增量校验和修复、业务写数据、全量校验和修复同时进行，有什么并发问题 ？ 怎么解决？</p>
+<p>微服务拆分有哪些难点</p>
 </li>
 <li>
-<p>在主从同步下，校验和修复有什么注意事项</p>
+<p>怎么保证微服务拆分没有引入 bug</p>
 </li>
 <li>
-<p>怎么保证在数据迁移的时候 不影响业务</p>
-</li>
-<li>
-<p>你使用了哪些优化手段来加速迁移数据的过程</p>
+<p>怎么在线上做灰度发布 ？</p>
+<ul>
+<li>阈值+随机数</li>
+</ul>
 </li>
 </ol>
 
@@ -1219,6 +1015,19 @@
             
                 
 <article class="">
+    <a href="/p/select-0x01/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">搜索 detail</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
     <a href="/p/comment-0x01/">
         
         
@@ -1251,19 +1060,6 @@
 
         <div class="article-details">
             <h2 class="article-title">打赏 detail</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/p/server-reg-discover-0x0x1/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">服务注册与发现 detail</h2>
         </div>
     </a>
 </article>

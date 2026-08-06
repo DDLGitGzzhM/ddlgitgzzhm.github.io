@@ -319,18 +319,39 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#简历-preview">简历 preview</a>
+    <li><a href="#简历-preview">简历 preview</a></li>
+    <li><a href="#流程设计">流程设计</a>
       <ol>
-        <li><a href="#需求分析">需求分析</a></li>
-        <li><a href="#表结构设计">表结构设计</a>
+        <li><a href="#标签服务-模块">标签服务 模块</a>
           <ol>
-            <li><a href="#文章表结构">文章表结构</a></li>
-            <li><a href="#用户表结构">用户表结构</a></li>
+            <li><a href="#支持功能">支持功能</a></li>
+            <li><a href="#表结构设计">表结构设计</a></li>
+            <li><a href="#缓存设计">缓存设计</a></li>
+          </ol>
+        </li>
+        <li><a href="#插入搜索模块">插入搜索模块</a>
+          <ol>
+            <li><a href="#es-索引设计">Es 索引设计</a></li>
+            <li><a href="#数据插入处理">数据插入处理</a></li>
+          </ol>
+        </li>
+        <li><a href="#查询搜索模块">查询搜索模块</a>
+          <ol>
+            <li><a href="#联合-tag-查询">联合 Tag 查询</a></li>
           </ol>
         </li>
       </ol>
     </li>
-    <li><a href="#面试">面试</a></li>
+    <li><a href="#难点--亮点">难点 &amp; 亮点</a></li>
+    <li><a href="#缺点">缺点</a></li>
+    <li><a href="#总分61--100">总分：<strong>61 / 100</strong></a>
+      <ol>
+        <li><a href="#优点">优点</a></li>
+        <li><a href="#缺点面试里最容易被打穿的点">缺点（面试里最容易被打穿的点）</a></li>
+        <li><a href="#建议按优先级">建议（按优先级）</a></li>
+        <li><a href="#面试官一句话结论">面试官一句话结论</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -406,77 +427,288 @@
     
     <h2 id="简历-preview">简历 preview
 </h2><p>简历上 : 设计并实现了 搜索</p>
-<h3 id="需求分析">需求分析
-</h3><p>平台里面都会有一个搜索栏 大体上的目的是 :</p>
+<h2 id="流程设计">流程设计
+</h2><p><strong>需求分析 :</strong></p>
+<ol>
+<li>
+<p>支持用户创建 标签, 查看已有标签, 删除标签</p>
+</li>
+<li>
+<p>支持用户给指定文章打标签</p>
+</li>
+<li>
+<p>支持用户查询 对应关键字的文章 并且把 打过标签的文章优先返回</p>
+</li>
+</ol>
+<p><strong>模块分析 :</strong></p>
+<p>考虑标签应该是一个通用的功能 所以将标签单独拆分一个模块</p>
+<p>并且不希望业务直接写入ES，单独设计一层 搜索和插入服务。 将读和写拆成两个服务</p>
+<h3 id="标签服务-模块">标签服务 模块
+</h3><h4 id="支持功能">支持功能
+</h4><ol>
+<li>
+<p>覆盖标签</p>
+</li>
+<li>
+<p>创建标签</p>
+</li>
+<li>
+<p>获取用户的全部标签</p>
+</li>
+<li>
+<p>获取用户给某篇文章打的全部标签</p>
+</li>
+</ol>
+<h4 id="表结构设计">表结构设计
+</h4><p>设计 Tag 表, 和 TagBiz 表 用于统计用户创建的 tag 和 用户给文章标记的 Tag</p>
+<p>索引设计 :</p>
+<p>在 Tag 表上设计了 uid 为 索引，保证 获取用户的全部标签的时候能够命中</p>
+<p>在TagBiz表设计了 <code>biz_id,biz</code> 和 <code>uid</code> 设计了索引, 同时tagBiz 设置 <code>target_id</code> 外键连接 <code>tag</code> 表</p>
+<p>考虑 uid 的不可变性, 设计 tagBiz 表的时候冗余了  uid 的设计，从而在查寻用户给某篇文章打的标签的时候 不需要去Join Tag表 加速查询</p>
+<h4 id="缓存设计">缓存设计
+</h4><p>在获取用户的全部标签的时候, 考虑使用缓存预加载进行优化</p>
+<ol>
+<li>
+<p>在程序启动的时候，提前全量扫描一次数据库</p>
+</li>
+<li>
+<p>将数据分key 加载到 redis-list 中</p>
+</li>
+<li>
+<p>在获取全部标签的时候 预先读取缓存再去操作数据库</p>
+</li>
+</ol>
+<h3 id="插入搜索模块">插入搜索模块
+</h3><p>支持</p>
+<ol>
+<li>
+<p>通用的插入逻辑 <code>content_id,content</code></p>
+</li>
+<li>
+<p>业务定制化的 user 和 article 的插入逻辑</p>
+</li>
+</ol>
+<h4 id="es-索引设计">Es 索引设计
+</h4><p>文章表结构设计 :</p>
+<ol>
+<li>title , content , id ,status . 这里引入 status 主要是为了后续 用户可以查看到仅自己可以见的文章处理</li>
+</ol>
+<p>用户表设计 :</p>
+<ol>
+<li>nickename, email(text), phone, id .  email设计称为 text 而不是keyword是因为正常人很难记住邮箱</li>
+</ol>
+<h4 id="数据插入处理">数据插入处理
+</h4><p>使用 Kafka 开启 3个 Consumer 分别监听 文章, User, Any 的插入</p>
+<ol>
+<li>因为我们在索引中引入了 id 字段, 保证了在并发场景下是 upsert 语意</li>
+</ol>
+<h3 id="查询搜索模块">查询搜索模块
+</h3><ol>
+<li>
+<p>支持查询有关用户的信息</p>
+</li>
+<li>
+<p>支持查询有关文章的信息</p>
 <ul>
-<li>
-<p>方便用户快速找到所需的内容</p>
-</li>
-<li>
-<p>增加广告收入</p>
-</li>
+<li>并且将用户打过标签文章的内容优先返回</li>
 </ul>
-<p>支持搜索主要是支持 :</p>
-<ul>
+</li>
+</ol>
+<h4 id="联合-tag-查询">联合 Tag 查询
+</h4><p>Es 支持通过 父子关系 和 内嵌文章进行联合查询 但是性能过差 。 我们这里采用二次查询的方式实现联合查询</p>
+<ol>
 <li>
-<p>搜索具体的用户</p>
+<p>先查询 Tag 里面的内容， 查询当前 用户已经打过标签的 文章 id</p>
 </li>
 <li>
-<p>搜索某篇文章</p>
+<p>再去查询有关keywords的文章信息，并且使用 TermQuery Boost 增加在第一次查询出来的权重</p>
 </li>
-</ul>
-<p>因为需要考虑使用使用 ES 进行实现, 所以需要把这两个服务原有的数据 额外的 写入到 ES 中 。</p>
-<p><img src="/p/select-0x01/find_struct.png"
-	width="670"
-	height="438"
-	srcset="/p/select-0x01/find_struct_hu_cfca149e2500e861.png 480w, /p/select-0x01/find_struct_hu_555fc8aea299534c.png 1024w"
+</ol>
+<p><img src="/p/select-0x01/es.png"
+	width="1236"
+	height="703"
+	srcset="/p/select-0x01/es_hu_e068f0ac8412cddd.png 480w, /p/select-0x01/es_hu_77a8f5c3b845798d.png 1024w"
 	loading="lazy"
 	
-		alt="find_struct.png"
+		alt="es.png"
 	
 	
 		class="gallery-image" 
-		data-flex-grow="152"
-		data-flex-basis="367px"
+		data-flex-grow="175"
+		data-flex-basis="421px"
 	
 ></p>
-<hr>
-<p>Q : 为什么 不是用户直接写入到 ES</p>
-<p>A : 从 DDD 的角度来说 , es 并不考虑 user 的索引怎么确定 也不处理一些业务相关的内容 。 所以只能通过 search 服务</p>
-<h3 id="表结构设计">表结构设计
-</h3><h4 id="文章表结构">文章表结构
-</h4><p>mapping :</p>
-<p>title : type : text</p>
-<p>content : type : text</p>
-<p>id : type long ; (贯穿业务的id)</p>
-<p>status : type : interger</p>
-<h4 id="用户表结构">用户表结构
-</h4><p>mapping :</p>
-<p>nickname : type : text</p>
-<p>email : type : text (不使用keyword，正常人很难记住邮箱)</p>
-<p>phone : type : keyword</p>
-<p>id : tyoe long</p>
-<ul>
-<li>(这里要不要处理,理论上来说前端是不支持的 。 用户层面应该是看不到的，但是客服预计能看到)</li>
-</ul>
-<h2 id="面试">面试
-</h2><ol>
+<h2 id="难点--亮点">难点 &amp; 亮点
+</h2><p><strong>问题 :</strong></p>
+<ol>
+<li>用户在给某个文章打标签的时候 都会加载一次自己已有的全部标签, 预计这里会是一个高频的全量扫表过程</li>
+</ol>
+<p><strong>方案 :</strong></p>
+<ol>
 <li>
-<p>你有没有用过 ES ？ 用它来解决什么问题？</p>
+<p>使用 Redis-list 预加载一次全部用户的全部标签内容</p>
 </li>
 <li>
-<p>ES 中的倒排索引是什么？ 为什么叫做倒排索引 ？</p>
-</li>
-<li>
-<p>ES 是如何组织倒排索引的 ？ 核心是利用了 FST 结构</p>
-</li>
-<li>
-<p>ES 的节点类型有哪些？ 他们的作用是什么 ？</p>
-</li>
-<li>
-<p>ES 的写入过程是怎么样的 ？ 为什么说他是近实时的</p>
+<p>每次查询优先查询缓存 再查询数据库,对于未命中的内容 再次更新缓存</p>
 </li>
 </ol>
+<hr>
+<p><strong>问题 :</strong></p>
+<ol>
+<li>在获取用户给某篇文章的所有标签内容处理时 都需要去 Join 一次 Tag 表 . Join操作会变慢</li>
+</ol>
+<p><strong>方案 :</strong></p>
+<ol>
+<li>因为 Uid 的不可变性。我们设计的 tag 是基于 Uid 的 。不存在 用户A给 文章 A打了标签。 突然这个标签变成用户 B 的情况 。 所以在 TagBiz 冗余了 Uid 字段加速查询</li>
+</ol>
+<hr>
+<p><strong>问题 :</strong></p>
+<ol>
+<li>用户对一篇文章重复打标签可能会有并发问题 。 因为我们使用 kafka 进行发送Es信息</li>
+</ol>
+<p><strong>方案 :</strong></p>
+<ol>
+<li>在对应 producer 的时候, 使用 key 绑定对应的uid 保证同一个uid 的内容只会发送到同一个分区</li>
+</ol>
+<hr>
+<p><strong>亮点 :</strong></p>
+<ol>
+<li>实现了 两个 Tag 内容之前的查询 , 使用二次查询的方法 实现 用户查询有关文章的时候, 优先返回已打标签的文章</li>
+</ol>
+<p><strong>亮点 :</strong></p>
+<ol>
+<li>搜索服务拆分成 <code>sync</code> 和 <code>search</code> ,读写分离 。 业务方面不直连 Es . 并且 支持 <code>InputAny</code> 方便业务快速上线</li>
+</ol>
+<p><strong>亮点 :</strong></p>
+<ol>
+<li>预加载的时候 使用 pipeline 进行打包发送 redis 指令</li>
+</ol>
+<h2 id="缺点">缺点
+</h2><ol>
+<li>
+<p>仅实现了 文章和标签的相关服务 。 实现内容过少，并没有聚合点赞收藏等业务</p>
+</li>
+<li>
+<p>Kafka 部分少了兜底机制</p>
+</li>
+</ol>
+<h2 id="总分61--100">总分：<strong>61 / 100</strong>
+</h2><p>定位：2 年经验、项目深挖准备材料。能讲清主流程和模块边界，但多处方案经不起追问，Golang 工程深度偏弱。面试中「能讲」可以，<strong>扛不住连环追问</strong>。</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>维度</th>
+					<th>分数</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>需求与模块拆分</td>
+					<td>72</td>
+					<td>标签独立、读写拆分思路清楚</td>
+			</tr>
+			<tr>
+					<td>表结构 / 索引</td>
+					<td>65</td>
+					<td>有索引与冗余意识，外键与命名易被挑</td>
+			</tr>
+			<tr>
+					<td>缓存设计</td>
+					<td>42</td>
+					<td>启动全量预加载是明显硬伤</td>
+			</tr>
+			<tr>
+					<td>ES / 搜索</td>
+					<td>60</td>
+					<td>二次查询 + Boost 合理，缺量化与一致性</td>
+			</tr>
+			<tr>
+					<td>Kafka / 并发</td>
+					<td>48</td>
+					<td>问题与解法错位</td>
+			</tr>
+			<tr>
+					<td>难点亮点表达</td>
+					<td>68</td>
+					<td>有结构，但方案可信度不足</td>
+			</tr>
+			<tr>
+					<td>自我认知</td>
+					<td>70</td>
+					<td>知道功能少、缺兜底</td>
+			</tr>
+			<tr>
+					<td>Golang 工程深度</td>
+					<td>35</td>
+					<td>几乎看不到语言/并发/落地细节</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h3 id="优点">优点
+</h3><ol>
+<li><strong>需求 → 模块 → 表 → 缓存 → MQ → ES</strong> 叙事完整，面试官能跟着走。</li>
+<li><strong>标签独立模块 + sync/search 读写分离 + 业务不直连 ES</strong>，符合中级对边界的基本要求。</li>
+<li>TagBiz <strong>冗余 uid 避免 Join</strong>、ES <strong>二次查询 + Term Boost</strong>（相对 nested/父子文档）是可讲的取舍。</li>
+<li>有<strong>难点/亮点/缺点</strong>框架，并提到 Kafka 缺兜底、功能未聚合，比只会吹亮点强。</li>
+<li>提到 <strong>pipeline 批量写 Redis</strong>、<strong>id upsert</strong>，说明接触过落地细节。</li>
+</ol>
+<hr>
+<h3 id="缺点面试里最容易被打穿的点">缺点（面试里最容易被打穿的点）
+</h3><ol>
+<li>
+<p><strong>缓存方案危险</strong><br>
+启动全量扫库、把「全部用户全部标签」塞进 Redis List：冷启动、内存、扩缩容、局部失效都没讲。2 年经验里这是减分点，不是加分点。List 也不适合标签的增删改；一致性（写标签后如何更新缓存）几乎空白。</p>
+</li>
+<li>
+<p><strong>并发问题与解法错位</strong><br>
+「重复打标签」应落到：<strong>DB 唯一约束 / 事务 / 幂等</strong>。Kafka 按 uid 分区只保证<strong>同 uid 有序</strong>，解决不了重复打标、更解决不了跨服务幂等。面试官一追问就会露馅。</p>
+</li>
+<li>
+<p><strong>ES 细节经不起问</strong></p>
+<ul>
+<li>email 用 text：理由偏弱，应讲分词、模糊、精确匹配、keyword 多字段。</li>
+<li>status 字段只点到，未见权限/过滤怎么做。</li>
+<li>upsert、同步延迟、最终一致性、失败重试几乎没准备。</li>
+</ul>
+</li>
+<li>
+<p><strong>表设计表述不严谨</strong><br>
+TagBiz <code>target_id</code> 外键、索引 <code>(biz_id, biz)</code> + <code>uid</code> 缺查询路径说明；「覆盖标签」语义不清。</p>
+</li>
+<li>
+<p><strong>缺量化与 Golang 深度</strong><br>
+无 QPS、延迟、数据量、缓存命中率。无接口抽象、超时取消、consumer 并发、错误处理、压测——对 Golang 岗这是硬伤。</p>
+</li>
+<li>
+<p><strong>材料完成度</strong><br>
+「其他细节」空、序号重复、resume「搜索」与正文「标签+搜索」焦点略散。</p>
+</li>
+</ol>
+<hr>
+<h3 id="建议按优先级">建议（按优先级）
+</h3><p><strong>1. 重写缓存故事（必改）</strong><br>
+改成：按 uid 懒加载 / 热点预热；Hash 或 String+JSON；打标/删标时删缓存或局部更新；讲穿透、击穿、雪崩之一即可。删掉「启动全量预加载所有用户」。</p>
+<p><strong>2. 对齐「重复打标」叙事</strong><br>
+主答：唯一索引 <code>(uid, biz, biz_id, tag_id)</code> + 幂等；Kafka 分区 key 只作为「同步有序/同用户串行」的补充，不要当并发正解。</p>
+<p><strong>3. 补 3 个可量化数字</strong><br>
+例：标签人均条数、搜索 P99、sync 延迟、日增量。没有真实数据就给设计目标量级，比没有强。</p>
+<p><strong>4. 准备 5 个追问答案</strong></p>
+<ul>
+<li>标签写后搜索多久可见？</li>
+<li>sync 失败怎么办？（重试、DLQ、对账）</li>
+<li>缓存与 DB 不一致怎么办？</li>
+<li>Boost 权重怎么定、如何验证效果？</li>
+<li>为何不用 nested / join / 宽表？</li>
+</ul>
+<p><strong>5. 补 Golang 落地半页</strong><br>
+Consumer 并发模型、context 超时、接口分层、ES client 错误处理、本地单测怎么 mock——面试官常从这里区分 1 年和 2 年。</p>
+<p><strong>6. 收束简历表述</strong><br>
+简历写「标签 + 搜索（读写分离）」或主讲一条线，避免「实现了搜索」却大段讲标签预热。</p>
+<hr>
+<h3 id="面试官一句话结论">面试官一句话结论
+</h3><p><strong>能过初筛讲项目，过不了深挖。</strong> 模块拆分和二次查询+Boost 可以撑住 10–15 分钟；缓存全量预加载和「Kafka 解决重复打标」会把印象从「还行」拉到「基础不扎实」。把这两处改掉，材料有机会到 <strong>75+</strong>；再补量化与 Golang 细节，更接近 2 年合格线。</p>
 
 </section>
 
@@ -536,6 +768,19 @@
             
                 
 <article class="">
+    <a href="/p/select-0x01/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">搜索 detail</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
     <a href="/p/comment-0x01/">
         
         
@@ -581,19 +826,6 @@
 
         <div class="article-details">
             <h2 class="article-title">服务注册与发现 detail</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/p/migrate-0x01/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">不停机数据迁移 detail</h2>
         </div>
     </a>
 </article>
