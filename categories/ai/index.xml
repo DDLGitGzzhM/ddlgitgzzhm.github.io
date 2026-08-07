@@ -7,7 +7,62 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>GzzhM</copyright>
-        <lastBuildDate>Sat, 18 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/categories/ai/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 06 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ddlgitgzzhm.github.io/categories/ai/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>[all_in_ai]  AI 名词扫盲 FunctionCall</title>
+        <link>https://ddlgitgzzhm.github.io/p/ai-agent-0x05/</link>
+        <pubDate>Thu, 06 Aug 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://ddlgitgzzhm.github.io/p/ai-agent-0x05/</guid>
+        <description>&lt;h2 id=&#34;什么是-functioncall&#34;&gt;什么是 FunctionCall
+&lt;/h2&gt;&lt;p&gt;我们已经知道 一个 Tool 是 &lt;code&gt;函数本体+名称+描述+参数&lt;/code&gt; 定义的&lt;/p&gt;
+&lt;p&gt;有一个关键问题 : &lt;strong&gt;大模型在 作出 要调用这个工具 的决策之后, 它怎么告诉 Agent 去执行&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;大模型只会说话 , 输出的永远只是文字&lt;/p&gt;
+&lt;p&gt;Agent 要调用工具,必须知道 调哪个工具，传什么参数，格式是什么 。  这中间的信息交换，靠什么来保证正确&lt;/p&gt;
+&lt;h2 id=&#34;没有-funcition-call-之前&#34;&gt;没有 Funcition Call 之前
+&lt;/h2&gt;&lt;p&gt;开发者 将 全部自然语言 写进 &lt;code&gt;system prompt&lt;/code&gt; 系统提示词里面&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-txt&#34; data-lang=&#34;txt&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;你是一个智能助手，你可以使用以下工具：
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;工具名：check_weather
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;功能：查询菜个城市的天气
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;参数：
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;- city：城市名，中文，比如&amp;#34;上海&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;- date：日期，格式必须是 YYYY-MM-DD，比如&amp;#34;2026-03-19&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;- date 是可选的，不填默认查今天
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;当用户需要查天气时，你要调用这个工具，告诉我工具名和参数。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;你让他查 [上海明天的天气] ，可能会返回&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;散文式回复 :&lt;/strong&gt;, &amp;ldquo;好的，我来帮你查询上海明天的天气&amp;rdquo;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;参数顺序颠倒 :&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;TBD&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>[all_in_ai]  AI 名词扫盲 Tool</title>
         <link>https://ddlgitgzzhm.github.io/p/ai-agent-0x04/</link>
         <pubDate>Sat, 18 Jul 2026 00:00:00 +0000</pubDate>
