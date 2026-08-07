@@ -4665,20 +4665,6 @@ Delete * from comments where pid = 4&lt;/p&gt;
 &lt;/h2&gt;</description>
         </item>
         <item>
-        <title>热榜 one</title>
-        <link>https://ddlgitgzzhm.github.io/p/rank-0x01/</link>
-        <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
-        
-        <guid>https://ddlgitgzzhm.github.io/p/rank-0x01/</guid>
-        <description>&lt;h2 id=&#34;简历-preview&#34;&gt;简历 preview
-&lt;/h2&gt;&lt;p&gt;简历上 : 实现多实例部署下的 热榜 异步计算和查询&lt;/p&gt;
-&lt;h2 id=&#34;流程设计&#34;&gt;流程设计
-&lt;/h2&gt;&lt;h2 id=&#34;难点--亮点&#34;&gt;难点 &amp;amp; 亮点
-&lt;/h2&gt;&lt;h2 id=&#34;缺点&#34;&gt;缺点
-&lt;/h2&gt;&lt;h2 id=&#34;其他细节&#34;&gt;其他细节
-&lt;/h2&gt;</description>
-        </item>
-        <item>
         <title>阅读、点赞、收藏 detail</title>
         <link>https://ddlgitgzzhm.github.io/p/interactive-0x01/</link>
         <pubDate>Mon, 27 Jul 2026 00:00:00 +0000</pubDate>
