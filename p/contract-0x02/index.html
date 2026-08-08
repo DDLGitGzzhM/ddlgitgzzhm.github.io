@@ -2,17 +2,17 @@
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="我们项目实现了一个 xxxx">
-<title>热榜 one</title>
+<title>关注 one</title>
 
-<link rel='canonical' href='https://ddlgitgzzhm.github.io/p/rank-0x02/'>
+<link rel='canonical' href='https://ddlgitgzzhm.github.io/p/contract-0x02/'>
 
 
-<link rel="stylesheet" href="/css/main.e6be911e19f348580e8feb6530553c5c37345cea42a77297eb8190a1f3245a55.css"><meta property='og:title' content="热榜 one">
+<link rel="stylesheet" href="/css/main.e6be911e19f348580e8feb6530553c5c37345cea42a77297eb8190a1f3245a55.css"><meta property='og:title' content="关注 one">
 <meta property='og:description' content="我们项目实现了一个 xxxx">
-<meta property='og:url' content='https://ddlgitgzzhm.github.io/p/rank-0x02/'>
+<meta property='og:url' content='https://ddlgitgzzhm.github.io/p/contract-0x02/'>
 <meta property='og:site_name' content='GzzhM'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='gold' /><meta property='article:tag' content='webook-one' /><meta property='article:published_time' content='2026-08-07T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-08-07T00:00:00&#43;00:00'/>
-<meta name="twitter:title" content="热榜 one">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='gold' /><meta property='article:tag' content='webook-detail' /><meta property='article:published_time' content='2026-08-08T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-08-08T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="关注 one">
 <meta name="twitter:description" content="我们项目实现了一个 xxxx">
     <link rel="shortcut icon" href="/favicon.ico" />
 
@@ -322,16 +322,26 @@
     <li><a href="#简历-preview">简历 preview</a></li>
     <li><a href="#流程设计">流程设计</a>
       <ol>
-        <li><a href="#模块设计">模块设计</a></li>
+        <li><a href="#关注模块">关注模块</a>
+          <ol>
+            <li><a href="#支持的功能">支持的功能</a></li>
+            <li><a href="#表结构设计">表结构设计</a></li>
+            <li><a href="#缓存设计">缓存设计</a></li>
+            <li><a href="#其他细节">其他细节</a></li>
+          </ol>
+        </li>
       </ol>
     </li>
     <li><a href="#难点--亮点">难点 &amp; 亮点</a></li>
     <li><a href="#缺点">缺点</a></li>
-    <li><a href="#总分62--100">总分：<strong>62 / 100</strong></a></li>
-    <li><a href="#优点">优点</a></li>
-    <li><a href="#缺点面试会被卡住的地方">缺点（面试会被卡住的地方）</a></li>
-    <li><a href="#建议按面试准备优先级">建议（按面试准备优先级）</a></li>
-    <li><a href="#面试官视角一句话">面试官视角一句话</a></li>
+    <li><a href="#总分68--100">总分：<strong>68 / 100</strong></a>
+      <ol>
+        <li><a href="#优点">优点</a></li>
+        <li><a href="#缺点面试里容易被打穿">缺点（面试里容易被打穿）</a></li>
+        <li><a href="#建议按优先级">建议（按优先级）</a></li>
+        <li><a href="#分项参考面试官视角">分项参考（面试官视角）</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -363,7 +373,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/rank-0x02/">热榜 one</a>
+            <a href="/p/contract-0x02/">关注 one</a>
         </h2>
     
         
@@ -389,7 +399,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2026-08-07</time>
+                <time class="article-time--published">2026-08-08</time>
             </div>
         
 
@@ -406,173 +416,286 @@
     
     
     <h2 id="简历-preview">简历 preview
-</h2><p>简历上 : 实现多实例部署下的 热榜 异步计算和查询</p>
+</h2><p>简历上 : 实现了一个完整的用户关系功能 支持 关注、取消关注、获取关注列表</p>
 <h2 id="流程设计">流程设计
 </h2><p><strong>需求分析 :</strong></p>
-<p>需要能够获取到最近7天 前100点赞的数据</p>
+<ol>
+<li>要求支持 用户的关注，取消关注，获取关注列表，获取关注数量的功能</li>
+</ol>
 <p><strong>模块分析 :</strong></p>
-<p>设计一个 RankService 支持获取 TopN 的操作</p>
-<h3 id="模块设计">模块设计
-</h3><ol>
+<ol>
+<li>完全独立的一个业务，单独拆分成一个模块</li>
+</ol>
+<h3 id="关注模块">关注模块
+</h3><h4 id="支持的功能">支持的功能
+</h4><ol>
 <li>
-<p>提供一个基于 本地缓存 + Zset 实现的热榜设计 并且通过 分key 热点信息</p>
+<p>关注某人</p>
 </li>
 <li>
-<p>提供一个离线计算的热榜服务, 使用小根堆进行维护数据 。使用分布式锁 启动时固定实例进行计算热榜</p>
+<p>取消关注</p>
+</li>
+<li>
+<p>查看用户粉丝列表</p>
+</li>
+<li>
+<p>查看用户关注列表</p>
+</li>
+<li>
+<p>查看用户关注数量</p>
 </li>
 </ol>
-<p><img src="/p/rank-0x02/rank.png"
-	width="1776"
-	height="1498"
-	srcset="/p/rank-0x02/rank_hu_308e84b830efd7e2.png 480w, /p/rank-0x02/rank_hu_3d33baea75324321.png 1024w"
+<h4 id="表结构设计">表结构设计
+</h4><p>表结构维护 Follower 和 Followee 以及 status 进行维护关系之间的展示</p>
+<p>并且创建 唯一索引 &lt;follower_followee&gt; 和 普通索引 &lt;followee_follower&gt; 来优化 查询用户的关注列表和粉丝列表</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span><span class="w"> </span><span class="nx">FollowRelation</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">ID</span><span class="w"> </span><span class="kt">int64</span><span class="w"> </span><span class="s">`gorm:&#34;primaryKey,autoIncrement,column:id&#34;`</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">Follower</span><span class="w"> </span><span class="kt">int64</span><span class="w"> </span><span class="s">`gorm:&#34;type:int(11);not null;uniqueIndex:follower_followee,priority:1;index:followee_follower,priority:2&#34;`</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">Followee</span><span class="w"> </span><span class="kt">int64</span><span class="w"> </span><span class="s">`gorm:&#34;type:int(11);not null;uniqueIndex:follower_followee,priority:2;index:followee_follower,priority:1&#34;`</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">Status</span><span class="w"> </span><span class="kt">uint8</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// 这里你可以根据自己的业务来增加字段，比如说</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// 关系类型，可以搞些什么普通关注，特殊关注</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// Type int64 `gorm:&#34;column:type;type:int(11);comment:关注类型 0-普通关注&#34;`</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// 备注</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// Note string `gorm:&#34;column:remark;type:varchar(255);&#34;`</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// 创建时间</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">Ctime</span><span class="w"> </span><span class="kt">int64</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">Utime</span><span class="w"> </span><span class="kt">int64</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="缓存设计">缓存设计
+</h4><p>使用 Hash 结构维护一个 <code>follow</code> 和 <code>followee</code> 的关注和被关注数量</p>
+<p>使用 TxPiepline 进行一致性控制</p>
+<p>在关注和取消关注的时候 进行同步的 +1 和 -1 操作</p>
+<h4 id="其他细节">其他细节
+</h4><ol>
+<li>
+<p><strong>拉黑，屏蔽</strong> 的功能不额外创建表进行存放 。 考虑这个操作是一个低频操作，因此使用 status 直接存放到 关系表里面</p>
+</li>
+<li>
+<p>对于 关系表 ， 一个用户关注100个人，那么行数就会增加100倍。 使用 阿里的 <code>tablestore</code> 进行类似分库分表的优化</p>
+</li>
+<li>
+<p>获取用户关注数量和粉丝数量的时候 。 优先去获取 Redis 的数量 然后再通过 Mysql Count 进行统计</p>
+</li>
+<li>
+<p>获取关注列表不进行缓存 。</p>
+<ul>
+<li>考虑是一个低频操作 缓存命中率低</li>
+<li>并且是一个分页查询 不好缓存</li>
+</ul>
+</li>
+</ol>
+<p><img src="/p/contract-0x02/contract_struct.png"
+	width="995"
+	height="798"
+	srcset="/p/contract-0x02/contract_struct_hu_2fad5b1bac0432cb.png 480w, /p/contract-0x02/contract_struct_hu_f690c8122189d791.png 1024w"
 	loading="lazy"
 	
-		alt="rank.png"
+		alt="contract_struct.png"
 	
 	
 		class="gallery-image" 
-		data-flex-grow="118"
-		data-flex-basis="284px"
+		data-flex-grow="124"
+		data-flex-basis="299px"
 	
 ></p>
 <h2 id="难点--亮点">难点 &amp; 亮点
 </h2><p><strong>问题 :</strong></p>
-<p>热榜服务要求高可用 高性能 以及处理较大的数据 怎么做到 ?</p>
-<p><strong>方案 :</strong></p>
+<ol>
+<li>维护关注数量 , 我们可以采用单独创一张表进行实现。 但是为关注服务直接创一张表太重了</li>
+</ol>
+<p>方案  :</p>
 <ol>
 <li>
-<p>使用 本地缓存 + Redis 的方式进行 处理高可用 。 如果本地缓存和redis 缓存都实效 加载本地已过期的进行兜底</p>
+<p>因此使用 Redis 进行直接统计 计数 在关注和取消关注的时候分别操作</p>
 </li>
 <li>
-<p>较大的数据 可以采用 分key 的方式进行处理 。 或者通过业务折中的方式，例如 只考虑最近7天的 top 数据，最近 7 天可能最多也就100w条</p>
+<p>在获取关注数量的时候 使用 Cache-Aside快慢路径 ， 优先获取 Redis 的数据 然后再根据 Count 进行计数 。 因为 我们关注表的索引设计，保证了能够命中索引</p>
 </li>
 </ol>
 <hr>
 <p><strong>问题 :</strong></p>
-<p>Zset 不可能进行较大数据量大计算, 这会给机器带来很大的压力</p>
-<p><strong>方案 :</strong></p>
 <ol>
-<li>
-<p>采用定时任务 离线计算 。</p>
-</li>
-<li>
-<p>使用 优先队列维护一个小根堆，固定 TopN 的数量。 每次分批进行获取数据加载计算</p>
-</li>
+<li>创建了唯一索引后 &lt;followee_follower&gt; 。这个只能解决查询粉丝数量，但是对于关注数量 并不能很好的命中索引</li>
+</ol>
+<p>方案 :</p>
+<ol>
+<li>反向创建一个普通索引，不需要额外创建唯一索引 因为原有的索引就能控制  。</li>
 </ol>
 <hr>
 <p><strong>亮点 :</strong></p>
 <ol>
 <li>
-<p>考虑在多实例部署的情况下, 可能会存在 多个实例同时计算一个热榜，并且每个热榜都会有细微的偏差。 使用分布式锁+自动续约的机制 控制同一时间只有一个 节点 在进行计算</p>
+<p>使用 <code>tablestore</code> 进行维护大数据量级的 关系信息 。 避免自身系统的复杂性</p>
 </li>
 <li>
-<p>使用 Hacknews 模型 <code>Score = (p - 1) / (T + 2)^G</code> 公式进行计算热点信息。防止点赞数量被老贴市场霸占</p>
+<p>使用 TxPiePline 进行 控制 同时写入 粉丝和关注 的计数  。</p>
 </li>
 <li>
-<p>在 Redis 存 TopN 的时候晴空 Content 避免占用较大的内存</p>
+<p>获取关注和粉丝列表是一个分页接口 考虑 用户使用频率低 缓存命中率差。不进行额外缓存</p>
+</li>
+<li>
+<p>取消关注 通过 表设计的 status 进行处理 更新 status 就可以完成取消关注，软删除 。 并且在关注功能的时候 ， 使用 Upsert 保证语意</p>
 </li>
 </ol>
 <h2 id="缺点">缺点
 </h2><ol>
 <li>
-<p>缓存方式比较简单</p>
+<p>对于关系维护的大数据量级处理 只是引入了三方的 tablestore 进行处理比较简单</p>
 </li>
 <li>
-<p>强一致性不足</p>
+<p>如果 Redis 崩溃，那么会有大部分 Count操作进入到 我们的Mysql 中 并没有很好的容错机制</p>
 </li>
 </ol>
-<h2 id="总分62--100">总分：<strong>62 / 100</strong>
-</h2><p>按「2 年 Golang 后端」面试标准看：方向对、有架构意识，但<strong>深度不够、表述不严谨、经不起追问</strong>。能过初筛讲清故事，很难稳住深挖。</p>
-<div class="table-wrapper"><table>
+<h2 id="总分68--100">总分：<strong>68 / 100</strong>
+</h2><p>对「2 年经验、讲关注关系模块」的面试准备来说：<strong>骨架够用，能过一轮筛选，但扛不住有经验的面试官追问。</strong> 更像「能把做过的事串起来」，还没到「能把设计讲透、把坑讲清楚」。</p>
+<hr>
+<h3 id="优点">优点
+</h3><ol>
+<li><strong>需求边界清晰</strong>：关注 / 取消关注 / 列表 / 数量，模块独立，简历表述和正文能对上。</li>
+<li><strong>表设计基本正确</strong>：<code>Follower + Followee</code> + 唯一索引防重复关注，反向普通索引服务粉丝查询，这是面试里常见的加分点。</li>
+<li><strong>有取舍意识</strong>：列表不缓存（低频 + 分页）、拉黑用 <code>status</code> 软状态、取消关注用 status + Upsert，说明不是只会「全量加 Redis」。</li>
+<li><strong>有自我批评</strong>：缺点里提到 Redis 挂了打爆 MySQL、tablestore 引入偏简单，态度加分。</li>
+</ol>
+<hr>
+<h3 id="缺点面试里容易被打穿">缺点（面试里容易被打穿）
+</h3><ol>
+<li>
+<p><strong>一致性讲错/讲浅了</strong><br>
+<code>TxPipeline</code> 只保证 <strong>Redis 内部多命令原子</strong>，不保证 <strong>MySQL ↔ Redis</strong> 一致。面试官一问「DB 成功、Redis 失败怎么办？」现在的稿子接不住。</p>
+</li>
+<li>
+<p><strong>索引表述前后矛盾</strong><br>
+前文唯一索引是 <code>follower_followee</code>，难点里写成「唯一索引 <code>&lt;followee_follower&gt;</code>」——细节错了会显得没真正想清楚。</p>
+</li>
+<li>
+<p><strong>计数方案深度不够</strong><br>
+Hash + 同步 ±1 + Cache-Aside，缺：key 设计、并发丢更新、缓存击穿/雪崩、冷启动回源、与 DB 对账。</p>
+</li>
+<li>
+<p><strong>亮点偏「名词」</strong><br>
+<code>tablestore</code>、Pipeline 写得很空，2 年经验候选人若只背名词，追问「为什么不用分表 / 为什么不用计数表」会立刻露馅。</p>
+</li>
+<li>
+<p><strong>业务边界漏洞</strong><br>
+未关注却要拉黑、自己关注自己、重复关注并发、软删后重新关注的语义、分页游标 vs offset，基本没准备。</p>
+</li>
+<li>
+<p><strong>几乎没有 Golang 工程视角</strong><br>
+接口分层、Repo、事务边界、幂等、错误码、超时降级——对「Golang 岗」这是硬伤。</p>
+</li>
+<li>
+<p><strong>文档完成度差</strong><br>
+<code>xxxx</code>、<code>TxPiepline</code> 拼写、序号重复（两个「2.」），会给面试官「准备潦草」的印象。</p>
+</li>
+</ol>
+<hr>
+<h3 id="建议按优先级">建议（按优先级）
+</h3><div class="table-wrapper"><table>
 	<thead>
 			<tr>
-					<th>维度</th>
-					<th>分数</th>
-					<th>简评</th>
+					<th>优先级</th>
+					<th>做什么</th>
 			</tr>
 	</thead>
 	<tbody>
 			<tr>
-					<td>问题定义与业务抽象</td>
-					<td>70</td>
-					<td>TopN + 近 7 天边界清楚</td>
+					<td>P0</td>
+					<td>把一致性故事补全：写路径（先 DB 再 Redis / Outbox / 对账）、读路径降级、Redis 不可用时的限流与熔断</td>
 			</tr>
 			<tr>
-					<td>架构设计完整性</td>
-					<td>65</td>
-					<td>多级缓存 + 离线计算主链路合理</td>
+					<td>P0</td>
+					<td>画一张「关注 / 取消关注」时序图，标清事务、Upsert、status、计数更新顺序</td>
 			</tr>
 			<tr>
-					<td>技术细节与落地</td>
-					<td>50</td>
-					<td>缺关键实现、参数、边界条件</td>
+					<td>P1</td>
+					<td>准备 3 个追问标准答：并发重复关注、未关注拉黑、百万粉丝列表分页</td>
 			</tr>
 			<tr>
-					<td>难点亮点说服力</td>
-					<td>68</td>
-					<td>锁、堆、HN 公式有亮点，但讲不透</td>
+					<td>P1</td>
+					<td>把 tablestore 改成「可选扩展」：先讲单机/单库上限与分片思路，再提引入外部存储的原因与代价</td>
 			</tr>
 			<tr>
-					<td>表达与专业度</td>
-					<td>55</td>
-					<td>错别字、占位符多，像草稿</td>
+					<td>P2</td>
+					<td>补一层 Go 实现：<code>FollowService</code> 接口、幂等、GORM 事务片段，能对着代码讲 2 分钟</td>
 			</tr>
 			<tr>
-					<td>面试可追问准备</td>
-					<td>48</td>
-					<td>几乎没有「被问住」时的备用料</td>
+					<td>P2</td>
+					<td>修正文案与术语：Pipeline 拼写、索引名统一、标题 description 写完整</td>
 			</tr>
 	</tbody>
 </table></div>
 <hr>
-<h2 id="优点">优点
-</h2><ol>
-<li><strong>主路径合理</strong>：查询走本地缓存 → Redis → 兜底；计算走离线 TopN + 小根堆，符合热榜常见做法，不是乱堆关键词。</li>
-<li><strong>有业务折中意识</strong>：用「近 7 天 / 约 100 万」控数据量，比硬扛全量排序更像有生产经验。</li>
-<li><strong>亮点选得对</strong>：多实例分布式锁、Hacker News 时间衰减、ZSet 不存 Content——这些正是面试官能追问的点。</li>
-<li><strong>主动暴露缺点</strong>：缓存简单、强一致不足，至少说明你知道系统边界，比只会吹「高可用高性能」好。</li>
-<li><strong>有架构图</strong>：比纯文字更容易在面试里讲清读写两条链路。</li>
-</ol>
+<h3 id="分项参考面试官视角">分项参考（面试官视角）
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>维度</th>
+					<th>分数</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>需求与模块拆分</td>
+					<td>78</td>
+					<td>清楚，但偏浅</td>
+			</tr>
+			<tr>
+					<td>存储与索引</td>
+					<td>72</td>
+					<td>方向对，表述有错</td>
+			</tr>
+			<tr>
+					<td>缓存与一致性</td>
+					<td>55</td>
+					<td>最大短板</td>
+			</tr>
+			<tr>
+					<td>难点/亮点说服力</td>
+					<td>60</td>
+					<td>有点，深度不够</td>
+			</tr>
+			<tr>
+					<td>自我认知与表达</td>
+					<td>70</td>
+					<td>有缺点意识，文档粗糙</td>
+			</tr>
+			<tr>
+					<td>对 2 年岗的匹配度</td>
+					<td>68</td>
+					<td>能讲项目，难打深水区</td>
+			</tr>
+	</tbody>
+</table></div>
 <hr>
-<h2 id="缺点面试会被卡住的地方">缺点（面试会被卡住的地方）
-</h2><ol>
-<li><strong>简历描述太空</strong>：「多实例部署下的热榜异步计算和查询」没有规模、指标、职责边界，面试官第一问就会要数字。</li>
-<li><strong>方案停在名词层</strong>：分 key、小根堆、分布式锁、自动续约都点到了，但缺：
-<ul>
-<li>分 key 规则（按天？按互动类型？怎么合并 TopN？）</li>
-<li>堆的维护时机与批大小</li>
-<li>锁用 Redis/etcd？续约失败怎么办？持锁实例挂了呢？</li>
-<li>本地缓存过期后仍兜底，跨实例一致性怎么说？</li>
-</ul>
-</li>
-<li><strong>公式只写了不解释</strong>：<code>Score = (p - 1) / (T + 2)^G</code> 里 p/T/G 含义、G 怎么选、和「点赞数排序」差在哪，不讲等于没亮点。</li>
-<li><strong>图文对不齐</strong>：图里有并发 Queue、分区、<code>forceGetLocal</code>，正文几乎没展开，面试官对着图一问，你会空。</li>
-<li><strong>「高可用」论证弱</strong>：本地 + Redis 失效后用过期数据，是降级不是高可用；没有说明降级 SLA、空榜、穿透、击穿。</li>
-<li><strong>表达不专业</strong>：<code>xxxx</code>、<code>实效→失效</code>、<code>晴空→清空</code>、<code>Hacknews</code>，会直接拉低可信度。</li>
-<li><strong>缺点写完就停了</strong>：「强一致性不足」没有影响面和为何可接受，像没想完。</li>
-</ol>
-<hr>
-<h2 id="建议按面试准备优先级">建议（按面试准备优先级）
-</h2><ol>
-<li><strong>补一组可说的数字</strong>：数据量、TopN、计算周期、单次计算耗时、QPS、缓存命中率、锁超时/续约周期。没有真实数也要给合理量级。</li>
-<li><strong>准备 3 层回答</strong>：一句话结论 → 架构步骤 → 细节/权衡。例如「为何小根堆」：只要 Top100，堆复杂度 O(n log k)，比全量排序或大 ZSet 更合适。</li>
-<li><strong>把追问清单写进稿子</strong>，至少覆盖：
-<ul>
-<li>多实例本地缓存不一致怎么办？</li>
-<li>计算中途失败，半成品会不会写进 Redis？</li>
-<li>分 key 后如何得到全局 Top100？</li>
-<li>锁续约失败 / 时钟漂移 / 脑裂</li>
-<li>缓存击穿（热榜 key 过期瞬间）</li>
-</ul>
-</li>
-<li><strong>讲清 HN 公式</strong>：老帖高赞为何会被新帖追上；G 调大/调小的业务含义。</li>
-<li><strong>把图里的并发 Queue 讲成 Go 实现</strong>：channel + worker pool、batch size、背压，对应 2 年经验该有的落地感。</li>
-<li><strong>润色表述</strong>：去掉占位符和错别字；简历改成「近 7 天 Top100 热榜：离线小根堆计算 + Redis ZSet + 本地缓存，分布式锁保证单实例计算」。</li>
-<li><strong>缺点改成「已知取舍」</strong>：例如强一致不必要，因为热榜允许分钟级延迟；用计算周期 + TTL 把最终一致说清楚。</li>
-</ol>
-<hr>
-<h2 id="面试官视角一句话">面试官视角一句话
-</h2><p>作为 2 年经验候选人，这份材料证明你<strong>做过热榜、懂分层和折中</strong>，但目前更像设计草稿，不像能扛 20–30 分钟深挖的面试稿。把「分 key / 锁续约 / 公式参数 / 并发队列 / 降级语义」补实，并清掉错别字，分数大概能到 <strong>75–80</strong>；再补上指标和失败场景，才比较稳。</p>
+<p><strong>一句话</strong>：当成「项目介绍提纲」大约 70+；当成「能过中高级追问的面试稿」现在大概 60 出头。把 <strong>DB–缓存一致性</strong> 和 <strong>3～5 个边界追问</strong> 补扎实，整体可以冲到 <strong>80+</strong>。</p>
 
 </section>
 
@@ -583,7 +706,7 @@
         
             <a href="/tags/gold/">Gold</a>
         
-            <a href="/tags/webook-one/">Webook-One</a>
+            <a href="/tags/webook-detail/">Webook-Detail</a>
         
     </section>
 
@@ -632,12 +755,12 @@
             
                 
 <article class="">
-    <a href="/p/feed-0x02/">
+    <a href="/p/contract-0x01/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">feed one</h2>
+            <h2 class="article-title">关注 detail</h2>
         </div>
     </a>
 </article>
@@ -645,12 +768,12 @@
             
                 
 <article class="">
-    <a href="/p/comment-0x02/">
+    <a href="/p/feed-0x01/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">评论 one</h2>
+            <h2 class="article-title">feed detail</h2>
         </div>
     </a>
 </article>
@@ -658,12 +781,12 @@
             
                 
 <article class="">
-    <a href="/p/select-0x02/">
+    <a href="/p/contract-0x01/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">搜索 one</h2>
+            <h2 class="article-title">用户关系 detail</h2>
         </div>
     </a>
 </article>
@@ -671,12 +794,12 @@
             
                 
 <article class="">
-    <a href="/p/payment-0x02/">
+    <a href="/p/select-0x01/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">打赏 one</h2>
+            <h2 class="article-title">搜索 detail</h2>
         </div>
     </a>
 </article>
@@ -684,12 +807,12 @@
             
                 
 <article class="">
-    <a href="/p/migrate-0x02/">
+    <a href="/p/comment-0x01/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">不停机数据迁移 one</h2>
+            <h2 class="article-title">评论 detail</h2>
         </div>
     </a>
 </article>

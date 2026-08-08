@@ -2,7 +2,7 @@
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="我们项目实现了一个 xxxx">
-<title>发帖服务 detail</title>
+<title>发帖服务 one</title>
 
 <link rel='canonical' href='https://ddlgitgzzhm.github.io/p/publish-service-0x01/'>
 
@@ -11,7 +11,7 @@
 <meta property='og:description' content="我们项目实现了一个 xxxx">
 <meta property='og:url' content='https://ddlgitgzzhm.github.io/p/publish-service-0x01/'>
 <meta property='og:site_name' content='GzzhM'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='gold' /><meta property='article:tag' content='webook-detail' /><meta property='article:published_time' content='2026-07-25T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-07-25T00:00:00&#43;00:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='gold' /><meta property='article:tag' content='webook-one' /><meta property='article:published_time' content='2026-07-25T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-07-25T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="发帖服务 detail">
 <meta name="twitter:description" content="我们项目实现了一个 xxxx">
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -320,24 +320,50 @@
             <nav id="TableOfContents">
   <ol>
     <li><a href="#简历-preview">简历 preview</a></li>
-    <li><a href="#制作库和线上库的事务问题">制作库和线上库的事务问题</a></li>
-    <li><a href="#mongodb">Mongodb</a>
+    <li><a href="#细节">细节</a>
       <ol>
-        <li><a href="#雪花算法">雪花算法</a></li>
+        <li><a href="#数据库索引设计">数据库索引设计</a></li>
+        <li><a href="#数据库并发处理">数据库并发处理</a></li>
+        <li><a href="#缓存设计">缓存设计</a></li>
       </ol>
     </li>
-    <li><a href="#oss">OSS</a></li>
-    <li><a href="#查询接口">查询接口</a>
+    <li><a href="#其他细节">其他细节</a>
       <ol>
-        <li><a href="#分页接口处理">分页接口处理</a></li>
-        <li><a href="#缓存设计">缓存设计</a>
-          <ol>
-            <li><a href="#precache">PreCache</a></li>
-          </ol>
-        </li>
+        <li><a href="#mongodb">MongoDB</a></li>
+        <li><a href="#oss">OSS</a></li>
+        <li><a href="#对接阅读统计服务">对接阅读统计服务</a></li>
       </ol>
     </li>
-    <li><a href="#面试">面试</a></li>
+    <li><a href="#综合评分68--100">综合评分：<strong>68 / 100</strong></a></li>
+    <li><a href="#优点">优点</a>
+      <ol>
+        <li><a href="#1-业务建模有思考">1. 业务建模有思考</a></li>
+        <li><a href="#2-缓存策略贴近真实访问">2. 缓存策略贴近真实访问</a></li>
+        <li><a href="#3-并发场景有触点">3. 并发场景有触点</a></li>
+        <li><a href="#4-扩展能力有落地">4. 扩展能力有落地</a></li>
+      </ol>
+    </li>
+    <li><a href="#缺点">缺点</a>
+      <ol>
+        <li><a href="#1-esr-原则理解不准确高风险扣分点">1. ESR 原则理解不准确（高风险扣分点）</a></li>
+        <li><a href="#2-热榜设计过于粗糙">2. 热榜设计过于粗糙</a></li>
+        <li><a href="#3-一致性问题讲不深">3. 一致性问题讲不深</a></li>
+        <li><a href="#4-几乎没有-golang-相关内容">4. 几乎没有 Golang 相关内容</a></li>
+        <li><a href="#5-表达与细节问题">5. 表达与细节问题</a></li>
+        <li><a href="#6-缺少可量化的结果">6. 缺少可量化的结果</a></li>
+      </ol>
+    </li>
+    <li><a href="#改进建议">改进建议</a>
+      <ol>
+        <li><a href="#一把每个技术点补成star--追问应答">一、把每个技术点补成「STAR + 追问应答」</a></li>
+        <li><a href="#二重点补强-5-个高频追问">二、重点补强 5 个高频追问</a></li>
+        <li><a href="#三补-golang-实现细节至少-3-点">三、补 Golang 实现细节（至少 3 点）</a></li>
+        <li><a href="#四oss--db-一致性单独成段">四、OSS + DB 一致性单独成段</a></li>
+        <li><a href="#五参考-register_login-tidy-的结构改版">五、参考 <code>register_login tidy</code> 的结构改版</a></li>
+        <li><a href="#六修正文档硬伤">六、修正文档硬伤</a></li>
+      </ol>
+    </li>
+    <li><a href="#面试官视角的一句话评价">面试官视角的一句话评价</a></li>
   </ol>
 </nav>
         </div>
@@ -412,157 +438,273 @@
     
     
     <h2 id="简历-preview">简历 preview
-</h2><p>简历上 :</p>
-<p>设计并实现了一个 发帖 服务</p>
-<p>需求分析 :</p>
+</h2><p>简历上 : 设计并实现了一个 <strong>文章</strong> 服务</p>
 <ol>
-<li>帖子状态分析 :  未发表 -&gt; 发表 -&gt; 被删除</li>
+<li>考虑文章的业务属性, 创作者支持保存草稿和发布文章。 设计了 线上库 和 制作库 两个库表设计 。</li>
 </ol>
-<p>如果做到一边修改一边可查看</p>
-<ol>
-<li>分开存储, 设计一个制作库 一个线上库</li>
+<ul>
+<li>采用 ESR 原则，考虑会有 用户查看自己的文章，用户查看某篇文章详情,以及热榜查看对应时间的文章 。设定过了 _create,auth_id . 这两个索引</li>
+</ul>
+<ol start="2">
+<li>文章服务支持</li>
 </ol>
-<p><img src="/p/publish-service-0x01/img.png"
-	width="352"
-	height="275"
-	srcset="/p/publish-service-0x01/img_hu_aac3da734ef76f24.png 480w, /p/publish-service-0x01/img_hu_f370ee4cf79a8ccc.png 1024w"
-	loading="lazy"
-	
-		alt="img.png"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="128"
-		data-flex-basis="307px"
-	
-></p>
-<h2 id="制作库和线上库的事务问题">制作库和线上库的事务问题
-</h2><p>我们从 <code>service</code> 的角度考虑，其实并不知道 <code>repository</code> 层面存储的是什么数据 。 所以就别谈开启事务了</p>
-<p>因此我们能做的最好的一点就是 <code>重试</code>  . 对于创作者来说就算线上库失败了其实影响也不大</p>
-<ol>
+<ul>
+<li>制作库 保存草稿, 设置隐私文章, 发布制作库内容, 按照 ID 查看文章,或许作者文章列表, 获取发布文章列表</li>
+</ul>
+<ol start="3">
 <li>
-<p>如果看到发表失败，他可以考虑重试</p>
+<p>支持 MongoDB 和 OSS 的扩展</p>
 </li>
 <li>
-<p>读者完全看不到这个帖子</p>
+<p>设计合理的缓存服务</p>
+</li>
+<li>
+<p>考虑并发场景</p>
 </li>
 </ol>
-<p>如果是站在 <code>repository</code> 的角度考虑 就要分 <code>同库不同表</code> 和 <code>不同库</code> 的问题</p>
-<p>对于 <code>不同库</code> 的情况， 可以考虑 分步更新 <code>find - update -&gt; upsert</code></p>
-<p>对于 <code>同库不同表</code> 可以采用数据库事务进行处理</p>
-<p>建表</p>
-<h2 id="mongodb">Mongodb
-</h2><h3 id="雪花算法">雪花算法
-</h3><p>因为 系统内增加了 MongoDB 但是我们在 repo 层定义的是 int64 的 ID，因此需要使用雪花算法</p>
-<h2 id="oss">OSS
-</h2><p>通过 OSS 来维护 content</p>
-<h2 id="查询接口">查询接口
-</h2><p>作者的查询接口 :</p>
-<p>列表接口 : 看到自己发表的所有文章, 这是一个分页接口</p>
-<p>详情接口 : 当作者选中了某篇文章的时候，能看到文章的全部内容</p>
-<p>读者的查询接口 :</p>
-<p>搜索接口 : 接入搜索模块之后设计</p>
-<p>推荐接口 : 再设计</p>
-<p>阅读文章接口 : 当选中某篇文章的时候, 可以看到文章的全部内容</p>
-<h3 id="分页接口处理">分页接口处理
-</h3><p>分页接口的三种形态 :</p>
-<ol>
-<li>
-<p>Offset + Limit 的形式</p>
-</li>
-<li>
-<p>之直接定义一个 Page 的形式 。 前端传递了 page 之后需要后端计算出对应的 offset 和 limit</p>
-</li>
-<li>
-<p>直接定义一个 Cursor 的形式 。 每次查询后，后端控制返回一个 Cursor,让前端使用 。</p>
-</li>
-</ol>
+<h2 id="细节">细节
+</h2><h3 id="数据库索引设计">数据库索引设计
+</h3><p>主要涉及到的业务有 : 作者查看当前文章，和最近一周的热榜设计</p>
+<p>对于作者查看当前文章预计查询是 <code>select from where auth_id = '' and statuts = ''</code> 因此设计了 <code>auth_id</code> 的索引</p>
+<p>对于最近一周的热榜设计，因为热榜计算是一个频繁的操作，预计查询是 <code>select from where _create &gt;= now-7week</code> 因此设计了 <code>_create</code> 的索引</p>
+<h3 id="数据库并发处理">数据库并发处理
+</h3><p>隐私文章功能 :</p>
+<p>需要同步改动 制作库和 线上库的 状态 。</p>
+<p>系统设计的时候选择的是同库不同表的流程因此采用数据库事务进行一致性处理，对于更新失败的操作进行回滚 。从业务角度考虑，就算更新失败了也只是让用户多重试几次。</p>
+<p>如果是不同库的情况，可以考虑在接口层面增加多次重试。</p>
+<p>发布功能 :</p>
+<p>对于发布功能, 线上库存在两个状态,线上没有文章需要create,线上有文章需要 update</p>
+<p>防止数据库层面的同一篇文章多次竞态问题使用<code>upsert</code>进行操作。</p>
 <h3 id="缓存设计">缓存设计
-</h3><h4 id="precache">PreCache
-</h4><h5 id="缓存第一页">缓存第一页
-</h5><p>大部分没有什么人会缓存分页结果 。 但是很多业务场景，用户只看列表内容的第一页，很少会往后翻 。 因此可以考虑 <strong>只缓存第一页</strong></p>
-<p>实现逻辑 :</p>
+</h3><p>对于列表接口 :</p>
+<p>根据习惯习惯缓存第一页内容,大部分用户只会访问第一页的内容。 细节: 缓存之前需要清空文章的content 节省内存资源。</p>
+<p>在更新，删除，隐私的接口增加对应的删除缓存的操作 。</p>
+<p>对于查看detail接口 :</p>
+<p>根据用户习惯，往往只会查看列表第一篇文章的内容。 因此考虑在拉取列表后，缓存第一篇文章的内容。 仅在 content &lt; 1M 的时候进行缓存。 缓存设置了一个很短的过期时间，防止浪费。</p>
+<p>对于发布接口 :</p>
 <ol>
-<li>
-<p>查询接口的时候。优先查缓存 然后再查数据库。 判断 <code>offset == 0</code> 和 <code>limit &lt; 100</code> 则走缓存</p>
-</li>
-<li>
-<p>更新/新增操作 : 在对于新写文章、编辑文字、发表文章都要清楚相关的 首页缓存</p>
-</li>
+<li>考虑作者发布文章后就会有人阅读，因此在发布的时候就设置缓存。</li>
 </ol>
-<h5 id="缓存第第一条数据">缓存第第一条数据
-</h5><p>对于创作者查看文章详情接口，很大概率。创作者在拿到列表之后，只会访问第一条数据 。 所以我们可以考虑进行缓存预加载 。只缓存第一条数据</p>
-<p>特点 ：</p>
-<ol>
-<li>因为伴随着预测性质，所以这个过期时间设置的很短 。避免内存的开销</li>
-</ol>
-<p><img src="/p/publish-service-0x01/artclie_publish.png"
-	width="574"
-	height="293"
-	srcset="/p/publish-service-0x01/artclie_publish_hu_3c98b2b06cee5069.png 480w, /p/publish-service-0x01/artclie_publish_hu_e8e264ec47876974.png 1024w"
-	loading="lazy"
-	
-		alt="artclie_publish.png"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="195"
-		data-flex-basis="470px"
-	
-></p>
-<p>改进点 :</p>
-<ol>
-<li>不缓存大文档 。 避免浪费内存</li>
-</ol>
-<h2 id="面试">面试
-</h2><ol>
-<li>
-<p>什么是 TDD</p>
-</li>
-<li>
-<p>TDD 和 DDD 的关系</p>
+<h2 id="其他细节">其他细节
+</h2><h3 id="mongodb">MongoDB
+</h3><p>尝试接入 MongoDB 进行存储文章数据。 接入 MongoDB 之后发现，MongoDB 返回的 ID 是 String 类型 。破坏了原先接口的定义。 因此引入了 雪花算法 进行对其接口</p>
+<h3 id="oss">OSS
+</h3><p>接入 OSS，在发布文章之后，对于线上库的文章内容进行优化。线上库不保存文章内容，文章内容全部存储在 OSS 中</p>
+<h3 id="对接阅读统计服务">对接阅读统计服务
+</h3><p>使用 channel + ctxWithTimeout 进行批量发送阅读统计给 MQ。 供下游消费</p>
+<p>作为 Golang 面试官，我按「2 年经验、能独立负责一个业务模块」的标准，对这份 <strong>发帖/文章服务</strong> 面试准备稿打分如下。</p>
+<hr>
+<h2 id="综合评分68--100">综合评分：<strong>68 / 100</strong>
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>维度</th>
+					<th>得分</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>业务理解与架构设计</td>
+					<td>18/25</td>
+					<td>制作库/线上库分离思路正确，有业务驱动意识</td>
+			</tr>
+			<tr>
+					<td>数据库与索引</td>
+					<td>12/20</td>
+					<td>有索引意识，但 ESR 理解偏浅，热榜查询设计不完整</td>
+			</tr>
+			<tr>
+					<td>并发与一致性</td>
+					<td>13/20</td>
+					<td>提到事务、upsert、重试，但缺少边界与失败场景</td>
+			</tr>
+			<tr>
+					<td>缓存设计</td>
+					<td>14/20</td>
+					<td>第一页缓存、去 content、失效策略有亮点，缺 key 设计与一致性细节</td>
+			</tr>
+			<tr>
+					<td>工程化与 Golang 表达</td>
+					<td>6/15</td>
+					<td>几乎无 Go 实现细节，MQ 只一笔带过</td>
+			</tr>
+			<tr>
+					<td>面试表达与完整性</td>
+					<td>5/10</td>
+					<td>结构尚可，错别字多，placeholder 未填，缺 Q&amp;A 演练</td>
+			</tr>
+	</tbody>
+</table></div>
+<p><strong>结论</strong>：作为 2 年经验候选人，<strong>项目经历是真实的、方向也对</strong>，但这份准备稿更像「项目笔记摘要」，还不足以支撑 45–60 分钟的深度技术面。能过初筛，若在索引、一致性、缓存、Go 并发等点被追问，容易失分。</p>
+<hr>
+<h2 id="优点">优点
+</h2><h3 id="1-业务建模有思考">1. 业务建模有思考
+</h3><p>「制作库 + 线上库」分离是内容类系统的常见做法，能解释：</p>
 <ul>
-<li>DDD 适合战略规划，TDD 适合落地具体功能。</li>
+<li>草稿编辑 vs 线上可读</li>
+<li>发布时从制作库同步到线上库</li>
 </ul>
-</li>
-<li>
-<p>TDD 有什么好处</p>
+<p>这比只会说「CRUD 增删改查」高一档。</p>
+<h3 id="2-缓存策略贴近真实访问">2. 缓存策略贴近真实访问
+</h3><ul>
+<li>只缓存第一页 —— 符合大部分用户行为</li>
+<li>列表缓存去掉 <code>content</code> —— 说明考虑过内存成本</li>
+<li>写操作删缓存 —— 知道 Cache Aside 的基本思路</li>
+<li>详情预缓存第一条 + 短 TTL + <code>&lt; 1M</code> 限制 —— 有「预测性缓存」意识</li>
+</ul>
+<h3 id="3-并发场景有触点">3. 并发场景有触点
+</h3><ul>
+<li>发布用 <code>upsert</code> 防竞态</li>
+<li>隐私状态双库同步用事务</li>
+<li>不同库场景考虑接口层重试</li>
+</ul>
+<p>说明不是只写 happy path。</p>
+<h3 id="4-扩展能力有落地">4. 扩展能力有落地
+</h3><ul>
+<li>MongoDB 接入 + 雪花 ID 对齐 <code>int64</code> 接口</li>
+<li>OSS 存正文、DB 存元数据</li>
+<li><code>channel + ctxWithTimeout</code> 批量发 MQ</li>
+</ul>
+<p>有「存储分层 + 异步解耦」的工程感。</p>
+<hr>
+<h2 id="缺点">缺点
+</h2><h3 id="1-esr-原则理解不准确高风险扣分点">1. ESR 原则理解不准确（高风险扣分点）
+</h3><p>文档写「采用 ESR 原则，设计了 <code>_create</code> 和 <code>auth_id</code> 两个索引」。</p>
+<p>ESR（Equality / Sort / Range）说的是 <strong>复合索引字段顺序</strong>，不是两个单列索引。面试官很可能追问：</p>
 <ul>
-<li>理清思路、查漏补缺、方便重构、测试完善。</li>
+<li>作者查文章：<code>auth_id = ? AND status = ?</code> → 更合理的是 <code>(auth_id, status)</code> 或 <code>(auth_id, status, ctime DESC)</code></li>
+<li>热榜：<code>ctime &gt;= now-7d</code> 且可能要 <code>status = published</code> → 单列 <code>_create</code> 往往不够，还要考虑排序字段（阅读量、score）</li>
 </ul>
-</li>
-<li>
-<p>有没有用过 MongoDB ？ 用来解决什么问题 ？</p>
-</li>
-<li>
-<p>为什么要用 Mongodb 用 mysql 行不行</p>
-</li>
-<li>
-<p>解释一下 mongodb 中集合和文档的关系</p>
-</li>
-<li>
-<p>如何设计 Mongobd 上的索引 ESR 原则</p>
-</li>
-<li>
-<p>如何数据存储在 MongoDB上 怎么生成 ID</p>
-</li>
-<li>
-<p>MongoDB 是否支持事务，是否支持跨文档事务，是否支持 ACID</p>
-</li>
-</ol>
-<p>缓存方案 : 淘汰策略</p>
-<p>LRU(最近最少使用) , LFU (最近不频繁使用)</p>
+<p>若被问到「为什么不用复合索引」，目前文档撑不住。</p>
+<h3 id="2-热榜设计过于粗糙">2. 热榜设计过于粗糙
+</h3><ul>
+<li><code>now-7week</code> 应为 7 天（笔误会减印象分）</li>
+<li>没说明热榜指标（UV、阅读量、点赞、时间衰减）</li>
+<li>没说明是实时算还是定时任务 + 缓存</li>
+<li>频繁计算却只提 <code>_create</code> 索引，逻辑链不完整</li>
+</ul>
+<h3 id="3-一致性问题讲不深">3. 一致性问题讲不深
+</h3><p>隐私文章「制作库 + 线上库同步」只说了事务和重试，缺：</p>
+<ul>
+<li>同库不同表 vs 跨库：最终一致性怎么做</li>
+<li>事务失败后用户看到什么状态</li>
+<li>OSS 与 DB 不一致怎么办（DB 更新了，OSS 上传失败）</li>
+<li>是否需要 Saga / 补偿 / 幂等键</li>
+</ul>
+<p>2 年经验不要求精通分布式事务，但要能讲清 <strong>自己的方案边界</strong>。</p>
+<h3 id="4-几乎没有-golang-相关内容">4. 几乎没有 Golang 相关内容
+</h3><p>这是 <strong>Golang 面试准备</strong>，但全文没有：</p>
+<ul>
+<li><code>context</code> 怎么用、超时怎么传</li>
+<li>goroutine 泄漏怎么防</li>
+<li><code>errgroup</code> / worker pool 怎么做批量 MQ</li>
+<li>接口设计、依赖注入、分层（handler/service/repo）</li>
+<li>单元测试、压测数据</li>
+</ul>
+<p><code>channel + ctxWithTimeout</code> 只一句，深度不够。</p>
+<h3 id="5-表达与细节问题">5. 表达与细节问题
+</h3><ul>
+<li><code>statuts</code>、<code>auth_id</code>/<code>author_id</code> 混用、<code>_create</code> 命名不规范</li>
+<li>「习惯习惯」重复</li>
+<li>description 仍是 <code>xxxx</code></li>
+<li>相比同系列的 <code>register_login tidy</code>，这篇 <strong>没有 Q&amp;A 脱稿演练</strong>，面试时容易散</li>
+</ul>
+<h3 id="6-缺少可量化的结果">6. 缺少可量化的结果
+</h3><p>没有 QPS、P99 延迟、缓存命中率、发布失败率等，「设计合理」缺少说服力。</p>
+<hr>
+<h2 id="改进建议">改进建议
+</h2><h3 id="一把每个技术点补成star--追问应答">一、把每个技术点补成「STAR + 追问应答」
+</h3><p>建议每个模块固定四句话：</p>
 <ol>
-<li>
-<p>优先淘汰普通创作者的数据，尽可能保留大 V 的数据。 LFU 能够达到近似效果 ，LRU 效果会差一些</p>
-</li>
-<li>
-<p>优先淘汰大对象</p>
-</li>
-<li>
-<p>优先淘汰小对象</p>
-</li>
+<li><strong>背景</strong>：为什么这么做</li>
+<li><strong>方案</strong>：具体怎么实现</li>
+<li><strong>取舍</strong>：为什么不用别的方案</li>
+<li><strong>结果</strong>：数据或线上表现</li>
 </ol>
+<p><strong>示例（索引）</strong>：</p>
+<blockquote>
+<p>作者列表查询是 <code>author_id + status + 按创建时间倒序分页</code>。我用复合索引 <code>(author_id, status, ctime DESC)</code>，遵循 ESR：等值条件在前，排序字段在中间。热榜是近 7 天已发布文章按 score 排序，定时任务每 5 分钟算一次，结果放 Redis ZSet，读路径不走 DB。</p>
+</blockquote>
+<h3 id="二重点补强-5-个高频追问">二、重点补强 5 个高频追问
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>追问</th>
+					<th>建议准备内容</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>为什么制作库/线上库要分开？</td>
+					<td>读写隔离、草稿不影响线上、发布可审核</td>
+			</tr>
+			<tr>
+					<td>发布接口如何保证幂等？</td>
+					<td>幂等键、upsert 条件、版本号 / status 机</td>
+			</tr>
+			<tr>
+					<td>缓存一致性怎么保证？</td>
+					<td>key 设计、先更 DB 再删缓存、延迟双删要不要</td>
+			</tr>
+			<tr>
+					<td>为什么用 MongoDB？MySQL 行不行？</td>
+					<td>文档结构、字段变化、大正文；MySQL 可以但 OSS 后 MySQL 更合适</td>
+			</tr>
+			<tr>
+					<td>MQ 批量发送失败怎么办？</td>
+					<td>batch 大小、重试、dead letter、ctx 超时</td>
+			</tr>
+	</tbody>
+</table></div>
+<h3 id="三补-golang-实现细节至少-3-点">三、补 Golang 实现细节（至少 3 点）
+</h3><ol>
+<li><strong>发布流程</strong>：<code>ctx</code> 超时、<code>errgroup</code> 并行写 DB + 上传 OSS</li>
+<li><strong>阅读统计</strong>：带 buffer 的 worker，<code>select</code> + <code>ctx.Done()</code> 优雅退出</li>
+<li><strong>接口层</strong>：统一错误码、<code>middleware</code> 鉴权、作者只能改自己的文章</li>
+</ol>
+<p>能画一张流程图或贴 20 行核心代码，比纯文字强很多。</p>
+<h3 id="四oss--db-一致性单独成段">四、OSS + DB 一致性单独成段
+</h3><p>建议明确：</p>
+<ul>
+<li>先发 OSS 还是先写 DB？</li>
+<li>发布失败如何回滚 / 清理孤儿文件？</li>
+<li>读路径：DB 存 <code>content_url</code>，CDN /cache 怎么处理？</li>
+</ul>
+<h3 id="五参考-register_login-tidy-的结构改版">五、参考 <code>register_login tidy</code> 的结构改版
+</h3><p>那篇有「脱讲稿 + 问题列表 + 标准答法」，这篇建议对齐：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="gu">## 30 秒 elevator pitch
+</span></span></span><span class="line"><span class="cl"><span class="gu">## 架构图（制作库/线上库/OSS/缓存/MQ）
+</span></span></span><span class="line"><span class="cl"><span class="gu">## 核心接口（Publish / SaveDraft / SetPrivate / List / Detail）
+</span></span></span><span class="line"><span class="cl"><span class="gu">## 5 个技术亮点（每个 1 分钟）
+</span></span></span><span class="line"><span class="cl"><span class="gu">## 10 个高频面试题 + 参考答案
+</span></span></span><span class="line"><span class="cl"><span class="gu">## 踩坑（MongoDB ObjectId、缓存大对象、双库不一致）
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="六修正文档硬伤">六、修正文档硬伤
+</h3><ul>
+<li>统一术语：<code>author_id</code>、<code>status</code>、<code>ctime</code></li>
+<li>修正「7 week」→「7 day」</li>
+<li>填满 front matter 的 <code>description</code></li>
+<li>通读去掉错别字</li>
+</ul>
+<hr>
+<h2 id="面试官视角的一句话评价">面试官视角的一句话评价
+</h2><blockquote>
+<p>「候选人做过真实的文章发布模块，有制作库/线上库、缓存、OSS、MQ 等完整链路意识；但对索引、一致性、Go 并发和面试表达深度不足。若能在 ESR、发布幂等、缓存 key 设计、双库一致性边界上准备充分，可从『大概做过』提升到『能独立负责』，分数有望到 80+。」</p>
+</blockquote>
+<hr>
+<p>如果你愿意，我可以按面试官口吻，直接把这篇 <code>tidy</code> 文档改成「可背诵版」（含 10 道追问 + 参考答案），或对照 <code>register_login tidy</code> 的结构帮你重写一版。</p>
 
 </section>
 
@@ -573,7 +715,7 @@
         
             <a href="/tags/gold/">Gold</a>
         
-            <a href="/tags/webook-detail/">Webook-Detail</a>
+            <a href="/tags/webook-one/">Webook-One</a>
         
     </section>
 
@@ -622,12 +764,12 @@
             
                 
 <article class="">
-    <a href="/p/feed-0x01/">
+    <a href="/p/feed-0x02/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">feed detail</h2>
+            <h2 class="article-title">feed one</h2>
         </div>
     </a>
 </article>
@@ -635,12 +777,12 @@
             
                 
 <article class="">
-    <a href="/p/contract-0x01/">
+    <a href="/p/rank-0x02/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">用户关系 detail</h2>
+            <h2 class="article-title">热榜 one</h2>
         </div>
     </a>
 </article>
@@ -648,12 +790,12 @@
             
                 
 <article class="">
-    <a href="/p/select-0x01/">
+    <a href="/p/comment-0x02/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">搜索 detail</h2>
+            <h2 class="article-title">评论 one</h2>
         </div>
     </a>
 </article>
@@ -661,12 +803,12 @@
             
                 
 <article class="">
-    <a href="/p/comment-0x01/">
+    <a href="/p/select-0x02/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">评论 detail</h2>
+            <h2 class="article-title">搜索 one</h2>
         </div>
     </a>
 </article>
@@ -674,12 +816,12 @@
             
                 
 <article class="">
-    <a href="/p/comment-0x01/">
+    <a href="/p/payment-0x02/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">评论 detail</h2>
+            <h2 class="article-title">打赏 one</h2>
         </div>
     </a>
 </article>
